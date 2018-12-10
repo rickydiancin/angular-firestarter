@@ -21,6 +21,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
+import { FormsModule } from '@angular/forms';
 
 // IMPORTANT
 // Add your own project credentials to environments/*.ts
@@ -40,6 +41,7 @@ import { AngularFireFunctionsModule } from '@angular/fire/functions';
     AngularFireAuthModule,
     AngularFireStorageModule,
     AngularFireFunctionsModule,
+    FormsModule ,
     ServiceWorkerModule.register('/ngsw-worker.js', {
       enabled: environment.production
     })
