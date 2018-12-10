@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 declare var $ :any;
+declare var jQuery :any;
+declare var WOW :any;
 declare var revolution :any;
 
 @Injectable({
@@ -346,7 +348,6 @@ export class ScriptsService {
                       origo:"slidercenter",
                       speed:2000,
                       levels:[2,3,4,5,6,7,12,16,10,50,47,48,49,50,51,55],
-                      type:"mouse",
                     },
                     shadow:0,
                     spinner:"off",
@@ -449,7 +450,7 @@ export class ScriptsService {
                       origo:"slidercenter",
                       speed:2000,
                       levels:[2,3,4,5,6,7,12,16,10,50,47,48,49,50,51,55],
-                      type:"mouse",
+    
                     },
                     shadow:0,
                     spinner:"off",
@@ -553,7 +554,7 @@ export class ScriptsService {
                       origo:"slidercenter",
                       speed:2000,
                       levels:[2,3,4,5,6,7,12,16,10,50,47,48,49,50,51,55],
-                      type:"mouse",
+         
                     },
                     shadow:0,
                     spinner:"off",
@@ -740,7 +741,7 @@ export class ScriptsService {
       
           ScrollToTOp: function(){
             $(window).scroll(function(){
-              scroll = $(window).scrollTop();
+              var scroll = $(window).scrollTop();
               if (scroll >= 800){
                 $("#b-scrollToTop").addClass('b-show_scrollBut')
               }else{
