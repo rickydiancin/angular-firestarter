@@ -12,6 +12,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { SsrPageComponent } from './ssr-page/ssr-page.component';
 import { CategoryComponent } from './category/category.component';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   imports: [CommonModule, RouterModule, ReactiveFormsModule],
@@ -24,7 +25,8 @@ import { CategoryComponent } from './category/category.component';
     UserProfileComponent,
     UserFormComponent,
     SsrPageComponent,
-    CategoryComponent
+    CategoryComponent,
+    ProductComponent
   ],
   exports: [
     MainNavComponent,

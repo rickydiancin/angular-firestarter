@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ScriptsService } from 'src/app/core/scripts.service';
 
 @Component({
-  selector: 'category',
-  templateUrl: './category.component.html',
-  styleUrls: ['./category.component.scss']
+  selector: 'product',
+  templateUrl: './product.component.html',
+  styleUrls: ['./product.component.scss']
 })
-export class CategoryComponent implements OnInit {
+export class ProductComponent implements OnInit {
 
   constructor(
     private scriptsService: ScriptsService
