@@ -11,6 +11,7 @@ import { NotificationMessageComponent } from './notification-message/notificatio
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { SsrPageComponent } from './ssr-page/ssr-page.component';
+import { CategoryComponent } from './category/category.component';
 
 @NgModule({
   imports: [CommonModule, RouterModule, ReactiveFormsModule],
@@ -22,7 +23,8 @@ import { SsrPageComponent } from './ssr-page/ssr-page.component';
     NotificationMessageComponent,
     UserProfileComponent,
     UserFormComponent,
-    SsrPageComponent
+    SsrPageComponent,
+    CategoryComponent
   ],
   exports: [
     MainNavComponent,
