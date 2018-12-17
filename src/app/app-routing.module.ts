@@ -10,12 +10,14 @@ import { UploadPageComponent } from './uploads/upload-page/upload-page.component
 import { SsrPageComponent } from './ui/ssr-page/ssr-page.component';
 import { CategoryComponent } from './ui/category/category.component';
 import { ProductComponent } from './ui/product/product.component';
+import { CompanyComponent } from './ui/company/company.component';
 
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'login', component: UserLoginComponent },
   { path: 'category', component: CategoryComponent },
+  { path: 'company', component: CompanyComponent },
   { path: 'product', component: ProductComponent },
   { path: 'notes', component: NotesListComponent,  canActivate: [AuthGuard] },
   { path: 'uploads',  component: UploadPageComponent,  canActivate: [AuthGuard] },

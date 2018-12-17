@@ -13,6 +13,7 @@ import { UserFormComponent } from './user-form/user-form.component';
 import { SsrPageComponent } from './ssr-page/ssr-page.component';
 import { CategoryComponent } from './category/category.component';
 import { ProductComponent } from './product/product.component';
+import { CompanyComponent } from './company/company.component';
 
 @NgModule({
   imports: [CommonModule, RouterModule, ReactiveFormsModule],
@@ -26,7 +27,8 @@ import { ProductComponent } from './product/product.component';
     UserFormComponent,
     SsrPageComponent,
     CategoryComponent,
-    ProductComponent
+    ProductComponent,
+    CompanyComponent
   ],
   exports: [
     MainNavComponent,
