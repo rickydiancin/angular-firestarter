@@ -108,7 +108,7 @@ export class AuthService {
         console.log(credential);
         //this.notify.update('Welcome back!', 'success');
         //return this.updateUserData(credential.user);
-        this.router.navigate(['/']);
+        this.router.navigate(['/category']);
       })
       .catch(error => this.handleError(error));
   }
@@ -125,7 +125,7 @@ export class AuthService {
 
   signOut() {
     this.afAuth.auth.signOut().then(() => {
-      this.router.navigate(['/category']);
+      this.router.navigate(['/login']);
     });
   }
 
