@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ScriptsService } from 'src/app/core/scripts.service';
 import { AuthService } from 'src/app/core/auth.service';
+import { ProductsService } from 'src/app/core/products.service';
 
 @Component({
   selector: 'main-nav',
@@ -10,14 +11,20 @@ import { AuthService } from 'src/app/core/auth.service';
 export class MainNavComponent {
 
   show = false;
-
+  categories:any;
+  
   constructor(
     private scriptsService: ScriptsService,
-    public auth: AuthService
+    public auth: AuthService,
+    private productsService: ProductsService
   ) { }
 
   
   ngOnInit() {
+    this.productsService.getAllCategories(res => {
+      console.log(res);
+      this.categories = res;
+     })
     console.log(this.auth.user);
     setTimeout(() => {
       this.scriptsService.prepareJquery();
