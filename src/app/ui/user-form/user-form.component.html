@@ -1,4 +1,68 @@
-<form [formGroup]="userForm" *ngIf="newUser" (ngSubmit)="signup()">
+
+  <section id="b-my_account">
+    <div class="container b-my_account">
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12"> 
+          <div class="b-auth_section b-auth_login">
+            <h2><i class="icon-login icons"></i> Login</h2>
+            <form [formGroup]="userForm" (ngSubmit)="login()">
+                <div class="form-group">
+                  <label for="">Username or email address <span class="b-required">*</span></label>
+                  <input type="email" id="email" name="email2" class="input" formControlName="email" required autocomplete="new-password">
+                  <div *ngIf="formErrors.email" class="help is-danger">
+                    {{ formErrors.email }}
+                </div>
+                </div>
+                <div class="form-group">
+                  <label for="">Password <span class="b-required">*</span></label>
+                  <input type="password" id="password" name="password2" class="input" formControlName="password" required autocomplete="new-password">
+                  <div *ngIf="formErrors.password" class="help is-danger">
+                    {{ formErrors.password }}
+                </div>
+                </div>
+                <div class="form-group clearfix">
+                  <label class="pull-left"><input name="" type="checkbox" id="" value=""> Remember me</label>
+                  <a href="#" class="pull-right b-lost_password"><i class="icon-support icons"></i>  Lost your password?</a>
+                </div>
+                <button type="submit" class="btn" id="" [disabled]="!userForm.valid" >Login</button>  
+              </form>
+          </div>
+          <div class="b-auth_section b-auth_register" style="display: none;">
+            <h2><i class="icon-user icons"></i> Register</h2>
+            <form action="#" [formGroup]="">
+                <div class="form-group">
+                <label for="">Username<span class="b-required">*</span></label>
+                <input type="text" name="" value="" id="">
+              </div>
+              <div class="form-group">
+                <label for="">Email address <span class="b-required">*</span></label>
+                <input type="email" name="" value="" id="">
+              </div>
+              <div class="form-group">
+                <label for="">Password <span class="b-required">*</span></label>
+                <input type="password" name="" value="" id="">
+              </div> 
+              <button type="submit" class="btn" id="">Register</button> 
+              </form>
+          </div>
+        </div>  
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12"> 
+          <div class="b-auth_text text-center b-auth_text_register">
+            <h3>Register</h3>
+            <p>Registering for this site allows you to access your order status and history. Just fill in the fields below, and we’ll get a new account set up for you in no time. We will only ask you for information necessary to make the purchase process faster and easier.</p>
+            <a href="javascript:;" class="btn" id="b-register_but">Register</a>
+          </div>
+          <div class="b-auth_text text-center b-auth_text_login" style="display: none;">
+            <h3>Login</h3>
+            <p>Registering for this site allows you to access your order status and history. Just fill in the fields below, and we’ll get a new account set up for you in no time. We will only ask you for information necessary to make the purchase process faster and easier.</p>
+            <a href="javascript:;" class="btn" id="b-login_but">Login</a>
+          </div>
+        </div>  
+      </div>
+    </div>
+  </section> 
+
+<!-- <form [formGroup]="userForm" *ngIf="newUser" (ngSubmit)="signup()">
 
     <h3>New User Signup</h3>
     <p class="button is-small" (click)="toggleForm()">Already Registered?</p>
@@ -51,4 +115,4 @@
     <a *ngIf="!passReset && userForm.controls.email.valid" class="help is-info" (click)="resetPassword()">Reset Password for {{userForm.value.email}}?</a>
     <p *ngIf="passReset" class="help is-info">Reset requested. Check your email instructions.</p>
 
-</form>
+</form> -->
