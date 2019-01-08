@@ -11,20 +11,26 @@
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12"> 
           <div class="b-auth_section b-auth_login">
             <h2><i class="icon-login icons"></i> Login</h2>
-            <form action="#" [formGroup]="">
+            <form [formGroup]="userForm" (ngSubmit)="login()">
                 <div class="form-group">
                   <label for="">Username or email address <span class="b-required">*</span></label>
-                  <input type="email" name="" value="" id="">
+                  <input type="email" id="email" name="email2" class="input" formControlName="email" required autocomplete="new-password">
+                  <div *ngIf="formErrors.email" class="help is-danger">
+                    {{ formErrors.email }}
+                </div>
                 </div>
                 <div class="form-group">
                   <label for="">Password <span class="b-required">*</span></label>
-                  <input type="password" name="" value="" id="">
+                  <input type="password" id="password" name="password2" class="input" formControlName="password" required autocomplete="new-password">
+                  <div *ngIf="formErrors.password" class="help is-danger">
+                    {{ formErrors.password }}
+                </div>
                 </div>
                 <div class="form-group clearfix">
                   <label class="pull-left"><input name="" type="checkbox" id="" value=""> Remember me</label>
                   <a href="#" class="pull-right b-lost_password"><i class="icon-support icons"></i>  Lost your password?</a>
                 </div>
-                <button type="submit" class="btn" id="">Login</button>  
+                <button type="submit" class="btn" id="" [disabled]="!userForm.valid" >Login</button>  
               </form>
           </div>
           <div class="b-auth_section b-auth_register" style="display: none;">
