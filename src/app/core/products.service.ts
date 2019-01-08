@@ -27,7 +27,44 @@ export class ProductsService {
       })
     );
   }
+  getAllProducts(callback){
+    return this.afs.collection('products').snapshotChanges().pipe(
+        map((actions) => {
+            return actions.map((a) => {
+            const data = a.payload.doc.data();
+            return { id: a.payload.doc.id, ...data };
+            });
+        })).subscribe(res => {
+            console.log(res);
+            return callback(res);
+        })
+}
 
+getAllCategories(callback){
+  return this.afs.collection('categories').snapshotChanges().pipe(
+      map((actions) => {
+          return actions.map((a) => {
+          const data = a.payload.doc.data();
+          return { id: a.payload.doc.id, ...data };
+          });
+      })).subscribe(res => {
+          console.log(res);
+          res.forEach(c => {
+              if(c['parent'] != ''){
+                  this.getCategory(c['parent'], callback => {
+                      c['parentData'] = callback;
+                  })
+              }
+          })
+          return callback(res);
+      })
+}
+getCategory(id, callback){
+  console.log(id)
+  return this.afs.doc('categories/'+id).valueChanges().subscribe(res => {
+      return callback(res);
+  })
+}
   getProduct(id: string) {
     return this.afs.doc<any>(`products/${id}`);
   }
