@@ -245,7 +245,7 @@
         <div class="b-blog b-blog_grid text-center b-blog_grid_three mb-5 pt-5">
             <div class="container">
                 <div class="row clearfix">
-                    <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-xs-12">
+                    <div *ngFor="let cat of categories" class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-xs-12">
                         <div class="b-blog_grid_single">
                           <div class="b-blog_single_header">
                               <div class="b-blog_img_wrap">
@@ -266,7 +266,7 @@
                           </div>  
                           <div class="b-blog_single_info">
                               <h3 class="b-entry_title pt-2">
-                                  <a href="#" rel="bookmark">Solution Category 1</a>
+                                  <a href="#" rel="bookmark">{{cat.categoryName}}</a>
                               </h3>
                               <!-- <div class="b-author_info">
                                   <span class="b-author_name">
@@ -277,196 +277,12 @@
                                   </span>
                               </div> -->
                               <div class="b-blog_single_content">
-                                  <p>Sociosqu scele risque aliquet penatibus pretium vesti bulum imperdiet ad metus a tempus congue a venenatis condi mentum parturient dis</p>
+                                  <p>{{cat.description}}</p>
                               </div>
                           </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-xs-12">
-                        <div class="b-blog_grid_single">
-                          <div class="b-blog_single_header">
-                              <div class="b-blog_img_wrap">
-                                  <a href="#">
-                                      <img src="assets/images/blog/home/cat_grid_03_02.jpg" class="img-fluid d-block" alt="">
-                                  </a>
-                              </div>
-                              <!-- <div class="b-post_time">
-                                  <span class="b-post_day">08</span>
-                                  <span class="b-post_month">Aug</span>
-                              </div>
-                              <div class="b-post_categories">
-                                 <div class="b-post_categorie_list">
-                                    <a href="#" rel="category tag">Creative</a>, 
-                                    <a href="#" rel="category tag">Hobbies</a>
-                                 </div>
-                              </div> -->
-                          </div>  
-                          <div class="b-blog_single_info">
-                              <h3 class="b-entry_title pt-2">
-                                  <a href="#" rel="bookmark">Solution Category 2</a>
-                              </h3>
-                              <!-- <div class="b-author_info">
-                                  <span class="b-author_name">
-                                      By <a href="#" rel="author">V. Harrison</a>
-                                  </span>
-                                  <span class="b-reply">
-                                      <a href="#">Leave a comment</a>
-                                  </span>
-                              </div> -->
-                              <div class="b-blog_single_content">
-                                  <p>Egestas mus a mus rhoncus adipiscing iaculis facilisis a eu nunc varius a per parturient vestibulum suspendisse aenean semper velit aliquam</p>
-                              </div>
-                          </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-xs-12">
-                        <div class="b-blog_grid_single">
-                          <div class="b-blog_single_header">
-                              <div class="b-blog_img_wrap">
-                                  <a href="#">
-                                      <img src="assets/images/blog/home/cat_grid_03_03.jpg" class="img-fluid d-block" alt="">
-                                  </a>
-                              </div>
-                              <!-- <div class="b-post_time">
-                                  <span class="b-post_day">08</span>
-                                  <span class="b-post_month">Aug</span>
-                              </div>
-                              <div class="b-post_categories">
-                                 <div class="b-post_categorie_list">
-                                    <a href="#" rel="category tag">Creative</a>, 
-                                    <a href="#" rel="category tag">Hobbies</a>
-                                 </div>
-                              </div> -->
-                          </div>  
-                          <div class="b-blog_single_info">
-                              <h3 class="b-entry_title pt-2">
-                                  <a href="#" rel="bookmark">Solution Category 3</a>
-                              </h3>
-                              <!-- <div class="b-author_info">
-                                  <span class="b-author_name">
-                                      By <a href="#" rel="author">V. Harrison</a>
-                                  </span>
-                                  <span class="b-reply">
-                                      <a href="#">Leave a comment</a>
-                                  </span>
-                              </div> -->
-                              <div class="b-blog_single_content">
-                                  <p>Vestibulum malesuada elit sit placerat congue viverra congue orci cras mus sociis non mi enim cum ante. Condimentum ac ac ullamcorper ar</p>
-                              </div>
-                          </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-xs-12">
-                            <div class="b-blog_grid_single">
-                              <div class="b-blog_single_header">
-                                  <div class="b-blog_img_wrap">
-                                      <a href="#">
-                                          <img src="assets/images/blog/home/cat_grid_03_01.jpg" class="img-fluid d-block" alt="">
-                                      </a>
-                                  </div>
-                                  <!-- <div class="b-post_time">
-                                      <span class="b-post_day">08</span>
-                                      <span class="b-post_month">Aug</span>
-                                  </div> -->
-                                  <!-- <div class="b-post_categories">
-                                     <div class="b-post_categorie_list">
-                                        <a href="#" rel="category tag">Creative</a>, 
-                                        <a href="#" rel="category tag">Hobbies</a>
-                                     </div>
-                                  </div> -->
-                              </div>  
-                              <div class="b-blog_single_info">
-                                  <h3 class="b-entry_title pt-2">
-                                      <a href="#" rel="bookmark">Solution Category 4</a>
-                                  </h3>
-                                  <!-- <div class="b-author_info">
-                                      <span class="b-author_name">
-                                          By <a href="#" rel="author">V. Harrison</a>
-                                      </span>
-                                      <span class="b-reply">
-                                          <a href="#">Leave a comment</a>
-                                      </span>
-                                  </div> -->
-                                  <div class="b-blog_single_content">
-                                      <p>Sociosqu scele risque aliquet penatibus pretium vesti bulum imperdiet ad metus a tempus congue a venenatis condi mentum parturient dis</p>
-                                  </div>
-                              </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-xs-12">
-                            <div class="b-blog_grid_single">
-                              <div class="b-blog_single_header">
-                                  <div class="b-blog_img_wrap">
-                                      <a href="#">
-                                          <img src="assets/images/blog/home/cat_grid_03_02.jpg" class="img-fluid d-block" alt="">
-                                      </a>
-                                  </div>
-                                  <!-- <div class="b-post_time">
-                                      <span class="b-post_day">08</span>
-                                      <span class="b-post_month">Aug</span>
-                                  </div>
-                                  <div class="b-post_categories">
-                                     <div class="b-post_categorie_list">
-                                        <a href="#" rel="category tag">Creative</a>, 
-                                        <a href="#" rel="category tag">Hobbies</a>
-                                     </div>
-                                  </div> -->
-                              </div>  
-                              <div class="b-blog_single_info">
-                                  <h3 class="b-entry_title pt-2">
-                                      <a href="#" rel="bookmark">Solution Category 5</a>
-                                  </h3>
-                                  <!-- <div class="b-author_info">
-                                      <span class="b-author_name">
-                                          By <a href="#" rel="author">V. Harrison</a>
-                                      </span>
-                                      <span class="b-reply">
-                                          <a href="#">Leave a comment</a>
-                                      </span>
-                                  </div> -->
-                                  <div class="b-blog_single_content">
-                                      <p>Egestas mus a mus rhoncus adipiscing iaculis facilisis a eu nunc varius a per parturient vestibulum suspendisse aenean semper velit aliquam</p>
-                                  </div>
-                              </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-xs-12">
-                            <div class="b-blog_grid_single">
-                              <div class="b-blog_single_header">
-                                  <div class="b-blog_img_wrap">
-                                      <a href="#">
-                                          <img src="assets/images/blog/home/cat_grid_03_03.jpg" class="img-fluid d-block" alt="">
-                                      </a>
-                                  </div>
-                                  <!-- <div class="b-post_time">
-                                      <span class="b-post_day">08</span>
-                                      <span class="b-post_month">Aug</span>
-                                  </div>
-                                  <div class="b-post_categories">
-                                     <div class="b-post_categorie_list">
-                                        <a href="#" rel="category tag">Creative</a>, 
-                                        <a href="#" rel="category tag">Hobbies</a>
-                                     </div>
-                                  </div> -->
-                              </div>  
-                              <div class="b-blog_single_info">
-                                  <h3 class="b-entry_title pt-2">
-                                      <a href="#" rel="bookmark">Solution Category 6</a>
-                                  </h3>
-                                  <!-- <div class="b-author_info">
-                                      <span class="b-author_name">
-                                          By <a href="#" rel="author">V. Harrison</a>
-                                      </span>
-                                      <span class="b-reply">
-                                          <a href="#">Leave a comment</a>
-                                      </span>
-                                  </div> -->
-                                  <div class="b-blog_single_content">
-                                      <p>Vestibulum malesuada elit sit placerat congue viverra congue orci cras mus sociis non mi enim cum ante. Condimentum ac ac ullamcorper ar</p>
-                                  </div>
-                              </div>
-                            </div>
-                        </div>
+               
                 </div>
                 <!-- <div class="b-load_more text-center">
                     <a href="#" class="btn b-blog_load_more">Load More Posts</a>
