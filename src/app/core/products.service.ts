@@ -13,7 +13,7 @@ export class ProductsService {
   productDocument:   AngularFirestoreDocument<any>;
 
   constructor(private afs: AngularFirestore) {
-    this.productsCollection = this.afs.collection('products', (ref) => ref.orderBy('time', 'desc').limit(5));
+    this.productsCollection = this.afs.collection('products', (ref) => ref.orderBy('dateCreated', 'desc').limit(2));
   }
 
   getData(): Observable<any[]> {

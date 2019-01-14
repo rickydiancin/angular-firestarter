@@ -9,7 +9,9 @@ import { ProductsService } from 'src/app/core/products.service';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
-  categories:any;
+  categories: any;
+  products:any;
+  products2:any;
 
   constructor(
     private scriptsService: ScriptsService,
@@ -19,11 +21,19 @@ export class HomePageComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       this.scriptsService.prepareJquery();
-       },1000)
-       this.productsService.getAllCategories(res => {
-        console.log(res);
-        this.categories = res;
-       })
+    }, 1000)
+    this.productsService.getAllCategories(res => {
+      console.log(res);
+      this.categories = res;
+    });
+    this.productsService.getAllProducts(res => {
+      console.log(res);
+      this.products = res;
+     });
+     this.productsService.getData().subscribe(res => {
+      console.log('latest products: ',res);
+      this.products2 = res;
+     });
   }
 
 }

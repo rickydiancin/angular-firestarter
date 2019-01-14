@@ -104,12 +104,12 @@
                       </h4>
                       <div class="b-products b-product_grid b-product_grid_two mb-2">
                             
-                                <div class="row clearfix">
-                                    <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12">
+                                <div class="row clearfix" *ngIf="products2">
+                                    <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12" *ngFor="let product of products2">
                                          <div class="b-product_grid_single">
                                            <div class="b-product_grid_header">
                                                <a href="#">
-                                                 <img data-src="assets/images/products/home/product_grid_01_01.jpg, assets/images/products/home/product_grid_01_02.jpg" src="assets/images/products/home/product_grid_01_01.jpg" class="img-fluid img-switch d-block" alt="">
+                                                 <img [src]="product?.imgURL" class="img-fluid img-switch d-block" alt="">
                                                </a> 
                                                <div class="b-product_grid_action">
                                                  <a href="javascript:void(0)" data-whishurl="whishlist.html" data-toggle="tooltip" data-placement="left" title="Add to Whishlist">
@@ -149,56 +149,7 @@
                                            </div>
                                          </div>
                                     </div>
-                                    <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12">
-                                      <div class="b-product_grid_single">
-                                         <div class="b-product_grid_header">
-                                             <a href="#">
-                                               <img data-src="assets/images/products/home/product_grid_02_01.jpg, assets/images/products/home/product_grid_02_02.jpg" src="assets/images/products/home/product_grid_02_01.jpg" class="img-fluid img-switch d-block" alt="">
-                                             </a> 
-                                             <div class="b-product_grid_action">
-                                               <a href="javascript:void(0)" data-whishurl="whishlist.html" data-toggle="tooltip" data-placement="left" title="Add to Whishlist">
-                                                 <i class="icon-heart icons b-add_to_whish">
-                                                   <img src="assets/images/products/product_loading.gif" class="g-loading_gif" alt="">
-                                                 </i>
-                                               </a>
-                                               <i data-toggle="tooltip" data-placement="left" title="Compare" class="icon-refresh icons"></i>
-                                               <a href="javascript:void(0)" data-toggle="modal" data-target="#b-qucik_view">
-                                                   <i data-toggle="tooltip" data-placement="left" title="Quick View" class="icon-magnifier-add icons" ></i>
-                                                 </a>
-                                             </div>
-                                             <div class="b-product_labels b-labels_rounded b-new">
-                                              <span class="b-product_label">New</span>
-                                             </div>
-                                         </div>
-                                         <div class="b-product_grid_info">
-                                              <h3 class="product-title">
-                                                  <a href="#">NUGEN - Single Lever Mixers</a>
-                                              </h3>
-                                              <div class="clearfix">
-                                                <div class="b-product_grid_toggle float-left">
-                                                    <span class="b-price">$20</span>
-                                                    <span class="b-add_cart">
-                                                        <i class="icon-basket icons"></i>
-                                                        <a href="#">Select Options</a>
-                                                    </span>
-                                                </div>
-                                                <div class="b-product_options float-right">
-                                                   <ul class="pl-0 mb-0 list-unstyled">
-                                                       <li>
-                                                         <span data-toggle="tooltip" title="Black" class="b-black"></span>
-                                                       </li>
-                                                       <li>
-                                                         <span data-toggle="tooltip" title="Brown" class="b-brown"></span>
-                                                       </li>
-                                                       <li>
-                                                         <span data-toggle="tooltip" title="Red" class="b-red"></span>
-                                                       </li> 
-                                                   </ul>
-                                               </div>
-                                              </div>
-                                         </div>
-                                      </div>   
-                                    </div>
+                     
                                 </div>
                            
                           </div>
