@@ -6,7 +6,7 @@
             <a href="#">Home</a>
             <a href="#">Products</a>
             <a href="#" routerLink="/category">Category</a>
-            <span>NUGEN</span>
+            <span>{{theproduct?.productName}}</span>
           </div>
       </div>
       <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -98,13 +98,14 @@
       </div>
       <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12">
         <div class="b-product_single_summary">
-          <h1>NUGEN - Single Lever Mixers</h1>
+          <h1>  {{theproduct.productName}}</h1>
           <p class="b-price">
             <span class="b-amount">
             <span class="b-symbol">£</span>439.00 - <span class="b-symbol">£</span>459.00</span>
           </p>
           <div class="b-produt_description">
-            <p>Adipiscing vehicula amet in natoque lobortis mus velit dis vestibulum ullamcorper senectus conubia suspendisse vestibulum nam condimentum aliquet ipsum justo eu vestibulum sagittis.A vel vehicula a mi varius porta.</p>
+
+            <div [innerHTML]="theproduct.description"></div>
           </div>
           <div class="b-product_attr">
             <div class="b-product_attr_single">

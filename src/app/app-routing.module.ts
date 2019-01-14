@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'login', component: UserLoginComponent },
   { path: 'category', component: CategoryComponent },
   { path: 'company', component: CompanyComponent },
-  { path: 'product', component: ProductComponent },
+  { path: 'product/:id', component: ProductComponent },
   { path: 'notes', component: NotesListComponent,  canActivate: [AuthGuard] },
   { path: 'uploads',  component: UploadPageComponent,  canActivate: [AuthGuard] },
   { path: 'ssr', component: SsrPageComponent },
