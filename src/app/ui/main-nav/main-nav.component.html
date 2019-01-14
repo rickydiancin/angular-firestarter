@@ -57,16 +57,9 @@
                                                     <div class="categories">
                                                         <div class="row">
                                                             <div class="col-sm-12 hover-menu">
-                                                                <ul> 
-                                                                  <li><a href="#">Masonry grid</a></li>
-                                                                  <li><a href="shop-grid-leftbar.html">Alternative shop</a></li>
-                                                                  <li><a href="shop-grid-four.html">Default style</a></li>
-                                                                  <li><a href="shop-hover-02.html">Button on hover</a></li>
-                                                                  <li><a href="shop-hover-03.html">Button hover alt</a></li>
-                                                                  <li><a href="shop-hover-04.html">Hover info</a></li>
-                                                                  <li><a href="shop-hover-05.html">Standard button</a></li>
-                                                                  <li><a href="shop-hover-06.html">Quick shop products <i class="menu-tag new">NEW</i></a></li>
-                                                                  <li><a href="shop-grid-list-switcher.html">Grid/List switcher <i class="menu-tag hot">HOT</i></a></li>
+                                                                <ul *ngIf="products"> 
+                                                                  <li *ngFor="let product of products"><a href="#">{{product?.productName}}</a></li>
+                                                               
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -140,16 +133,9 @@
                                                       <div class="categories">
                                                           <div class="row">
                                                               <div class="col-sm-12 hover-menu">
-                                                                  <ul>  
-                                                                    <li><a href="product-single.html">Default style</a></li>
-                                                                    <li><a href="product-single-alternative.html">Alternative style</a></li>
-                                                                    <li><a href="product-single-variation-image.html">Variations images</a></li>
-                                                                    <li><a href="product-with-slider.html">Thumbnails bottom</a></li>
-                                                                    <li><a href="compact.html">Compact <i class="menu-tag new">NEW</i></a></li>
-                                                                    <li><a href="sticky-details.html">Sticky details</a></li>
-                                                                    <li><a href="extra-content.html">Extra content <i class="menu-tag hot">HOT</i></a></li>
-                                                                    <li><a href="thumbnails-left.html">Thumbnails left</a></li>
-                                                                    <li><a href="product-with-background.html">Product with background</a></li>
+                                                                <ul *ngIf="products"> 
+                                                                    <li *ngFor="let product of products"><a href="#">{{product?.productName}}</a></li>
+                                                                 
                                                                   </ul>
                                                               </div>
                                                           </div>

@@ -12,6 +12,7 @@ export class MainNavComponent {
 
   show = false;
   categories:any;
+  products:any;
   
   constructor(
     private scriptsService: ScriptsService,
@@ -29,6 +30,10 @@ export class MainNavComponent {
     setTimeout(() => {
       this.scriptsService.prepareJquery();
        },1000)
+       this.productsService.getAllProducts(res => {
+        console.log(res);
+        this.products = res;
+       });
   }
 
   logout() {
