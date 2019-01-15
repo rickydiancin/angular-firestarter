@@ -14,7 +14,7 @@ export class ProductComponent implements OnInit {
   products: Observable<any[]>;
   content: string;
   pid: string;
-  theproduct: string;
+  theproduct: any;
   constructor(
     private scriptsService: ScriptsService,
     private productsService: ProductsService,
