@@ -307,11 +307,12 @@
                       </div>
                       <div class="b-product_grid_info">
                          <h3 class="product-title">
-                             <a href="#" routerLink="/product/{{product.id}}">{{ product.productName }}</a>
+                             <a href="#" routerLink="/product/{{product.id}}">{{ product.productTitle}}</a>
                          </h3>
+                         <p>{{ product.productDescription}}</p>
                          <div class="clearfix">
                            <div class="b-product_grid_toggle float-left">
-                               <span class="b-price">$120</span>
+                               <span class="b-price">{{ product.productPrice}}</span>
                                <span class="b-add_cart">
                                    <i class="icon-basket icons"></i>
                                    <a href="#">Select Options</a>
