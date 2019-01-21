@@ -6,7 +6,7 @@
             <a href="#">Home</a>
             <a href="#">Products</a>
             <a href="#" routerLink="/category">Category</a>
-            <span>{{theproduct?.productName}}</span>
+            <span>{{theproduct?.productTitle}}</span>
           </div>
       </div>
       <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -27,7 +27,7 @@
           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 b-display-single">
             <div class="b-product-carousel owl-carousel" id="bSingleProductCarousel" data-slider-id="bSingleProductCarousel">
               <div class="b-produt-item">
-                <img src="assets/images/products/product-single/woman-1.jpg" alt="" class="img-fluid" data-zoomed="assets/images/products/product-single/woman-1.jpg">
+                <img [src]="theproduct?.imgURL" alt="" class="img-fluid" data-zoomed="assets/images/products/product-single/woman-1.jpg">
               </div>
               <div class="b-produt-item">
                 <img src="assets/images/products/product-single/woman-3.jpg" alt="" class="img-fluid" data-zoomed="assets/images/products/product-single/woman-3.jpg">
@@ -98,16 +98,17 @@
       </div>
       <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12">
         <div class="b-product_single_summary">
-          <h1>  {{theproduct.productName}}</h1>
+          <h1>  {{theproduct?.productTitle}}</h1>
           <p class="b-price">
             <span class="b-amount">
-            <span class="b-symbol">£</span>439.00 - <span class="b-symbol">£</span>459.00</span>
+          <span class="b-symbol">$</span>{{theproduct?.productPrice}}</span>
           </p>
           <div class="b-produt_description">
 
-            <div [innerHTML]="theproduct.description"></div>
+            <div>
+              <p>{{theproduct?.productDescription}}</p></div>
           </div>
-          <div class="b-product_attr">
+          <!-- <div class="b-product_attr">
             <div class="b-product_attr_single">
               <ul class="pl-0 list-unstyled clearfix">
                 <li><span class="b-product_attr_title pt-1">Color:</span></li>
@@ -124,7 +125,7 @@
                 <li><a href="#"><span class="b-size_attr">XXL</span></a></li>
               </ul>
             </div>
-          </div>
+          </div> -->
           <div class="b-product_single_action clearfix">
             <div class="b-quantity pull-left">
               <input type="button" value="-" class="b-minus">
@@ -137,9 +138,9 @@
             <ul class="pl-0 list-unstyled">
               <li><a href="#"><i class="icon-heart icons"></i> Add to wishlist</a></li>
               <li><a href="#"><i class="icon-refresh icons"></i> Compare</a></li>
-              <li><b class="text-uppercase">Sku</b>: N/A</li>
-              <li><b>Category</b>: <a href="#">Woman</a></li>
-              <li><b>Tag</b>: <a href="#">Beautiful</a></li>
+              <li><b class="text-uppercase">Sku</b>: {{theproduct?.productCode}}</li>
+              <li><b>Categories:</b>: <a href="#">To Follow</a></li>
+              <li><b>Solutions:</b>: <a href="#">To Follow</a></li>
               <li>
                 <b>Share</b>:
                 <span class="b-share_product">
