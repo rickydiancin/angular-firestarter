@@ -86,4 +86,21 @@ getCategory(id, callback){
   deleteProduct(id: string) {
     return this.getProduct(id).delete();
   }
+
+  // solutions ========================
+
+  getAllSolutions() {
+    return this.afs.collection('solutions').snapshotChanges().pipe(
+      map((actions) => {
+        return actions.map((a) => {
+          const data = a.payload.doc.data();
+          return { id: a.payload.doc.id, ...data };
+        });
+      }));
+  }
+
+  getSolution(id) {
+    console.log(id)
+    return this.afs.doc('solutions/' + id).valueChanges();
+  }
 }

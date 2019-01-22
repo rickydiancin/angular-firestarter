@@ -27,7 +27,7 @@
           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 b-display-single">
             <div class="b-product-carousel owl-carousel" id="bSingleProductCarousel" data-slider-id="bSingleProductCarousel">
               <div class="b-produt-item">
-                <img [src]="theproduct?.imgURL" alt="" class="img-fluid" data-zoomed="assets/images/products/product-single/woman-1.jpg">
+                <img [src]="theproduct?.imageURL" alt="" class="img-fluid" data-zoomed="assets/images/products/product-single/woman-1.jpg">
               </div>
               <div class="b-produt-item">
                 <img src="assets/images/products/product-single/woman-3.jpg" alt="" class="img-fluid" data-zoomed="assets/images/products/product-single/woman-3.jpg">
@@ -101,22 +101,12 @@
           <h1>  {{theproduct?.productTitle}}</h1>
           <p class="b-price">
             <span class="b-amount">
-<<<<<<< HEAD
-            <span class="b-symbol">£</span>{{theproduct?.productPrice | number:'1.2-2'}}
-          </span>
-            <!-- <span class="b-symbol">£</span>439.00 - <span class="b-symbol">£</span>459.00</span> -->
-          </p>
-          <div class="b-produt_description">
-
-            <div [innerHTML]="theproduct?.productDescription"></div>
-=======
           <span class="b-symbol">$</span>{{theproduct?.productPrice}}</span>
           </p>
           <div class="b-produt_description">
 
             <div>
               <p>{{theproduct?.productDescription}}</p></div>
->>>>>>> ee1017b1b567d0a80d4a31f9c8789f1e4bf1562d
           </div>
           <!-- <div class="b-product_attr">
             <div class="b-product_attr_single">

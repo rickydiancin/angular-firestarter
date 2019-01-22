@@ -14504,7 +14504,7 @@ body.hidden-scroll {
         font-weight: bold; }
   .b-filters_inner_area ul.b-color_filter li {
     position: relative;
-    padding-left: 35px;
+    /* padding-left: 35px; */
     padding-top: 4px;
     min-height: 25px; }
     .b-filters_inner_area ul.b-color_filter li .b-color_circle {

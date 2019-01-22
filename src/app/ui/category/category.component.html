@@ -27,17 +27,17 @@
             </form>
           </div>
           <div class="b-sidebar_widget">
-            <h5 class="b-filter_title">FILTER BY COLOR</h5>
+            <h5 class="b-filter_title">FILTER BY SOLUTION</h5>
             <form action="#" [formGroup]="">
               <ul class="b-color_filter">
-                <li>
-                  <a href="#">
-                    <span class="b-color_circle b-black"></span>
-                    Black
+                <li *ngFor="let solution of solutions">
+                  <a href="javascript:void(0)" (click)="solutionFilter(solution?.solutionCode)">
+                    <!-- <span class="b-color_circle b-black"></span> -->
+                    {{solution?.solutionName | titlecase}}
                   </a>
-                  <span class="b-count float-right">(7)</span>
+                  <!-- <span class="b-count float-right">(7)</span> -->
                 </li>
-                <li>
+                <!-- <li>
                   <a href="#">
                     <span class="b-color_circle b-brown"></span>
                     Brown
@@ -64,7 +64,7 @@
                     Blue
                   </a>
                   <span class="b-count float-right">(8)</span>
-                </li> 
+                </li>  -->
               </ul> 
             </form>
           </div> 
@@ -287,16 +287,16 @@
               <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-xs-12" *ngFor="let product of products">
                   <div class="b-product_grid_single">
                       <div class="b-product_grid_header">
-                          <a href="#" routerLink="/product/{{product.id}}">
+                          <a href="#" routerLink="/product/{{product.productTitle}}.{{product.id}}">
                             <!-- <img data-src="assets/images/products/home/product_grid_01_01.jpg, assets/images/products/home/product_grid_01_02.jpg" src="assets/images/products/home/product_grid_01_01.jpg" class="img-fluid img-switch d-block" alt="" style="">
                           -->
-                            <img [src]="product?.imgURL" width="100%" height="auto" class="img-fluid img-switch d-block">
+                            <img [src]="product?.imageURL" width="100%" height="auto" class="img-fluid img-switch d-block">
                          
                           </a> 
                           <div class="b-product_grid_action">
                             <a href="javascript:void(0)" data-whishurl="whishlist.html" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to Whishlist">
                               <i class="icon-heart icons b-add_to_whish">
-                                <img src="assets/images/products/product_loading.gif" class="g-loading_gif" alt="">
+                                <img [src]="product?.imageURL" class="g-loading_gif" alt="">
                               </i>
                             </a>
                             <i data-toggle="tooltip" data-placement="left" title="" class="icon-refresh icons" data-original-title="Compare"></i>
@@ -307,12 +307,12 @@
                       </div>
                       <div class="b-product_grid_info">
                          <h3 class="product-title">
-                             <a href="#" routerLink="/product/{{product.id}}">{{ product.productTitle}}</a>
+                             <a href="#" routerLink="/product/{{product?.productTitle}}.{{product?.id}}">{{ product?.productTitle}}</a>
                          </h3>
-                         <p>{{ product.productDescription}}</p>
+                         <p>{{ product?.productDescription}}</p>
                          <div class="clearfix">
                            <div class="b-product_grid_toggle float-left">
-                               <span class="b-price">{{ product.productPrice}}</span>
+                               <span class="b-price">${{ product?.productPrice}}</span>
                                <span class="b-add_cart">
                                    <i class="icon-basket icons"></i>
                                    <a href="#">Select Options</a>
