@@ -14,9 +14,10 @@ import { SsrPageComponent } from './ssr-page/ssr-page.component';
 import { CategoryComponent } from './category/category.component';
 import { ProductComponent } from './product/product.component';
 import { CompanyComponent } from './company/company.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
-  imports: [CommonModule, RouterModule, ReactiveFormsModule],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, NgxPaginationModule],
   declarations: [
     UserLoginComponent,
     HomePageComponent,
