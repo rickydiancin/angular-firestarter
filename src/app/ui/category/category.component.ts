@@ -99,4 +99,11 @@ export class CategoryComponent implements OnInit {
     console.log(this.products)
   }
 
+  sortBy(value) {
+
+    // this.products = this.productsTemp;
+    this.products = _(this.productsTemp).sortBy(value).value();
+    console.log(this.products)
+  }
+
 }

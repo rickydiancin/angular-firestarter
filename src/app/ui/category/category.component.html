@@ -187,12 +187,12 @@
               <h5 class="b-filter_title">Sort by</h5>
               <form action="#" [formGroup]="">
                 <ul>
-                  <li><a href="#" class="b-acitve">Default</a></li>
-                  <li><a href="#">Popularity</a></li>
-                  <li><a href="#">Average rating</a></li>
-                  <li><a href="#">Newness</a></li>
+                  <li><a href="javascript:void(0);" (click)="sortBy('productTitle')" class="b-acitve">Name</a></li>
+                  <li><a href="javascript:void(0);" (click)="sortBy('productPrice')">Price</a></li>
+                  <li><a href="javascript:void(0);" (click)="sortBy('dateCreated')">Latest</a></li>
+                  <!-- <li><a href="#">Newness</a></li>
                   <li><a href="#">Price: low to high</a></li>
-                  <li><a href="#">Price: high to low</a></li>
+                  <li><a href="#">Price: high to low</a></li> -->
                 </ul> 
               </form>
             </div>
