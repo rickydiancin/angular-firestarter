@@ -91,9 +91,10 @@ export class CategoryComponent implements OnInit {
   priceFilter(value) {
     value.split('-');
     console.log(value.split('-'));
+    let price:number = value.split('-');
     this.products = this.productsTemp;
     this.products = _(this.productsTemp).filter((o) => {
-      return o.productPrice >= 0 && o.productPrice < 100;
+      return o.productPrice >= price[0] && o.productPrice < price[1];
     }).value();
     console.log(this.products)
   }
