@@ -1,7 +1,9 @@
 <div class="b-page_title b-page_title_default text-center b-shop_filter">
   <div class="col-sm-12">
     <ul class="list-inline text-center">
-        <li *ngFor="let cat of categories"><a href="#">{{cat.categoryName}}</a></li>
+        <li *ngFor="let cat of categories">
+          <a href="javascript:void(0);" (click)="categoriesFilter(cat?.categoryCode)">{{cat.categoryName}}</a>
+        </li>
     </ul>
   </div> 
 </div>  
@@ -15,7 +17,9 @@
             <h5 class="b-filter_title">PRODUCT CATEGORIES</h5>
             <form action="#" [formGroup]="">
               <ul>  
-                <li *ngFor="let cat of categories"><a href="#">{{cat.categoryName}}</a></li>
+                <li *ngFor="let cat of categories">
+                  <a href="javascript:void(0)" (click)="categoriesFilter(cat?.categoryCode)">{{cat.categoryName}}</a>
+                </li>
                 <!-- <li><a href="#">Bags</a></li>
                 <li><a href="#">Jewellery</a></li>
                 <li><a href="#">Man</a></li>
@@ -169,10 +173,10 @@
         </div>
         <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12 text-right">
           <p class="b-result_count d-inline-block hidden-md-down">
-            Showing 1–12 of 292 results
+            Showing {{config?.currentPage || 0}}-{{p?.pages?.length || 0}} of {{products?.length || 0}} results
           </p>
           <div class="b-filter_button d-inline-block">
-            <a href="javascript:;" class="b-open_filters">Filters</a>
+            <a href="javascript:void(0);" class="b-open_filters">Filters</a>
           </div>
         </div> 
       </div>
@@ -196,11 +200,11 @@
               <h5 class="b-filter_title">Price Filter</h5>
               <form action="#" [formGroup]="">
                 <ul>
-                  <li><a href="#" class="b-acitve">All</a></li>
-                  <li><a href="#">£0.00 - £150.00</a></li>
-                  <li><a href="#">£150.00 - £300.00</a></li>
-                  <li><a href="#">£300.00 - £450.00</a></li>
-                  <li><a href="#">£450.00+</a></li> 
+                  <li><a href="javascript:void(0);" class="b-acitve">All</a></li>
+                  <li><a href="javascript:void(0);" (click)="priceFilter('0-150')">$0.00 - $150.00</a></li>
+                  <li><a href="javascript:void(0);" (click)="priceFilter('150-300')">$150.00 - $300.00</a></li>
+                  <li><a href="javascript:void(0);" (click)="priceFilter('300-450')">$300.00 - $450.00</a></li>
+                  <li><a href="javascript:void(0);" (click)="priceFilter('450')">$450.00+</a></li> 
                 </ul> 
               </form>
             </div>
@@ -208,41 +212,13 @@
               <h5 class="b-filter_title">FILTER BY COLOR</h5>
               <form action="#" [formGroup]="">
                 <ul class="b-color_filter">
-                  <li>
-                    <a href="#">
-                      <span class="b-color_circle b-black"></span>
-                      Black
+                  <li *ngFor="let solution of solutions">
+                    <a href="javascript:void(0)" (click)="solutionFilter(solution?.solutionCode)">
+                      <!-- <span class="b-color_circle b-black"></span> -->
+                      {{solution?.solutionName | titlecase}}
                     </a>
-                    <span class="b-count float-right">(7)</span>
+                    <!-- <span class="b-count float-right">(7)</span> -->
                   </li>
-                  <li>
-                    <a href="#">
-                      <span class="b-color_circle b-brown"></span>
-                      Brown
-                    </a>
-                    <span class="b-count float-right">(7)</span>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <span class="b-color_circle b-yellow"></span>
-                      Yellow
-                    </a>
-                    <span class="b-count float-right">(6)</span>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <span class="b-color_circle b-red"></span>
-                      Red
-                    </a>
-                    <span class="b-count float-right">(5)</span>
-                  </li>
-                  <li>
-                    <a href="#" class="b-acitve">
-                      <span class="b-color_circle b-blue"></span>
-                      Blue
-                    </a>
-                    <span class="b-count float-right">(8)</span>
-                  </li> 
                 </ul> 
               </form>
             </div>
@@ -290,13 +266,13 @@
                           <a href="#" routerLink="/product/{{product.productTitle}}.{{product.id}}">
                             <!-- <img data-src="assets/images/products/home/product_grid_01_01.jpg, assets/images/products/home/product_grid_01_02.jpg" src="assets/images/products/home/product_grid_01_01.jpg" class="img-fluid img-switch d-block" alt="" style="">
                           -->
-                            <img [src]="product?.imageURL" width="100%" height="auto" class="img-fluid img-switch d-block">
+                            <img [src]="product?.imageURL || product?.primaryImageURL || 'https://www.debarka.com/assets/images/no-thumbnail.png'" width="100%" height="auto" class="img-fluid img-switch d-block">
                          
                           </a> 
                           <div class="b-product_grid_action">
                             <a href="javascript:void(0)" data-whishurl="whishlist.html" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to Whishlist">
                               <i class="icon-heart icons b-add_to_whish">
-                                <img [src]="product?.imageURL" class="g-loading_gif" alt="">
+                                <img [src]="(product?.imageURL || product?.primaryImageURL || 'https://www.debarka.com/assets/images/no-thumbnail.png')" class="g-loading_gif" alt="">
                               </i>
                             </a>
                             <i data-toggle="tooltip" data-placement="left" title="" class="icon-refresh icons" data-original-title="Compare"></i>

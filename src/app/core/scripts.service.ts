@@ -222,7 +222,7 @@ export class ScriptsService {
           FilterToggle: function(){
             $(".b-open_filters").on("click", function(){
               $(this).toggleClass('b-btn_open');
-              $(".b-filters_area").slideToggle('');
+              $(".b-filters_area").slideToggle('').stop();
             });
           },
       
