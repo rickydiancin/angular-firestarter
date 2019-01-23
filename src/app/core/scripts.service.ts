@@ -134,6 +134,7 @@ export class ScriptsService {
               var data_src = data_src.split(",");
               var data_thumb = data_src[1];
               var url = $(this).attr('href');
+              console.log(url)
               $( "<div class='b-hover_img'><a href='"+url+"'><img src='"+data_thumb+"' class='img-fluid img-switch d-block' alt='' ></a></div>" ).insertAfter($(this));
       
             });

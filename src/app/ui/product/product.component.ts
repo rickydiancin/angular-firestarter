@@ -28,7 +28,7 @@ export class ProductComponent implements OnInit {
     setTimeout(() => {
       this.scriptsService.prepareJquery();
        },1000)
-       this.productsService.getProduct(this.pid).valueChanges()
+       this.productsService.getProduct(this.pid.split('.')[1]).valueChanges()
        .subscribe(res => {
         console.log(res);
         this.theproduct = res;
