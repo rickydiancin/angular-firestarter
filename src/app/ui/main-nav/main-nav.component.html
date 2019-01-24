@@ -58,7 +58,7 @@
                                                         <div class="row">
                                                             <div class="col-sm-12 hover-menu">
                                                                 <ul *ngIf="products"> 
-                                                                  <li *ngFor="let product of products"><a href="#">{{product?.productName}}</a></li>
+                                                                  <li *ngFor="let product of products"><a href="#">{{product?.productTitle}}</a></li>
                                                                
                                                                 </ul>
                                                             </div>
@@ -80,9 +80,9 @@
                                   <div class="b-dropdown_content sub-holder dropdown-left" style="width: 1000px;">
                                       <div class="dropdown-inner">
                                           <div class="row">
-                                              <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-4 col-xs-12" *ngFor="let cat of categories">
+                                              <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-4 col-xs-12" *ngFor="let cat of solutions">
                                                 <div class="b-menu_content_in mb-4">
-                                                  <a href="index.html" class="d-block"><strong> {{cat.categoryName}} Solution </strong></a>
+                                                  <a href="index.html" class="d-block"><strong> {{cat.solutionName}} Solution </strong></a>
                                                   <a href="index.html"><img [src]="cat?.imgURL" class="img-fluid d-block m-auto" alt=""></a>
                                                 </div>
                                               </div>
@@ -134,7 +134,7 @@
                                                           <div class="row">
                                                               <div class="col-sm-12 hover-menu">
                                                                 <ul *ngIf="products"> 
-                                                                    <li *ngFor="let product of products"><a href="#">{{product?.productName}}</a></li>
+                                                                    <li *ngFor="let product of products"><a href="#">{{product?.productTitle}}</a></li>
                                                                  
                                                                   </ul>
                                                               </div>
@@ -155,7 +155,7 @@
                                 </li>
                                 <li>
                                     <a href="#" class="p-relative description " routerLink="/product">
-                                    <span class="top">Products Specifications</span> 
+                                    <span class="top">Products Specs</span> 
                                     </a>
                                     </li>
                        

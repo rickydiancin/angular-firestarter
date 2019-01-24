@@ -13,6 +13,7 @@ export class MainNavComponent {
   show = false;
   categories:any;
   products:any;
+  solutions:any;
   
   constructor(
     private scriptsService: ScriptsService,
@@ -26,6 +27,12 @@ export class MainNavComponent {
       console.log(res);
       this.categories = res;
      })
+
+      this.productsService.getAllSolutions().subscribe((data) => {
+        this.solutions = data;
+      })
+  
+
     console.log(this.auth.user);
     setTimeout(() => {
       this.scriptsService.prepareJquery();
