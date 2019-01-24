@@ -73,8 +73,25 @@
             </form>
           </div> 
           <div class="b-sidebar_widget">
-            <h5 class="b-filter_title">FILTER BY SIZE</h5>
-            <form action="#" [formGroup]="">
+            <h5 class="b-filter_title">SET FILTER RANGE</h5>
+            <div class="gentec-filter-group">
+              <div class="gentec-height-range-filter_inputs">
+                <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.minHeight" class="gentec-height-range-filter_input" placeholder="Height Min">
+                <div class="gentec-height-range-filter_range-line"></div>
+                <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.maxHeight" class="gentec-height-range-filter_input" placeholder="Height Max">
+              </div>
+              <div class="gentec-height-range-filter_inputs">
+                <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.minWidth" class="gentec-height-range-filter_input" placeholder="Width Min">
+                <div class="gentec-height-range-filter_range-line"></div>
+                <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.maxWidth" class="gentec-height-range-filter_input" placeholder="Width Max">
+              </div>
+              <div class="gentec-height-range-filter_inputs">
+                <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.minDepth" class="gentec-height-range-filter_input" placeholder="Depth Min">
+                <div class="gentec-height-range-filter_range-line"></div>
+                <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.maxDepth" class="gentec-height-range-filter_input" placeholder="Depth Max">
+              </div>
+            </div>
+            <!-- <form action="#" [formGroup]="">
               <ul class="b-list_ib">
                 <li><a href="#" class="b-acitve">L <span class="b-count_number">(4)</span></a></li>
                 <li><a href="#">M <span class="b-count_number">(9)</span></a></li>
@@ -82,9 +99,9 @@
                 <li><a href="#">S <span class="b-count_number">(3)</span></a></li>
                 <li><a href="#">XS <span class="b-count_number">(5)</span></a></li> 
               </ul> 
-            </form>
+            </form> -->
           </div>
-          <div class="b-sidebar_widget">
+          <!-- <div class="b-sidebar_widget">
             <h5 class="b-filter_title">PRODUCT TAGS</h5>
             <ul class="pl-0 b-tag_list">
               <li><a href="#">bag</a></li>
@@ -98,7 +115,7 @@
               <li><a href="#">Shirt</a></li>
               <li><a href="#">white</a></li>
             </ul>
-          </div> 
+          </div>  -->
           <div class="b-sidebar_widget">
             <h5 class="b-filter_title">Top rated products</h5>
             <ul class="pl-0 mb-0 list-unstyled b-rated_product">

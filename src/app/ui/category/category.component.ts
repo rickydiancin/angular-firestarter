@@ -24,6 +24,15 @@ export class CategoryComponent implements OnInit {
     currentPage: 1
   };
 
+  public range = {
+    minHeight: '',
+    maxHeight: '',
+    minWidth: '',
+    maxWidth: '',
+    minDepth: '',
+    maxDepth: '',
+  }
+
   constructor(
     private scriptsService: ScriptsService,
     private productsService: ProductsService
@@ -142,6 +151,18 @@ export class CategoryComponent implements OnInit {
 
     // this.products = this.productsTemp;
     this.products = _(this.productsTemp).sortBy(value).value();
+  }
+
+  rangeFilter() {
+    if(this.range.minHeight && this.range.maxHeight) {
+      console.log('height');
+    }
+    if (this.range.minWidth && this.range.maxWidth) {
+      console.log('width');
+    }
+    if (this.range.minDepth && this.range.maxDepth) {
+      console.log('depth');
+    }
   }
 
 }

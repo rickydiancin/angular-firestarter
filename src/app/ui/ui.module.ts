@@ -17,9 +17,10 @@ import { CompanyComponent } from './company/company.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { TruncateModule } from 'ng2-truncate';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, NgxPaginationModule, TruncateModule],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, NgxPaginationModule, TruncateModule, FormsModule],
   declarations: [
     UserLoginComponent,
     HomePageComponent,
