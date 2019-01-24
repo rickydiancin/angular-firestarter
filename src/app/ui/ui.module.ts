@@ -14,6 +14,7 @@ import { SsrPageComponent } from './ssr-page/ssr-page.component';
 import { CategoryComponent } from './category/category.component';
 import { ProductComponent } from './product/product.component';
 import { CompanyComponent } from './company/company.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
@@ -29,7 +30,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     SsrPageComponent,
     CategoryComponent,
     ProductComponent,
-    CompanyComponent
+    CompanyComponent,
+    WishlistComponent
   ],
   exports: [
     MainNavComponent,
