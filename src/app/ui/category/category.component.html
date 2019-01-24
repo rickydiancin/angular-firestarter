@@ -13,7 +13,7 @@
     <div class="col-xl-3 col-lg-3 col-mb-4 col-sm-12 col-xs-12 b-sidebar_right">
       <div class="b-sidebar">
         <div class="b-filters_inner_area p-0">
-          <div class="b-sidebar_widget">
+          <div class="b-sidebar_widget" *ngIf="categories">
             <h5 class="b-filter_title">PRODUCT CATEGORIES</h5>
             <form action="#" [formGroup]="">
               <ul>  
@@ -30,7 +30,7 @@
               </ul> 
             </form>
           </div>
-          <div class="b-sidebar_widget">
+          <div class="b-sidebar_widget" *ngIf="solutions">
             <h5 class="b-filter_title">FILTER BY SOLUTION</h5>
             <form action="#" [formGroup]="">
               <ul class="b-color_filter">
@@ -209,7 +209,7 @@
               </form>
             </div>
             <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-6 col-xs-12">
-              <h5 class="b-filter_title">FILTER BY COLOR</h5>
+              <h5 class="b-filter_title">FILTER BY SOLUTION</h5>
               <form action="#" [formGroup]="">
                 <ul class="b-color_filter">
                   <li *ngFor="let solution of solutions">
@@ -266,13 +266,18 @@
                           <a href="#" routerLink="/product/{{product.productTitle}}.{{product.id}}">
                             <!-- <img data-src="assets/images/products/home/product_grid_01_01.jpg, assets/images/products/home/product_grid_01_02.jpg" src="assets/images/products/home/product_grid_01_01.jpg" class="img-fluid img-switch d-block" alt="" style="">
                           -->
-                            <img [src]="product?.imageURL || product?.primaryImageURL || 'https://www.debarka.com/assets/images/no-thumbnail.png'" width="100%" height="auto" class="img-fluid img-switch d-block">
+                          <div class="b-product_grid_info">
+                          <h1 class="product-title">
+                            <a href="#" routerLink="/product/{{product?.productTitle}}.{{product?.id}}"><b>{{ product?.productTitle | words: 4}}</b></a>
+                          </h1>
+                          </div>
+                            <img [src]="product?.imageURL || product?.primaryImageURL || './assets/images/not_available.jpg'" width="100%" height="auto" class="img-fluid img-switch d-block">
                          
                           </a> 
                           <div class="b-product_grid_action">
                             <a href="javascript:void(0)" data-whishurl="whishlist.html" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to Whishlist">
                               <i class="icon-heart icons b-add_to_whish">
-                                <img [src]="(product?.imageURL || product?.primaryImageURL || 'https://www.debarka.com/assets/images/no-thumbnail.png')" class="g-loading_gif" alt="">
+                                <img [src]="(product?.imageURL || product?.primaryImageURL || './assets/images/not_available.jpg')" class="g-loading_gif" alt="">
                               </i>
                             </a>
                             <i data-toggle="tooltip" data-placement="left" title="" class="icon-refresh icons" data-original-title="Compare"></i>
@@ -282,27 +287,33 @@
                           </div>
                       </div>
                       <div class="b-product_grid_info">
-                         <h3 class="product-title">
+                         <!-- <h3 class="product-title">
                              <a href="#" routerLink="/product/{{product?.productTitle}}.{{product?.id}}">{{ product?.productTitle}}</a>
-                         </h3>
-                         <p>{{ product?.productDescription}}</p>
+                         </h3> -->
+                         <h3>{{ product?.categoryName | titlecase}}</h3>
+                         <p>{{ product?.productDescription | words : 8}}</p>
                          <div class="clearfix">
                            <div class="b-product_grid_toggle float-left">
                                <span class="b-price">${{ product?.productPrice}}</span>
                                <span class="b-add_cart">
                                    <i class="icon-basket icons"></i>
-                                   <a href="#">Select Options</a>
+                                   <a href="#">Add To Cart</a>
                                </span>
                            </div>
                            <div class="b-product_options float-right">
-                              <ul class="pl-0 mb-0 list-unstyled">
+                            <a href="javascript:void(0);" class="d-inline-block b-active mr-3">
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                            </a>
+                              <!-- <ul class="pl-0 mb-0 list-unstyled">
                                   <li>
                                     <span data-toggle="tooltip" title="" class="b-black" data-original-title="Black"></span>
                                   </li>
                                   <li>
                                     <span data-toggle="tooltip" title="" class="b-blue" data-original-title="Blue"></span>
                                   </li> 
-                              </ul>
+                              </ul> -->
                           </div>
                          </div>
                       </div>

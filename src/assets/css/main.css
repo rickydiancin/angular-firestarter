@@ -8062,7 +8062,8 @@ a.bg-inverse:focus, a.bg-inverse:hover {
   margin-right: 1.5rem !important; }
 
 .mb-4 {
-  margin-bottom: 1.5rem !important; }
+  margin-bottom: 1.5rem !important;
+  margin-top: 3rem !important; }
 
 .ml-4 {
   margin-left: 1.5rem !important; }
@@ -11031,9 +11032,9 @@ body.b-header_fixed .b-header04 .b-header_nav_center {
 @media (max-width: 767px) {
   .b-featured_cat-2 .b-featured_cat_in .b-cat_overlay h3 {
     font-size: 22px; } }
-.b-product_grid_info h3 {
+.b-product_grid_info h3, .b-product_grid_info h1 {
   margin-bottom: 8px; }
-  .b-product_grid_info h3 a {
+  .b-product_grid_info h3 a, .b-product_grid_info h1 a {
     font-family: "Lora", "sans-serif";
     font-weight: 400;
     color: #252222;
@@ -11042,7 +11043,7 @@ body.b-header_fixed .b-header04 .b-header_nav_center {
     display: inline;
     padding-bottom: 1px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
-    .b-product_grid_info h3 a:hover {
+    .b-product_grid_info h3 a:hover, .b-product_grid_info h1 a:hover {
       border-color: rgba(0, 0, 0, 0.2); }
 
 .b-product_grid_toggle {
@@ -11073,7 +11074,9 @@ body.b-header_fixed .b-header04 .b-header_nav_center {
 
 .b-product_grid_single {
   margin-bottom: 40px;
-  position: relative; }
+  position: relative;
+  background-color: #F5F5F5;
+  padding: 0.5em; }
   .b-product_grid_single img {
     width: 100%; }
   .b-product_grid_single:hover .b-product_grid_toggle .b-price {
@@ -11144,8 +11147,8 @@ body.b-header_fixed .b-header04 .b-header_nav_center {
 
 .b-product_grid_action {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 35px;
+  right: 5px;
   opacity: 0; }
   .b-product_grid_action a {
     color: #000;
@@ -11313,7 +11316,7 @@ body.b-header_fixed .b-header04 .b-header_nav_center {
   font-size: 16px;
   text-align: left;
   position: relative; }
-.b-product_hover_03 .b-product_grid_info h3 a {
+.b-product_hover_03 .b-product_grid_info h3 a, .b-product_hover_03 .b-product_grid_info h1 a {
   border: none; }
 
 .b-product_hover_04 .b-product_grid_single:hover .b-product_grid_header .b-button_list_over {
@@ -11351,10 +11354,10 @@ body.b-header_fixed .b-header04 .b-header_nav_center {
       -moz-transform: translateY(-49%);
       -o-transform: translateY(-49%);
       transform: translateY(-49%); }
-      .b-product_hover_04 .b-product_grid_header .b-button_list_over .b-product_grid_info .b-price, .b-product_hover_04 .b-product_grid_header .b-button_list_over .b-product_grid_info h3 a {
+      .b-product_hover_04 .b-product_grid_header .b-button_list_over .b-product_grid_info .b-price, .b-product_hover_04 .b-product_grid_header .b-button_list_over .b-product_grid_info h3 a, .b-product_hover_04 .b-product_grid_header .b-button_list_over .b-product_grid_info h1 a {
         color: rgba(255, 255, 255, 0.8);
         position: static; }
-      .b-product_hover_04 .b-product_grid_header .b-button_list_over .b-product_grid_info h3 a:hover {
+      .b-product_hover_04 .b-product_grid_header .b-button_list_over .b-product_grid_info h3 a:hover, .b-product_hover_04 .b-product_grid_header .b-button_list_over .b-product_grid_info h1 a:hover {
         color: rgba(255, 255, 255, 0.6); }
 
 .b-product_hover_05 .fa {
