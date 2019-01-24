@@ -18,7 +18,7 @@
             <form action="#" [formGroup]="">
               <ul>  
                 <li *ngFor="let cat of categories">
-                  <a href="javascript:void(0)" (click)="categoriesFilter(cat?.categoryCode)">{{cat.categoryName}}</a>
+                  <a href="javascript:void(0)" (click)="categoriesFilter(cat?.categoryCode)">{{cat?.categoryName}} ({{cat?.products?.length}})</a>
                 </li>
                 <!-- <li><a href="#">Bags</a></li>
                 <li><a href="#">Jewellery</a></li>

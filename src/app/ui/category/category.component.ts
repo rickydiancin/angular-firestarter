@@ -59,13 +59,20 @@ export class CategoryComponent implements OnInit {
   // }
 
   getAllProducts() {
-    this.productsService.getAllProducts().subscribe(async res => {
+    this.productsService.getAllProducts().subscribe(async (res:any) => {
       await this.getAllCategories();
       // console.log(res);
       this.productsTemp = res;
       this.products = res;
       this.productsService.getAllCategories(resCategory => {
         this.categories = resCategory;
+        _(resCategory).each((value, index) => {
+          let products = [];
+          this.productsService.getProductByArray(value.categoryCode).subscribe((product) => {
+            products.push(product);
+            this.categories[index].products = products[0];
+          });
+        });
         _(res).each((value: any, index) => {
           let cat = [];
           value.categories.map((category, index2) => {
