@@ -20,7 +20,7 @@ export class CategoryComponent implements OnInit {
   @Input('data') meals: string[] = [];
 
   public config: PaginationInstance = {
-    itemsPerPage: 1,
+    itemsPerPage: 9,
     currentPage: 1
   };
 
@@ -77,7 +77,33 @@ export class CategoryComponent implements OnInit {
     _(this.productsTemp).each((e, index) => {
       this.products[index].findSolution = e.solutions.includes(value);
     });
-    this.products = _(this.products).filter({findSolution: true}).value();
+    this.products = _(this.products).filter({ findSolution: true }).value();
+  }
+
+  categoriesFilter(value) {
+    this.products = this.productsTemp;
+    _(this.productsTemp).each((e, index) => {
+      this.products[index].findCategory = e.categories.includes(value);
+    });
+    this.products = _(this.products).filter({ findCategory: true }).value();
+  }
+
+  priceFilter(value) {
+    value.split('-');
+    console.log(value.split('-'));
+    let price:number = value.split('-');
+    this.products = this.productsTemp;
+    this.products = _(this.productsTemp).filter((o) => {
+      return o.productPrice >= price[0] && o.productPrice < price[1];
+    }).value();
+    console.log(this.products)
+  }
+
+  sortBy(value) {
+
+    // this.products = this.productsTemp;
+    this.products = _(this.productsTemp).sortBy(value).value();
+    console.log(this.products)
   }
 
 }
