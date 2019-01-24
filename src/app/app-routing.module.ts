@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'login', component: UserLoginComponent },
   { path: 'category', component: CategoryComponent },
+  { path: 'search', component: CategoryComponent },
   { path: 'wishlist', component: WishlistComponent },
   { path: 'company', component: CompanyComponent },
   { path: 'product/:id', component: ProductComponent },

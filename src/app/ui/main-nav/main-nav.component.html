@@ -129,13 +129,13 @@
                                            
                                               <div class="col-xs-12 col-sm-3" *ngFor="let cat of categories">
                                                   <div class="menu-item">
-                                                      <h4 class="column-title"><b>{{cat.categoryName}}</b></h4> 
+                                                      <h4 class="column-title"><b>{{cat.categoryName}} ({{cat?.products?.length}})</b></h4> 
                                                       <div class="categories">
                                                           <div class="row">
                                                               <div class="col-sm-12 hover-menu">
                                                                 <ul *ngIf="products"> 
-                                                                    <li *ngFor="let product of products"><a href="#">{{product?.productTitle}}</a></li>
-                                                                 
+                                                                    <li *ngFor="let product of cat.products"><a href="/product/{{product?.productTitle}}.{{product?.id}}">{{product?.productTitle}}</a></li>
+                                                                    <li><a href="/category">view more <i class="fa fa-arrow-right"></i></a></li>
                                                                   </ul>
                                                               </div>
                                                           </div>

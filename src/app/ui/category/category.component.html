@@ -13,12 +13,12 @@
     <div class="col-xl-3 col-lg-3 col-mb-4 col-sm-12 col-xs-12 b-sidebar_right">
       <div class="b-sidebar">
         <div class="b-filters_inner_area p-0">
-          <div class="b-sidebar_widget">
+          <div class="b-sidebar_widget" *ngIf="categories">
             <h5 class="b-filter_title">PRODUCT CATEGORIES</h5>
             <form action="#" [formGroup]="">
               <ul>  
                 <li *ngFor="let cat of categories">
-                  <a href="javascript:void(0)" (click)="categoriesFilter(cat?.categoryCode)">{{cat.categoryName}}</a>
+                  <a href="javascript:void(0)" (click)="categoriesFilter(cat?.categoryCode)">{{cat?.categoryName}} ({{cat?.products?.length}})</a>
                 </li>
                 <!-- <li><a href="#">Bags</a></li>
                 <li><a href="#">Jewellery</a></li>
@@ -30,7 +30,7 @@
               </ul> 
             </form>
           </div>
-          <div class="b-sidebar_widget">
+          <div class="b-sidebar_widget" *ngIf="solutions">
             <h5 class="b-filter_title">FILTER BY SOLUTION</h5>
             <form action="#" [formGroup]="">
               <ul class="b-color_filter">
@@ -73,8 +73,25 @@
             </form>
           </div> 
           <div class="b-sidebar_widget">
-            <h5 class="b-filter_title">FILTER BY SIZE</h5>
-            <form action="#" [formGroup]="">
+            <h5 class="b-filter_title">SET FILTER RANGE</h5>
+            <div class="gentec-filter-group">
+              <div class="gentec-height-range-filter_inputs">
+                <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.minHeight" class="gentec-height-range-filter_input" placeholder="Height Min">
+                <div class="gentec-height-range-filter_range-line"></div>
+                <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.maxHeight" class="gentec-height-range-filter_input" placeholder="Height Max">
+              </div>
+              <div class="gentec-height-range-filter_inputs">
+                <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.minWidth" class="gentec-height-range-filter_input" placeholder="Width Min">
+                <div class="gentec-height-range-filter_range-line"></div>
+                <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.maxWidth" class="gentec-height-range-filter_input" placeholder="Width Max">
+              </div>
+              <div class="gentec-height-range-filter_inputs">
+                <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.minDepth" class="gentec-height-range-filter_input" placeholder="Depth Min">
+                <div class="gentec-height-range-filter_range-line"></div>
+                <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.maxDepth" class="gentec-height-range-filter_input" placeholder="Depth Max">
+              </div>
+            </div>
+            <!-- <form action="#" [formGroup]="">
               <ul class="b-list_ib">
                 <li><a href="#" class="b-acitve">L <span class="b-count_number">(4)</span></a></li>
                 <li><a href="#">M <span class="b-count_number">(9)</span></a></li>
@@ -82,9 +99,9 @@
                 <li><a href="#">S <span class="b-count_number">(3)</span></a></li>
                 <li><a href="#">XS <span class="b-count_number">(5)</span></a></li> 
               </ul> 
-            </form>
+            </form> -->
           </div>
-          <div class="b-sidebar_widget">
+          <!-- <div class="b-sidebar_widget">
             <h5 class="b-filter_title">PRODUCT TAGS</h5>
             <ul class="pl-0 b-tag_list">
               <li><a href="#">bag</a></li>
@@ -98,7 +115,7 @@
               <li><a href="#">Shirt</a></li>
               <li><a href="#">white</a></li>
             </ul>
-          </div> 
+          </div>  -->
           <div class="b-sidebar_widget">
             <h5 class="b-filter_title">Top rated products</h5>
             <ul class="pl-0 mb-0 list-unstyled b-rated_product">
@@ -209,7 +226,7 @@
               </form>
             </div>
             <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-6 col-xs-12">
-              <h5 class="b-filter_title">FILTER BY COLOR</h5>
+              <h5 class="b-filter_title">FILTER BY SOLUTION</h5>
               <form action="#" [formGroup]="">
                 <ul class="b-color_filter">
                   <li *ngFor="let solution of solutions">
@@ -266,13 +283,18 @@
                           <a href="#" routerLink="/product/{{product.productTitle}}.{{product.id}}">
                             <!-- <img data-src="assets/images/products/home/product_grid_01_01.jpg, assets/images/products/home/product_grid_01_02.jpg" src="assets/images/products/home/product_grid_01_01.jpg" class="img-fluid img-switch d-block" alt="" style="">
                           -->
-                            <img [src]="product?.imageURL || product?.primaryImageURL || 'https://www.debarka.com/assets/images/no-thumbnail.png'" width="100%" height="auto" class="img-fluid img-switch d-block">
+                          <div class="b-product_grid_info">
+                          <h1 class="product-title">
+                            <a href="#" routerLink="/product/{{product?.productTitle}}.{{product?.id}}"><b>{{ product?.productTitle | words: 4}}</b></a>
+                          </h1>
+                          </div>
+                            <img [src]="product?.imageURL || product?.primaryImageURL || './assets/images/not_available.jpg'" width="100%" height="auto" class="img-fluid img-switch d-block">
                          
                           </a> 
                           <div class="b-product_grid_action">
                             <a href="javascript:void(0)" data-whishurl="whishlist.html" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to Whishlist">
                               <i class="icon-heart icons b-add_to_whish">
-                                <img [src]="(product?.imageURL || product?.primaryImageURL || 'https://www.debarka.com/assets/images/no-thumbnail.png')" class="g-loading_gif" alt="">
+                                <img [src]="(product?.imageURL || product?.primaryImageURL || './assets/images/not_available.jpg')" class="g-loading_gif" alt="">
                               </i>
                             </a>
                             <i data-toggle="tooltip" data-placement="left" title="" class="icon-refresh icons" data-original-title="Compare"></i>
@@ -282,27 +304,33 @@
                           </div>
                       </div>
                       <div class="b-product_grid_info">
-                         <h3 class="product-title">
+                         <!-- <h3 class="product-title">
                              <a href="#" routerLink="/product/{{product?.productTitle}}.{{product?.id}}">{{ product?.productTitle}}</a>
-                         </h3>
-                         <p>{{ product?.productDescription}}</p>
+                         </h3> -->
+                         <h3>{{ product?.categoryName | titlecase}}</h3>
+                         <p>{{ product?.productDescription | words : 8}}</p>
                          <div class="clearfix">
                            <div class="b-product_grid_toggle float-left">
                                <span class="b-price">${{ product?.productPrice}}</span>
                                <span class="b-add_cart">
                                    <i class="icon-basket icons"></i>
-                                   <a href="#">Select Options</a>
+                                   <a href="#">Add To Cart</a>
                                </span>
                            </div>
                            <div class="b-product_options float-right">
-                              <ul class="pl-0 mb-0 list-unstyled">
+                            <a href="javascript:void(0);" class="d-inline-block b-active mr-3">
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                            </a>
+                              <!-- <ul class="pl-0 mb-0 list-unstyled">
                                   <li>
                                     <span data-toggle="tooltip" title="" class="b-black" data-original-title="Black"></span>
                                   </li>
                                   <li>
                                     <span data-toggle="tooltip" title="" class="b-blue" data-original-title="Blue"></span>
                                   </li> 
-                              </ul>
+                              </ul> -->
                           </div>
                          </div>
                       </div>

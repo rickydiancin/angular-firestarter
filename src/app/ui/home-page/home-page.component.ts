@@ -26,7 +26,7 @@ export class HomePageComponent implements OnInit {
       console.log(res);
       this.categories = res;
     });
-    this.productsService.getAllProducts(res => {
+    this.productsService.getAllProducts().subscribe(res => {
       console.log(res);
       this.products = res;
      });
