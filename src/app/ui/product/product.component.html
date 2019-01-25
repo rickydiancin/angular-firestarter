@@ -106,7 +106,7 @@
           <div class="b-produt_description">
 
             <div>
-              <p>{{theproduct?.productDescription}}</p></div>
+              <!-- <p>{{theproduct?.productDescription}}</p></div> -->
           </div>
           <!-- <div class="b-product_attr">
             <div class="b-product_attr_single">
@@ -127,14 +127,52 @@
             </div>
           </div> -->
           <div class="b-product_single_action clearfix">
-            <div class="b-quantity pull-left">
+            <!-- <div class="b-quantity pull-left">
               <input type="button" value="-" class="b-minus">
               <input type="text" step="1" min="1" max="" name="b-quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric">
               <input type="button" value="+" class="b-plus">
-            </div>
-            <button class="text-uppercase pull-left btn">add to cart</button>
+            </div> -->
+            <button class="text-uppercase pull-left btn"><i class="fa fa-file-pdf-o fa-fw"></i> View Technical PDF</button>
+            <button class="text-uppercase pull-left btn"><i class="fa fa-heart-o fa-fw"></i> add to wishlist</button>
+            <h5 class="pull-left sub-header">Click to View Available Colours/Finishes:</h5>
           </div>
           <div class="b-product_single_option">
+            <ul class="pl-0 list-unstyled">
+              <li class="detail-width">
+                <a href="javascript:void(0);">
+                  <img class="swatch-squares" [src]="'./assets/images/colours/Storm Grey.jpg'" alt="">
+                </a>
+              </li>
+              <!-- <li class="detail-width">
+                <a href="javascript:void(0);">
+                  <img class="swatch-squares" [src]="'./assets/images/colours/Storm Grey.jpg'" alt="">
+                </a>
+              </li> -->
+              <!-- <li><a href="#"><i class="icon-refresh icons"></i> Compare</a></li>
+              <li><b class="text-uppercase">Sku</b>: {{theproduct?.productCode}}</li>
+              <li><b>Categories:</b>: <a href="#">To Follow</a></li>
+              <li><b>Solutions:</b>: <a href="#">To Follow</a></li>
+              <li>
+                <b>Share</b>:
+                <span class="b-share_product">
+                  <a href="#" class="fa fa-facebook"></a>
+                  <a href="#" class="fa fa-twitter"></a>
+                  <a href="#" class="fa fa-instagram"></a>
+                  <a href="#" class="fa fa-envelope"></a>
+                  <a href="#" class="fa fa-google-plus"></a>
+                  <a href="#" class="fa fa-pint"></a>
+                </span>
+              </li> -->
+            </ul>
+          </div>
+          <div class="b-product_single_action clearfix">
+            <h5 class="pull-left sub-header">Product Description</h5>
+          </div>
+          <div class="b-product_single_option">
+            <ul class="pl-0 list-unstyled">
+              <p>{{theproduct?.productDescription}}</p>
+            </ul>
+          <!-- <div class="b-product_single_option">
             <ul class="pl-0 list-unstyled">
               <li><a href="#"><i class="icon-heart icons"></i> Add to wishlist</a></li>
               <li><a href="#"><i class="icon-refresh icons"></i> Compare</a></li>
@@ -153,7 +191,7 @@
                 </span>
               </li>
             </ul>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -170,9 +208,9 @@
         <li class="nav-item">
           <a class="nav-link" href="#tab-02" role="tab" data-toggle="tab">Additional information</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="#tab-03" role="tab" data-toggle="tab">Reviews (0)</a>
-        </li>
+        </li> -->
         <li class="nav-item">
           <a class="nav-link" href="#tab-04" role="tab" data-toggle="tab">Shipping & Delivery</a>
         </li>

@@ -11536,9 +11536,11 @@ body.b-header_fixed .b-header04 .b-header_nav_center {
     min-width: 25px;
     color: #1B1919; }
 .b-product_single_summary .b-product_single_action {
-  padding-bottom: 25px;
+  padding-bottom: 10px;
+  /* padding-bottom: 25px; */
   border-bottom: 1px solid rgba(119, 119, 119, 0.17);
-  margin-bottom: 20px; }
+  /* margin-bottom: 20px; */
+  margin-bottom: 15px; }
   .b-product_single_summary .b-product_single_action .btn {
     background-color: #000;
     color: #fff; }
