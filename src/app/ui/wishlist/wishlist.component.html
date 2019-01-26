@@ -10,7 +10,7 @@
 <section id="b-cart_default" style="padding: 3em 0;">
   <div class="b-cart b-cart_default pb-5">
     <div class="container">
-       <table id="cart" class="table table-hover table-condensed">
+       <table id="cart" class="table table-hover table-condensed" id="content" #content>
           <thead>
             <tr>
               <th style="width:50%">Product</th>
@@ -64,13 +64,17 @@
           </tbody>
           <tfoot> 
             <tr>
-              <td><a href="#" class="btn btn-warning">Update Quantities</a></td>
+              <td></td>
+              <!-- <td><a href="#" class="btn btn-warning">Update Quantities</a></td> -->
               <td colspan="2" class="hidden-xs"></td>
               <td class="hidden-xs text-center"><strong>Total $3.99</strong></td>
-              <td><a href="#" class="btn btn-success btn-block">Download as PDF <i class="fa fa-angle-right"></i></a></td>
+              <!-- <td><a (click)="generatePDF()" href="javascipt:void(0);" class="btn btn-success btn-block">Download as PDF <i class="fa fa-angle-right"></i></a></td> -->
+              <td></td>
             </tr>
           </tfoot>
         </table>
+        <button type="button" class="btn btn-warning" style="margin-right: 10px;">Update Quantities</button>
+        <button (click)="generatePDF()" type="button" class="btn btn-success">Download as PDF</button>
     </div>
   </div>
 </section> 
