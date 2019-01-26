@@ -12,7 +12,9 @@ import { AuthService } from '../../core/auth.service';
 export class UserLoginComponent {
 
   constructor(public auth: AuthService,
-              private router: Router) { }
+              private router: Router) { 
+                console.log(auth.user);
+              }
 
   /// Social Login
 

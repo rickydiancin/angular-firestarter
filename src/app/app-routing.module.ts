@@ -12,6 +12,7 @@ import { CategoryComponent } from './ui/category/category.component';
 import { ProductComponent } from './ui/product/product.component';
 import { CompanyComponent } from './ui/company/company.component';
 import { WishlistComponent } from './ui/wishlist/wishlist.component';
+import { ProjectsComponent } from './ui/projects/projects.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'category', component: CategoryComponent },
   { path: 'search', component: CategoryComponent },
   { path: 'wishlist', component: WishlistComponent },
+  { path: 'projects', component: ProjectsComponent },
   { path: 'company', component: CompanyComponent },
   { path: 'product/:id', component: ProductComponent },
   { path: 'notes', component: NotesListComponent,  canActivate: [AuthGuard] },
