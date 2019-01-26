@@ -15,6 +15,7 @@ export class MainNavComponent {
   categories:any;
   products:any;
   solutions:any;
+  user: any;
   
   constructor(
     private scriptsService: ScriptsService,
@@ -24,6 +25,15 @@ export class MainNavComponent {
 
   
   ngOnInit() {
+    this.auth.user.subscribe((data) => {
+      console.log(data)
+      if (data === null) {
+        console.log('logout');
+      } else {
+        this.user = data
+      }
+    })
+
     this.productsService.getAllCategories(res => {
       this.categories = res;
       _(res).each((value, index) => {

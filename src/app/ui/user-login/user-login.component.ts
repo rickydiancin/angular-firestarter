@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -9,14 +9,27 @@ import { AuthService } from '../../core/auth.service';
   templateUrl: './user-login.component.html',
   styleUrls: ['./user-login.component.scss'],
 })
-export class UserLoginComponent {
+export class UserLoginComponent implements OnInit {
+
+  user: any;
 
   constructor(public auth: AuthService,
               private router: Router) { 
-                console.log(auth.user);
+                // console.log(auth.user);
               }
 
   /// Social Login
+
+  ngOnInit() {
+    this.auth.user.subscribe((data) => {
+      console.log(data)
+      if(data === null) {
+        console.log('logout');
+      } else {
+        this.user = data
+      }
+    })
+  }
 
   async signInWithGithub() {
     await this.auth.githubLogin();
