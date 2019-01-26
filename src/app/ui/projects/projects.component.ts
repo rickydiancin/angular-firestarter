@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ProductsService } from 'src/app/core/products.service';
 
 @Component({
@@ -22,12 +22,12 @@ export class ProjectsComponent implements OnInit {
 
   createForm() {
     this.form = this.formBuilder.group({
-      projectName: [''],
-      description: [''],
-      code: [''],
-      location: [''],
-      dateCreated: [Date.now()],
-      isActive: [true]
+      projectName: ['', Validators.required],
+      description: ['', Validators.required],
+      code: ['', Validators.required],
+      location: ['', Validators.required],
+      dateCreated: [''],
+      isActive: []
     })
   }
 
@@ -36,7 +36,8 @@ export class ProjectsComponent implements OnInit {
   }
 
   createProject() {
-    console.log(this.form.value);
+    this.form.controls['dateCreated'].setValue(Date.now())
+    this.form.controls['isActive'].setValue(true)
     this.productServices.newProjects(this.form.value).then(() => {
       console.log('New Project successfully added');
       this.form.reset();
