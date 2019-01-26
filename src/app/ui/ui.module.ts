@@ -18,6 +18,7 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { TruncateModule } from 'ng2-truncate';
 import { FormsModule } from '@angular/forms';
+import { ProjectsComponent } from './projects/projects.component';
 
 @NgModule({
   imports: [CommonModule, RouterModule, ReactiveFormsModule, NgxPaginationModule, TruncateModule, FormsModule],
@@ -33,7 +34,8 @@ import { FormsModule } from '@angular/forms';
     CategoryComponent,
     ProductComponent,
     CompanyComponent,
-    WishlistComponent
+    WishlistComponent,
+    ProjectsComponent
   ],
   exports: [
     MainNavComponent,
