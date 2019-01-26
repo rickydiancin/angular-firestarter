@@ -1,63 +1,76 @@
-<div class="b-page_title b-page_title_default text-center">
-  <h1 class="b-entry_title"><span>WISHLIST</span></h1>  
-  <div class="b-breadcrumbs">
-    <a href="index.html">Home</a>
-    <span>WISHLIST</span>
-  </div>
-</div> 
-<section id="b-cart_default">
-  <div class="b-cart b-cart_default b-wishlist_table pb-5">
+
+          <div class="b-page_title b-page_title_default text-center">
+            <h1 class="b-entry_title"><span>PROJECTS</span></h1>  
+            <div class="b-breadcrumbs">
+              <a href="index.html">Home</a>
+              <span>PROJECTS</span>
+            </div>
+          </div> 
+
+<section id="b-cart_default" style="padding: 3em 0;">
+  <div class="b-cart b-cart_default pb-5">
     <div class="container">
-      <div class="table-responsive">
-       <table id="cart" class="table table-condensed">
+       <table id="cart" class="table table-hover table-condensed">
           <thead>
             <tr>
-              <th style="width:35%" class="text-center border-0"><h6><b>PRODUCT NAME</b></h6></th>
-              <th style="width:25%" class="text-center border-0"><h6><b>UNIT PRICE</b></h6></th>
-              <th style="width:25%" class="text-center border-0"><h6><b>STOCK STATUS</b></h6></th>
-              <th style="width:15%" class="text-center border-0"></th> 
+              <th style="width:50%">Product</th>
+              <th style="width:10%">Price</th>
+              <th style="width:8%">Quantity</th>
+              <th style="width:22%" class="text-center">Subtotal</th>
+              <th style="width:10%"></th>
             </tr>
           </thead>
           <tbody>
-             <tr>
-               <td class="text-center">
-                 <div class="b-wish_product">
-                   <i class="icon-close icons"></i>
-                   <img src="assets/images/products/home/product_grid_03_01.jpg" class="mx-2" height="70" alt="">
-                   <a href="#">Basic Korean-style coat</a>
-                 </div>
-               </td>
-               <td class="text-center"><span class="b-price">£99.00</span></td>
-               <td class="text-center"><span class="b-stock_status b-in_stock">IN STOCK</span></td>
-               <td><a href="#" class="btn btn-full">ADD TO CART</a></td>
-             </tr>
-             <tr>
-               <td class="text-center">
-                 <div class="b-wish_product">
-                   <i class="icon-close icons"></i>
-                   <img src="assets/images/products/home/product_grid_08_01.jpg" class="mx-2" height="70" alt="">
-                   <a href="#">Gthnic detail open jacket</a>
-                 </div>
-               </td>
-               <td class="text-center"><span class="b-price">£320.00</span></td>
-               <td class="text-center"><span class="b-stock_status b-out_off_stock">OUT OFF STOCK</span></td>
-               <td><a href="#" class="btn btn-full disabled">ADD TO CART</a></td>
-             </tr>
-             <tr>
-               <td class="text-center">
-                 <div class="b-wish_product">
-                   <i class="icon-close icons"></i>
-                   <img src="assets/images/products/home/product_grid_06_02.jpg" class="mx-2" height="70" alt="">
-                   <a href="#">Houble strap backpack</a>
-                 </div>
-               </td>
-               <td class="text-center"><span class="b-price">£120.00</span></td>
-               <td class="text-center"><span class="b-stock_status b-in_stock">IN STOCK</span></td>
-               <td><a href="#" class="btn btn-full">ADD TO CART</a></td>
-             </tr>
-          </tbody> 
+            <tr>
+              <td data-th="Product">
+                <div class="row">
+                  <div class="col-sm-2 hidden-xs"><img src="assets/images/products/home/product_grid_03_01.jpg" alt="..." class="img-fluid"/></div>
+                  <div class="col-sm-10">
+                    <h4 class="nomargin">Product 1</h4>
+                    <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p>
+                  </div>
+                </div>
+              </td>
+              <td data-th="Price">$1.99</td>
+              <td data-th="Quantity">
+                <input type="number" class="form-control text-center" value="1">
+              </td>
+              <td data-th="Subtotal" class="text-center">1.99</td>
+              <td class="actions" data-th="">
+                <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
+                <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>                
+              </td>
+            </tr>
+            <tr>
+              <td data-th="Product">
+                <div class="row">
+                  <div class="col-sm-2 hidden-xs"><img src="assets/images/products/home/product_grid_03_02.jpg" alt="..." class="img-fluid"/></div>
+                  <div class="col-sm-10">
+                    <h4 class="nomargin">Product 2</h4>
+                    <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p>
+                  </div>
+                </div>
+              </td>
+              <td data-th="Price">$2.99</td>
+              <td data-th="Quantity">
+                <input type="number" class="form-control text-center" value="1">
+              </td>
+              <td data-th="Subtotal" class="text-center">1.99</td>
+              <td class="actions" data-th="">
+                <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
+                <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>                
+              </td>
+            </tr>
+          </tbody>
+          <tfoot> 
+            <tr>
+              <td><a href="#" class="btn btn-warning">Update Quantities</a></td>
+              <td colspan="2" class="hidden-xs"></td>
+              <td class="hidden-xs text-center"><strong>Total $3.99</strong></td>
+              <td><a href="#" class="btn btn-success btn-block">Download as PDF <i class="fa fa-angle-right"></i></a></td>
+            </tr>
+          </tfoot>
         </table>
-      </div>
     </div>
   </div>
 </section> 
