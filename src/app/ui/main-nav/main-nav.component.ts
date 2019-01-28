@@ -3,6 +3,7 @@ import { ScriptsService } from 'src/app/core/scripts.service';
 import { AuthService } from 'src/app/core/auth.service';
 import { ProductsService } from 'src/app/core/products.service';
 import * as _ from 'lodash';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'main-nav',
@@ -20,24 +21,37 @@ export class MainNavComponent {
   constructor(
     private scriptsService: ScriptsService,
     public auth: AuthService,
-    private productsService: ProductsService
-  ) { }
+    private productsService: ProductsService,
+    public af: AngularFireAuth
+  ) {
+    // this.af.authState.subscribe((auth) => {
+      
+    //   if(auth) {
+    //     console.log(auth, 'auth')
+    //     this.user = auth;
+    //   } else {
+    //     console.log(auth, 'notAuth')
+    //     this.user = '';
+    //   }
+    // })
+  }
 
   
   ngOnInit() {
-    this.auth.user.subscribe((data) => {
-      console.log(data)
-      if (data === null) {
-        console.log('logout');
-      } else {
-        this.user = data
-      }
-    })
+    console.log(this.auth.user);
+    // this.auth.user.subscribe((data) => {
+    //   // console.log(data)
+    //   if (data === null) {
+    //     console.log('logout');
+    //   } else {
+    //     this.user = data
+    //   }
+    // })
 
     this.productsService.getAllCategories(res => {
       this.categories = res;
       _(res).each((value, index) => {
-        console.log(value.categoryCode)
+        // console.log(value.categoryCode)
         let products = [];
         this.productsService.getProductByArray(value.categoryCode).subscribe((product) => {
           products.push(product);
@@ -46,7 +60,7 @@ export class MainNavComponent {
         });
       });
     });
-    console.log(this.categories);
+    // console.log(this.categories);
 
     this.productsService.getAllSolutions().subscribe((data) => {
       this.solutions = data;

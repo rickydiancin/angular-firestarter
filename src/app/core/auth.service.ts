@@ -22,7 +22,7 @@ interface User {
 
 @Injectable()
 export class AuthService {
-  user: Observable<User | null>;
+  user: any;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -30,17 +30,33 @@ export class AuthService {
     private router: Router,
     private notify: NotifyService
   ) {
-    this.user = this.afAuth.authState.pipe(
-      switchMap(user => {
-        if (user) {
-          return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
-        } else {
-          return of(null);
-        }
-      })
-      // tap(user => localStorage.setItem('user', JSON.stringify(user))),
-      // startWith(JSON.parse(localStorage.getItem('user')))
-    );
+
+    this.afAuth.authState.subscribe((auth) => {
+
+      if (auth) {
+        console.log(auth, 'auth')
+        this.user = auth;
+        // this.updateUserData(auth);
+      } else {
+        console.log(auth, 'notAuth')
+        this.user = '';
+      }
+    })
+    // this.user = this.afAuth.authState.pipe(
+    //   switchMap(user => {
+    //     if (user) {
+    //       return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+    //     } else {
+    //       return of(null);
+    //     }
+    //   }),
+    //   tap(user => {
+    //     if(user) {
+    //       localStorage.setItem('user', JSON.stringify(user))
+    //     }
+    //   }),
+    //   startWith(JSON.parse(localStorage.getItem('user')))
+    // );
   }
 
   ////// OAuth Methods /////
@@ -102,8 +118,7 @@ export class AuthService {
   }
 
   emailLogin(email: string, password: string) {
-    return this.afAuth.auth
-      .signInWithEmailAndPassword(email, password)
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then(credential => {
         console.log(credential);
         //this.notify.update('Welcome back!', 'success');
@@ -148,5 +163,9 @@ export class AuthService {
       photoURL: user.photoURL || 'https://goo.gl/Fz9nrQ'
     };
     return userRef.set(data);
+  }
+
+  getCurrentUser(user) {
+    return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
   }
 }

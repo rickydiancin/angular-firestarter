@@ -1116,12 +1116,12 @@ export class ScriptsService {
       
       $(window).on("load", function(){
         $(window).scroll(function(){
-          var aTop = 400;
-          if($("#b-promo_popup").length > 0){
-            if($(this).scrollTop()>=aTop){
-                $('#b-promo_popup').modal('show');
-            }
-          }
+          // var aTop = 400;
+          // if($("#b-promo_popup").length > 0){
+          //   if($(this).scrollTop()>=aTop){
+          //       $('#b-promo_popup').modal('show');
+          //   }
+          // }
       
           if($('.b-sticky-product').length > 0){
             var winScroll = $(window).scrollTop();

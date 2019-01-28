@@ -6,20 +6,19 @@
     </div>
   </div> 
 
-  <div *ngIf="!(user); else alreadyLoggedIn">
-
+  <div *ngIf="!auth?.user">
   <user-form></user-form>
   </div>
 
-  <ng-template #alreadyLoggedIn>
-      <div class="container">
+  <!-- <ng-template #alreadyLoggedIn> -->
+      <div class="container" *ngIf="auth?.user">
           <div class="row clearfix">
 
-    <user-form></user-form>
+    <!-- <user-form></user-form> -->
     <p class="text-success">
         You are logged in <i class="fa fa-thumbs-up"></i><br>
       </p>
     <user-profile></user-profile>
 
     </div></div>
-  </ng-template>
+  <!-- </ng-template> -->
