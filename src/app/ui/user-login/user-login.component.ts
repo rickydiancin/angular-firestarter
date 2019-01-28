@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AuthService } from '../../core/auth.service';
+import { StorageService } from 'src/app/core/storage.service';
 
 @Component({
   selector: 'user-login',
@@ -13,22 +14,26 @@ export class UserLoginComponent implements OnInit {
 
   user: any;
 
-  constructor(public auth: AuthService,
-              private router: Router) { 
-                // console.log(auth.user);
-              }
+  constructor(
+    public auth: AuthService,
+    private router: Router,
+    public storage: StorageService
+    ) { 
+      // console.log(auth.user);
+    }
 
   /// Social Login
 
   ngOnInit() {
-    this.auth.user.subscribe((data) => {
-      console.log(data)
-      if(data === null) {
-        console.log('logout');
-      } else {
-        this.user = data
-      }
-    })
+    // this.auth.user.subscribe((data) => {
+    //   console.log(data)
+    //   if(data === null) {
+    //     console.log('logout');
+    //     this.storage.removeUser();
+    //   } else {
+    //     this.user = data;
+    //   }
+    // })
   }
 
   async signInWithGithub() {

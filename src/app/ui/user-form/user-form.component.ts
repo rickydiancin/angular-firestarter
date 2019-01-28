@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { AuthService } from '../../core/auth.service';
+import { StorageService } from 'src/app/core/storage.service';
 
 type UserFields = 'email' | 'password';
 type FormErrors = { [u in UserFields]: string };
@@ -33,7 +34,9 @@ export class UserFormComponent implements OnInit {
     },
   };
 
-  constructor(private fb: FormBuilder, private auth: AuthService) { }
+  constructor(private fb: FormBuilder, private auth: AuthService, public storage: StorageService) {
+    
+  }
 
   ngOnInit() {
     this.buildForm();
@@ -48,7 +51,7 @@ export class UserFormComponent implements OnInit {
   }
 
   login() {
-    console.log(this.userForm.value['email'], this.userForm.value['password']);
+    // console.log(this.userForm.value['email'], this.userForm.value['password']);
     this.auth.emailLogin(this.userForm.value['email'], this.userForm.value['password']);
   }
 
