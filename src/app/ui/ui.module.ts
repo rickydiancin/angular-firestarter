@@ -19,9 +19,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { TruncateModule } from 'ng2-truncate';
 import { FormsModule } from '@angular/forms';
 import { ProjectsComponent } from './projects/projects.component';
+import { AddProjectComponent } from './projects/add-project/add-project.component';
+import { AddToProjectComponent } from './product/add-to-project/add-to-project.component';
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgPipesModule } from 'ngx-pipes';
 
 @NgModule({
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, NgxPaginationModule, TruncateModule, FormsModule],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, NgxPaginationModule, TruncateModule, FormsModule, NgPipesModule],
   declarations: [
     UserLoginComponent,
     HomePageComponent,
@@ -35,14 +39,21 @@ import { ProjectsComponent } from './projects/projects.component';
     ProductComponent,
     CompanyComponent,
     WishlistComponent,
-    ProjectsComponent
+    ProjectsComponent,
+    AddProjectComponent,
+    AddToProjectComponent
+  ],
+  entryComponents:[
+    AddProjectComponent,
+    AddToProjectComponent
   ],
   exports: [
     MainNavComponent,
     LoadingSpinnerComponent,
     NotificationMessageComponent,
     UserProfileComponent,
-    UserFormComponent
+    UserFormComponent,
+    // AddProjectComponent
   ]
 })
 export class UiModule {}

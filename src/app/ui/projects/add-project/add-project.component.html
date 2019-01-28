@@ -1,0 +1,57 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">New Project</h4>
+  <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="form" novalidate>
+    <div class="clearfix row">
+      <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
+        <div class="form-group">
+          <label>Project Name</label>
+          <input type="text" name="name" id="name" formControlName="projectName">
+        </div>
+      </div>
+      <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
+        <div class="form-group">
+          <label>Description</label>
+          <input type="text" name="name" id="name" formControlName="description">
+        </div>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12">
+        <div class="form-group">
+          <label>Code<i style="color: red;">*</i> <span id="userName-info" class="info"></span></label>
+          <input required="" type="text" name="userName" id="userName" formControlName="code">
+        </div>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12">
+        <div class="form-group">
+          <label>Location <i style="color: red;">*</i> <span id="userEmail-info" class="info"></span></label>
+          <input required="" type="email" name="userEmail" id="userEmail" formControlName="location">
+        </div>
+      </div>
+  
+      <!-- <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
+                       <div class="form-group">
+                         <label>Your Message</label>
+                         <textarea name="content" id="content"></textarea>
+                       </div>
+                     </div>   -->
+      <!-- <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
+        <button *ngIf="!isUpdate" [disabled]="form.invalid" (click)="createProject();" class="btn btn-bg text-white">ADD
+          PROJECT</button>
+        <button style="margin-right: 5px;" *ngIf="isUpdate" [disabled]="form.invalid" (click)="updateProject();" class="btn btn-bg text-white">UPDATE
+          PROJECT</button>
+        <button *ngIf="isUpdate" [disabled]="form.invalid" (click)="updateCancel();" class="btn btn-danger">CANCEL</button>
+      </div> -->
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button *ngIf="!isUpdate" [disabled]="form.invalid" (click)="createProject();" class="btn btn-bg text-white">ADD
+    PROJECT</button>
+  <button style="margin-right: 5px;" *ngIf="isUpdate" [disabled]="form.invalid" (click)="updateProject();" class="btn btn-bg text-white">UPDATE
+    PROJECT</button>
+  <button (click)="vs.showAddProjectModal = false;" class="btn btn-warning">BACK</button>
+</div>
