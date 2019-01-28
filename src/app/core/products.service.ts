@@ -113,4 +113,22 @@ getCategory(id, callback){
     console.log(id)
     return this.afs.doc('solutions/' + id).valueChanges();
   }
+
+  newProjects(data) {
+    return this.afs.doc('projects/' + data.code).set(data);
+  }
+
+  deleteProject(id) {
+    return this.afs.doc<any>('projects/' + id).delete();
+  }
+
+  getAllProjects() {
+    return this.afs.collection('projects').snapshotChanges().pipe(
+      map((actions) => {
+        return actions.map((a) => {
+          const data = a.payload.doc.data();
+          return { id: a.payload.doc.id, ...data };
+        });
+      }));
+  }
 }

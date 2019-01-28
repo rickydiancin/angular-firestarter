@@ -15,11 +15,11 @@
                                     <div class="b-topbar_menu float-md-right text-center">
                                         <div class="b-menu_top_bar_container">
                                             <ul id="b-menu_top_bar" class="b-menu">
-                                                    <li *ngIf="auth.user "><a href="#" (click)="logout()">Logout</a></li>
-                                                <li *ngIf="auth.user "><a href="#" routerLink="/login"><i class="fa fa-user mr-1"></i>My Account</a></li>
-                                                <li *ngIf="auth.user "><a href="#" routerLink="/wishlist"> <i class="icon-heart icons"></i> Wishlist</a></li>
-                                                <li *ngIf="!(auth.user )"><a href="#" routerLink="/login">Login</a></li>
-                                                <li *ngIf="!(auth.user)"><a href="#" routerLink="/login">Register</a></li>
+                                                <li *ngIf="user"><a href="javascript:void(0)" (click)="logout()">Logout</a></li>
+                                                <li *ngIf="user "><a href="#" routerLink="/login"><i class="fa fa-user mr-1"></i>My Account</a></li>
+                                                <li *ngIf="user "><a href="#" routerLink="/wishlist"> <i class="icon-heart icons"></i> Wishlist</a></li>
+                                                <li *ngIf="!(user )"><a href="#" routerLink="/login">Login</a></li>
+                                                <li *ngIf="!(user)"><a href="#" routerLink="/login">Register</a></li>
                                                
                                             </ul>
                                         </div>   

@@ -6,7 +6,7 @@
     </div>
   </div> 
 
-  <div *ngIf="!(auth.user); else alreadyLoggedIn">
+  <div *ngIf="!(user); else alreadyLoggedIn">
 
   <user-form></user-form>
   </div>

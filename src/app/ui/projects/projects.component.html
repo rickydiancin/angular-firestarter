@@ -4,7 +4,8 @@
       <a href="index.html">Home</a>
       <span>PROJECTS</span>
     </div>
-  </div> 
+  </div>
+  <!-- <div class="alert alert-success">New Project Successfully Added.</div> -->
   <section id="b-cart_default">
     <div class="b-cart b-cart_default pb-5">
       <div class="container">
@@ -13,29 +14,30 @@
                 <div class="b-title b-title_line_right">
                   <h2 class="text-uppercase">Add Project Form</h2>
                 </div>
+                <form [formGroup]="form" novalidate>
                 <div class="clearfix row">
                     <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
                         <div class="form-group">
                           <label>Project Name</label>
-                          <input  type="text" name="name" id="name">
+                          <input  type="text" name="name" id="name" formControlName="projectName">
                         </div>
                       </div>  
                       <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
                           <div class="form-group">
                             <label>Description</label>
-                            <input  type="text" name="name" id="name">
+                            <input  type="text" name="name" id="name" formControlName="description">
                           </div>
                         </div>  
                    <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12">
                      <div class="form-group">
                        <label>Code<i style="color: red;">*</i> <span id="userName-info" class="info"></span></label>
-                       <input required="" type="text" name="userName" id="userName">
+                       <input required="" type="text" name="userName" id="userName" formControlName="code">
                      </div>
                    </div>
                    <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12">
                      <div class="form-group">
                        <label>Location <i style="color: red;">*</i>  <span id="userEmail-info" class="info"></span></label>
-                       <input required="" type="email" name="userEmail" id="userEmail">
+                       <input required="" type="email" name="userEmail" id="userEmail" formControlName="location">
                      </div>
                    </div>
               
@@ -46,9 +48,12 @@
                      </div>
                    </div>   -->
                    <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
-                     <button  onClick="sendContact();" class="btn btn-bg text-white">ADD PROJECT</button>
+                     <button *ngIf="!isUpdate" [disabled]="form.invalid" (click)="createProject();" class="btn btn-bg text-white">ADD PROJECT</button>
+                     <button style="margin-right: 5px;" *ngIf="isUpdate" [disabled]="form.invalid" (click)="updateProject();" class="btn btn-bg text-white">UPDATE PROJECT</button>
+                     <button *ngIf="isUpdate" [disabled]="form.invalid" (click)="updateCancel();" class="btn btn-danger">CANCEL</button>
                    </div>  
-                </div> 
+                  </div> 
+                </form>
                 <div class="mt-4" id="mail-status"></div>
               </div>
               <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12">
@@ -77,44 +82,26 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr *ngFor="let project of projects">
                 <td data-th="Product">
                   <div class="row">
                     <div class="col-sm-2 hidden-xs"><img src="assets/images/products/home/product_grid_03_01.jpg" alt="..." class="img-fluid"/></div>
-                    <div class="col-sm-10">
-                      <h4 class="nomargin">Project A</h4>
-                      <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p>
+                    <div class="col-sm-9">
+                      <h4 class="nomargin">{{project?.projectName}}</h4>
+                      <p>{{project?.description}}</p>
                     </div>
                   </div>
                 </td>
-                <td data-th="Price">10/16/90</td>
+                <td data-th="Price">{{project?.dateCreated | date:'MM/d/yy'}}</td>
                 <td data-th="Quantity">
-                  <input type="text" class="form-control text-center" value="A001">
+                  <input type="text" class="form-control text-center" value="{{project?.code}}">
                 </td>
-                <td data-th="Subtotal" class="text-center">Australia</td>
-                <td class="actions" data-th="">
-                  <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
-                  <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>                
-                </td>
-              </tr>
-              <tr>
-                <td data-th="Product">
-                  <div class="row">
-                    <div class="col-sm-2 hidden-xs"><img src="assets/images/products/home/product_grid_03_02.jpg" alt="..." class="img-fluid"/></div>
-                    <div class="col-sm-10">
-                      <h4 class="nomargin">Project B</h4>
-                      <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p>
-                    </div>
+                <td data-th="Subtotal" class="text-center">{{project?.location}}</td>
+                <td class="actions" data-th="" width="5%">
+                  <div class="col-sm-1">
+                    <button (click)="editProject(project)" class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
+                    <button (click)="deleteProject(project.id)" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>   
                   </div>
-                </td>
-                <td data-th="Price">10/16/90</td>
-                <td data-th="Quantity">
-                  <input type="text" class="form-control text-center" value="B001">
-                </td>
-                <td data-th="Subtotal" class="text-center">Australia</td>
-                <td class="actions" data-th="">
-                  <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
-                  <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>                
                 </td>
               </tr>
             </tbody>
