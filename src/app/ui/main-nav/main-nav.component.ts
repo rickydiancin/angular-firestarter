@@ -53,7 +53,7 @@ export class MainNavComponent {
   }
 
   logout() {
-    // console.log('logout...');
+    console.log('logout...');
     this.auth.signOut();
   }
 
