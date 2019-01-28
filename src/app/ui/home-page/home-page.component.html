@@ -161,7 +161,7 @@
   <div class="b-blog b-blog_grid text-center b-blog_grid_three mb-5 pt-5">
     <div class="container">
       <div class="row clearfix">
-        <div *ngFor="let cat of categories" class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-xs-12">
+        <div *ngFor="let cat of categories | slice:0:6" class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-xs-12">
           <div class="b-blog_grid_single">
             <div class="b-blog_single_header">
               <div class="b-blog_img_wrap">
@@ -217,70 +217,28 @@
           <span class="b-title_separator"><span></span></span>
         </h4>
       </div>
-      <div class="row clearfix pt-5">
+      <div class="row clearfix pt-5" *ngFor="let cat of categories | slice:0:3"> 
         <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-3 col-xs-12">
 
 
-          <img src="assets/images/story/dark-about-1.jpg" class="d-block m-auto img-fluid" style="padding: 1px;" alt="">
+          <img [src]="cat?.imgURL" class="d-block m-auto img-fluid" style="padding: 1px;" alt="">
 
 
 
         </div>
         <div class="col-xl-9 col-lg-9 col-mb-9 col-sm-9 col-xs-12 ">
           <div class="b-entry_title">
-            <h4 class="text-uppercase">About Our Company Solution 1</h4>
+            <h4 class="text-uppercase">{{cat.categoryName}}</h4>
           </div>
           <p class="mb-4">
-            Duis senectus condimentum a fringilla donec non adipiscing nullam posuere eros ac turpis mi lectus nunc
+              {{cat.description}}. Duis senectus condimentum a fringilla donec non adipiscing nullam posuere eros ac turpis mi lectus nunc
             congue vestibulum. Facilisis lobortis cursus morbi sociosqu tortor condimentum elementum a at conubia
             vestibulum adipiscing pretium fringilla sit a habitant sed a dui mauris.
           </p>
           <!-- <a href="#" class="btn btn-bg text-uppercase">read our story</a> -->
         </div>
       </div>
-      <div class="row clearfix pt-5">
-        <div class="col-xl-9 col-lg-9 col-mb-9 col-sm-9 col-xs-12 ">
-          <div class="b-entry_title">
-            <h4 class="text-uppercase">About Our Company Solution 2</h4>
-          </div>
-          <p class="mb-4">
-            Duis senectus condimentum a fringilla donec non adipiscing nullam posuere eros ac turpis mi lectus nunc
-            congue vestibulum. Facilisis lobortis cursus morbi sociosqu tortor condimentum elementum a at conubia
-            vestibulum adipiscing pretium fringilla sit a habitant sed a dui mauris.
-          </p>
-          <!-- <a href="#" class="btn btn-bg text-uppercase">read our story</a> -->
-        </div>
-        <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-3 col-xs-12">
-
-
-          <img src="assets/images/story/dark-about-1.jpg" class="d-block m-auto img-fluid" style="padding: 1px;" alt="">
-
-
-
-        </div>
-
-      </div>
-      <div class="row clearfix pt-5">
-        <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-3 col-xs-12">
-
-
-          <img src="assets/images/story/dark-about-1.jpg" class="d-block m-auto img-fluid" style="padding: 1px;" alt="">
-
-
-
-        </div>
-        <div class="col-xl-9 col-lg-9 col-mb-9 col-sm-9 col-xs-12 ">
-          <div class="b-entry_title">
-            <h4 class="text-uppercase">About Our Company Solution 1</h4>
-          </div>
-          <p class="mb-4">
-            Duis senectus condimentum a fringilla donec non adipiscing nullam posuere eros ac turpis mi lectus nunc
-            congue vestibulum. Facilisis lobortis cursus morbi sociosqu tortor condimentum elementum a at conubia
-            vestibulum adipiscing pretium fringilla sit a habitant sed a dui mauris.
-          </p>
-          <!-- <a href="#" class="btn btn-bg text-uppercase">read our story</a> -->
-        </div>
-      </div>
+    
     </div>
   </div>
 </section>
