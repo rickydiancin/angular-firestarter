@@ -1102,11 +1102,11 @@ $(document).ready(function($) {
 $(window).on("load", function(){
   $(window).scroll(function(){
     var aTop = 400;
-    if($("#b-promo_popup").length > 0){
-      if($(this).scrollTop()>=aTop){
-          $('#b-promo_popup').modal('show');
-      }
-    }
+    // if($("#b-promo_popup").length > 0){
+    //   if($(this).scrollTop()>=aTop){
+    //       $('#b-promo_popup').modal('show');
+    //   }
+    // }
 
     if($('.b-sticky-product').length > 0){
       var winScroll = $(window).scrollTop();
@@ -1129,10 +1129,10 @@ $(window).on("load", function(){
     }
 
   });
-  $(".b-promo_popup button.btn-close").on("click", function(){
-    $('#b-promo_popup').remove();
-    $('.modal-backdrop').remove();
-    $('body').removeClass('modal-open');
-    $('body').removeAttr('style');
-  })
+  // $(".b-promo_popup button.btn-close").on("click", function(){
+  //   $('#b-promo_popup').remove();
+  //   $('.modal-backdrop').remove();
+  //   $('body').removeClass('modal-open');
+  //   $('body').removeAttr('style');
+  // })
 })

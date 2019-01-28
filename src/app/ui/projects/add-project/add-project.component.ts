@@ -1,29 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { ProductsService } from 'src/app/core/products.service';
+import { Component, OnInit, Input } from '@angular/core';
 import { ScriptsService } from 'src/app/core/scripts.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AddProjectComponent } from './add-project/add-project.component';
+import { FormBuilder, Validators } from '@angular/forms';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ProductsService } from 'src/app/core/products.service';
+import { VariablesService } from 'src/app/core/variables.service';
+
 declare var $: any;
 
 @Component({
-  selector: 'projects',
-  templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.scss']
+  selector: 'add-project',
+  templateUrl: './add-project.component.html',
+  styleUrls: ['./add-project.component.scss']
 })
-export class ProjectsComponent implements OnInit {
-
+export class AddProjectComponent implements OnInit {
   form: any;
-  projects: any;
-  isUpdate: Boolean = false;
+  isUpdate = false;
+  @Input() hideForm: Boolean;
 
   constructor(
-    public formBuilder: FormBuilder,
-    public productServices: ProductsService,
     public scriptsService: ScriptsService,
-    private modalService: NgbModal
+    public formBuilder: FormBuilder,
+    private activeModal: NgbActiveModal,
+    public productServices: ProductsService,
+    public vs: VariablesService
   ) {
     this.createForm();
+  }
+
+  ngOnInit() {
+    setTimeout(() => {
+      this.scriptsService.prepareJquery();
+    }, 1000)
+
+    console.log(this.hideForm);
   }
 
   createForm() {
@@ -37,11 +46,9 @@ export class ProjectsComponent implements OnInit {
     })
   }
 
-  ngOnInit() {
-    this.getAllProjects();
-    setTimeout(() => {
-      this.scriptsService.prepareJquery();
-    }, 1000)
+  closeModal() {
+    // $('#b-promo_popup').modal('hide');
+    this.activeModal.close({value: false});
   }
 
   createProject() {
@@ -73,20 +80,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   updateCancel() {
-    this.form.reset();
-    this.isUpdate = false;
-  }
-
-  getAllProjects() {
-    this.productServices.getAllProjects().subscribe((projects) => {
-      console.log(projects)
-      this.projects = projects;
-    })
-  }
-
-  addProject() {
-    // $('#b-promo_popup').modal('show');
-    const activeModal = this.modalService.open(AddProjectComponent, { size: 'lg' });
+    this.activeModal.close();
   }
 
 }

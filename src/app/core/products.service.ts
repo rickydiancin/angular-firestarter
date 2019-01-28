@@ -4,6 +4,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class ProductsService {
   productsCollection: AngularFirestoreCollection<any>;
   productDocument:   AngularFirestoreDocument<any>;
 
-  constructor(private afs: AngularFirestore) {
+  constructor(private afs: AngularFirestore, private auth: AuthService) {
     // Add collections here..
     this.productsCollection = this.afs.collection('products', (ref) => ref.orderBy('dateCreated', 'desc').limit(2));
   }
@@ -124,6 +125,24 @@ getCategory(id, callback){
 
   getAllProjects() {
     return this.afs.collection('projects').snapshotChanges().pipe(
+      map((actions) => {
+        return actions.map((a) => {
+          const data = a.payload.doc.data();
+          return { id: a.payload.doc.id, ...data };
+        });
+      }));
+  }
+
+  getProjects(id) {
+    return this.afs.doc('projects/' + id).valueChanges();
+  }
+
+  addProductToProject(product) {
+    return this.afs.collection(`projectproducts`).add(product);
+  }
+
+  getAllProjectProducts() {
+    return this.afs.collection('projectproducts', (ref) => ref.where('userID', "==", this.auth.user.uid)).snapshotChanges().pipe(
       map((actions) => {
         return actions.map((a) => {
           const data = a.payload.doc.data();

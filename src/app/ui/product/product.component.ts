@@ -3,6 +3,9 @@ import { ScriptsService } from 'src/app/core/scripts.service';
 import { ProductsService } from 'src/app/core/products.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AddToProjectComponent } from './add-to-project/add-to-project.component';
+import { VariablesService } from 'src/app/core/variables.service';
 
 @Component({
   selector: 'product',
@@ -18,7 +21,9 @@ export class ProductComponent implements OnInit {
   constructor(
     private scriptsService: ScriptsService,
     private productsService: ProductsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private modalService: NgbModal,
+    public vs: VariablesService
   ) { }
 
   ngOnInit() {
@@ -33,6 +38,15 @@ export class ProductComponent implements OnInit {
         console.log(res);
         this.theproduct = res;
       });
+  }
+
+  addToProduct(product) {
+    // $('#b-promo_popup').modal('show');
+    const activeModal = this.modalService.open(AddToProjectComponent, { size: 'lg', backdrop: 'static' });
+    activeModal.componentInstance.product = product
+    activeModal.result.then((result) => {
+      this.vs.showAddProjectModal = result.value
+    })
   }
 
 }

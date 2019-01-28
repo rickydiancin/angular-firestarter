@@ -132,8 +132,8 @@
               <input type="text" step="1" min="1" max="" name="b-quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric">
               <input type="button" value="+" class="b-plus">
             </div> -->
-            <button class="text-uppercase pull-left btn"><i class="fa fa-file-pdf-o fa-fw"></i> View Technical PDF</button>
-            <button class="text-uppercase pull-left btn"><i class="fa fa-heart-o fa-fw"></i> add to wishlist</button>
+            <button [disabled]="!theproduct" class="text-uppercase pull-left btn"><i class="fa fa-file-pdf-o fa-fw"></i> View Technical PDF</button>
+            <button [disabled]="!theproduct" (click)="addToProduct(theproduct)" class="text-uppercase pull-left btn"><i class="fa fa-plus fa-fw"></i> add to project</button>
             <h5 class="pull-left sub-header">Click to View Available Colours/Finishes:</h5>
           </div>
           <div class="b-product_single_option">
