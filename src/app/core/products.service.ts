@@ -109,6 +109,15 @@ getCategory(id, callback){
         });
       }));
   }
+  getAllBanners() {
+    return this.afs.collection('banners').snapshotChanges().pipe(
+      map((actions) => {
+        return actions.map((a) => {
+          const data = a.payload.doc.data();
+          return { id: a.payload.doc.id, ...data };
+        });
+      }));
+  }
 
   getSolution(id) {
     console.log(id)
