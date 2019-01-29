@@ -4,6 +4,7 @@ import { ProductsService } from 'src/app/core/products.service';
 import { Observable } from 'rxjs';
 import * as _ from 'lodash';
 import { PaginationInstance } from 'ngx-pagination';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'category',
@@ -16,6 +17,9 @@ export class CategoryComponent implements OnInit {
   productsTemp:any;
   categories:any;
   solutions:any;
+  routeParamsName: any;
+  routeParamsid: any;
+  category: any;
 
   @Input('data') meals: string[] = [];
 
@@ -35,19 +39,23 @@ export class CategoryComponent implements OnInit {
 
   constructor(
     private scriptsService: ScriptsService,
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
+    this.routeParamsName = this.route.snapshot.params.name;
+    // this.routeParamsid = this.route.snapshot.params.id;
+    console.log(this.routeParamsName, this.routeParamsid)
     // this.productsService.getAllProducts(res => {
     //   console.log(res);
     //   this.products = res;
     //  });
 
-    //  this.productsService.getAllCategories(res => {
-    //   console.log(res);
-    //   this.categories = res;
-    //  })
+    this.productsService.getCategory(this.routeParamsName.split('.')[1], res => {
+      console.log(res);
+      this.category = res;
+     });
     // this.products = this.productsService.getData();
     // console.log(this.products);
 
@@ -68,8 +76,9 @@ export class CategoryComponent implements OnInit {
   // }
 
   getAllProducts() {
-    this.productsService.getAllProducts().subscribe(async (res:any) => {
-      await this.getAllCategories();
+    this.productsService.getAllProductsByCategory(this.routeParamsName.split('.')[1]).subscribe(async (res:any) => {
+      console.log(res)
+      // await this.getAllCategories();
       // console.log(res);
       this.productsTemp = res;
       this.products = res;
@@ -109,12 +118,12 @@ export class CategoryComponent implements OnInit {
     });
   }
 
-  getAllCategories() {
-    // this.productsService.getAllCategories(res => {
-    //   console.log(res);
-    //   this.categories = res;
-    // })
-  }
+  // getAllCategories() {
+  //   this.productsService.getAllCategories(res => {
+  //     console.log(res);
+  //     this.categories = res;
+  //   })
+  // }
 
   getAllSolutions() {
     this.productsService.getAllSolutions().subscribe((data) => {

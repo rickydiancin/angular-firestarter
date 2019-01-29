@@ -134,7 +134,6 @@ export class ScriptsService {
               var data_src = data_src.split(",");
               var data_thumb = data_src[1];
               var url = $(this).attr('href');
-              console.log(url)
               $( "<div class='b-hover_img'><a href='"+url+"'><img src='"+data_thumb+"' class='img-fluid img-switch d-block' alt='' ></a></div>" ).insertAfter($(this));
       
             });
@@ -1021,7 +1020,7 @@ export class ScriptsService {
       
           SingleProductBottomCarousel: function(){
             if($("#bSingleProductBottom").length > 0){
-              $('#bSingleProductBottom').slick({
+              $("#bSingleProductBottom").not('.slick-initialized').slick({
                 dots: false,
                 arrows: false,
                 speed: 800,
@@ -1031,6 +1030,16 @@ export class ScriptsService {
                 slidesToScroll: 1,
                 draggable: false,
               });
+              // $('#bSingleProductBottom').slick({
+              //   dots: false,
+              //   arrows: false,
+              //   speed: 800,
+              //   infinite: false,
+              //   autoplay: false,
+              //   slidesToShow: 4,
+              //   slidesToScroll: 1,
+              //   draggable: false,
+              // });
       
               $(document).on('click', '.b-display-list-wrapper .b-slider-action .slick-prev', function(){
                  $('#bSingleProductBottom').slick('slickPrev');

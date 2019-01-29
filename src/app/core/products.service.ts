@@ -39,6 +39,16 @@ export class ProductsService {
         }));
 }
 
+  getAllProductsByCategory(id){
+    return this.afs.collection('products', (ref) => ref.where('categories', "array-contains", id) ).snapshotChanges().pipe(
+        map((actions) => {
+            return actions.map((a) => {
+            const data = a.payload.doc.data();
+            return { id: a.payload.doc.id, ...data };
+            });
+        }));
+}
+
 getAllCategories(callback){
   return this.afs.collection('categories').snapshotChanges().pipe(
       map((actions) => {
@@ -142,6 +152,16 @@ getCategory(id, callback){
       }));
   }
 
+  getSelectedProjectProducts(id) {
+    return this.afs.collection('projectproducts', (ref) => ref.where('projects', "==", id)).snapshotChanges().pipe(
+      map((actions) => {
+        return actions.map((a) => {
+          const data = a.payload.doc.data();
+          return { id: a.payload.doc.id, ...data };
+        });
+      }));
+  }
+
   getProjects(id) {
     return this.afs.doc('projects/' + id).valueChanges();
   }
@@ -150,8 +170,8 @@ getCategory(id, callback){
     return this.afs.collection(`projectproducts`).add(product);
   }
 
-  getAllProjectProducts() {
-    return this.afs.collection('projectproducts', (ref) => ref.where('userID', "==", this.auth.user.uid)).snapshotChanges().pipe(
+  getAllProjectProducts(product) {
+    return this.afs.collection('projectproducts', (ref) => ref.where('userID', "==", this.auth.user.uid).where('productCode', '==', product.productCode)).snapshotChanges().pipe(
       map((actions) => {
         return actions.map((a) => {
           const data = a.payload.doc.data();
@@ -159,4 +179,13 @@ getCategory(id, callback){
         });
       }));
   }
+
+  getProjectProduct(id) {
+    return this.afs.doc('projectproducts/' + id).valueChanges();
+  }
+
+  deleteToProject(id) {
+    return this.afs.doc<any>('projectproducts/' + id).delete();
+  }
+
 }

@@ -30,6 +30,7 @@
     "@angular/service-worker": "^7.0.2",
     "@ng-bootstrap/ng-bootstrap": "^4.0.2",
     "@nguniversal/module-map-ngfactory-loader": "^6.0.0",
+    "angular2-csv": "^0.2.9",
     "bootstrap": "^4.0.0",
     "core-js": "^2.5.4",
     "firebase": "^5.5.6",

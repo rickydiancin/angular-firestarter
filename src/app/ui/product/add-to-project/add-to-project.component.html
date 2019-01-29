@@ -4,66 +4,82 @@
 
 <ng-template #projectList>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Add "{{product?.productTitle}}" to Project</h4>
+    <h3 class="modal-title" id="modal-basic-title">Add "{{product?.productTitle}}" to Project</h3>
     <button type="button" class="close" aria-label="Close" (click)="closeModal()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
     <div class="row">
-      <div class="col-sm-12">
-        <div class="alert alert-success" *ngIf="success">
-          <i class="fa fa-check-circle-o fa-fw"></i> '{{product?.productTitle | titlecase}}' was added to your project.
+      <div class="col-sm-12" *ngIf="success">
+        <div class="alert alert-success">
+          <i class="fa fa-check-circle-o fa-fw"></i> {{message}}
           <button (click)="success = false;" type="button" class="close" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form [formGroup]="" novalidate>
+        <!-- <form [formGroup]="" novalidate>
           <div class="clearfix row">
             <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
               <form [formGroup]="form">
                 <div class="form-group row">
                   <label for="inputPassword" class="col-sm-12 col-form-label">Select Project</label>
                   <div class="col-sm-6">
-                    <select name="" id="projectName" formControlName="projectName">
-                      <option *ngIf="!projects" value="0"><i>Loading...</i></option>
+                    <select name="" id="projectName" formControlName="projectName" [(ngModel)]="filter">
+                      <option *ngIf="!projects" value=""><i>Loading...</i></option>
+                      <option *ngIf="projects" value="select"><i>select</i></option>
                       <option *ngFor="let project of projects" value="{{project?.code}}">{{project?.projectName | titlecase}}</option>
                     </select>
                     
                   </div>
-                  <button (click)="addProductToProject()" type="button" class="btn btn-info"><i class="fa fa-plus fa-fw"></i> ADD</button>
+                  <button style="margin-right:5px;" (click)="addProductToProject()" type="button" class="btn btn-info"><i class="fa fa-plus fa-fw"></i> ADD</button>
+                  <button (click)="createNewProject()" type="button" class="btn btn-warning"><i class="fa fa-plus fa-fw"></i> CREATE NEW PROJECT</button>
                 </div>
               </form>
             </div>
           </div>
-        </form>
+        </form> -->
       </div>
-      <hr>
       <div class="col-sm-12">
-        <table class="table table-hover table-condensed">
-          <thead>
-            <tr>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let product of projectProducts | filterBy: ['projects']: 'A001'">
-              <td class="align-middle">Product is in '{{product?.projectName | titlecase}}' Project.</td>
-              <td class="actions"><button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button></td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <th colspan="10"></th>
-            </tr>
-          </tfoot>
-        </table>
+        <div class="panel panel-default">
+          <div class="panel-heading" style="font-size:13px;">
+            Please Specify the Project you'd like to add to:
+            <a (click)="createNewProject()" class="pull-right" href="javascript:void(0)"><i class="fa fa-plus fa-fw"></i> create a new project</a>
+          </div>
+          <div class="panel-body">
+            <table class="table table-condensed">
+              <!-- <thead>
+                        <tr>
+                          <th>Projects</th>
+                          <th></th>
+                        </tr>
+                      </thead> -->
+              <tbody>
+                <ng-container *ngIf="projects">
+                  <tr *ngFor="let project of projects">
+                    <td *ngIf="project?.added" class="align-middle">Product is in '<a href="account/projects/{{project?.projectName}}.{{project?.code}}"
+                        style="color:#5B5C5D">{{project?.projectName | titlecase}}</a>' Project.</td>
+                    <td *ngIf="!project?.added" class="align-middle">{{project?.projectName | titlecase}}</td>
+                    <td class="actions">
+                      <button *ngIf="project?.added" (click)="removeToProject(project)" class="btn btn-danger btn-sm pull-right row">Remove</button>
+                      <button *ngIf="!project?.added" (click)="addProductToProject(project)" class="btn btn-primary btn-sm pull-right row">Add
+                        To Project</button>
+                    </td>
+                  </tr>
+                </ng-container>
+              </tbody>
+              <!-- <tfoot>
+                        <tr>
+                          <td colspan="10"></td>
+                        </tr>
+                      </tfoot> -->
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </div>
   <div class="modal-footer">
-      <a (click)="createNewProject()" href="javascript:void(0)">Create a new Project.</a>
-      <button (click)="closeModal()" class="btn btn-danger pull-left">Close</button>
+        <button (click)="closeModal()" class="btn btn-danger pull-left">Close</button>
   </div>
 </ng-template>

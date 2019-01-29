@@ -5,8 +5,8 @@
           <div class="b-breadcrumbs">
             <a href="#">Home</a>
             <a href="#">Products</a>
-            <a href="#" routerLink="/category">Category</a>
-            <span>{{theproduct?.productTitle}}</span>
+            <a href="#">{{catName | titlecase}}</a>
+            <span>{{pid.split('.')[0]}}</span>
           </div>
       </div>
       <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -132,7 +132,18 @@
               <input type="text" step="1" min="1" max="" name="b-quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric">
               <input type="button" value="+" class="b-plus">
             </div> -->
-            <button [disabled]="!theproduct" class="text-uppercase pull-left btn"><i class="fa fa-file-pdf-o fa-fw"></i> View Technical PDF</button>
+            <div class="btn-group pull-left" role="group">
+              <button [disabled]="!theproduct" id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                View Technical Details
+              </button>
+              <angular2csv *ngIf="productExport" [data]="productExport" filename="productExport" [options]="options" class="d-none"></angular2csv>
+              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                <a class="dropdown-item" href="javascript:void(0)">Download PDF</a>
+                <a (click)="downloadFile()" class="dropdown-item" href="javascript:void(0)">Download CSV</a>
+              </div>
+            </div>
+            <!-- <button [disabled]="!theproduct" class="text-uppercase pull-left btn"><i class="fa fa-file-pdf-o fa-fw"></i> View Technical PDF</button> -->
             <button [disabled]="!theproduct" (click)="addToProduct(theproduct)" class="text-uppercase pull-left btn"><i class="fa fa-plus fa-fw"></i> add to project</button>
             <h5 class="pull-left sub-header">Click to View Available Colours/Finishes:</h5>
           </div>

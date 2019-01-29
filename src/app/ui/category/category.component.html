@@ -18,7 +18,8 @@
             <form action="#" [formGroup]="">
               <ul>  
                 <li *ngFor="let cat of categories">
-                  <a href="javascript:void(0)" (click)="categoriesFilter(cat?.categoryCode)">{{cat?.categoryName}} ({{cat?.products?.length}})</a>
+                  <a href="/category/{{cat?.categoryName}}.{{cat?.categoryCode}}" >{{cat?.categoryName}} ({{cat?.products?.length}})</a>
+                  <!-- (click)="categoriesFilter(cat?.categoryCode)" -->
                 </li>
                 <!-- <li><a href="#">Bags</a></li>
                 <li><a href="#">Jewellery</a></li>
@@ -172,7 +173,7 @@
         <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12"> 
           <nav class="b-shop_breadcrumb">
             <a href="#">Home</a>
-            <span> Shop</span>
+            <span>{{routeParamsName.split('.')[0]}}</span>
           </nav>
         </div>
         <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12 text-right">
@@ -261,18 +262,24 @@
             </ul>
         </div>      
       </div>  
-      <div class="b-products b-product_grid b-product_grid_four mb-4"> 
+      <div class="b-products b-product_grid b-product_grid_four mb-4">
+        <div *ngIf="products" class="b-title b-title_line_right mt-5 mt-lg -0">
+          <h2 class="text-uppercase">{{routeParamsName.split('.')[0]}}</h2>
+        </div>
+        <!-- <div>
+          <img [src]="category?.imgURL || './assets/images/not_available.jpg'" alt="">
+        </div> -->
           <div class="row clearfix" *ngIf="products">
   
               <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-xs-12" *ngFor="let product of products | paginate: config">
                   <div class="b-product_grid_single">
                       <div class="b-product_grid_header">
-                          <a href="#" routerLink="/product/{{product.productTitle}}.{{product.id}}">
+                          <a href="#" routerLink="/product/{{routeParamsName.split('.')[0]}}/{{product.productTitle}}.{{product.id}}">
                             <!-- <img data-src="assets/images/products/home/product_grid_01_01.jpg, assets/images/products/home/product_grid_01_02.jpg" src="assets/images/products/home/product_grid_01_01.jpg" class="img-fluid img-switch d-block" alt="" style="">
                           -->
                           <div class="b-product_grid_info">
                           <h1 class="product-title">
-                            <a href="#" routerLink="/product/{{product?.productTitle}}.{{product?.id}}"><b>{{ product?.productTitle | words: 4}}</b></a>
+                            <a href="#" routerLink="/product/{{routeParamsName.split('.')[0]}}/{{product?.productTitle}}.{{product?.id}}"><b>{{ product?.productTitle | words: 4}}</b></a>
                           </h1>
                           </div>
                             <img [src]="product?.imageURL || product?.primaryImageURL || './assets/images/not_available.jpg'" width="100%" height="auto" class="img-fluid img-switch d-block">
