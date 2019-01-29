@@ -39,6 +39,16 @@ export class ProductsService {
         }));
 }
 
+  getAllProductsByCategory(id){
+    return this.afs.collection('products', (ref) => ref.where('categories', "array-contains", id) ).snapshotChanges().pipe(
+        map((actions) => {
+            return actions.map((a) => {
+            const data = a.payload.doc.data();
+            return { id: a.payload.doc.id, ...data };
+            });
+        }));
+}
+
 getAllCategories(callback){
   return this.afs.collection('categories').snapshotChanges().pipe(
       map((actions) => {

@@ -21,6 +21,7 @@ export class ProductComponent implements OnInit {
   pid: string;
   theproduct: any;
   productExport: any = [];
+  catName: any;
 
   options = {
     fieldSeparator: ',',
@@ -148,6 +149,7 @@ export class ProductComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.catName = this.route.snapshot.params.catName;
     this.pid = this.route.snapshot.params.id;
     this.products = this.productsService.getData();
     console.log(this.products);
