@@ -12,18 +12,80 @@
   <div class="b-cart b-cart_default pb-5">
     <div class="container">
       <div class="row clearfix">
-        <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12">
+        <!-- <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12">
           <div class="mt-4" id="mail-status"></div>
-        </div>
-        <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12">
+        </div> -->
+        <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
           <div class="b-title b-title_line_righ mt-5 mt-lg -0">
-            <h2 class="text-uppercase">Build Your Own Project Spec Sheet!</h2>
+            <h2 class="text-uppercase">{{id.split('.')[0]}}</h2>
           </div>
-          <p>For Architects, Developers or Designers who would like indicative pricing on your specification click the
+          <!-- <p>For Architects, Developers or Designers who would like indicative pricing on your specification click the
             button below to request approval and leave us your name, email and company info with the subject 'Quote
             Request' and we'll get the rest sorted!</p>
           <p>Once approved you will be able to submit any Project you have created by clicking 'Request Quote' from
-            within your project.</p>
+            within your project.</p> -->
+
+            <table id="cart" class="table table-bordered table-condensed">
+              <thead>
+                <tr>
+                  <th colspan="2">Product</th>
+                  <th>Type</th>
+                  <th>Summary</th>
+                  <th class="text-center">Quantity</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let product of productProject">
+                  <td>
+                    <img [src]="product?.imageURL || './assets/images/not_available.jpg'" alt="">
+                  </td>
+                  <td width="20%">{{product?.productTitle | titlecase}}</td>
+                  <td >type</td>
+                  <td width="50%">summary</td>
+                  <td width="10%">
+                    <input type="text">
+                  </td>
+                  <td class="action">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-default">Action</button>
+                      <button type="button" class="btn btn-default dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">Toggle Dropdown</span>
+                      </button>
+                      <div class="dropdown-menu">
+                        <a (click)="removeToProject(product)" class="dropdown-item" href="javascript:void(0);">Remove</a>
+                        <!-- <a class="dropdown-item" href="javascript:void(0);">Another action</a> -->
+                        <!-- <a class="dropdown-item" href="javascript:void(0);">Something else here</a> -->
+                        <!-- <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Separated link</a> -->
+                      </div>
+                    </div>
+                    <!-- <div class="btn-group" role="group">
+                      <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Dropdown
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <a class="dropdown-item" href="#">Dropdown link</a>
+                        <a class="dropdown-item" href="#">Dropdown link</a>
+                      </div>
+                    </div> -->
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td>
+                    <button type="button" class="btn btn-primary btn-block">Update Quantities</button>
+                  </td>
+                  <td>
+                    <button [disabled]="!productProject" (click)="downloadFile()" type="button" class="btn btn-primary btn-block">Export as Excel</button>
+                    <angular2csv *ngIf="productProject?.length > 0" [data]="productProject" filename="product" [options]="options" class="d-none"></angular2csv>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
 
         </div>
       </div>
@@ -33,7 +95,7 @@
 
       <!-- <a (click)="addProject()" href="javascipt:void(0)" class="btn btn-success btn-lg pull-right">Add Project <i class="fa fa-plus-circle"></i></a>
           </div> -->
-      <table id="cart" class="table table-hover table-condensed">
+      <!-- <table id="cart" class="table table-hover table-condensed">
         <thead>
           <tr>
             <th style="width:50%">Name</th>
@@ -69,7 +131,7 @@
           </tr>
         </tbody>
 
-      </table>
+      </table> -->
 
     </div>
   </div>

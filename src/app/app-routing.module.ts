@@ -19,7 +19,7 @@ import { ProjectProductsComponent } from './ui/projects/project-products/project
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'login', component: UserLoginComponent },
-  { path: 'shop/category', component: CategoryComponent },
+  { path: 'shop/products', component: CategoryComponent },
   { path: 'search', component: CategoryComponent },
   { path: 'wishlist', component: WishlistComponent },
   { path: 'projects', component: ProjectsComponent },

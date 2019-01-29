@@ -142,6 +142,16 @@ getCategory(id, callback){
       }));
   }
 
+  getSelectedProjectProducts(id) {
+    return this.afs.collection('projectproducts', (ref) => ref.where('projects', "==", id)).snapshotChanges().pipe(
+      map((actions) => {
+        return actions.map((a) => {
+          const data = a.payload.doc.data();
+          return { id: a.payload.doc.id, ...data };
+        });
+      }));
+  }
+
   getProjects(id) {
     return this.afs.doc('projects/' + id).valueChanges();
   }

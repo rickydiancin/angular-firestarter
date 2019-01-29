@@ -18,6 +18,125 @@ export class ProductComponent implements OnInit {
   content: string;
   pid: string;
   theproduct: any;
+  productExport: any = [];
+
+  options = {
+    fieldSeparator: ',',
+    quoteStrings: '',
+    decimalseparator: '.',
+    showLabels: true,
+    showTitle: false,
+    title: 'asfasf',
+    useBom: false,
+    removeNewLines: true,
+    headers: [
+      'productCode',
+      'productTitle',
+      'productDescription',
+      'productPrice',
+      'categories',
+      'parentProduct',
+      'dateCreated',
+      'createdBy',
+      'description',
+      'width',
+      'height',
+      'depth',
+      'leverLength',
+      'weightBearing',
+      'wasteLocation',
+      'plugAndWaste',
+      'overflow',
+      'seatColour',
+      'sTrap',
+      'pTrap',
+      'flushPlate',
+      'welsRating',
+      'litresPerMinute',
+      'materials',
+      'lockable',
+      'cartridge',
+      'cartridgeSize',
+      'runTime',
+      'inletValve',
+      'outletValve',
+      'outlet',
+      'MixedTemp',
+      'inletTemperatureHot',
+      'inletTemperatureCold',
+      'maxInletPressure',
+      'workingPressures',
+      'maxWorkingTemp',
+      'seat',
+      'colourFinish',
+      'servicing',
+      'solutions',
+      'warranty',
+      'feautures',
+      'flowRate',
+      'fireResistanceLevel',
+      'patentNumber',
+      'secondaryImageURLS',
+      'technicalSheetURL',
+      'DWGFileURL',
+      'revitFileURL',
+      'imageURL',
+    ],
+    keys: [
+      'productCode',
+      'productTitle',
+      'productDescription',
+      'productPrice',
+      'categoriesCode',
+      'parentProduct',
+      'dateCreated',
+      'createdBy',
+      'description',
+      'width',
+      'height',
+      'depth',
+      'leverLength',
+      'weightBearing',
+      'wasteLocation',
+      'plugAndWaste',
+      'overflow',
+      'seatColour',
+      'sTrap',
+      'pTrap',
+      'flushPlate',
+      'welsRating',
+      'litresPerMinute',
+      'materials',
+      'lockable',
+      'cartridge',
+      'cartridgeSize',
+      'runTime',
+      'inletValve',
+      'outletValve',
+      'outlet',
+      'MixedTemp',
+      'inletTemperatureHot',
+      'inletTemperatureCold',
+      'maxInletPressure',
+      'workingPressures',
+      'maxWorkingTemp',
+      'seat',
+      'colourFinish',
+      'servicing',
+      'solutionsCode',
+      'warranty',
+      'feautures',
+      'flowRate',
+      'fireResistanceLevel',
+      'patentNumber',
+      'secondaryImageURLS',
+      'technicalSheetURL',
+      'DWGFileURL',
+      'revitFileURL',
+      'imageURL'
+    ]
+  };
+
   constructor(
     private scriptsService: ScriptsService,
     private productsService: ProductsService,
@@ -35,8 +154,10 @@ export class ProductComponent implements OnInit {
        },1000)
        this.productsService.getProduct(this.pid.split('.')[1]).valueChanges()
        .subscribe(res => {
+         this.productExport = [];
         console.log(res);
         this.theproduct = res;
+         this.productExport.push(res);
       });
   }
 
@@ -47,6 +168,11 @@ export class ProductComponent implements OnInit {
     activeModal.result.then((result) => {
       this.vs.showAddProjectModal = result.value
     })
+  }
+
+  downloadFile() {
+
+    $('#exportFile').click();
   }
 
 }

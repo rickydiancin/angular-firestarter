@@ -24,9 +24,10 @@ import { AddToProjectComponent } from './product/add-to-project/add-to-project.c
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NgPipesModule } from 'ngx-pipes';
 import { ProjectProductsComponent } from './projects/project-products/project-products.component';
+import { Angular2CsvModule } from 'angular2-csv';
 
 @NgModule({
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, NgxPaginationModule, TruncateModule, FormsModule, NgPipesModule, NgbModule],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, NgxPaginationModule, TruncateModule, FormsModule, NgPipesModule, NgbModule, Angular2CsvModule],
   declarations: [
     UserLoginComponent,
     HomePageComponent,
