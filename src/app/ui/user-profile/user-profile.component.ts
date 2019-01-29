@@ -21,6 +21,7 @@ export class UserProfileComponent implements OnInit {
     // console.log(this.auth.user.uid)
     this.auth.getCurrentUser(this.auth.user).subscribe((user) => {
       this.user = user;
+      console.log('user: ',this.user);
     })
   }
 
