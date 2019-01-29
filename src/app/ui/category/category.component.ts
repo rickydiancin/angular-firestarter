@@ -19,6 +19,7 @@ export class CategoryComponent implements OnInit {
   solutions:any;
   routeParamsName: any;
   routeParamsid: any;
+  category: any;
 
   @Input('data') meals: string[] = [];
 
@@ -51,10 +52,10 @@ export class CategoryComponent implements OnInit {
     //   this.products = res;
     //  });
 
-    //  this.productsService.getAllCategories(res => {
-    //   console.log(res);
-    //   this.categories = res;
-    //  })
+    this.productsService.getCategory(this.routeParamsName.split('.')[1], res => {
+      console.log(res);
+      this.category = res;
+     });
     // this.products = this.productsService.getData();
     // console.log(this.products);
 
@@ -77,7 +78,7 @@ export class CategoryComponent implements OnInit {
   getAllProducts() {
     this.productsService.getAllProductsByCategory(this.routeParamsName.split('.')[1]).subscribe(async (res:any) => {
       console.log(res)
-      await this.getAllCategories();
+      // await this.getAllCategories();
       // console.log(res);
       this.productsTemp = res;
       this.products = res;
@@ -117,12 +118,12 @@ export class CategoryComponent implements OnInit {
     });
   }
 
-  getAllCategories() {
-    // this.productsService.getAllCategories(res => {
-    //   console.log(res);
-    //   this.categories = res;
-    // })
-  }
+  // getAllCategories() {
+  //   this.productsService.getAllCategories(res => {
+  //     console.log(res);
+  //     this.categories = res;
+  //   })
+  // }
 
   getAllSolutions() {
     this.productsService.getAllSolutions().subscribe((data) => {
