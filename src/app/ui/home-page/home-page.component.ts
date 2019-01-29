@@ -12,6 +12,7 @@ export class HomePageComponent implements OnInit {
   categories: any;
   products:any;
   products2:any;
+  banners:any;
 
   constructor(
     private scriptsService: ScriptsService,
@@ -29,6 +30,10 @@ export class HomePageComponent implements OnInit {
     this.productsService.getAllProducts().subscribe(res => {
       console.log(res);
       this.products = res;
+     });
+     this.productsService.getAllBanners().subscribe(res => {
+      console.log('banners: ',res);
+      this.banners = res;
      });
      this.productsService.getData().subscribe(res => {
       console.log('latest products: ',res);

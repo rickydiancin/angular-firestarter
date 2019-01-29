@@ -60,7 +60,7 @@ export class AddToProjectComponent implements OnInit {
     this.productService.getAllProjects().subscribe((projects) => {
       this.projects = projects
       // _(projects).each((valueA:any, keyA) => {
-      let AllProjectProducts = this.productService.getAllProjectProducts().subscribe((products:any) => {
+      let AllProjectProducts = this.productService.getAllProjectProducts(this.product).subscribe((products:any) => {
           if (products) {
             AllProjectProducts.unsubscribe();
             for (let x = 0; x < this.projects.length; x++) {

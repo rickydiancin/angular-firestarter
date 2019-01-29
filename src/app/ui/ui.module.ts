@@ -21,12 +21,12 @@ import { FormsModule } from '@angular/forms';
 import { ProjectsComponent } from './projects/projects.component';
 import { AddProjectComponent } from './projects/add-project/add-project.component';
 import { AddToProjectComponent } from './product/add-to-project/add-to-project.component';
-// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NgPipesModule } from 'ngx-pipes';
 import { ProjectProductsComponent } from './projects/project-products/project-products.component';
 
 @NgModule({
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, NgxPaginationModule, TruncateModule, FormsModule, NgPipesModule],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, NgxPaginationModule, TruncateModule, FormsModule, NgPipesModule, NgbModule],
   declarations: [
     UserLoginComponent,
     HomePageComponent,

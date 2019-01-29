@@ -109,6 +109,15 @@ getCategory(id, callback){
         });
       }));
   }
+  getAllBanners() {
+    return this.afs.collection('banners').snapshotChanges().pipe(
+      map((actions) => {
+        return actions.map((a) => {
+          const data = a.payload.doc.data();
+          return { id: a.payload.doc.id, ...data };
+        });
+      }));
+  }
 
   getSolution(id) {
     console.log(id)
@@ -141,8 +150,8 @@ getCategory(id, callback){
     return this.afs.collection(`projectproducts`).add(product);
   }
 
-  getAllProjectProducts() {
-    return this.afs.collection('projectproducts', (ref) => ref.where('userID', "==", this.auth.user.uid)).snapshotChanges().pipe(
+  getAllProjectProducts(product) {
+    return this.afs.collection('projectproducts', (ref) => ref.where('userID', "==", this.auth.user.uid).where('productCode', '==', product.productCode)).snapshotChanges().pipe(
       map((actions) => {
         return actions.map((a) => {
           const data = a.payload.doc.data();
