@@ -7,6 +7,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddToProjectComponent } from './add-to-project/add-to-project.component';
 import { VariablesService } from 'src/app/core/variables.service';
 
+declare var $: any;
+
 @Component({
   selector: 'product',
   templateUrl: './product.component.html',
