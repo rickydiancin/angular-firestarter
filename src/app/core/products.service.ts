@@ -150,4 +150,13 @@ getCategory(id, callback){
         });
       }));
   }
+
+  getProjectProduct(id) {
+    return this.afs.doc('projectproducts/' + id).valueChanges();
+  }
+
+  deleteToProject(id) {
+    return this.afs.doc<any>('projectproducts/' + id).delete();
+  }
+
 }

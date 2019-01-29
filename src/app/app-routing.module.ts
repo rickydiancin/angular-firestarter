@@ -13,15 +13,17 @@ import { ProductComponent } from './ui/product/product.component';
 import { CompanyComponent } from './ui/company/company.component';
 import { WishlistComponent } from './ui/wishlist/wishlist.component';
 import { ProjectsComponent } from './ui/projects/projects.component';
+import { ProjectProductsComponent } from './ui/projects/project-products/project-products.component';
 
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'login', component: UserLoginComponent },
-  { path: 'category', component: CategoryComponent },
+  { path: 'shop/category', component: CategoryComponent },
   { path: 'search', component: CategoryComponent },
   { path: 'wishlist', component: WishlistComponent },
   { path: 'projects', component: ProjectsComponent },
+  { path: 'account/projects/:id', component: ProjectProductsComponent },
   { path: 'company', component: CompanyComponent },
   { path: 'product/:id', component: ProductComponent },
   { path: 'notes', component: NotesListComponent,  canActivate: [AuthGuard] },

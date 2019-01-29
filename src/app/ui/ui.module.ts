@@ -23,6 +23,7 @@ import { AddProjectComponent } from './projects/add-project/add-project.componen
 import { AddToProjectComponent } from './product/add-to-project/add-to-project.component';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgPipesModule } from 'ngx-pipes';
+import { ProjectProductsComponent } from './projects/project-products/project-products.component';
 
 @NgModule({
   imports: [CommonModule, RouterModule, ReactiveFormsModule, NgxPaginationModule, TruncateModule, FormsModule, NgPipesModule],
@@ -41,7 +42,8 @@ import { NgPipesModule } from 'ngx-pipes';
     WishlistComponent,
     ProjectsComponent,
     AddProjectComponent,
-    AddToProjectComponent
+    AddToProjectComponent,
+    ProjectProductsComponent
   ],
   entryComponents:[
     AddProjectComponent,
