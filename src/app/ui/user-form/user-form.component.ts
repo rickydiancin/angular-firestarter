@@ -15,6 +15,8 @@ type FormErrors = { [u in UserFields]: string };
 export class UserFormComponent implements OnInit {
 
   userForm: FormGroup;
+  regform: FormGroup;
+  data: any;
   newUser = true; // to toggle login or signup form
   passReset = false; // set to true when password reset is triggered
   formErrors: FormErrors = {
@@ -47,7 +49,12 @@ export class UserFormComponent implements OnInit {
   }
 
   signup() {
-    this.auth.emailSignUp(this.userForm.value['email'], this.userForm.value['password']);
+    //this.data = this.userForm.value;
+    console.log('form data: ',this.regform.value);
+    this.auth.emailSignUp(this.regform.value);
+    // .then(credential => {
+    //   console.log('credentials: ',credential);
+    // });
   }
 
   login() {
@@ -69,6 +76,20 @@ export class UserFormComponent implements OnInit {
       'password': ['', [
         Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
         Validators.minLength(6),
+        Validators.maxLength(25),
+      ]],
+    });
+
+    this.regform = this.fb.group({
+      fname: ['', Validators.required],
+      lname: ['', Validators.required],
+      'email2': ['', [
+        Validators.required,
+        Validators.email,
+      ]],
+      'password2': ['', [
+    
+        Validators.minLength(4),
         Validators.maxLength(25),
       ]],
     });
