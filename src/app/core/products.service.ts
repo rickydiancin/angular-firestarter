@@ -39,7 +39,17 @@ export class ProductsService {
         }));
 }
 
-  getAllProductsByCategory(id){
+  getAllProductsByCategory(){
+    return this.afs.collection('products').snapshotChanges().pipe(
+        map((actions) => {
+            return actions.map((a) => {
+            const data = a.payload.doc.data();
+            return { id: a.payload.doc.id, ...data };
+            });
+        }));
+}
+
+  getAllCategoryProducts(id){
     return this.afs.collection('products', (ref) => ref.where('categories', "array-contains", id) ).snapshotChanges().pipe(
         map((actions) => {
             return actions.map((a) => {

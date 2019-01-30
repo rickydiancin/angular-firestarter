@@ -25,6 +25,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NgPipesModule } from 'ngx-pipes';
 import { ProjectProductsComponent } from './projects/project-products/project-products.component';
 import { Angular2CsvModule } from 'angular2-csv';
+import { SingleCategoryComponent } from './category/single-category/single-category.component';
 
 @NgModule({
   imports: [CommonModule, RouterModule, ReactiveFormsModule, NgxPaginationModule, TruncateModule, FormsModule, NgPipesModule, NgbModule, Angular2CsvModule],
@@ -44,7 +45,8 @@ import { Angular2CsvModule } from 'angular2-csv';
     ProjectsComponent,
     AddProjectComponent,
     AddToProjectComponent,
-    ProjectProductsComponent
+    ProjectProductsComponent,
+    SingleCategoryComponent
   ],
   entryComponents:[
     AddProjectComponent,
