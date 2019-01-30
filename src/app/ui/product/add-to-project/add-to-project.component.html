@@ -57,7 +57,7 @@
               <tbody>
                 <ng-container *ngIf="projects">
                   <tr *ngFor="let project of projects">
-                    <td *ngIf="project?.added" class="align-middle">Product is in '<a href="account/projects/{{project?.projectName}}.{{project?.code}}"
+                    <td *ngIf="project?.added" class="align-middle">Product is in '<a href="#" routerLink="projects/{{project?.projectName}}.{{project?.code}}"
                         style="color:#5B5C5D">{{project?.projectName | titlecase}}</a>' Project.</td>
                     <td *ngIf="!project?.added" class="align-middle">{{project?.projectName | titlecase}}</td>
                     <td class="actions">

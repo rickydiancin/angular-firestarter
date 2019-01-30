@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'search', component: CategoryComponent },
   { path: 'wishlist', component: WishlistComponent },
   { path: 'projects', component: ProjectsComponent },
-  { path: 'account/projects/:id', component: ProjectProductsComponent },
+  { path: 'projects/:id', component: ProjectProductsComponent },
   { path: 'company', component: CompanyComponent },
   { path: 'product/:id', component: ProductComponent },
   { path: 'notes', component: NotesListComponent,  canActivate: [AuthGuard] },
