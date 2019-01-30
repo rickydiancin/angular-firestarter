@@ -1,290 +1,135 @@
+<p *ngIf="!user">Loading user data...</p>
 
- 
- <p *ngIf="!user">Loading user data...</p>
+<div class="container-fluid" *ngIf="user">
 
-    <div class="container-fluid" *ngIf="user">
 
-      
 
-        <hr>
-        <div class="container bootstrap snippet">
-            <div class="row">
-                <div class="col-sm-10">
-                    <h1>{{user.email}}</h1></div>
-                <div class="col-sm-2">
-                    <a href="/login" class="pull-right"><img title="profile image" class="img-circle img-responsive" [src]="user.photoURL || 'https://api.adorable.io/avatars/109/fire.png'" ></a>
-                </div>
+    <hr>
+    <div class="container bootstrap snippet">
+        <div class="row">
+            <div class="col-sm-10">
+                <h1>{{user.email}}</h1>
             </div>
-            <div class="row">
-                <div class="col-sm-3">
-                    <!--left col-->
-        
-                    <ul class="list-group">
-                        <li class="list-group-item text-muted">Profile</li>
-                        <li class="list-group-item text-right"><span class="pull-left"><strong>Joined</strong></span> 2.13.2014</li>
-                        <li class="list-group-item text-right"><span class="pull-left"><strong>Last seen</strong></span> Yesterday</li>
-                        <li class="list-group-item text-right"><span class="pull-left"><strong>Real name</strong></span> Joseph Doe</li>
-        
-                    </ul>
-        
-              
-        
-                    <ul class="list-group">
-                        <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-                        <li class="list-group-item text-right"><span class="pull-left"><strong>Shares</strong></span> 125</li>
-                        <li class="list-group-item text-right"><span class="pull-left"><strong>Likes</strong></span> 13</li>
-                        <li class="list-group-item text-right"><span class="pull-left"><strong>Posts</strong></span> 37</li>
-                        <li class="list-group-item text-right"><span class="pull-left"><strong>Followers</strong></span> 78</li>
-                    </ul>
-        
-           
+            <div class="col-sm-2">
+                <a href="/login" class="pull-right"><img title="profile image" class="img-circle img-responsive" [src]="user.photoURL || 'https://api.adorable.io/avatars/109/fire.png'"></a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <!--left col-->
+
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">Profile</div>
+                    <!-- <div class="panel-body">
+                              <p>...</p>
+                            </div> -->
+
+                    <!-- List group -->
+                    <div class="list-group">
+            
+                            <a href="#" routerLink="/projects" class="list-group-item">My Specifications</a>
+                            <a href="#" class="list-group-item">Notifications</a>
+                            <a href="#" class="list-group-item">Contacts</a>
+                            <a href="#" class="list-group-item">Clients</a>
+                          </div>
                 </div>
-                <!--/col-3-->
-                <div class="col-sm-9">
-        
-                    <ul class="nav nav-tabs" id="myTab">
-              
-                        <li lass="active"><a href="#settings" data-toggle="tab">Settings</a></li>
-                        <li class=""><a href="#home" data-toggle="tab">Home</a></li>
-                        <li><a href="#messages" data-toggle="tab">Messages</a></li>
-                    </ul>
-        
-                    <div class="tab-content">
-                        <div class="tab-pane" id="home">
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Label 1</th>
-                                            <th>Label 2</th>
-                                            <th>Label 3</th>
-                                            <th>Label </th>
-                                            <th>Label </th>
-                                            <th>Label </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="items">
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                        </tr>
-                                        <tr>
-                                            <td>6</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                        </tr>
-                                        <tr>
-                                            <td>7</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                        </tr>
-                                        <tr>
-                                            <td>8</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                        </tr>
-                                        <tr>
-                                            <td>9</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                        </tr>
-                                        <tr>
-                                            <td>10</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                            <td>Table cell</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-md-4 col-md-offset-4 text-center">
-                                        <ul class="pagination" id="myPager"></ul>
+
+
+            </div>
+            <!--/col-3-->
+            <div class="col-sm-9">
+
+                <ngb-tabset>
+                    <ngb-tab title="User Info">
+
+                        <ng-template ngbTabContent>
+                            <form [formGroup]="userform" novalidate>
+                                <div class="clearfix row">
+                                    <br> <br>
+                                    <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label>First Name<i style="color: red;">*</i> <span id="userName-info"
+                                                    class="info"></span></label>
+                                            <input required="" type="text" name="userName" id="userName"
+                                                formControlName="code">
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <!--/table-resp-->
-        
-                            <hr>
-        
-                        </div>
-                        <!--/tab-pane-->
-                        <div class="tab-pane" id="messages">
-        
-                            <h2></h2>
-        
-                            <ul class="list-group">
-                                <li class="list-group-item text-muted">Inbox</li>
-                                <li class="list-group-item text-right"><a href="#" class="pull-left">Here is your a link to the latest summary report from the..</a> 2.13.2014</li>
-                                <li class="list-group-item text-right"><a href="#" class="pull-left">Hi Joe, There has been a request on your account since that was..</a> 2.11.2014</li>
-                                <li class="list-group-item text-right"><a href="#" class="pull-left">Nullam sapien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
-                                <li class="list-group-item text-right"><a href="#" class="pull-left">Thllam sapien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
-                                <li class="list-group-item text-right"><a href="#" class="pull-left">Wesm sapien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
-                                <li class="list-group-item text-right"><a href="#" class="pull-left">For therepien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
-                                <li class="list-group-item text-right"><a href="#" class="pull-left">Also we, havesapien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
-                                <li class="list-group-item text-right"><a href="#" class="pull-left">Swedish chef is assaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
-        
-                            </ul>
-        
-                        </div>
-                        <!--/tab-pane-->
-                        <div class="tab-pane active" id="settings">
-        
-                            <hr>
-                            <form class="form" action="##" method="post" id="registrationForm">
-                                <div class="form-group">
-        
-                                    <div class="col-xs-6">
-                                        <label for="first_name">
-                                            <h4>First name</h4></label>
-                                        <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
+                                    <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label>Last Name <i style="color: red;">*</i> <span id="userEmail-info"
+                                                    class="info"></span></label>
+                                            <input required="" type="email" name="userEmail" id="userEmail"
+                                                formControlName="location">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-        
-                                    <div class="col-xs-6">
-                                        <label for="last_name">
-                                            <h4>Last name</h4></label>
-                                        <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
+                                    <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label>Email<i style="color: red;">*</i> <span id="userName-info" class="info"></span></label>
+                                            <input required="" type="text" name="userName" id="userName"
+                                                formControlName="code" value="{{user.email}}">
+                                        </div>
                                     </div>
-                                </div>
-        
-                                <div class="form-group">
-        
-                                    <div class="col-xs-6">
-                                        <label for="phone">
-                                            <h4>Phone</h4></label>
-                                        <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">
+                                    <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label>Phone <i style="color: red;">*</i> <span id="userEmail-info" class="info"></span></label>
+                                            <input required="" type="email" name="userEmail" id="userEmail"
+                                                formControlName="location">
+                                        </div>
                                     </div>
-                                </div>
-        
-                                <div class="form-group">
-                                    <div class="col-xs-6">
-                                        <label for="mobile">
-                                            <h4>Mobile</h4></label>
-                                        <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
+                                    <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label>Address</label>
+                                            <input type="text" name="name" id="name" formControlName="projectName">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-        
-                                    <div class="col-xs-6">
-                                        <label for="email">
-                                            <h4>Email</h4></label>
-                                        <input type="email" value="{{user.email}}" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
+                                    <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label>Bio</label>
+                                            <input type="text" name="name" id="name" formControlName="description">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-        
-                                    <div class="col-xs-6">
-                                        <label for="email">
-                                            <h4>Location</h4></label>
-                                        <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-        
-                                    <div class="col-xs-6">
-                                        <label for="password">
-                                            <h4>Password</h4></label>
-                                        <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-        
-                                    <div class="col-xs-6">
-                                        <label for="password2">
-                                            <h4>Verify</h4></label>
-                                        <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-xs-12">
-                                        <br>
-                                        <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                                        <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
-                                    </div>
+                                    <button class="btn btn-bg text-white">Update</button>
+
                                 </div>
                             </form>
-                        </div>
-        
-                    </div>
-                    <!--/tab-pane-->
-                </div>
-                <!--/tab-content-->
-        
+
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab>
+                        <ng-template ngbTabTitle><a href="#">Inbox <span class="badge" style="background-color: #333;">42</span></a></ng-template>
+                        <ng-template ngbTabContent>Food truck fixie locavore, accusamus mcsweeney's marfa nulla
+                            single-origin coffee squid.
+                            <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson
+                                artisan four loko farm-to-table
+                                craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip
+                                jean shorts ullamco ad vinyl
+                                cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.
+                                Keytar helvetica VHS salvia
+                                yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes
+                                anderson 8-bit, sustainable jean
+                                shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester
+                                stumptown, tumblr butcher vero
+                                sint qui sapiente accusamus tattooed echo park.</p>
+                        </ng-template>
+                    </ngb-tab>
+
+                </ngb-tabset>
+                <!--/tab-pane-->
             </div>
-            <!--/col-9-->
+            <!--/tab-content-->
+
         </div>
-        <!--/row-->
- 
+        <br><br><br>
+        <!--/col-9-->
+    </div>
+    <!--/row-->
 
 
 
 
-      
+
+
 
 </div>
 <!-- </ng-template> -->
-
-
