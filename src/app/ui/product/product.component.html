@@ -4,9 +4,8 @@
       <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-12">
           <div class="b-breadcrumbs">
             <a href="#">Home</a>
-            <a href="#">Products</a>
-            <a href="#">{{catName | titlecase}}</a>
-            <span>{{pid.split('.')[0]}}</span>
+            <a href="#" routerLink="/category">Products</a>
+            <span>{{theproduct?.productTitle | titlecase}}</span>
           </div>
       </div>
       <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -97,7 +96,7 @@
         </div><!-- /b-additional-video-wrap -->
       </div>
       <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12">
-        <div class="b-product_single_summary">
+        <div class="b-product_single_summary" *ngIf="theproduct">
           <h1>  {{theproduct?.productTitle}}</h1>
           <p class="b-price">
             <span class="b-amount">
@@ -150,9 +149,10 @@
           <div class="b-product_single_option">
             <ul class="pl-0 list-unstyled">
               <li class="detail-width">
-                <a href="javascript:void(0);">
+                <button type="button" class="btn btn-default">{{theproduct?.colourFinish | titlecase}}</button>
+                <!-- <a href="javascript:void(0);">
                   <img class="swatch-squares" [src]="'./assets/images/colours/Storm Grey.jpg'" alt="">
-                </a>
+                </a> -->
               </li>
               <!-- <li class="detail-width">
                 <a href="javascript:void(0);">

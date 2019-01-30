@@ -54,8 +54,8 @@
                                           <div class="row">
                                               <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-4 col-xs-12" *ngFor="let cat of solutions">
                                                 <div class="b-menu_content_in mb-4">
-                                                  <a href="index.html" class="d-block"><strong> {{cat.solutionName}} Solution </strong></a>
-                                                  <a href="index.html"><img [src]="cat?.imgURL" class="img-fluid d-block m-auto" alt=""></a>
+                                                  <a href="#" class="d-block"><strong> {{cat.solutionName}} Solution </strong></a>
+                                                  <a href="#"><img [src]="cat?.imgURL" class="img-fluid d-block m-auto" alt=""></a>
                                                 </div>
                                               </div>
                                             
@@ -90,7 +90,7 @@
                               </li>
                               <!-- Top level items -->
                               <li class=" b-has_sub b-dropdown_wrapper from-bottom p-static">
-                                  <a href="javascript:void(0);" class="p-relative description ">
+                                  <a href="#" routerLink="/category" class="p-relative description ">
                                     <!-- routerLink="/shop/products" -->
                                   <span class="top">Products</span> <i class="fa fa-angle-down"></i>
                                   <!-- <i class="menu-tag sale">SALE</i><i class="fa fa-angle-down"></i> -->
@@ -103,14 +103,14 @@
                                               <div class="col-xs-12 col-sm-3" *ngFor="let cat of categories">
                                                   <div class="menu-item">
                                                       <h4 class="column-title"><b>
-                                                          <a href="category/{{cat.categoryName}}.{{cat.categoryCode}}">{{cat.categoryName}} ({{cat?.products?.length}})</a>
+                                                          <a href="#" routerLink="/category/{{cat.categoryCode}}" style="color:#5B5C5D;">{{cat.categoryName}} ({{cat?.products?.length}})</a>
                                                       </b></h4> 
                                                       <div class="categories">
                                                           <div class="row">
                                                               <div class="col-sm-12 hover-menu">
                                                                 <ul *ngIf="products"> 
                                                                     <li *ngFor="let product of cat.products"><a href="/product/{{cat?.categoryName}}/{{product?.productTitle}}.{{product?.id}}">{{product?.productTitle}}</a></li>
-                                                                    <li><a href="/category">view more <i class="fa fa-arrow-right"></i></a></li>
+                                                                    <li *ngIf="cat?.products?.length > 0"><a href="/category">view more <i class="fa fa-arrow-right"></i></a></li>
                                                                   </ul>
                                                               </div>
                                                           </div>

@@ -149,14 +149,14 @@ export class ProductComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.catName = this.route.snapshot.params.catName;
+    this.catName = this.route.snapshot.params.id;
     this.pid = this.route.snapshot.params.id;
     this.products = this.productsService.getData();
     console.log(this.products);
     setTimeout(() => {
       this.scriptsService.prepareJquery();
        },1000)
-       this.productsService.getProduct(this.pid.split('.')[1]).valueChanges()
+       this.productsService.getProduct(this.pid).valueChanges()
        .subscribe(res => {
          this.productExport = [];
         console.log(res);

@@ -123,7 +123,7 @@ export class AuthService {
         console.log(credential);
         //this.notify.update('Welcome back!', 'success');
         //return this.updateUserData(credential.user);
-        this.router.navigate(['/category']);
+        this.router.navigate(['/']);
       })
       .catch(error => this.handleError(error));
   }

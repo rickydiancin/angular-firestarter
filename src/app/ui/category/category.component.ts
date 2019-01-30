@@ -44,22 +44,21 @@ export class CategoryComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.routeParamsName = this.route.snapshot.params.name;
+    // this.routeParamsName = this.route.snapshot.params.name;
     // this.routeParamsid = this.route.snapshot.params.id;
-    console.log(this.routeParamsName, this.routeParamsid)
+    // console.log(this.routeParamsName, this.routeParamsid)
     // this.productsService.getAllProducts(res => {
     //   console.log(res);
     //   this.products = res;
     //  });
-
-    this.productsService.getCategory(this.routeParamsName.split('.')[1], res => {
-      console.log(res);
-      this.category = res;
-     });
     // this.products = this.productsService.getData();
     // console.log(this.products);
 
-    this.getAllProducts();
+      this.getAllProducts();
+      // this.productsService.getCategory(this.routeParamsName.split('.')[1], res => {
+      //   console.log(res);
+      //   this.category = res;
+      // });
     // this.getAllCategories();
     this.getAllSolutions();
 
@@ -76,10 +75,8 @@ export class CategoryComponent implements OnInit {
   // }
 
   getAllProducts() {
-    this.productsService.getAllProductsByCategory(this.routeParamsName.split('.')[1]).subscribe(async (res:any) => {
+    this.productsService.getAllProducts().subscribe(async (res:any) => {
       console.log(res)
-      // await this.getAllCategories();
-      // console.log(res);
       this.productsTemp = res;
       this.products = res;
       this.productsService.getAllCategories(resCategory => {

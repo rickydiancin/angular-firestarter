@@ -1,13 +1,12 @@
 <div class="b-page_title b-page_title_default text-center b-shop_filter">
   <div class="col-sm-12">
     <ul class="list-inline text-center">
-        <li *ngFor="let cat of categories">
-          <a href="#" routerLink="/category/{{cat?.categoryCode}}">{{cat.categoryName}}</a>
-          <!-- (click)="categoriesFilter(cat?.categoryCode)" -->
-        </li>
+      <li *ngFor="let cat of categories">
+        <a href="#" routerLink="/category/{{cat?.categoryCode}}">{{cat.categoryName}}</a>
+      </li>
     </ul>
-  </div> 
-</div>  
+  </div>
+</div>
 
 <div class="container">
   <div class="row clearfix">
@@ -17,9 +16,10 @@
           <div class="b-sidebar_widget" *ngIf="categories">
             <h5 class="b-filter_title">PRODUCT CATEGORIES</h5>
             <form action="#" [formGroup]="">
-              <ul>  
+              <ul>
                 <li *ngFor="let cat of categories">
-                  <a href="#" routerLink="/category/{{cat?.categoryCode}}">{{cat?.categoryName}} ({{cat?.products?.length}})</a>
+                  <a href="#" routerLink="/category/{{cat?.categoryCode}}">{{cat?.categoryName}}
+                    ({{cat?.products?.length}})</a>
                   <!-- (click)="categoriesFilter(cat?.categoryCode)" -->
                 </li>
                 <!-- <li><a href="#">Bags</a></li>
@@ -29,7 +29,7 @@
                 <li><a href="#">Shoes</a></li>
                 <li><a href="#">Watches</a></li>
                 <li><a href="#">Woman</a></li> -->
-              </ul> 
+              </ul>
             </form>
           </div>
           <div class="b-sidebar_widget" *ngIf="solutions">
@@ -71,26 +71,32 @@
                   </a>
                   <span class="b-count float-right">(8)</span>
                 </li>  -->
-              </ul> 
+              </ul>
             </form>
-          </div> 
+          </div>
           <div class="b-sidebar_widget">
             <h5 class="b-filter_title">SET FILTER RANGE</h5>
             <div class="gentec-filter-group">
               <div class="gentec-height-range-filter_inputs">
-                <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.minHeight" class="gentec-height-range-filter_input" placeholder="Height Min">
+                <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.minHeight" class="gentec-height-range-filter_input"
+                  placeholder="Height Min">
                 <div class="gentec-height-range-filter_range-line"></div>
-                <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.maxHeight" class="gentec-height-range-filter_input" placeholder="Height Max">
+                <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.maxHeight" class="gentec-height-range-filter_input"
+                  placeholder="Height Max">
               </div>
               <div class="gentec-height-range-filter_inputs">
-                <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.minWidth" class="gentec-height-range-filter_input" placeholder="Width Min">
+                <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.minWidth" class="gentec-height-range-filter_input"
+                  placeholder="Width Min">
                 <div class="gentec-height-range-filter_range-line"></div>
-                <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.maxWidth" class="gentec-height-range-filter_input" placeholder="Width Max">
+                <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.maxWidth" class="gentec-height-range-filter_input"
+                  placeholder="Width Max">
               </div>
               <div class="gentec-height-range-filter_inputs">
-                <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.minDepth" class="gentec-height-range-filter_input" placeholder="Depth Min">
+                <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.minDepth" class="gentec-height-range-filter_input"
+                  placeholder="Depth Min">
                 <div class="gentec-height-range-filter_range-line"></div>
-                <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.maxDepth" class="gentec-height-range-filter_input" placeholder="Depth Max">
+                <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.maxDepth" class="gentec-height-range-filter_input"
+                  placeholder="Depth Max">
               </div>
             </div>
             <!-- <form action="#" [formGroup]="">
@@ -123,7 +129,7 @@
             <ul class="pl-0 mb-0 list-unstyled b-rated_product">
               <li>
                 <a href="#" class="b-recent_blog_img d-inline-block">
-                    <img src="assets/images/blog/home/blog_recent_01.jpg" class="img-fluid d-block" alt="">
+                  <img src="assets/images/blog/home/blog_recent_01.jpg" class="img-fluid d-block" alt="">
                 </a>
                 <h3><a href="#">VENENATIS VEULUM PEUS</a></h3>
                 <span class="d-block mb-2">
@@ -137,7 +143,7 @@
               </li>
               <li>
                 <a href="#" class="b-recent_blog_img d-inline-block">
-                    <img src="assets/images/blog/home/blog_recent_02.jpg" class="img-fluid d-block" alt="">
+                  <img src="assets/images/blog/home/blog_recent_02.jpg" class="img-fluid d-block" alt="">
                 </a>
                 <h3><a href="#">HAC FAMES TEMPOR</a></h3>
                 <span class="d-block mb-2">
@@ -151,7 +157,7 @@
               </li>
               <li>
                 <a href="#" class="b-recent_blog_img d-inline-block">
-                    <img src="assets/images/blog/home/blog_recent_03.jpg" class="img-fluid d-block" alt="">
+                  <img src="assets/images/blog/home/blog_recent_03.jpg" class="img-fluid d-block" alt="">
                 </a>
                 <h3><a href="#">URNA LIGULA INCEPTOS</a></h3>
                 <span class="d-block mb-2">
@@ -163,18 +169,19 @@
                 </span>
                 <span>£850.00</span>
               </li>
-     
+
             </ul>
-          </div> 
+          </div>
         </div>
       </div>
-    </div>  
-    <div class="col-xl-9 col-lg-9 col-mb-8 col-sm-12 col-xs-12"> 
-      <div class="row clearfix b-shop_head"> 
-        <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12"> 
+    </div>
+    <div class="col-xl-9 col-lg-9 col-mb-8 col-sm-12 col-xs-12">
+      <div class="row clearfix b-shop_head">
+        <div *ngIf="category && products" class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12">
           <nav class="b-shop_breadcrumb">
             <a href="#">Home</a>
-            <span>Category</span>
+            <a href="#">Category</a>
+            <span>{{category?.categoryName | titlecase}}</span>
           </nav>
         </div>
         <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12 text-right">
@@ -184,7 +191,7 @@
           <div class="b-filter_button d-inline-block">
             <a href="javascript:void(0);" class="b-open_filters">Filters</a>
           </div>
-        </div> 
+        </div>
       </div>
       <div class="b-filters_area mt-2">
         <div class="b-filters_inner_area">
@@ -199,7 +206,7 @@
                   <!-- <li><a href="#">Newness</a></li>
                   <li><a href="#">Price: low to high</a></li>
                   <li><a href="#">Price: high to low</a></li> -->
-                </ul> 
+                </ul>
               </form>
             </div>
             <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-6 col-xs-12">
@@ -210,8 +217,8 @@
                   <li><a href="javascript:void(0);" (click)="priceFilter('0-150')">$0.00 - $150.00</a></li>
                   <li><a href="javascript:void(0);" (click)="priceFilter('150-300')">$150.00 - $300.00</a></li>
                   <li><a href="javascript:void(0);" (click)="priceFilter('300-450')">$300.00 - $450.00</a></li>
-                  <li><a href="javascript:void(0);" (click)="priceFilter('450')">$450.00+</a></li> 
-                </ul> 
+                  <li><a href="javascript:void(0);" (click)="priceFilter('450')">$450.00+</a></li>
+                </ul>
               </form>
             </div>
             <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-6 col-xs-12">
@@ -225,7 +232,7 @@
                     </a>
                     <!-- <span class="b-count float-right">(7)</span> -->
                   </li>
-                </ul> 
+                </ul>
               </form>
             </div>
             <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-6 col-xs-12">
@@ -236,8 +243,8 @@
                   <li><a href="#">M <span class="b-count_number">(9)</span></a></li>
                   <li><a href="#">XL <span class="b-count_number">(7)</span></a></li>
                   <li><a href="#">S <span class="b-count_number">(3)</span></a></li>
-                  <li><a href="#">XS <span class="b-count_number">(5)</span></a></li> 
-                </ul> 
+                  <li><a href="#">XS <span class="b-count_number">(5)</span></a></li>
+                </ul>
               </form>
             </div>
           </div>
@@ -245,82 +252,87 @@
       </div>
       <div class="basel-active-filters d-none">
         <div class="b-shop_option">
-            <ul class="pl-0 list-unstyled">
-              <li class="d-inline-block">
-                  <a href="#">
-                    Min 
-                    <span class="b-price_amount">
-                    <span class="b-price_symbol">£</span>450.00</span>
-                  </a>
-              </li>
-              <li class="d-inline-block">
-                <a href="#">
-                  Max 
-                  <span class="b-price_amount">
+          <ul class="pl-0 list-unstyled">
+            <li class="d-inline-block">
+              <a href="#">
+                Min
+                <span class="b-price_amount">
+                  <span class="b-price_symbol">£</span>450.00</span>
+              </a>
+            </li>
+            <li class="d-inline-block">
+              <a href="#">
+                Max
+                <span class="b-price_amount">
                   <span class="b-price_symbol">£</span>580.00</span>
-                </a>
-              </li>
-            </ul>
-        </div>      
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
       <div class="b-products b-product_grid b-product_grid_four mb-4">
         <div *ngIf="products" class="b-title b-title_line_right mt-5 mt-lg -0">
-          <h2 class="text-uppercase">All Products</h2>
+          <h2 class="text-uppercase">{{category?.categoryName | titlecase}}</h2>
         </div>
         <!-- <div>
           <img [src]="category?.imgURL || './assets/images/not_available.jpg'" alt="">
         </div> -->
-          <div class="row clearfix" *ngIf="products">
-  
-              <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-xs-12" *ngFor="let product of products | paginate: config">
-                  <div class="b-product_grid_single">
-                      <div class="b-product_grid_header">
-                          <a href="#" routerLink="/product/{{product?.id}}">
-                            <!-- routerLink="/product/{{routeParamsName.split('.')[0]}}/{{product.productTitle}}.{{product.id}}" -->
-                            <!-- <img data-src="assets/images/products/home/product_grid_01_01.jpg, assets/images/products/home/product_grid_01_02.jpg" src="assets/images/products/home/product_grid_01_01.jpg" class="img-fluid img-switch d-block" alt="" style="">
+        <div class="row clearfix" *ngIf="products">
+
+          <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-xs-12" *ngFor="let product of products | paginate: config">
+            <div class="b-product_grid_single">
+              <div class="b-product_grid_header">
+                <a href="#" routerLink="/product/{{product?.id}}">
+                  <!-- routerLink="/product/{{routeParamsName.split('.')[0]}}/{{product.productTitle}}.{{product.id}}" -->
+                  <!-- <img data-src="assets/images/products/home/product_grid_01_01.jpg, assets/images/products/home/product_grid_01_02.jpg" src="assets/images/products/home/product_grid_01_01.jpg" class="img-fluid img-switch d-block" alt="" style="">
                           -->
-                          <div class="b-product_grid_info">
-                          <h1 class="product-title">
-                            <a href="#" routerLink="/product/{{product?.id}}"><b>{{ product?.productTitle | words: 4}}</b></a>
-                            <!-- routerLink="/product/{{routeParamsName.split('.')[0]}}/{{product?.productTitle}}.{{product?.id}}" -->
-                          </h1>
-                          </div>
-                            <img [src]="product?.imageURL || product?.primaryImageURL || './assets/images/not_available.jpg'" width="100%" height="auto" class="img-fluid img-switch d-block">
-                         
-                          </a> 
-                          <div class="b-product_grid_action">
-                            <a href="javascript:void(0)" data-whishurl="whishlist.html" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to Whishlist">
-                              <i class="icon-heart icons b-add_to_whish">
-                                <img [src]="(product?.imageURL || product?.primaryImageURL || './assets/images/not_available.jpg')" class="g-loading_gif" alt="">
-                              </i>
-                            </a>
-                            <i data-toggle="tooltip" data-placement="left" title="" class="icon-refresh icons" data-original-title="Compare"></i>
-                            <a href="javascript:void(0);" data-toggle="modal" data-target="#b-qucik_view">
-                                <i data-toggle="tooltip" data-placement="left" title="" class="icon-magnifier-add icons" data-original-title="Quick View"></i>
-                              </a>
-                          </div>
-                      </div>
-                      <div class="b-product_grid_info">
-                         <!-- <h3 class="product-title">
+                  <div class="b-product_grid_info">
+                    <h1 class="product-title">
+                      <a href="#" routerLink="/product/{{product?.id}}"><b>{{ product?.productTitle | words: 4}}</b></a>
+                      <!-- routerLink="/product/{{routeParamsName.split('.')[0]}}/{{product?.productTitle}}.{{product?.id}}" -->
+                    </h1>
+                  </div>
+                  <img [src]="product?.imageURL || product?.primaryImageURL || './assets/images/not_available.jpg'"
+                    width="100%" height="auto" class="img-fluid img-switch d-block">
+
+                </a>
+                <div class="b-product_grid_action">
+                  <a href="javascript:void(0)" data-whishurl="whishlist.html" data-toggle="tooltip" data-placement="left"
+                    title="" data-original-title="Add to Whishlist">
+                    <i class="icon-heart icons b-add_to_whish">
+                      <img [src]="(product?.imageURL || product?.primaryImageURL || './assets/images/not_available.jpg')"
+                        class="g-loading_gif" alt="">
+                    </i>
+                  </a>
+                  <i data-toggle="tooltip" data-placement="left" title="" class="icon-refresh icons"
+                    data-original-title="Compare"></i>
+                  <a href="javascript:void(0);" data-toggle="modal" data-target="#b-qucik_view">
+                    <i data-toggle="tooltip" data-placement="left" title="" class="icon-magnifier-add icons"
+                      data-original-title="Quick View"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="b-product_grid_info">
+                <!-- <h3 class="product-title">
                              <a href="#" routerLink="/product/{{product?.productTitle}}.{{product?.id}}">{{ product?.productTitle}}</a>
                          </h3> -->
-                         <h3>{{ product?.categoryName | titlecase}}</h3>
-                         <p>{{ product?.productDescription | words : 8}}</p>
-                         <div class="clearfix">
-                           <div class="b-product_grid_toggle float-left">
-                               <span class="b-price">${{ product?.productPrice}}</span>
-                               <span class="b-add_cart">
-                                   <i class="icon-basket icons"></i>
-                                   <a href="#">Add To Project</a>
-                               </span>
-                           </div>
-                           <div class="b-product_options float-right">
-                            <a href="javascript:void(0);" class="d-inline-block b-active mr-3">
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                            </a>
-                              <!-- <ul class="pl-0 mb-0 list-unstyled">
+                <h3>{{ product?.categoryName | titlecase}}</h3>
+                <p>{{ product?.productDescription | words : 8}}</p>
+                <div class="clearfix">
+                  <div class="b-product_grid_toggle float-left">
+                    <span class="b-price">${{ product?.productPrice}}</span>
+                    <span class="b-add_cart">
+                      <i class="icon-basket icons"></i>
+                      <a href="#">Add To Project</a>
+                    </span>
+                  </div>
+                  <div class="b-product_options float-right">
+                    <a href="javascript:void(0);" class="d-inline-block b-active mr-3">
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                    </a>
+                    <!-- <ul class="pl-0 mb-0 list-unstyled">
                                   <li>
                                     <span data-toggle="tooltip" title="" class="b-black" data-original-title="Black"></span>
                                   </li>
@@ -328,15 +340,15 @@
                                     <span data-toggle="tooltip" title="" class="b-blue" data-original-title="Blue"></span>
                                   </li> 
                               </ul> -->
-                          </div>
-                         </div>
-                      </div>
-                    </div>
+                  </div>
                 </div>
-                </div>
- 
- 
-          <!-- <div class="b-pagination pt-2 pb-4">
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- <div class="b-pagination pt-2 pb-4">
             <ul class="pl-0 text-center list-unstyled mb-0">
               <li><a href="#" class="b-current_page">1</a></li>
               <li><a href="#">2</a></li>
@@ -348,38 +360,39 @@
               <li><a href="#"><i class="icon-arrow-right icons"></i></a></li>
             </ul>
           </div> -->
-          <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+        <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
 
-          <pagination-template #p="paginationApi" (pageChange)="config.currentPage = $event">
+        <pagination-template #p="paginationApi" (pageChange)="config.currentPage = $event">
 
-            <div class="b-pagination pt-2 pb-4">
-              <ul class="pl-0 text-center list-unstyled mb-0">
+          <div class="b-pagination pt-2 pb-4">
+            <ul class="pl-0 text-center list-unstyled mb-0">
 
-                <li (click)="p.previous()" [class.d-none]="p.isFirstPage()">
-                  <a href="javascript:void(0)">
-                    <i class="icon-arrow-left icons"></i>
-                  </a>
-                </li>
+              <li (click)="p.previous()" [class.d-none]="p.isFirstPage()">
+                <a href="javascript:void(0)">
+                  <i class="icon-arrow-left icons"></i>
+                </a>
+              </li>
 
-                <li *ngFor="let page of p.pages">
-                  <a (click)="p.setCurrent(page.value)" href="javascript:void(0)" *ngIf="p.getCurrent() !== page.value" [class.b-current_page]="p.getCurrent() === page.value">
-                    <span>{{page.label}}</span>
-                  </a>
-                  <a href="javascript:void(0)" *ngIf="p.getCurrent() === page.value" [class.b-current_page]="p.getCurrent() === page.value">
-                    <span>{{ page.label }}</span>
-                  </a>
-                </li>
+              <li *ngFor="let page of p.pages">
+                <a (click)="p.setCurrent(page.value)" href="javascript:void(0)" *ngIf="p.getCurrent() !== page.value"
+                  [class.b-current_page]="p.getCurrent() === page.value">
+                  <span>{{page.label}}</span>
+                </a>
+                <a href="javascript:void(0)" *ngIf="p.getCurrent() === page.value" [class.b-current_page]="p.getCurrent() === page.value">
+                  <span>{{ page.label }}</span>
+                </a>
+              </li>
 
-                <li (click)="p.next()" [class.d-none]="p.isLastPage()">
-                  <a href="javascript:void(0)" >
-                    <i class="icon-arrow-right icons"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </pagination-template>
-          
-      </div>  
+              <li (click)="p.next()" [class.d-none]="p.isLastPage()">
+                <a href="javascript:void(0)">
+                  <i class="icon-arrow-right icons"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </pagination-template>
+
+      </div>
     </div>
   </div>
-</div>  
+</div>
