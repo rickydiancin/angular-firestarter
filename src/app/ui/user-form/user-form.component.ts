@@ -21,7 +21,7 @@ export class UserFormComponent implements OnInit {
   passReset = false; // set to true when password reset is triggered
   formErrors: FormErrors = {
     'email': '',
-    'password': '',
+    'password': ''
   };
   validationMessages = {
     'email': {
