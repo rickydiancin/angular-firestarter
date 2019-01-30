@@ -13,6 +13,7 @@ export class HomePageComponent implements OnInit {
   products:any;
   products2:any;
   banners:any;
+  solutions:any;
 
   constructor(
     private scriptsService: ScriptsService,
@@ -35,6 +36,9 @@ export class HomePageComponent implements OnInit {
       console.log('banners: ',res);
       this.banners = res;
      });
+     this.productsService.getAllSolutions().subscribe((data) => {
+      this.solutions = data;
+    })
      this.productsService.getData().subscribe(res => {
       console.log('latest products: ',res);
       this.products2 = res;

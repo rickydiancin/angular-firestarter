@@ -28,36 +28,49 @@
                 <button type="submit" class="btn"  [disabled]="!userForm.valid" >Login</button>  
               </form>
           </div>
-          <div class="b-auth_section b-auth_register" style="display: none;">
-            <h2><i class="icon-user icons"></i> Register</h2>
-            <form action="#" [formGroup]="">
-                <div class="form-group">
-                <label for="">Username<span class="b-required">*</span></label>
-                <input type="text" name="" value="" >
-              </div>
-              <div class="form-group">
-                <label for="">Email address <span class="b-required">*</span></label>
-                <input type="email" name="" value="" >
-              </div>
-              <div class="form-group">
-                <label for="">Password <span class="b-required">*</span></label>
-                <input type="password" name="" value="" >
-              </div> 
-              <button type="submit" class="btn" >Register</button> 
-              </form>
-          </div>
+  
         </div>  
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12"> 
-          <div class="b-auth_text text-center b-auth_text_register">
-            <h3>Register</h3>
-            <p>Registering for this site allows you to access your order status and history. Just fill in the fields below, and we’ll get a new account set up for you in no time. We will only ask you for information necessary to make the purchase process faster and easier.</p>
-            <a href="javascript:;" class="btn" id="b-register_but">Register</a>
-          </div>
-          <div class="b-auth_text text-center b-auth_text_login" style="display: none;">
-            <h3>Login</h3>
-            <p>Registering for this site allows you to access your order status and history. Just fill in the fields below, and we’ll get a new account set up for you in no time. We will only ask you for information necessary to make the purchase process faster and easier.</p>
-            <a href="javascript:;" class="btn" id="b-login_but">Login</a>
-          </div>
+            <div class="b-auth_section b-auth_login">
+                <h2><i class="icon-user icons"></i> Register</h2>
+                <form [formGroup]="regform" (ngSubmit)="signup()">
+                    <div class="form-group">
+                        <label for="">First Name <span class="b-required">*</span></label>
+                        <input type="text" id="fname" name="fname" class="input" formControlName="fname" required autocomplete="new-password">
+                        <div *ngIf="formErrors.fname" class="help is-danger">
+                          {{ formErrors.fname }}
+                      </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="">Last Name <span class="b-required">*</span></label>
+                          <input type="text" id="lname" name="lname" class="input" formControlName="lname" required autocomplete="new-password">
+                          <div *ngIf="formErrors.lname" class="help is-danger">
+                            {{ formErrors.lname }}
+                        </div>
+                        </div>
+                    <div class="form-group">
+                      <label for="">Email address <span class="b-required">*</span></label>
+                      <input type="email" id="email2" name="email2" class="input" formControlName="email2" required autocomplete="new-password">
+                      <div *ngIf="formErrors.email" class="help is-danger">
+                        {{ formErrors.email }}
+                    </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="">Password <span class="b-required">*</span></label>
+                      <input type="password" id="password2" name="password2" class="input" formControlName="password2" required autocomplete="new-password">
+                      <div *ngIf="formErrors.password" class="help is-danger">
+                        {{ formErrors.password }}
+                    </div>
+                    </div>
+                    <!-- <div class="form-group clearfix">
+                      <label class="pull-left"><input name="" type="checkbox"  value=""> Remember me</label>
+                      <a href="#" class="pull-right b-lost_password"><i class="icon-support icons"></i>  Lost your password?</a>
+                    </div> -->
+                    <p *ngIf="userForm.valid" class="text-success">Form is valid</p>
+                    <button type="submit" class="btn"  [disabled]="!regform.valid" >Login</button>  
+                  </form>
+              </div>
+   
         </div>  
       </div>
     </div>

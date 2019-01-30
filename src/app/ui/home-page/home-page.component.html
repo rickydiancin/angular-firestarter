@@ -161,7 +161,7 @@
   <div class="b-blog b-blog_grid text-center b-blog_grid_three mb-5 pt-5">
     <div class="container">
       <div class="row clearfix">
-        <div *ngFor="let cat of categories | slice:0:6" class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-xs-12">
+        <div *ngFor="let cat of solutions | slice:0:6" class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-xs-12">
           <div class="b-blog_grid_single">
             <div class="b-blog_single_header">
               <div class="b-blog_img_wrap">
@@ -183,7 +183,7 @@
             </div>
             <div class="b-blog_single_info">
               <h3 class="b-entry_title pt-2">
-                <a href="#" rel="bookmark" routerLink="/category">{{cat.categoryName}}</a>
+                <a href="#" rel="bookmark" routerLink="/category">{{cat.solutionName}}</a>
               </h3>
               <!-- <div class="b-author_info">
                                   <span class="b-author_name">
