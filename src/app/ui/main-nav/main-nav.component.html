@@ -17,7 +17,7 @@
                                             <ul id="b-menu_top_bar" class="b-menu">
                                                 <li *ngIf="auth.user"><a href="javascript:void(0)" (click)="logout()">Logout</a></li>
                                                 <li *ngIf="auth.user "><a href="#" routerLink="/login"><i class="fa fa-user mr-1"></i>My Account</a></li>
-                                                <li *ngIf="auth.user "><a href="#" routerLink="/projects"> <i class="icon-heart icons"></i> Specifications</a></li>
+                                                <li *ngIf="auth.user "><a href="#" routerLink="/projects"> <i class="fa fa-star-o icons"></i> Specifications</a></li>
                                                 <li *ngIf="!(auth.user )"><a href="#" routerLink="/login">Login</a></li>
                                                 <li *ngIf="!(auth.user)"><a href="#" routerLink="/login">Register</a></li>
                                                
@@ -149,7 +149,7 @@
                   </div>
                   <div class="b-wishlist_icon">
                     <a href="#" routerLink="/projects" class="d-inline-block">
-                      <i class="icon-heart icons"></i>
+                      <i class="fa fa-star-o icons"></i>
                       <span>3</span>
                     </a>
                   </div>
