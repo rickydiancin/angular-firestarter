@@ -60,27 +60,38 @@ export class ProductsService {
 }
 
 getAllCategories(callback){
-  return this.afs.collection('categories').snapshotChanges().pipe(
+  return this.afs.collection('categories', (ref) => ref.orderBy('categoryName')).snapshotChanges().pipe(
       map((actions) => {
           return actions.map((a) => {
           const data = a.payload.doc.data();
           return { id: a.payload.doc.id, ...data };
           });
       })).subscribe(res => {
-          console.log(res);
+          // console.log(res);
           res.forEach(c => {
-              if(c['parent'] != ''){
-                  this.getCategory(c['parent'], callback => {
-                      c['parentData'] = callback;
+            this.getCategory(c['categoryCode'], callback => {
+                      c['sub'] = callback;
                   })
-              }
+            // c['categoryCode']
+              // if(c['parent'] != ''){
+              //     this.getCategory(c['parent'], callback => {
+              //         c['parentData'] = callback;
+              //     })
+              // }
           })
           return callback(res);
       })
 }
 getCategory(id, callback){
-  console.log(id)
-  return this.afs.doc('categories/'+id).valueChanges().subscribe(res => {
+  // console.log(id)
+  return this.afs.collection('categories', (ref) => ref.where('parent', "==", id).orderBy('categoryName')).snapshotChanges().pipe(
+    map((actions) => {
+      return actions.map((a) => {
+        const data = a.payload.doc.data();
+        return { id: a.payload.doc.id, ...data };
+      });
+    })
+  ).subscribe(res => {
       return callback(res);
   })
 }

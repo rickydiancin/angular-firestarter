@@ -11,3 +11,24 @@ nav {
 .navbar-menu {
     padding-right: 3em;
 }
+
+.column-title {
+    font-size: 12px !important;
+    font-weight: bolder !important;
+}
+
+.categories a {
+    font-weight: lighter !important;
+}
+
+.b-main_menu ul {
+    margin-bottom: 15px !important;
+}
+
+.b-main_menu .dropdown-inner ul > li > a {
+    padding: 1px 0px !important;
+}
+
+.b-main_menu .dropdown-inner h4.column-title {
+    margin: 5px 0 0px !important;
+}
