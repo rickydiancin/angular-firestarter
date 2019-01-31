@@ -1,0 +1,54 @@
+$dark_accent: #bc9c72;
+body{background-color: #111111;}
+.b-header{
+	position: fixed; top: 0; left: 0; width: 100%; z-index: 9; border: none;
+}
+.b-main_menu > ul > li > a{color: #fff;}
+.b-newsletter_bg_dark{
+	background-image: url("../../images/newsletter_bg_dark.jpg");
+	h3 {font-family: "Italianno", "sans-serif"; font-size: 66px; color: $dark_accent; margin-bottom: 0;}
+}
+.b-header_fixed .b-header_main{background-color: rgba(0, 0, 0, 0.76);}
+.b-submit{background-color: $dark_accent; color: #fff; border: none;}
+
+.b-blog_grid {
+	.b-blog_single_header {
+		.b-post_time{background-color: #111; span{color: #fff;}}
+		.b-post_categories .b-post_categorie_list{background-color: $dark_accent;}
+	} 
+	.b-blog_single_info {
+		h3.b-entry_title a{color: #fff; &:hover{color: $dark_accent;}}
+		.b-author_info {
+			.b-reply a{color: #fff;}
+			.b-author_name a{color: $dark_accent;}
+		}
+		p{color: #fff;}
+	}
+}
+.b-gallery_logo{background-color: #1b1b1b;}
+.b-section_title{
+	span.b-section_title_over{font-family: "Italianno"; font-size: 38px; color: $dark_accent;}
+	h4{font-size: 36px; font-family: "lora"; color: #fff; margin-bottom: 45px;}
+}
+.b-header_right{ 
+    .b-search_icon,.b-wishlist_icon,.b-cart_basket{ 
+        a{color: #fff;} 
+    }
+    .b-wishlist_icon span{background-color: $dark_accent;}
+}
+
+.b-our_story{
+	background-image: url("../../images/our-story.jpg"); background-repeat: no-repeat; padding-top: 100px; padding-bottom: 100px;
+}
+.btn.btn-bg{background-color: $dark_accent; color: #fff;}
+
+/* Testimonial Circle Image */
+.b-testimonial_img_circle{
+	margin-bottom: 50px;
+	.b-testimonial_in{
+		padding-bottom: 20px;
+		img{border-radius: 50%; -webkit-border-radius: 50%;}
+		p{color: #fff; font-size: 14px;}
+		span{font-size: 14px; color: #fff; opacity: 0.7;}
+	}
+}

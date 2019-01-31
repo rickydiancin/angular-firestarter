@@ -1,0 +1,56 @@
+$pink_accent: #edc5c7;
+$pink_accent_dark: #e49a9e;
+.b-header_right .b-wishlist_icon span{background-color: $pink_accent;}
+
+.b-section_title{
+	h4{font-family: "Sumana"; font-size: 26px; b{font-weight: 300;}}
+	p{font-family: "karla"; font-style: normal;}
+}
+
+.b-blog_grid {
+	.b-blog_single_header .b-post_categories .b-post_categorie_list{background-color: $pink_accent;}
+	.b-blog_single_info h3.b-entry_title a:hover{color: $pink_accent;}
+	.b-author_info .b-author_name a{color: $pink_accent;}
+}
+
+.b-product_grid_info{
+	.btn-bg{background-color: $pink_accent; border: none; color: #fff; &:hover{background-color: $pink_accent_dark}}
+	li.fa{color: $pink_accent;}
+}
+
+.b-cat_blocks{
+	.b-cat_block_single{
+		.b-cat_img{
+			position: relative;
+			a{display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,.5); color: #fff; text-transform: uppercase; padding-top: 50%; font-weight: 600; font-size: 16px; opacity: 0;}
+		}
+		.b-cat_info{
+			h3{
+				padding-top: 5px; margin-bottom: 5px; 
+				a{ font-family: Lora,'MS Sans Serif', Geneva, sans-serif; font-size: 24px; font-weight: 400; color: #000; &:hover{color: $pink_accent}}
+			}
+			> a{color: #8a8a8a; border-bottom: 1px solid #e6e6e6; text-decoration: none; &:hover{color: $pink_accent;}}
+		}
+		&:hover{
+			a{opacity: 1;}
+			img{-webkit-transform: scale(1.1); -moz-transform: scale(1.1); -o-transform: scale(1.1); -ms-transform: scale(1.1); -sand-transform: scale(1.1); transform: scale(1.1);}
+		}
+	}
+}
+
+
+.b-instagram_feeds{position: relative;}
+.b-instagram_content_inner{
+   z-index: 5; background: #fff; outline: 5px solid rgba(255,255,255,.5); max-width: 300px; height: 220px; margin: auto; width: 100%; padding: 25px; position: absolute; left: 0; right: 0; bottom: 0; top: 0;
+   h3{font-family: "Sumana"; b{font-weight: 400;}}
+   .btn{
+   	background-color: $pink_accent; color: #fff; border: none;
+   	&:hover{background-color: $pink_accent_dark}
+   }
+}
+
+
+
+@media (max-width: 767px){
+	.b-instagram_content_inner{position: static;}
+}

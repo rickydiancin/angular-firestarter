@@ -1,0 +1,8 @@
+.b-checkout{
+    .panel{margin-bottom: 20px; background-color: #f9f5f5; border: 1px solid transparent;}
+    .panel-heading{
+        padding: 12px 15px;  font-weight: 600; font-size: 20px; text-transform: uppercase;  color: #ffffff; background: #0a0a0a; margin-bottom: 20px;
+        a{color: #fff; font-size: 12px;}
+    }
+    select.form-control:not([size]):not([multiple]){height: 40px; border-radius: 0;}
+}

@@ -1,0 +1,33 @@
+.b-icon_large{font-size: 38px; opacity: .8;}
+.b-contact_light{
+	textarea{padding: 15px; height: 180px;}
+}
+.b-map{
+	position: relative;
+	.b-map_over{
+		position: absolute; left: 15%; top: 15%; padding: 40px; background-color: #000; max-width: 380px; color: #fff;
+		h3{font-family: $blog_heading_font; font-size: 22px;}
+		p{
+			position: relative; padding-left: 40px; margin-top: 15px;
+			i{position: absolute; left: 0; top: 2px; opacity: 1;}
+		}
+		a{color: #fff; text-decoration: underline;}
+	}
+}
+.b-map_in{height: 600px; width: 100%;}
+.b-contact{
+	.error{background-color: #FF6600;border:#AA4502 1px solid;padding: 8px 10px;color: #FFFFFF;border-radius:0;}
+	.success{background-color: #12CC1A;border:#0FA015 1px solid;padding: 8px 10px;color: #FFFFFF;border-radius:0;}
+	.info{font-size:.8em;color: #FF6600;letter-spacing:2px;padding-left:5px;}
+	.btnAction{background-color:#2FC332;border:0;padding:10px 40px;color:#FFF;border:#F0F0F0 1px solid; border-radius:4px;}
+}
+
+@media (max-width: 1170px){
+	.b-icon_large{font-size: 26px}
+}
+@media (max-width: 767px){
+	h2, .h2{font-size: 1.5rem;}
+}
+@media (max-width: 600px){
+	.b-map .b-map_over{left: 5%; max-width: 290px;}
+}

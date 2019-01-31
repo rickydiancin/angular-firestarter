@@ -1,0 +1,64 @@
+.b-shopping_blocks{
+	.row{background-color: #f7f7f7; padding-top: 30px; padding-bottom: 30px;}
+	.b-shopping_block_in{
+		padding-top: 30px; padding-bottom: 30px;
+		i{font-size: 40px; color: rgba(42, 42, 42, 0.8); display: inline-block; margin-bottom: 20px;}
+		p{max-width: 300px; margin: 15px auto 15px}
+		a{color:  rgba(42, 42, 42, 0.8); border-bottom: 1px solid $accent_default; display: inline-block; &:hover{color: $accent_default}}
+	}
+}
+
+.b-galler_text{padding: 5% 10%;}
+.b-gallery_blocks{
+	.col-xl-6{
+		overflow: hidden; position: relative; cursor: pointer;
+		&::after{content:""; display: block; width: 100%; height: 100%; position: absolute; top: 0; left: 0; background-color: rgba(0,0,0,.65);}
+		&:hover{
+			img{transform: scale(1.1); -webkit-transform: scale(1.1);}
+		}
+		img{@extend .d-transition_slow;}
+	}
+	.b-gallery_title {
+    	position: absolute; top: 50%; text-align: center; width: 100%; z-index: 999; padding: 0 15px;
+    	h3{color: #fff; font-weight: 600;}
+    }
+}
+.owl-carousel {
+	.owl-nav {
+		position: absolute; top: 30%; width: 100%;
+		> div{
+			background-color: transparent !important; color: #212121;
+			&::before {display: block; content: "\e605"; font-family: simple-line-icons; width: 55px; font-size: 36px; height: 55px; line-height: 55px;}
+		}
+		> div.owl-prev{
+			left: 50px; position: absolute; opacity: 0; @extend .d-transition_slow; color: rgba(1, 0, 0, 0.47);
+			&:hover{color: #000;}
+		}
+		> div.owl-next{
+			right: 50px; position: absolute; opacity: 0; @extend .d-transition_slow; color: rgba(1, 0, 0, 0.47);
+			&:hover{color: #000;}
+		}
+		.owl-next:before {content: "\e606";}
+	}
+	&:hover{
+		.owl-nav{
+			> div.owl-prev{opacity: 1; left: -80px;}
+			> div.owl-next{opacity: 1; right: -80px;}
+		}
+	}
+} 
+
+.modal-content{
+	border-radius: 0;
+	.owl-carousel {
+		&:hover{
+			.owl-nav{
+				> div.owl-prev{opacity: 1; left: 0px;}
+				> div.owl-next{opacity: 1; right: 0px;}
+			}
+		}
+	}
+	.btn-close{position: absolute; right: 0; background: none; border: none; font-size: 22px; padding: 10px; cursor: pointer; z-index: 999;}
+	.owl-carousel .owl-nav {position: absolute; top: 0; width: 100%; bottom: 0; height: 60px; margin: auto;}
+}
+.product_view .modal-dialog{max-width: 980px; width: 100%;} 

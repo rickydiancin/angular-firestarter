@@ -1,0 +1,31 @@
+/* COLOR CODES */
+$accent_default: #1daaa3;
+$accent_default_pink: #ee4684;
+$accent_default_green: #2f8653;
+$accent_default_green_dark: #339059;
+$brown: #ba6d09 !default; 
+
+$facebook_color: #365493;
+$twitter_color: #3CF;
+$google_color: #d44132;
+$email_color: #F89A1E;
+$pinterest_color: #cb2027;
+
+/* FONTS */
+$default_font: "Karla","sans-serif";
+$blog_heading_font: "Lora","sans-serif";
+$lato_font: "Lato","sans-serif"; 
+
+// Responsive visibility utilities
+@each $bp in map-keys($grid-breakpoints) {
+  .hidden-#{$bp}-up {
+    @include media-breakpoint-up($bp) {
+      display: none !important;
+    }
+  }
+  .hidden-#{$bp}-down {
+    @include media-breakpoint-down($bp) {
+      display: none !important;
+    }
+  }
+}

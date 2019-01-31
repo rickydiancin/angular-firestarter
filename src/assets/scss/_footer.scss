@@ -1,0 +1,62 @@
+.b-footer_container{
+	background-color: $black;
+	.b-main_footer{
+		padding: 50px 0 20px 0;
+	}
+	.b-footer_block_in{
+		margin-bottom: 10px;
+		p{color: rgba(255,255,255,.6); font-size: 14px;}
+	}
+	.b-contact_info{
+		line-height: 2; color: rgba(255,255,255,.6); font-size: 14px;
+		i{width: 15px; text-align: center; margin-right: 4px; color: #676767;}
+	}
+	.b-social-icons{
+		display: block; list-style: none; line-height: 1; padding: 0;
+		li{
+			color: rgba(255,255,255,.6); margin: 5px 5px 0 5px; display: inline-block;
+			a{font-size: 0; color: rgba(255,255,255,.6); i{font-size: 18px;} &:hover{color: $white;}}
+		}
+		li:first-child {margin-left: 0; padding-left: 0;}
+	}
+}
+.b-footer_menu{
+	padding: 0; list-style: none;
+	li{
+		margin-bottom: 15px; line-height: 1;
+		a{color: rgba(255,255,255,.6); font-size: 14px; &:hover{color: #fff; text-decoration: underline;}}
+	}
+}
+.b-footer_block_title{
+	color: #fff; font-size: 16px; text-transform: uppercase; margin-bottom: 25px; position: relative; padding-bottom: 4px; letter-spacing: 1.5px; font-weight: 700; font-style: normal;
+	&::before {content: ""; position: absolute; bottom: 0; display: inline-block; width: 30px; height: 2px; background-color: rgba(255,255,255,.8);}
+}
+.d-footer_bar{
+	margin-top: 20px; padding: 20px 0; border-top: 1px solid rgba(255,255,255,.1); line-height: 1.6; color: rgba(255,255,255,.6); font-size: 14px;
+	a:hover{text-decoration: underline;}
+}
+.b-footer_socail.b-socail_color{
+	width: 100%; margin-top: 0;
+	ul{
+		background-color: transparent;
+		li a {font-size: 16px; width: 30px; height: 30px; line-height: 30px;}
+	}
+}
+.b-footer_inline_links{
+	width: 100%;
+	a{display: inline-block; color: rgba(255,255,255,.9); margin: 0 8px; border-bottom: 1px solid transparent; &:hover{border-bottom: 1px solid rgba(255,255,255,.9);}}
+}
+
+.b-scrollToTop{
+	width: 45px; height: 45px; text-align: center; color: #000; z-index: 350; font-size: 0; border: 1px solid #000; border-radius: 50%; text-decoration: none; background-color: #fff; position: fixed; bottom: 75px; right: 40px; visibility: hidden; opacity: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; transform: scale(1); -moz-transform: scale(1); -o-transform: scale(1); -webkit-transform: scale(1); transition: .2s all ease; -moz-transition: .2s all ease; -o-transition: .2s all ease; -webkit-transition: .2s all ease;
+	&:hover{background-color: $accent_default; color: #fff; border-color: $accent_default;}
+	&::after{content: "\e607"; display: inline-block; font-size: 18px; line-height: 42px; font-family: simple-line-icons;}
+	&.b-show_scrollBut{opacity: 1; visibility: visible;}
+}
+
+@media (max-width: 767px){
+	.b-main_footer{
+		.row{margin: auto;}
+	}
+	.b-scrollToTop{bottom: 15px; right: 15px;}
+}

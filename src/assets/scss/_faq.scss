@@ -1,0 +1,73 @@
+.b-faq_bg{
+	background-image: url(../images/faq-bg.jpg);
+	&::after{display: none;}
+	.b-icon_large{color: #fff; position: relative; top: 5px;}
+}
+.b-faq_info{
+	padding-top: 50px;
+	h1{font-size: 38px; line-height: 1; text-align: left; font-weight: bold; margin-bottom: 35px;}
+	h5{font-weight: bold; font-size: 16px; margin-bottom: 20px;}
+	p{margin-bottom: 35px;}
+}
+.b-ask_ques_side{
+	margin-top: 30px; padding: 20px; border: 5px solid #f4f4f4; margin-bottom: 50px;
+	h5{font-weight: bold; font-size: 18px; margin-bottom: 20px;}
+	textarea{height: 150px;}
+}
+.b-faq_tabs{
+	padding-bottom: 50px;
+	> ul{
+		padding-left: 0; list-style-type: none;
+		li{
+			float: left;
+			&::after{content:"/"; display: inline-block; font-size: 16px; margin: 0 15px;}
+			span{
+				font-size: 16px; font-weight: 700; text-transform: uppercase; font-weight: bold; cursor: pointer; position: relative;
+				&::after{content: " "; position: absolute; left: 0; bottom: 0; width: 0; height: 1px; background-color: rgba(0,0,0,1); transition: width .2s ease; -webkit-transition: width .2s ease;}
+				&:hover{
+					&::after{width: 100%;}
+				}
+				&.b-active_faq{
+					color: $accent_default;
+					&::after{background-color: $accent_default; width: 100%;}
+				}
+			}
+			&:last-child::after{display: none;}
+		}
+	}
+	.b-tab_block_single{
+		display: none; padding-top: 15px;
+		&.b-tab_open{
+			display: block;
+		}
+		.b-faq_list{
+			padding-left: 0; list-style-type: none;
+			li{
+				border: 1px solid rgba(129, 129, 129, 0.25); margin-bottom: 15px; padding: 10px 15px;
+			    h5{
+			    	font-size: 16px; margin-bottom: 0; cursor: pointer;
+			    	i{font-size: 20px; opacity: .8;}
+			    }
+			    p{font-size: 15px; margin-top: 20px; margin-bottom: 0;} 
+			    div{display: none;}
+			}
+		}
+	}
+}
+
+@media (max-width: 767px){
+	.b-faq_bg{padding-top: 50px; padding-bottom: 50px;}
+	.b-faq_tabs > ul li{
+		&::after{font-size: 11px; margin: 0 5px;}
+		span{font-size: 12px;}
+	}
+	.b-faq_tabs .b-tab_block_single .b-faq_list {
+		li {
+			h5{
+				padding-right: 25px; position: relative; font-size: 14px;
+				i{position: absolute; right: 10px; top: 10px;}
+			}
+			p{font-size: 13px;}
+		}
+	}
+}
