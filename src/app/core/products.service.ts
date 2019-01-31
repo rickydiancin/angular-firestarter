@@ -29,6 +29,17 @@ export class ProductsService {
       })
     );
   }
+
+  getAllPosts(){
+    //return this.afs.collection('categories', (ref) => ref.where('parent', "==", id).orderBy('categoryName')).snapshotChanges().pipe(
+    return this.afs.collection('posts',  (ref) => ref.where('category', "==", 'news').orderBy('dateCreated')).snapshotChanges().pipe(
+        map((actions) => {
+            return actions.map((a) => {
+            const data = a.payload.doc.data();
+            return { id: a.payload.doc.id, ...data };
+            });
+        }));
+}
   getAllProducts(){
     return this.afs.collection('products').snapshotChanges().pipe(
         map((actions) => {

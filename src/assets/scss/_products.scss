@@ -18,6 +18,8 @@
 	} 
 }
 .b-product_grid_single{
+	background-color: #ececec;
+	padding: 1em;
 	margin-bottom: 40px; position: relative;
 	img{@extend .d-transition; width: 100%;} 
 	&:hover {

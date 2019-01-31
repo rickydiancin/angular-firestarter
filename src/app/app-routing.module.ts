@@ -15,12 +15,14 @@ import { WishlistComponent } from './ui/wishlist/wishlist.component';
 import { ProjectsComponent } from './ui/projects/projects.component';
 import { ProjectProductsComponent } from './ui/projects/project-products/project-products.component';
 import { SingleCategoryComponent } from './ui/category/single-category/single-category.component';
+import { NewsComponent } from './ui/news/news.component';
 
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'login', component: UserLoginComponent },
   { path: 'products', component: CategoryComponent },
+  { path: 'news', component: NewsComponent },
   { path: 'category', component: CategoryComponent },
   { path: 'category/:id', component: SingleCategoryComponent },
   { path: 'search', component: CategoryComponent },
