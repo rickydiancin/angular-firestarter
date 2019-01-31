@@ -55,7 +55,7 @@
             <div class="b-products b-product_grid b-product_grid_two mb-2">
 
               <div class="row clearfix" *ngIf="products2">
-                <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12" *ngFor="let product of products | slice:16:18">
+                <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12" *ngFor="let product of products | slice:15:17">
                   <div class="b-product_grid_single">
                       <div class="b-product_grid_header">
                           <a href="#" routerLink="/product/{{product.productTitle}}.{{product.id}}">
@@ -138,9 +138,44 @@
             </h4>
           </div>
           <div class="clearfix m-0 row">
-            <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12 p-0"  *ngFor="let cat of categories | slice:0:4">
-              <img [src]="cat?.imgURL"  class="d-block m-auto img-fluid" style="padding: 1px;"
-                alt="">
+            <div class="b-blog_default b-blog_grid b-blog_default_list">
+              <div class="b-blog_degault_single" *ngFor="let post of posts | slice:0:1">
+                 <div class="b-blog_single_header">
+                      <div class="b-blog_img_wrap">
+                          <a href="#">
+                              <img [src]="post?.imgURL"  class="img-fluid" alt="">
+                          </a>
+                      </div>
+                      <div class="b-post_time text-center">
+                          <span class="b-post_day">08</span>
+                          <span class="b-post_month">Jan</span>
+                      </div>
+                      <div class="b-post_categories">
+                         <div class="b-post_categorie_list">
+                            <a href="#" rel="category tag">Health</a>
+                         </div>
+                      </div>
+                  </div>  
+                  <div class="b-blog_single_info">
+                      <h5 class="b-entry_title">
+                          <a href="#" rel="bookmark">{{post?.title}}</a>
+                      </h5>
+                      <div class="b-author_info">
+                          <span class="b-author_name">
+                              By <a href="#" rel="author">Gentec Editor</a>
+                          </span>
+                          <span class="b-reply">
+                              <a href="#">Leave a comment</a>
+                          </span>
+                      </div>
+                      <div class="b-blog_single_content">
+                          <p [innerHTML]="post?.content | slice:0:200"></p> </div> 
+                  </div>
+                  <div class="b-read_more">
+                      <a href="#">Read More</a>
+                  </div>
+              </div>
+           
             </div>
            
           </div>
@@ -215,23 +250,21 @@
           <!-- <span class="b-title_separator"><span></span></span> -->
         </h4>
       </div>
-      <div class="row clearfix pt-5" *ngFor="let cat of categories | slice:0:3"> 
+      <div class="row clearfix pt-5" *ngFor="let post of abouts | slice:0:3"> 
         <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-3 col-xs-12">
 
 
-          <img [src]="cat?.imgURL" class="d-block m-auto img-fluid" style="padding: 1px;" alt="">
+          <img [src]="post?.imgURL" class="d-block m-auto img-fluid" style="padding: 1px;" alt="">
 
 
 
         </div>
         <div class="col-xl-9 col-lg-9 col-mb-9 col-sm-9 col-xs-12 ">
           <div class="b-entry_title">
-            <h4 class="text-uppercase">{{cat.categoryName}}</h4>
+            <h4 class="text-uppercase">{{post.title}}</h4>
           </div>
-          <p class="mb-4">
-              {{cat.description}}. Duis senectus condimentum a fringilla donec non adipiscing nullam posuere eros ac turpis mi lectus nunc
-            congue vestibulum. Facilisis lobortis cursus morbi sociosqu tortor condimentum elementum a at conubia
-            vestibulum adipiscing pretium fringilla sit a habitant sed a dui mauris.
+          <p class="mb-4" [innerHTML]="post?.content | slice:0:500">
+             
           </p>
           <!-- <a href="#" class="btn btn-bg text-uppercase">read our story</a> -->
         </div>

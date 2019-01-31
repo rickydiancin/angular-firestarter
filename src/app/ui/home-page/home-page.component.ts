@@ -11,6 +11,8 @@ import { ProductsService } from 'src/app/core/products.service';
 export class HomePageComponent implements OnInit {
   categories: any;
   products:any;
+  posts:any;
+  abouts:any;
   products2:any;
   banners:any;
   solutions:any;
@@ -31,6 +33,14 @@ export class HomePageComponent implements OnInit {
     this.productsService.getAllProducts().subscribe(res => {
       console.log(res);
       this.products = res;
+     });
+     this.productsService.getAllPosts().subscribe(res => {
+      console.log(res);
+      this.posts= res;
+     });
+     this.productsService.getAllAbout().subscribe(res => {
+      console.log(res);
+      this.abouts= res;
      });
      this.productsService.getAllBanners().subscribe(res => {
       console.log('banners: ',res);
