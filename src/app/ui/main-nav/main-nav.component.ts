@@ -50,15 +50,16 @@ export class MainNavComponent {
 
     this.productsService.getAllCategories(res => {
       this.categories = res;
-      _(res).each((value, index) => {
-        // console.log(value.categoryCode)
-        let products = [];
-        this.productsService.getProductByArray(value.categoryCode).subscribe((product) => {
-          products.push(product);
-          this.categories[index].products = products[0];
-          // console.log(products[0])
-        });
-      });
+      console.log(res)
+      // _(res).each((value, index) => {
+      //   // console.log(value.categoryCode)
+      //   let products = [];
+      //   this.productsService.getProductByArray(value.categoryCode).subscribe((product) => {
+      //     products.push(product);
+      //     this.categories[index].products = products[0];
+      //     // console.log(products[0])
+      //   });
+      // });
     });
     // console.log(this.categories);
 

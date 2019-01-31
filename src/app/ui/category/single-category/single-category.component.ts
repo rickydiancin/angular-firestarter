@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/core/products.service';
 import { ActivatedRoute } from '@angular/router';
 import { PaginationInstance } from 'ngx-pagination';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'single-category',
