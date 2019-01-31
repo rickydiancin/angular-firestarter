@@ -10,155 +10,43 @@
     <div class="row clearfix">
       <div class="col-xl-9 col-lg-9 col-mb-8 col-sm-12 col-xs-12">
         <div class="b-blog_default b-blog_grid b-blog_default_list">
-          <div class="b-blog_degault_single">
+          <div class="b-blog_degault_single" *ngFor="let post of posts">
              <div class="b-blog_single_header">
                   <div class="b-blog_img_wrap">
                       <a href="#">
-                          <img src="assets/images/blog/home/blog_default_01.jpg" class="img-fluid" alt="">
+                          <img [src]="post?.imgURL"  class="img-fluid" alt="">
                       </a>
                   </div>
                   <div class="b-post_time text-center">
                       <span class="b-post_day">08</span>
-                      <span class="b-post_month">Aug</span>
+                      <span class="b-post_month">Jan</span>
                   </div>
                   <div class="b-post_categories">
                      <div class="b-post_categorie_list">
-                        <a href="#" rel="category tag">Lifestyle</a>
+                        <a href="#" rel="category tag">Health</a>
                      </div>
                   </div>
               </div>  
               <div class="b-blog_single_info">
                   <h3 class="b-entry_title">
-                      <a href="#" rel="bookmark">Venenatis veulum peus</a>
+                      <a href="#" rel="bookmark">{{post?.title}}</a>
                   </h3>
                   <div class="b-author_info">
                       <span class="b-author_name">
-                          By <a href="#" rel="author">V. Harrison</a>
+                          By <a href="#" rel="author">Gentec Editor</a>
                       </span>
                       <span class="b-reply">
                           <a href="#">Leave a comment</a>
                       </span>
                   </div>
                   <div class="b-blog_single_content">
-                      <p>Susp endisse ullam corper a adipiscing class ullam corper inceptos nisl consequat eros congue ullamcorper suspendisse a penatibus a varius. Montes a platea viva mus ridiculus consequat parturient parturient pretium nascetur at cras porta parturient scelerisque ad mollis at in vivamus risus. Euismod maecenas.</p>
-                  </div> 
+                      <p [innerHTML]="post?.content | slice:0:300"></p> </div> 
               </div>
               <div class="b-read_more">
                   <a href="#">Read More</a>
               </div>
           </div>
-          <div class="b-blog_degault_single">
-             <div class="b-blog_single_header">
-                  <div class="b-blog_img_wrap">
-                      <a href="#">
-                          <img src="assets/images/blog/home/blog_default_02.jpg" class="img-fluid" alt="">
-                      </a>
-                  </div>
-                  <div class="b-post_time text-center">
-                      <span class="b-post_day">24</span>
-                      <span class="b-post_month">May</span>
-                  </div>
-                  <div class="b-post_categories">
-                     <div class="b-post_categorie_list">
-                        <a href="#" rel="category tag">Lifestyle</a>, 
-                        <a href="#" rel="category tag">Travel</a>
-                     </div>
-                  </div>
-              </div>  
-              <div class="b-blog_single_info">
-                  <h3 class="b-entry_title">
-                      <a href="#" rel="bookmark">Non vestibulum lacus sociosqu hac</a>
-                  </h3>
-                  <div class="b-author_info">
-                      <span class="b-author_name">
-                          By <a href="#" rel="author">V. Harrison</a>
-                      </span>
-                      <span class="b-reply">
-                          <a href="#">Leave a comment</a>
-                      </span>
-                  </div>
-                  <div class="b-blog_single_content">
-                      <p>Susp endisse ullam corper a adipiscing class ullam corper inceptos nisl consequat eros congue ullamcorper suspendisse a penatibus a varius. Montes a platea viva mus ridiculus consequat parturient parturient pretium nascetur at cras porta parturient scelerisque ad mollis at in vivamus risus. Euismod maecenas.</p>
-                  </div> 
-              </div>
-              <div class="b-read_more">
-                  <a href="#">Read More</a>
-              </div>
-          </div>
-          <div class="b-blog_degault_single">
-             <div class="b-blog_single_header">
-                  <div class="b-blog_img_wrap">
-                      <a href="#">
-                          <img src="assets/images/blog/home/blog_default_03.jpg" class="img-fluid" alt="">
-                      </a>
-                  </div>
-                  <div class="b-post_time text-center">
-                      <span class="b-post_day">29</span>
-                      <span class="b-post_month">Jun</span>
-                  </div>
-                  <div class="b-post_categories">
-                     <div class="b-post_categorie_list">
-                        <a href="#" rel="category tag">Lifestyle</a>
-                     </div>
-                  </div>
-              </div>  
-              <div class="b-blog_single_info">
-                  <h3 class="b-entry_title">
-                      <a href="#" rel="bookmark">Leo placerat ac a dis</a>
-                  </h3>
-                  <div class="b-author_info">
-                      <span class="b-author_name">
-                          By <a href="#" rel="author">V. Harrison</a>
-                      </span>
-                      <span class="b-reply">
-                          <a href="#">Leave a comment</a>
-                      </span>
-                  </div>
-                  <div class="b-blog_single_content">
-                      <p>Susp endisse ullam corper a adipiscing class ullam corper inceptos nisl consequat eros congue ullamcorper suspendisse a penatibus a varius. Montes a platea viva mus ridiculus consequat parturient parturient pretium nascetur at cras porta parturient scelerisque ad mollis at in vivamus risus. Euismod maecenas.</p>
-                  </div> 
-              </div>
-              <div class="b-read_more">
-                  <a href="#">Read More</a>
-              </div>
-          </div>
-          <div class="b-blog_degault_single">
-             <div class="b-blog_single_header">
-                  <div class="b-blog_img_wrap">
-                      <a href="#">
-                          <img src="assets/images/blog/home/blog_default_04.jpg" class="img-fluid" alt="">
-                      </a>
-                  </div>
-                  <div class="b-post_time text-center">
-                      <span class="b-post_day">17</span>
-                      <span class="b-post_month">Aug</span>
-                  </div>
-                  <div class="b-post_categories">
-                     <div class="b-post_categorie_list">
-                        <a href="#" rel="category tag">Lifestyle</a>
-                     </div>
-                  </div>
-              </div>  
-              <div class="b-blog_single_info">
-                  <h3 class="b-entry_title">
-                      <a href="#" rel="bookmark">Cum fames a cras dictumst</a>
-                  </h3>
-                  <div class="b-author_info">
-                      <span class="b-author_name">
-                          By <a href="#" rel="author">V. Harrison</a>
-                      </span>
-                      <span class="b-reply">
-                          <a href="#">Leave a comment</a>
-                      </span>
-                  </div>
-                  <div class="b-blog_single_content">
-                      <p>Susp endisse ullam corper a adipiscing class ullam corper inceptos nisl consequat eros congue ullamcorper suspendisse a penatibus a varius. Montes a platea viva mus ridiculus consequat parturient parturient pretium nascetur at cras porta parturient scelerisque ad mollis at in vivamus risus. Euismod maecenas.</p>
-                  </div> 
-              </div>
-              <div class="b-read_more">
-                  <a href="#">Read More</a>
-              </div>
-          </div>
+       
         </div>
       </div>  
       <div class="col-xl-3 col-lg-3 col-mb-4 col-sm-12 col-xs-12">
