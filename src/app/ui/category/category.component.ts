@@ -80,7 +80,7 @@ export class CategoryComponent implements OnInit {
       this.productsTemp = res;
       this.products = res;
       this.productsService.getAllCategories((resCategory:any) => {
-        this.categories = _.find(resCategory, {'sub': null});
+        this.categories = _(resCategory).filter({ 'parent': '' }).value();
         console.log(resCategory, this.categories)
         // console.log(_.size())
         // _(resCategory).each((value, index) => {
