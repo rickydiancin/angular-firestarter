@@ -58,7 +58,15 @@ export class SingleCategoryComponent implements OnInit {
       this.category = res;
     });
   }
+  sortBy(data:any){
 
+  }
+  rangeFilter(){
+
+  }
+  priceFilter(data:any){
+    
+  }
   getAllCategoryProducts(id) {
     this.productsService.getAllCategoryProducts(id).subscribe(async (res: any) => {
       console.log(res)

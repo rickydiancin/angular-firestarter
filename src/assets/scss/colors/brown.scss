@@ -1,0 +1,11 @@
+$accent_brown: #31262a;
+.b-blog_grid .b-blog_single_header .b-post_cat_pink .b-post_categorie_list{background: $accent_brown;}
+.b-main_menu > ul > li > a:hover{color: $accent_brown;}
+.b-banner_lg .b-banner_lg_img h3{text-shadow: 0 0 5px #191212; -webkit-text-shadow: 0 0 5px #191212;}
+ 
+.b-header_right .b-wishlist_icon span,.b-header_bg {
+    background-color:  $accent_brown;
+}
+.btn.btn-bg {
+    background-color: $accent_brown; color: #fff;
+}

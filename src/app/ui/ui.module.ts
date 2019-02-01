@@ -26,6 +26,7 @@ import { NgPipesModule } from 'ngx-pipes';
 import { ProjectProductsComponent } from './projects/project-products/project-products.component';
 import { Angular2CsvModule } from 'angular2-csv';
 import { SingleCategoryComponent } from './category/single-category/single-category.component';
+import { NewsComponent } from './news/news.component';
 
 @NgModule({
   imports: [CommonModule, RouterModule, ReactiveFormsModule, NgxPaginationModule, TruncateModule, FormsModule, NgPipesModule, NgbModule, Angular2CsvModule],
@@ -46,7 +47,8 @@ import { SingleCategoryComponent } from './category/single-category/single-categ
     AddProjectComponent,
     AddToProjectComponent,
     ProjectProductsComponent,
-    SingleCategoryComponent
+    SingleCategoryComponent,
+    NewsComponent
   ],
   entryComponents:[
     AddProjectComponent,

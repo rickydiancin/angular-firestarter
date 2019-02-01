@@ -1,51 +1,44 @@
-<div class="b-sidemenu_sides">
-    <div class="container">
-      <div class="row">
-      
-        <div class="col-xl-9 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
-          <div class="b-search_bar">
-            <form action="#">
-              <div class="form-group">
-                <input type="text" placeholder="Search Products">
-                <button class="btn"><i class="icons icon-magnifier"></i></button>
-              </div>
-            </form>
-          </div>
-         
 
-            <ngb-carousel *ngIf="banners">
-                <ng-template ngbSlide *ngFor="let banner of banners">
-                  <img [src]="banner?.imgURL"  alt="{{banner.bannerTitle}}" height="500">
-                  <div class="carousel-caption">
-                    <h3>{{banner.bannerTitle}}</h3>
-                    <p>{{banner.description}}</p>
-                  </div>
-                </ng-template>
-        
-              </ngb-carousel>
+  <section id="b-products_cat"> 
 
-        </div>
-        <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-12 col-xs-12 hidden-lg-down">
-                <div class="column">
-                  <div class="b-main_menu b-vertical b-vertical-menu-bg b-dropdown_wrapper from-bottom">
-                    <h4 class="menu-heading"><b>Categories<i class="fa fa-angle-down"></i></b></h4>
-                    <ul class="categories b-vertical-menu-bg b-dropdown_content ml-0"> 
-                        <!-- Mega menu -->
-                        <!-- Top level items -->
-                 
-                        <!-- Top level items -->
-                        <li *ngFor="let cat of categories">
-                            <a href="#" routerLink="/category"><span class="top">{{cat.categoryName}}</span></a>
-                        </li>
-                        <!-- Top level items -->
-                       
-                    </ul>
-                  </div>
+    <div class="b-featured_cat">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-9 col-lg-9 col-mb-9 col-sm-9 col-xs-12">
+            <div class="b-search_bar">
+              <form action="#">
+                <div class="form-group">
+                  <input type="text" placeholder="Search Products">
+                  <button class="btn"><i class="icons icon-magnifier"></i></button>
                 </div>
+              </form>
+            </div>
+            <ngb-carousel *ngIf="banners">
+              <ng-template ngbSlide *ngFor="let banner of banners ">
+                <img [src]="banner?.imgURL"  alt="{{banner.bannerTitle}}" height="500">
+                <div class="carousel-caption">
+                  <h3>{{banner.bannerTitle}}</h3>
+                  <p>{{banner.description}}</p>
+                </div>
+              </ng-template>
+      
+            </ngb-carousel>
+          </div>
+    
+          <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-3 col-xs-12">
+            <div class="b-featured_cat_in">
+              <a href="#" routerLink="/news">
+               <img src="assets/images/sidebanner.png" class="img-fluid d-block" alt="">
+              </a>
+              <div class="b-cat_mask">
+                <a href="#" routerLink="/news" class="category-link-overlay">Learn More</a> 
               </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div> 
-  </div>
+    </div>
+</section>  
 <section id="b-our_story">
   <div class="b-our_story pt-5 pb-5">
     <div class="container">
@@ -56,21 +49,22 @@
             <!-- <span class="b-section_title_over d-block text-center">Accessories store</span> -->
             <h4 class="text-center text-uppercase">
               BEST SELLERS
-              <span class="b-title_separator"><span></span></span>
+              <!-- <span class="b-title_separator"><span></span></span> -->
             </h4>
+          </div>
             <div class="b-products b-product_grid b-product_grid_two mb-2">
 
               <div class="row clearfix" *ngIf="products2">
-                <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12" *ngFor="let product of products | slice:16:18">
+                <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12" *ngFor="let product of products | slice:15:17">
                   <div class="b-product_grid_single">
                       <div class="b-product_grid_header">
                           <a href="#" routerLink="/product/{{product.productTitle}}.{{product.id}}">
                             <!-- <img data-src="assets/images/products/home/product_grid_01_01.jpg, assets/images/products/home/product_grid_01_02.jpg" src="assets/images/products/home/product_grid_01_01.jpg" class="img-fluid img-switch d-block" alt="" style="">
                           -->
                           <div class="b-product_grid_info">
-                          <h1 class="product-title">
+                          <h5 class="product-title">
                             <a href="#" routerLink="/product/{{product?.productTitle}}.{{product?.id}}"><b>{{ product?.productTitle | words: 4}}</b></a>
-                          </h1>
+                          </h5>
                           </div>
                             <img [src]="product?.imageURL || product?.primaryImageURL || './assets/images/not_available.jpg'" width="100%" height="auto" class="img-fluid img-switch d-block">
                          
@@ -86,6 +80,9 @@
                                 <i data-toggle="tooltip" data-placement="left" title="" class="icon-magnifier-add icons" data-original-title="Quick View"></i>
                               </a>
                           </div>
+                          <div class="b-product_labels b-labels_rounded b-new">
+                            <span class="b-product_label">New</span>
+                           </div>
                       </div>
                     <div class="b-product_grid_info">
                         <!-- <h3 class="product-title">
@@ -97,7 +94,7 @@
                           <div class="b-product_grid_toggle float-left">
                               <span class="b-price">${{ product?.productPrice}}</span>
                               <span class="b-add_cart">
-                                  <i class="icon-basket icons"></i>
+                                  <i class="icon-plus icons"></i>
                                   <a href="#">Add To Project</a>
                               </span>
                           </div>
@@ -117,6 +114,7 @@
                              </ul> -->
                          </div>
                         </div>
+                    
                      </div>
                   </div>
                 </div>
@@ -129,20 +127,55 @@
                         Duis senectus condimentum a fringilla donec non adipiscing nullam posuere eros ac turpis mi lectus nunc congue vestibulum. Facilisis lobortis cursus morbi sociosqu tortor condimentum elementum a at conubia vestibulum adipiscing pretium fringilla sit a habitant sed a dui mauris.
                     </p>
                     <a href="#" class="btn btn-bg text-uppercase">read our story</a> -->
-          </div>
+   
         </div>
         <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12">
           <div class="b-section_title">
             <span class="b-section_title_over d-block text-center">Latest Articles</span>
             <h4 class="text-center text-uppercase">
               PROMOTIONS
-              <span class="b-title_separator"><span></span></span>
+              <!-- <span class="b-title_separator"><span></span></span> -->
             </h4>
           </div>
           <div class="clearfix m-0 row">
-            <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12 p-0"  *ngFor="let cat of categories | slice:0:4">
-              <img [src]="cat?.imgURL"  class="d-block m-auto img-fluid" style="padding: 1px;"
-                alt="">
+            <div class="b-blog_default b-blog_grid b-blog_default_list">
+              <div class="b-blog_degault_single" *ngFor="let post of posts | slice:0:1">
+                 <div class="b-blog_single_header">
+                      <div class="b-blog_img_wrap">
+                          <a href="#">
+                              <img [src]="post?.imgURL"  class="img-fluid" alt="">
+                          </a>
+                      </div>
+                      <div class="b-post_time text-center">
+                          <span class="b-post_day">08</span>
+                          <span class="b-post_month">Jan</span>
+                      </div>
+                      <div class="b-post_categories">
+                         <div class="b-post_categorie_list">
+                            <a href="#" rel="category tag">Health</a>
+                         </div>
+                      </div>
+                  </div>  
+                  <div class="b-blog_single_info">
+                      <h5 class="b-entry_title">
+                          <a href="#" rel="bookmark">{{post?.title}}</a>
+                      </h5>
+                      <div class="b-author_info">
+                          <span class="b-author_name">
+                              By <a href="#" rel="author">Gentec Editor</a>
+                          </span>
+                          <span class="b-reply">
+                              <a href="#">Leave a comment</a>
+                          </span>
+                      </div>
+                      <div class="b-blog_single_content">
+                          <p [innerHTML]="post?.content | slice:0:200"></p> </div> 
+                  </div>
+                  <div class="b-read_more">
+                      <a href="#">Read More</a>
+                  </div>
+              </div>
+           
             </div>
            
           </div>
@@ -161,7 +194,7 @@
   <div class="b-blog b-blog_grid text-center b-blog_grid_three mb-5 pt-5">
     <div class="container">
       <div class="row clearfix">
-        <div *ngFor="let cat of categories | slice:0:6" class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-xs-12">
+        <div *ngFor="let cat of solutions | slice:0:6" class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-xs-12">
           <div class="b-blog_grid_single">
             <div class="b-blog_single_header">
               <div class="b-blog_img_wrap">
@@ -183,7 +216,7 @@
             </div>
             <div class="b-blog_single_info">
               <h3 class="b-entry_title pt-2">
-                <a href="#" rel="bookmark" routerLink="/category">{{cat.categoryName}}</a>
+                <a href="#" rel="bookmark" routerLink="/category">{{cat.solutionName}}</a>
               </h3>
               <!-- <div class="b-author_info">
                                   <span class="b-author_name">
@@ -214,26 +247,24 @@
       <div class="b-section_title">
         <h4 class="text-center text-uppercase">
           About Our Company
-          <span class="b-title_separator"><span></span></span>
+          <!-- <span class="b-title_separator"><span></span></span> -->
         </h4>
       </div>
-      <div class="row clearfix pt-5" *ngFor="let cat of categories | slice:0:3"> 
+      <div class="row clearfix pt-5" *ngFor="let post of abouts | slice:0:3"> 
         <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-3 col-xs-12">
 
 
-          <img [src]="cat?.imgURL" class="d-block m-auto img-fluid" style="padding: 1px;" alt="">
+          <img [src]="post?.imgURL" class="d-block m-auto img-fluid" style="padding: 1px;" alt="">
 
 
 
         </div>
         <div class="col-xl-9 col-lg-9 col-mb-9 col-sm-9 col-xs-12 ">
           <div class="b-entry_title">
-            <h4 class="text-uppercase">{{cat.categoryName}}</h4>
+            <h4 class="text-uppercase">{{post.title}}</h4>
           </div>
-          <p class="mb-4">
-              {{cat.description}}. Duis senectus condimentum a fringilla donec non adipiscing nullam posuere eros ac turpis mi lectus nunc
-            congue vestibulum. Facilisis lobortis cursus morbi sociosqu tortor condimentum elementum a at conubia
-            vestibulum adipiscing pretium fringilla sit a habitant sed a dui mauris.
+          <p class="mb-4" [innerHTML]="post?.content | slice:0:500">
+             
           </p>
           <!-- <a href="#" class="btn btn-bg text-uppercase">read our story</a> -->
         </div>

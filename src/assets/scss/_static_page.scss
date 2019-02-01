@@ -1,0 +1,67 @@
+.b-not_found{
+	padding-bottom: 100px; padding-top: 50px;
+	.b-page_header{
+		border-bottom: 0; padding-bottom: 0; margin: 0; margin-bottom: 10px; position: relative; overflow: hidden;
+		&::before{content: "404"; top: 0; width: 100%; text-align: center; left: 0; position: absolute; color: rgba(142,142,142,.15); font-size: 400px; line-height: 320px; font-weight: 700;}
+		h1{margin: auto; padding: 115px 0; text-align: center; text-transform: uppercase; color: $accent_default; opacity: .8; letter-spacing: 3px; font-size: 75px; font-weight: 700;}
+	}
+	h2{font-size: 36px;  letter-spacing: 1px; line-height: 1.5; color: #1B1919; font-weight: bold;}
+	p{line-height: 1.7; color: #8E8E8E; margin-bottom: 20px;}
+
+	.b-searchform{
+		max-width: 350px; margin: auto; position: relative;
+		input{width: 100%; height: 40px; position: relative; padding-right: 105px; border: 1px solid rgba(129,129,129,.25); font-size: 14px; line-height: 18px; padding: 0 10px; transition: border-color .5s; box-shadow: none; border-radius: 0;}
+		.btn{cursor: pointer; background-color: $accent_default; color: #fff; position: absolute; right: 0; top: 0;  &:hover{opacity: 0.75;}}
+	}
+}
+
+.b-promo_popup{
+	.modal-dialog{max-width: 900px;}
+	.b-promo_content{
+		padding: 70px 40px 20px 10px;
+	}
+	.b-newsletter_form{  
+		input[type="email"]{
+			padding-left: 25px; color: #000; display: block; min-height: 40px; background-color: transparent; border: none; border-bottom: 2px solid rgba(0,0,0,1);  box-shadow: none; width: 100%;
+			&:focus{border: none; border-bottom: 2px solid rgba(0,0,0,.7);}
+		} 
+		.b-submit{background-color: #000; color: #fff}
+		::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+		  color: #000; opacity: 1;
+		}
+		::-moz-placeholder { /* Firefox 19+ */
+		  color: #000; opacity: 1;
+		}
+		:-ms-input-placeholder { /* IE 10+ */
+		  color: #000; opacity: 1;
+		}
+		:-moz-placeholder { /* Firefox 18- */
+		  color: #000; opacity: 1;
+		}
+	}
+
+	h1{
+		margin-bottom: 30px; font-family: Karla,'MS Sans Serif', Geneva, sans-serif; font-weight: normal; font-style: normal; font-size: 28px; text-align: center;
+		b{color: $accent_default;}
+	}
+}
+
+@media (max-width: 990px){
+	.b-not_found {
+		.b-page_header{
+			&::before{font-size: 300px;}
+		}
+		h2{font-size: 28px;}
+	}
+}
+
+@media (max-width: 767px){
+	.b-not_found {
+		.b-page_header{
+			h1{font-size: 35px; padding: 55px 0;}
+			&::before{font-size: 150px; line-height: 150px;}
+		}
+		h2{font-size: 22px;}
+		.b-searchform{max-width: 300px;}
+	}
+}

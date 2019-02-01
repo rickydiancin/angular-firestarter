@@ -17,7 +17,10 @@ interface User {
   uid: string;
   email?: string | null;
   photoURL?: string;
-  displayName?: string;
+  firstName?: string;
+  lastName?: string;
+  isActive?: boolean;
+  role?:string;
 }
 
 @Injectable()
@@ -82,37 +85,38 @@ export class AuthService {
   }
 
   private oAuthLogin(provider: any) {
-    return this.afAuth.auth
-      .signInWithPopup(provider)
-      .then(credential => {
-        this.notify.update('Welcome to Firestarter!!!', 'success');
-        return this.updateUserData(credential.user);
-      })
-      .catch(error => this.handleError(error));
+    // return this.afAuth.auth
+    //   .signInWithPopup(provider)
+    //   .then(credential => {
+    //     this.notify.update('Welcome to Firestarter!!!', 'success');
+    //     return this.updateUserData(credential.user);
+    //   })
+    //   .catch(error => this.handleError(error));
   }
 
   //// Anonymous Auth ////
 
   anonymousLogin() {
-    return this.afAuth.auth
-      .signInAnonymously()
-      .then(credential => {
-        this.notify.update('Welcome to Firestarter!!!', 'success');
-        return this.updateUserData(credential.user); // if using firestore
-      })
-      .catch(error => {
-        this.handleError(error);
-      });
+    // return this.afAuth.auth
+    //   .signInAnonymously()
+    //   .then(credential => {
+    //     this.notify.update('Welcome to Firestarter!!!', 'success');
+    //     return this.updateUserData(credential.user); // if using firestore
+    //   })
+    //   .catch(error => {
+    //     this.handleError(error);
+    //   });
   }
 
   //// Email/Password Auth ////
 
-  emailSignUp(email: string, password: string) {
+  emailSignUp(data:any) {
+    console.log('passed data: ',data)
     return this.afAuth.auth
-      .createUserWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(data.email2, data.password2)
       .then(credential => {
-        this.notify.update('Welcome new user!', 'success');
-        return this.updateUserData(credential.user); // if using firestore
+        //this.notify.update('Welcome new user!', 'success');
+        return this.updateUserData(credential.user, data); // if using firestore
       })
       .catch(error => this.handleError(error));
   }
@@ -151,7 +155,7 @@ export class AuthService {
   }
 
   // Sets user data to firestore after succesful login
-  private updateUserData(user: User) {
+  private updateUserData(user: User, userdata: any) {
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(
       `users/${user.uid}`
     );
@@ -159,8 +163,11 @@ export class AuthService {
     const data: User = {
       uid: user.uid,
       email: user.email || null,
-      displayName: user.displayName || 'nameless user',
-      photoURL: user.photoURL || 'https://goo.gl/Fz9nrQ'
+      firstName: userdata.fname || 'nameless',
+      lastName: userdata.lname || 'user',
+      photoURL: user.photoURL || 'https://goo.gl/Fz9nrQ',
+      isActive: true,
+      role: 'user'
     };
     return userRef.set(data);
   }

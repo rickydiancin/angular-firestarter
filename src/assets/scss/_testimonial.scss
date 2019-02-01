@@ -1,0 +1,60 @@
+.b-testimonial_inner{padding-top: 15px; padding-bottom: 15px;}
+.b-testimonial_content{
+	margin-top: 15px;
+	p{line-height: 1.6; color: #4C4C4C; margin-bottom: 15px;}
+	footer{
+		font-weight: 700; color: #1B1919; 
+		span{color: #4C4C4C; font-weight: 400; &::before{content:" - ";}}
+	}
+}
+
+.b-instagram_pics{
+	display: flex; display: -webkit-flex; display: -ms-flex; flex-direction: row; -webkit-flex-direction: row; -ms-flex-direction: row; -webkit-align-items: stretch; -ms-flex-align: stretch; align-items: stretch; -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; flex-wrap: wrap; -webkit-justify-content: flex-start; -ms-justify-content: flex-start; justify-content: flex-start;
+	li{
+		padding: 5px; width: 33.33333%; -webkit-flex-basis: 33.33333%; -ms-flex-basis: 33.33333%; flex-basis: 33.33333%; -webkit-backface-visibility: hidden; -ms-backface-visibility: hidden; backface-visibility: hidden;  margin-bottom: 0; position: relative; text-align: center;
+		a{position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 3;}
+		.wrapp-pics {position: relative; overflow: hidden;}
+		.hover-mask {
+			position: absolute; top: 0; left: 0; z-index: 2; width: 100%; height: 100%; @extend .d-transition;
+			&::after{
+				content: "\f105"; font-size: 40px; position: absolute; top: 40%; left: -20px; width: 100%; font-family: FontAwesome; color: #fff; visibility: hidden; opacity: 0;  @extend .d-transition;
+			}
+		}
+		&:hover{
+			.hover-mask{
+				background-color: rgba(0,0,0,.7);
+				&::after{visibility: visible; opacity: 1; left: 0;}
+			}
+		}
+	}
+}
+
+.b-instagram_pics_01{
+	li{
+		width: 16.65%; -webkit-flex-basis: 16.65%; -ms-flex-basis: 16.65%; flex-basis: 16.65%; padding: 0;
+	}
+}
+
+.b-gallery_logo{
+	background-color: #f4f4f4;
+	h2{margin: 38px 0 0; font-size: 24px; text-transform: uppercase; text-align: center; border-right: 2px solid #e4e4e4; letter-spacing: 1px;}
+}
+.b-gallery_logo_list{
+	padding: 30px 0;
+	ul{
+		li{
+			display: inline-block;
+			img{height: 46px;}
+		}
+	}
+}
+
+.b-partners_02{
+	text-align: center;
+	li {
+		width: 16%; 
+		img {
+		    height: 46px; display: inline-block;
+		}
+	}
+}

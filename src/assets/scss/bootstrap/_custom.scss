@@ -1,0 +1,30 @@
+// Bootstrap overrides
+//
+// Copy variables from `_variables.scss` to this file to override default values
+// without modifying source files.
+p{line-height: 1.5;}
+.b-accent_color{color: $accent_default;}
+.btn-bordered{border: 2px solid #000; background-color: transparent; color: #000; font-weight: 600; padding: 12px 25px; &:hover{background-color: #000; color: #fff;}}
+.d-transition_fast{-webkit-transition: all .2s; -moz-transition: all .2s; -o-transition: all .2s; transition: all .2s;}
+.d-transition{-webkit-transition: all .3s; -moz-transition: all .3s; -o-transition: all .3s; transition: all .3s;}
+.d-transition_slow{-webkit-transition: all .7s; -moz-transition: all .7s; -o-transition: all .7s; transition: all .7s;}
+.b-font_default{font-family: $default_font !important;}
+.b-section_line_title{
+	span{display: inline-block; font-weight: bold; padding: 0 25px; background-color: #FFF; position: relative; z-index: 99;}
+	h2{
+		margin-bottom: 0; font-size: 26px; line-height: 1.2; text-align: center; position: relative; 
+		&::after{content:""; display: block; height: 1px; width: 100%; background-color: #ececec; position: absolute; top: 0; bottom: 0; margin: auto;}
+	}
+}
+.btn.btn-bg{background-color: $accent_default;}
+/* Minimal */
+.b-minimal{
+	background-color: rgba(136, 136, 136, 0.14);
+	.b-wrapper{
+		max-width: 1200px; margin: auto; background: #fff;
+	}
+	.b-header {
+		border-bottom: none;
+		.container{width: 100%;}
+	}
+}

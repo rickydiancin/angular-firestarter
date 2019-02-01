@@ -28,7 +28,8 @@
               "src/manifest.json"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/assets/scss/main.scss",
+              "src/assets/scss/colors/green.scss"
             ],
             "scripts": []
           },
@@ -78,7 +79,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.scss"
+              "src/assets/sass/main.scss"
             ],
             "scripts": [],
             "assets": [
