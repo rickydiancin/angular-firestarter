@@ -49,6 +49,7 @@ export class SingleCategoryComponent implements OnInit {
     });
     // this.id = this.route.snapshot.params.id;
     // this.getCategory();
+    this.getAllCategories();
   }
 
   getCategory(id) {
@@ -65,29 +66,36 @@ export class SingleCategoryComponent implements OnInit {
       // console.log(res);
       this.productsTemp = res;
       this.products = res;
-      this.productsService.getAllCategories(resCategory => {
-        this.categories = resCategory;
-        _(resCategory).each((value, index) => {
-          let products = [];
-          this.productsService.getProductByArray(value.categoryCode).subscribe((product) => {
-            products.push(product);
-            this.categories[index].products = products[0];
-          });
-        });
-        _(res).each((value: any, index) => {
-          let cat = [];
-          value.categories.map((category, index2) => {
-            // console.log(_(this.categories).filter({ categoryCode: category }).value()[0].categoryName)
-            cat.push(_(resCategory).filter({ categoryCode: category }).value()[0]['categoryName']);
-            this.products[index].categoryName = cat;
-            if (cat) {
-              this.productsTemp[index].categoryName = cat.join(', ');
-            }
-          })
-        })
-      })
+      // this.productsService.getAllCategories(resCategory => {
+      //   this.categories = _(resCategory).filter({'sub': null || undefined});
+      //   // _(resCategory).each((value, index) => {
+      //   //   let products = [];
+      //   //   this.productsService.getProductByArray(value.categoryCode).subscribe((product) => {
+      //   //     products.push(product);
+      //   //     this.categories[index].products = products[0];
+      //   //   });
+      //   // });
+      //   // _(res).each((value: any, index) => {
+      //   //   let cat = [];
+      //   //   value.categories.map((category, index2) => {
+      //   //     // console.log(_(this.categories).filter({ categoryCode: category }).value()[0].categoryName)
+      //   //     cat.push(_(resCategory).filter({ categoryCode: category }).value()[0]['categoryName']);
+      //   //     this.products[index].categoryName = cat;
+      //   //     if (cat) {
+      //   //       this.productsTemp[index].categoryName = cat.join(', ');
+      //   //     }
+      //   //   })
+      //   // })
+      // })
       console.log(res);
     });
+  }
+
+  getAllCategories() {
+    this.productsService.getAllCategories(resCategory => {
+      this.categories = _(resCategory).filter({ 'parent': '' }).value();
+      console.log('categories', this.categories)
+    })
   }
 
 }

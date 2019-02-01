@@ -68,9 +68,13 @@ getAllCategories(callback){
           });
       })).subscribe(res => {
           // console.log(res);
-          res.forEach(c => {
-            this.getCategory(c['categoryCode'], callback => {
-                      c['sub'] = callback;
+          res.forEach((c:any) => {
+            this.getSubCategory(c['categoryCode'], callback => {
+                      if(callback.length) {
+                        c.sub = callback;
+                      } else {
+                        c.sub = null;
+                      }
                   })
             // c['categoryCode']
               // if(c['parent'] != ''){
@@ -82,7 +86,7 @@ getAllCategories(callback){
           return callback(res);
       })
 }
-getCategory(id, callback){
+getSubCategory(id, callback){
   // console.log(id)
   return this.afs.collection('categories', (ref) => ref.where('parent', "==", id).orderBy('categoryName')).snapshotChanges().pipe(
     map((actions) => {
@@ -92,6 +96,13 @@ getCategory(id, callback){
       });
     })
   ).subscribe(res => {
+      return callback(res);
+  })
+}
+
+getCategory(id, callback){
+  // console.log(id)
+  return this.afs.doc('categories/'+ id).valueChanges().subscribe(res => {
       return callback(res);
   })
 }
