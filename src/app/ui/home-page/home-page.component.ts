@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ScriptsService } from 'src/app/core/scripts.service';
 import { ProductsService } from 'src/app/core/products.service';
-
+import { TypeaheadMatch } from 'ngx-bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'home-page',
@@ -9,6 +10,10 @@ import { ProductsService } from 'src/app/core/products.service';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
+
+  public model: string;
+  // states: string[] = [];
+
   categories: any;
   products:any;
   posts:any;
@@ -19,7 +24,8 @@ export class HomePageComponent implements OnInit {
 
   constructor(
     private scriptsService: ScriptsService,
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -53,6 +59,11 @@ export class HomePageComponent implements OnInit {
       console.log('latest products: ',res);
       this.products2 = res;
      });
+  }
+
+  onSelect(event: TypeaheadMatch): void {
+    console.log(event)
+    this.router.navigate(['/product/' + event.item.productCode]);
   }
 
 }

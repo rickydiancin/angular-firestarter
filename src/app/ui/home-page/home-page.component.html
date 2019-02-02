@@ -7,8 +7,25 @@
           <div class="col-xl-9 col-lg-9 col-mb-9 col-sm-9 col-xs-12">
             <div class="b-search_bar">
               <form action="#">
+                <ng-template #customItemTemplate let-model="item" let-index="index">
+                  <!-- <h5>{{model.productDescription}} {{model.productTitle}} Index: {{ index }}</h5> -->
+                  <!-- <a style="color:inherit" href="#" routerLink="/product/{{model?.productCode}}"> -->
+                    <img src="{{model?.primaryImageURLS || './assets/images/not_available.jpg'}}" alt="" height="50px" width="50px">
+                    {{model?.productTitle | titlecase}}
+                  <!-- </a> -->
+                </ng-template>
                 <div class="form-group">
-                  <input type="text" placeholder="Search Products">
+                  <input
+                  autocomplete="off"
+                  [disabled]="!products"
+                  name="model"
+                  (typeaheadOnSelect)="onSelect($event)"
+                  [(ngModel)]="model"
+                  [typeahead]="products"
+                  typeaheadOptionField="productTitle"
+                  [typeaheadItemTemplate]="customItemTemplate"
+                  [typeaheadMinLength]="2"
+                  type="text" placeholder="Search Products">
                   <button class="btn"><i class="icons icon-magnifier"></i></button>
                 </div>
               </form>

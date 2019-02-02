@@ -21,16 +21,17 @@ import { FormsModule } from '@angular/forms';
 import { ProjectsComponent } from './projects/projects.component';
 import { AddProjectComponent } from './projects/add-project/add-project.component';
 import { AddToProjectComponent } from './product/add-to-project/add-to-project.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule, NgbTypeaheadModule} from '@ng-bootstrap/ng-bootstrap';
 import { NgPipesModule } from 'ngx-pipes';
 import { ProjectProductsComponent } from './projects/project-products/project-products.component';
 import { Angular2CsvModule } from 'angular2-csv';
 import { SingleCategoryComponent } from './category/single-category/single-category.component';
 import { NewsComponent } from './news/news.component';
 import { InvoiceComponent } from './invoice/invoice.component';
+import { TypeaheadModule } from 'ngx-bootstrap';
 
 @NgModule({
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, NgxPaginationModule, TruncateModule, FormsModule, NgPipesModule, NgbModule, Angular2CsvModule],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, NgxPaginationModule, TruncateModule, FormsModule, NgPipesModule, NgbModule, Angular2CsvModule, TypeaheadModule.forRoot()],
   declarations: [
     UserLoginComponent,
     HomePageComponent,
