@@ -27,6 +27,7 @@ import { ProjectProductsComponent } from './projects/project-products/project-pr
 import { Angular2CsvModule } from 'angular2-csv';
 import { SingleCategoryComponent } from './category/single-category/single-category.component';
 import { NewsComponent } from './news/news.component';
+import { InvoiceComponent } from './invoice/invoice.component';
 
 @NgModule({
   imports: [CommonModule, RouterModule, ReactiveFormsModule, NgxPaginationModule, TruncateModule, FormsModule, NgPipesModule, NgbModule, Angular2CsvModule],
@@ -48,7 +49,8 @@ import { NewsComponent } from './news/news.component';
     AddToProjectComponent,
     ProjectProductsComponent,
     SingleCategoryComponent,
-    NewsComponent
+    NewsComponent,
+    InvoiceComponent
   ],
   entryComponents:[
     AddProjectComponent,

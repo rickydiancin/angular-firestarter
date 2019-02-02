@@ -25,7 +25,7 @@
           <p>Once approved you will be able to submit any Project you have created by clicking 'Request Quote' from
             within your project.</p> -->
 
-            <table id="cart" class="table table-bordered table-condensed">
+            <table id="cart" class="table table-bordered table-condensed" *ngIf="productProject">
               <thead>
                 <tr>
                   <th colspan="2">Product</th>
@@ -38,7 +38,7 @@
               <tbody>
                 <tr *ngFor="let product of productProject">
                   <td>
-                    <img [src]="product?.imageURL || './assets/images/not_available.jpg'" alt="">
+                    <img [src]="product?.imageURL || './assets/images/not_available.jpg'" alt="" height="100px" width="100px">
                   </td>
                   <td width="20%">{{product?.productTitle | titlecase}}</td>
                   <td >type</td>
@@ -78,6 +78,9 @@
                 <tr>
                   <td>
                     <button type="button" class="btn btn-primary btn-block">Update Quantities</button>
+                  </td>
+                  <td>
+                    <a href="projects/{{product?.productTitle}}.{{product?.productCode}}/invoice"><button type="button" class="btn btn-primary btn-block">Save as PDF</button></a>
                   </td>
                   <td>
                     <button [disabled]="!productProject" (click)="downloadFile()" type="button" class="btn btn-primary btn-block">Export as Excel</button>

@@ -16,6 +16,7 @@ import { ProjectsComponent } from './ui/projects/projects.component';
 import { ProjectProductsComponent } from './ui/projects/project-products/project-products.component';
 import { SingleCategoryComponent } from './ui/category/single-category/single-category.component';
 import { NewsComponent } from './ui/news/news.component';
+import { InvoiceComponent } from './ui/invoice/invoice.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'wishlist', component: WishlistComponent },
   { path: 'projects', component: ProjectsComponent },
   { path: 'projects/:id', component: ProjectProductsComponent },
+  { path: 'projects/:id/invoice', component: InvoiceComponent },
   { path: 'company', component: CompanyComponent },
   { path: 'product/:id', component: ProductComponent },
   { path: 'notes', component: NotesListComponent,  canActivate: [AuthGuard] },
