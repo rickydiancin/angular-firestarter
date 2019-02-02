@@ -138,7 +138,8 @@
               </button>
               <angular2csv *ngIf="productExport" [data]="productExport" filename="productExport" [options]="options" class="d-none"></angular2csv>
               <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                <a (click)="downloadPDF()" class="dropdown-item" href="javascript:void(0)">View PDF</a>
+                <a class="dropdown-item" *ngIf="!theproduct?.technicalSheetURL" href="javascript:void(0)">View PDF</a>
+                <a class="dropdown-item" *ngIf="theproduct?.technicalSheetURL" href="{{theproduct?.technicalSheetURL}}" target="_blank">View PDF</a>
                 <a (click)="downloadFile()" class="dropdown-item" href="javascript:void(0)">Download CSV</a>
               </div>
             </div>

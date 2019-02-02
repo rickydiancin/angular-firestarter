@@ -19,6 +19,8 @@ interface User {
   photoURL?: string;
   firstName?: string;
   lastName?: string;
+  address?: string;
+  bio?: string;
   isActive?: boolean;
   role?:string;
 }
@@ -166,6 +168,7 @@ export class AuthService {
       firstName: userdata.fname || 'nameless',
       lastName: userdata.lname || 'user',
       photoURL: user.photoURL || 'https://goo.gl/Fz9nrQ',
+      address: userdata,
       isActive: true,
       role: 'user'
     };
@@ -174,5 +177,9 @@ export class AuthService {
 
   getCurrentUser(user) {
     return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+  }
+
+  updateProfile(data) {
+    return this.afs.doc<any>(`users/${data.uid}`).update(data);
   }
 }
