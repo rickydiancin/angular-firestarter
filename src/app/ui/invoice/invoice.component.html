@@ -1,0 +1,34 @@
+<section id="b-cart_default">
+  <div class="b-cart b-cart_default pb-5">
+    <div class="container">
+      <div class="row clearfix">
+        <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
+          <button (click)="downloadPDF()">download</button>
+          <div id="content" #content>
+            <!-- wow -->
+            <table id="cart" class="table table-bordered table-condensed">
+              <thead>
+                <tr>
+                  <th colspan="2" class="text-center">Product</th>
+                  <th class="text-center">Code</th>
+                  <th class="text-center">Additional Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let product of productProject">
+                  <td>
+                    <img [src]="product?.imageURL || './assets/images/not_available.jpg'" alt="" height="100px" width="100px">
+                  </td>
+                  <td width="20%">{{product?.productTitle | titlecase}}</td>
+                  <td>{{product?.productCode}}</td>
+                  <td width="50%">summary</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

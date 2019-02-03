@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ScriptsService } from 'src/app/core/scripts.service';
 import { ProductsService } from 'src/app/core/products.service';
 import { Observable } from 'rxjs';
@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddToProjectComponent } from './add-to-project/add-to-project.component';
 import { VariablesService } from 'src/app/core/variables.service';
+import * as jsPDF from 'jspdf';
 
 declare var $: any;
 
@@ -16,8 +17,10 @@ declare var $: any;
 })
 export class ProductComponent implements OnInit {
 
+  @ViewChild('content') content: ElementRef
+
   products: Observable<any[]>;
-  content: string;
+  // content: string;
   pid: string;
   theproduct: any;
   productExport: any = [];
@@ -177,6 +180,26 @@ export class ProductComponent implements OnInit {
   downloadFile() {
 
     $('#exportFile').click();
+  }
+
+  downloadPDF() {
+    let doc = new jsPDF();
+
+    let specialElementHandlers = {
+      '#editor': function(element, renderer) {
+        return true;
+      }
+    };
+
+    let content = this.content.nativeElement;
+
+    doc.fromHTML(content.innerHTML, 15,15, {
+      'width': 190,
+      'elementHandlers': specialElementHandlers
+    });
+
+    doc.save('test.pdf');
+
   }
 
 }
