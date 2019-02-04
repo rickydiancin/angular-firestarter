@@ -100,13 +100,34 @@
                                       <div class="dropdown-inner">
                                           <div class="row">
                                            
-                                              <div class="col-xs-12 col-sm-3" *ngFor="let cat of categories">
+                                              <div class="col-xs-12 col-sm-3" *ngFor="let category of categories">
                                                   <div class="menu-item">
-                                                      <h4 class="column-title"><b>
-                                                          <a href="#" routerLink="/category/{{cat.categoryCode}}" style="color:#333333;">{{cat.categoryName}}</a>
+                                                    <!-- <h5 class="b-filter_title">PRODUCT CATEGORIES</h5> -->
+                                                    <ul>
+                                                      <li>
+                                                        <a href="#" routerLink="/category/{{category?.code}}" style="color: #1daaa3;">{{category?.parentCategory |
+                                                          uppercase}}</a>
+                                                      </li>
+                                                      <hr>
+                                                      <li *ngFor="let sub of category?.sub" class="third-level">
+                                                        <a href="#" routerLink="/category/{{sub?.code}}">{{sub?.parentCategory}}</a>
+                                                      </li>
+                                                      <ng-container *ngFor="let subParent of category?.subParent">
+                                                        <li class="second-level">
+                                                          <a href="#" routerLink="/category/{{subParent?.code}}">{{subParent?.parentCategory}}</a>
+                                                        </li>
+                                                        <ng-container *ngIf="subParent?.sub">
+                                                          <li class="third-level" *ngFor="let sub of subParent?.sub">
+                                                            <a href="#" routerLink="/category/{{sub?.code}}">{{sub?.parentCategory}}</a>
+                                                          </li>
+                                                        </ng-container>
+                                                      </ng-container>
+                                                    </ul>
+                                                      <!-- <h4 class="column-title"><b> -->
+                                                          <!-- <a href="#" routerLink="/category/{{cat.categoryCode}}" style="color:#333333;">{{cat.categoryName}}</a> -->
                                                         <!-- ({{cat?.sub?.length}}) -->
-                                                      </b></h4> 
-                                                      <div class="categories">
+                                                       <!-- </b></h4>  -->
+                                                      <!-- <div class="categories">
                                                           <div class="row">
                                                               <div class="col-sm-12 hover-menu">
                                                                 <ul *ngIf="products"> 
@@ -115,7 +136,7 @@
                                                                   </ul>
                                                               </div>
                                                           </div>
-                                                      </div>
+                                                      </div> -->
                                                   </div>
                                               </div> 
                                        

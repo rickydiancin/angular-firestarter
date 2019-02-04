@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/core/auth.service';
 import { ProductsService } from 'src/app/core/products.service';
 import * as _ from 'lodash';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { VariablesService } from 'src/app/core/variables.service';
 
 @Component({
   selector: 'main-nav',
@@ -22,7 +23,8 @@ export class MainNavComponent {
     private scriptsService: ScriptsService,
     public auth: AuthService,
     private productsService: ProductsService,
-    public af: AngularFireAuth
+    public af: AngularFireAuth,
+    public vs: VariablesService
   ) {
     // this.af.authState.subscribe((auth) => {
       
@@ -39,6 +41,7 @@ export class MainNavComponent {
   
   ngOnInit() {
     console.log(this.auth.user);
+    this.categories = this.vs.allCategories();
     // this.auth.user.subscribe((data) => {
     //   // console.log(data)
     //   if (data === null) {
@@ -48,10 +51,10 @@ export class MainNavComponent {
     //   }
     // })
 
-    this.productsService.getAllCategories(res => {
+    // this.productsService.getAllCategories(res => {
       // this.categories = res;
-      this.categories = _(res).filter({ 'parent': '' }).value();;
-      console.log(res)
+      // this.categories = _(res).filter({ 'parent': '' }).value();;
+      // console.log(res)
       // _(res).each((value, index) => {
       //   // console.log(value.categoryCode)
       //   let products = [];
@@ -61,7 +64,7 @@ export class MainNavComponent {
       //     // console.log(products[0])
       //   });
       // });
-    });
+    // });
     // console.log(this.categories);
 
     this.productsService.getAllSolutions().subscribe((data) => {
