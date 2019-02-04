@@ -18,17 +18,18 @@
 	} 
 }
 .b-product_grid_single{
-	background-color: #ececec;
+	background-color: #ffffff;
 	padding: 1em;
 	margin-bottom: 40px; position: relative;
+	border: 1px solid #95C448;
 	img{@extend .d-transition; width: 100%;} 
-	&:hover {
-		.b-product_grid_toggle{ 
-			.b-price{top: -30px}
-			.b-add_cart{top: -30px}
-		}
-		.b-product_grid_action{opacity: 1;}
-	}	
+	// &:hover {
+	// 	.b-product_grid_toggle{ 
+	// 		.b-price{top: -30px}
+	// 		.b-add_cart{top: -30px}
+	// 	}
+	// 	.b-product_grid_action{opacity: 1;}
+	// }	
 	.b-product_grid_header{
 		&:hover{
 			.b-hover_img{opacity: 1;}

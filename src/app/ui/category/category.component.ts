@@ -5,6 +5,9 @@ import { Observable } from 'rxjs';
 import * as _ from 'lodash';
 import { PaginationInstance } from 'ngx-pagination';
 import { ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AddToProjectComponent } from '../product/add-to-project/add-to-project.component';
+import { VariablesService } from 'src/app/core/variables.service';
 
 @Component({
   selector: 'category',
@@ -24,7 +27,7 @@ export class CategoryComponent implements OnInit {
   @Input('data') meals: string[] = [];
 
   public config: PaginationInstance = {
-    itemsPerPage: 9,
+    itemsPerPage: 12,
     currentPage: 1
   };
 
@@ -41,9 +44,25 @@ export class CategoryComponent implements OnInit {
     private scriptsService: ScriptsService,
     private productsService: ProductsService,
     private route: ActivatedRoute,
-  ) { }
+    private modalService: NgbModal,
+    public vs: VariablesService
+  ) {
+    this.categories = this.vs.allCategories();
+  }
 
   ngOnInit() {
+
+    this.route.params.subscribe(params => {
+      // this.getAllCategoryProducts(params.id);
+      if (Object.entries(params).length !== 0) {
+        this.getAllCategoryProducts(params.id);
+        this.productsService.getCategory(params.id, res => {
+        console.log(res);
+        this.category = res;
+      });
+      }
+      // this.initialiseState(); // reset and set based on new parameter this time
+    });
     // this.routeParamsName = this.route.snapshot.params.name;
     // this.routeParamsid = this.route.snapshot.params.id;
     // console.log(this.routeParamsName, this.routeParamsid)
@@ -80,6 +99,7 @@ export class CategoryComponent implements OnInit {
       this.productsTemp = res;
       this.products = res;
       this.productsService.getAllCategories((resCategory:any) => {
+        // this.categories = resCategory;
         this.categories = _(resCategory).filter({ 'parent': '' }).value();
         console.log(resCategory, this.categories)
         // console.log(_.size())
@@ -155,22 +175,47 @@ export class CategoryComponent implements OnInit {
     }).value();
   }
 
-  sortBy(value) {
+  sortBy(event) {
+    console.log(event.target.value)
 
     // this.products = this.productsTemp;
-    this.products = _(this.productsTemp).sortBy(value).value();
+    this.products = _(this.productsTemp).sortBy(event).value();
   }
 
   rangeFilter() {
     if(this.range.minHeight && this.range.maxHeight) {
       console.log('height');
+      this.products = _(this.products).filter((val) => {
+        return (val.height >= this.range.minHeight && val.height <= this.range.maxHeight)
+      }).value()
     }
     if (this.range.minWidth && this.range.maxWidth) {
       console.log('width');
+      this.products = _(this.products).filter((val) => {
+        return (val.width >= this.range.minWidth && val.width <= this.range.maxWidth)
+      }).value()
     }
     if (this.range.minDepth && this.range.maxDepth) {
       console.log('depth');
+      this.products = _(this.products).filter((val) => {
+        return (val.depth >= this.range.minDepth && val.height <= this.range.maxDepth)
+      }).value()
     }
+  }
+
+  addToProduct(product) {
+    // $('#b-promo_popup').modal('show');
+    const activeModal = this.modalService.open(AddToProjectComponent, { size: 'lg', backdrop: 'static' });
+    activeModal.componentInstance.product = product
+    activeModal.result.then((result) => {
+      this.vs.showAddProjectModal = result.value
+    })
+  }
+
+  getAllCategoryProducts(id) {
+    this.productsService.getAllCategoryProducts(id).subscribe(async (res: any) => {
+      this.products = res;
+    });
   }
 
 }

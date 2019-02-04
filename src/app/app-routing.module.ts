@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: 'products', component: CategoryComponent },
   { path: 'news', component: NewsComponent },
   { path: 'category', component: CategoryComponent },
-  { path: 'category/:id', component: SingleCategoryComponent },
+  { path: 'category/:id', component: CategoryComponent },
   { path: 'search', component: CategoryComponent },
   { path: 'wishlist', component: WishlistComponent },
   { path: 'projects', component: ProjectsComponent },

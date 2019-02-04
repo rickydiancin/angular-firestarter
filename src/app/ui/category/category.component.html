@@ -1,80 +1,66 @@
-<div class="b-page_title b-page_title_default text-center b-shop_filter">
+<!-- <div class="b-page_title b-page_title_default text-center b-shop_filter">
   <div class="col-sm-12">
     <ul class="list-inline text-center">
         <li *ngFor="let cat of categories">
           <a href="#" routerLink="/category/{{cat?.categoryCode}}">{{cat.categoryName}}</a>
-          <!-- (click)="categoriesFilter(cat?.categoryCode)" -->
         </li>
     </ul>
   </div> 
-</div>  
+</div>   -->
 
 <div class="container">
   <div class="row clearfix">
     <div class="col-xl-3 col-lg-3 col-mb-4 col-sm-12 col-xs-12 b-sidebar_right">
       <div class="b-sidebar">
         <div class="b-filters_inner_area p-0">
-          <div class="b-sidebar_widget" *ngIf="categories">
+          <div class="b-sidebar_widget categories">
             <h5 class="b-filter_title">PRODUCT CATEGORIES</h5>
-            <form action="#" [formGroup]="">
-              <ul>  
-                <li *ngFor="let cat of categories">
-                  <a href="#" routerLink="/category/{{cat?.categoryCode}}">{{cat?.categoryName}} ({{cat?.products?.length}})</a>
-                  <!-- (click)="categoriesFilter(cat?.categoryCode)" -->
+            <ul *ngFor="let category of categories">
+              <li>
+                <a href="#" routerLink="/category/{{category?.code}}" style="color: #1daaa3;">{{category?.parentCategory | uppercase}}</a>
+              </li>
+              <li *ngFor="let sub of category?.sub" class="third-level">
+                <a href="#" routerLink="/category/{{sub?.code}}">{{sub?.parentCategory}}</a>
+              </li>
+              <ng-container *ngFor="let subParent of category?.subParent">
+                <li class="second-level">
+                  <a href="#" routerLink="/category/{{subParent?.code}}">{{subParent?.parentCategory}}</a>
                 </li>
-                <!-- <li><a href="#">Bags</a></li>
-                <li><a href="#">Jewellery</a></li>
-                <li><a href="#">Man</a></li>
-                <li><a href="#">Other</a></li>
-                <li><a href="#">Shoes</a></li>
-                <li><a href="#">Watches</a></li>
-                <li><a href="#">Woman</a></li> -->
-              </ul> 
-            </form>
+                <ng-container *ngIf="subParent?.sub">
+                  <li class="third-level" *ngFor="let sub of subParent?.sub">
+                    <a href="#" routerLink="/category/{{sub?.code}}">{{sub?.parentCategory}}</a>
+                  </li>
+                </ng-container>
+              </ng-container>
+            </ul>
+            <!-- <div *ngFor="let cat of categories">
+              <h6 class="column-title">
+                <b>
+                  <a href="#" routerLink="/category/{{cat.categoryCode}}" style="color:#333333;">{{cat?.categoryName | titlecase}}</a>
+                </b>
+              </h6>
+              <ul>
+                <li *ngFor="let sub of cat?.sub">
+                  <a href="#" routerLink="/category/{{sub?.categoryCode}}">{{sub?.categoryName | titlecase}}</a>
+                </li>
+              </ul>
+            </div> -->
+             
           </div>
-          <div class="b-sidebar_widget" *ngIf="solutions">
+          <!-- <div class="b-sidebar_widget" *ngIf="solutions">
             <h5 class="b-filter_title">FILTER BY SOLUTION</h5>
             <form action="#" [formGroup]="">
               <ul class="b-color_filter">
                 <li *ngFor="let solution of solutions">
                   <a href="javascript:void(0)" (click)="solutionFilter(solution?.solutionCode)">
-                    <!-- <span class="b-color_circle b-black"></span> -->
                     {{solution?.solutionName | titlecase}}
-                  </a>
-                  <!-- <span class="b-count float-right">(7)</span> -->
-                </li>
-                <!-- <li>
-                  <a href="#">
-                    <span class="b-color_circle b-brown"></span>
-                    Brown
                   </a>
                   <span class="b-count float-right">(7)</span>
                 </li>
-                <li>
-                  <a href="#">
-                    <span class="b-color_circle b-yellow"></span>
-                    Yellow
-                  </a>
-                  <span class="b-count float-right">(6)</span>
-                </li>
-                <li>
-                  <a href="#">
-                    <span class="b-color_circle b-red"></span>
-                    Red
-                  </a>
-                  <span class="b-count float-right">(5)</span>
-                </li>
-                <li>
-                  <a href="#" class="b-acitve">
-                    <span class="b-color_circle b-blue"></span>
-                    Blue
-                  </a>
-                  <span class="b-count float-right">(8)</span>
-                </li>  -->
               </ul> 
             </form>
-          </div> 
-          <div class="b-sidebar_widget">
+          </div>  -->
+          <!-- <div class="b-sidebar_widget">
             <h5 class="b-filter_title">SET FILTER RANGE</h5>
             <div class="gentec-filter-group">
               <div class="gentec-height-range-filter_inputs">
@@ -92,7 +78,7 @@
                 <div class="gentec-height-range-filter_range-line"></div>
                 <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.maxDepth" class="gentec-height-range-filter_input" placeholder="Depth Max">
               </div>
-            </div>
+            </div> -->
             <!-- <form action="#" [formGroup]="">
               <ul class="b-list_ib">
                 <li><a href="#" class="b-acitve">L <span class="b-count_number">(4)</span></a></li>
@@ -102,7 +88,7 @@
                 <li><a href="#">XS <span class="b-count_number">(5)</span></a></li> 
               </ul> 
             </form> -->
-          </div>
+          <!-- </div> -->
           <!-- <div class="b-sidebar_widget">
             <h5 class="b-filter_title">PRODUCT TAGS</h5>
             <ul class="pl-0 b-tag_list">
@@ -118,7 +104,7 @@
               <li><a href="#">white</a></li>
             </ul>
           </div>  -->
-          <div class="b-sidebar_widget">
+          <!-- <div class="b-sidebar_widget">
             <h5 class="b-filter_title">Top rated products</h5>
             <ul class="pl-0 mb-0 list-unstyled b-rated_product">
               <li>
@@ -165,7 +151,7 @@
               </li>
      
             </ul>
-          </div> 
+          </div>  -->
         </div>
       </div>
     </div>  
@@ -174,7 +160,10 @@
         <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12"> 
           <nav class="b-shop_breadcrumb">
             <a href="#">Home</a>
-            <span>Category</span>
+            <span *ngIf="!category">Category</span>
+
+            <a *ngIf="category" href="#" routerLink="/category">Category</a>
+            <span *ngIf="category">{{category?.categoryName | titlecase}}</span>
           </nav>
         </div>
         <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12 text-right">
@@ -189,21 +178,46 @@
       <div class="b-filters_area mt-2">
         <div class="b-filters_inner_area">
           <div class="row clearfix">
-            <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-6 col-xs-12">
-              <h5 class="b-filter_title">Sort by</h5>
+            <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-xs-12">
+              
+              <h5 class="b-filter_title">SET FILTER RANGE</h5>
+              <div class="gentec-filter-group">
+                <div class="gentec-height-range-filter_inputs">
+                  <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.minHeight" class="gentec-height-range-filter_input"
+                    placeholder="Height Min">
+                  <div class="gentec-height-range-filter_range-line"></div>
+                  <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.maxHeight" class="gentec-height-range-filter_input"
+                    placeholder="Height Max">
+                </div>
+                <div class="gentec-height-range-filter_inputs">
+                  <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.minWidth" class="gentec-height-range-filter_input"
+                    placeholder="Width Min">
+                  <div class="gentec-height-range-filter_range-line"></div>
+                  <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.maxWidth" class="gentec-height-range-filter_input"
+                    placeholder="Width Max">
+                </div>
+                <div class="gentec-height-range-filter_inputs">
+                  <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.minDepth" class="gentec-height-range-filter_input"
+                    placeholder="Depth Min">
+                  <div class="gentec-height-range-filter_range-line"></div>
+                  <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.maxDepth" class="gentec-height-range-filter_input"
+                    placeholder="Depth Max">
+                </div>
+              </div>
+              <!-- <h5 class="b-filter_title">Sort by</h5>
               <form action="#" [formGroup]="">
                 <ul>
                   <li><a href="javascript:void(0);" (click)="sortBy('productTitle')" class="b-acitve">Name</a></li>
                   <li><a href="javascript:void(0);" (click)="sortBy('productPrice')">Price</a></li>
                   <li><a href="javascript:void(0);" (click)="sortBy('dateCreated')">Latest</a></li>
-                  <!-- <li><a href="#">Newness</a></li>
+                  <li><a href="#">Newness</a></li>
                   <li><a href="#">Price: low to high</a></li>
-                  <li><a href="#">Price: high to low</a></li> -->
+                  <li><a href="#">Price: high to low</a></li>
                 </ul> 
-              </form>
+              </form> -->
             </div>
-            <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-6 col-xs-12">
-              <h5 class="b-filter_title">Price Filter</h5>
+            <!-- <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-6 col-xs-12"> -->
+              <!-- <h5 class="b-filter_title">Price Filter</h5>
               <form action="#" [formGroup]="">
                 <ul>
                   <li><a href="javascript:void(0);" class="b-acitve">All</a></li>
@@ -212,24 +226,24 @@
                   <li><a href="javascript:void(0);" (click)="priceFilter('300-450')">$300.00 - $450.00</a></li>
                   <li><a href="javascript:void(0);" (click)="priceFilter('450')">$450.00+</a></li> 
                 </ul> 
-              </form>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-6 col-xs-12">
+              </form> -->
+            <!-- </div> -->
+            <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-xs-12">
               <h5 class="b-filter_title">FILTER BY SOLUTION</h5>
               <form action="#" [formGroup]="">
                 <ul class="b-color_filter">
                   <li *ngFor="let solution of solutions">
                     <a href="javascript:void(0)" (click)="solutionFilter(solution?.solutionCode)">
-                      <!-- <span class="b-color_circle b-black"></span> -->
+                      <span class="b-color_circle b-black"></span>
                       {{solution?.solutionName | titlecase}}
                     </a>
-                    <!-- <span class="b-count float-right">(7)</span> -->
+                    <span class="b-count float-right">(7)</span>
                   </li>
                 </ul> 
               </form>
             </div>
             <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-6 col-xs-12">
-              <h5 class="b-filter_title">FILTER BY SIZE</h5>
+              <!-- <h5 class="b-filter_title">FILTER BY SIZE</h5>
               <form action="#" [formGroup]="">
                 <ul class="b-list_ib">
                   <li><a href="#" class="b-acitve">L <span class="b-count_number">(4)</span></a></li>
@@ -238,7 +252,7 @@
                   <li><a href="#">S <span class="b-count_number">(3)</span></a></li>
                   <li><a href="#">XS <span class="b-count_number">(5)</span></a></li> 
                 </ul> 
-              </form>
+              </form> -->
             </div>
           </div>
         </div>
@@ -265,7 +279,19 @@
       </div>
       <div class="b-products b-product_grid b-product_grid_four mb-4">
         <div *ngIf="products" class="b-title b-title_line_right mt-5 mt-lg -0">
-          <h2 class="text-uppercase">All Products</h2>
+          <h2 *ngIf="!category" class="text-uppercase">All Products</h2>
+          <div class="sortBy">
+            <form action="">
+            <div class="form-group">
+              <label for="">Sort by</label>
+              <select name="" id="" (change)="sortBy($event)" class="form-control-sm">
+                <option value="productTitle">Name</option>
+                <option value="dateCreated">Latest</option>
+              </select>
+            </div>
+          </form>
+          </div>
+          <h2 *ngIf="category" class="text-uppercase">{{category?.categoryName | titlecase}}</h2>
         </div>
         <!-- <div>
           <img [src]="category?.imgURL || './assets/images/not_available.jpg'" alt="">
@@ -281,7 +307,7 @@
                           -->
                           <div class="b-product_grid_info">
                           <h1 class="product-title">
-                            <a href="#" routerLink="/product/{{product?.id}}"><b>{{ product?.productTitle | words: 4}}</b></a>
+                            <a href="#" routerLink="/product/{{product?.id}}"><b>{{ product?.productTitle | truncate: 20 | trim:'�'}}</b></a>
                             <!-- routerLink="/product/{{routeParamsName.split('.')[0]}}/{{product?.productTitle}}.{{product?.id}}" -->
                           </h1>
                           </div>
@@ -304,31 +330,31 @@
                          <!-- <h3 class="product-title">
                              <a href="#" routerLink="/product/{{product?.productTitle}}.{{product?.id}}">{{ product?.productTitle}}</a>
                          </h3> -->
-                         <h3>{{ product?.categoryName | titlecase}}</h3>
-                         <p>{{ product?.productDescription | words : 8}}</p>
+                         <!-- <h3>{{ product?.categoryName | titlecase}}</h3> -->
+                         <p>{{ product?.productDescription | truncate : 25 | trim:'�'}}</p>
                          <div class="clearfix">
                            <div class="b-product_grid_toggle float-left">
-                               <span class="b-price"></span>
-                               <span class="b-add_cart">
-                                   <i class="icon-basket icons"></i>
-                                   <a href="#">View</a>
+                               <!-- <span class="b-price">Add To Project</span> -->
+                               <span class="b-add_cart" (click)="addToProduct(product)">
+                                   <i class="icon-plus icons"></i>
+                                   <a href="javascript:void();">Add To Project</a>
                                </span>
                            </div>
-                           <div class="b-product_options float-right">
+                           <!-- <div class="b-product_options float-right">
                             <a href="javascript:void(0);" class="d-inline-block b-active mr-3">
                               <i class="fa fa-star"></i>
                               <i class="fa fa-star"></i>
                               <i class="fa fa-star"></i>
                             </a>
-                              <!-- <ul class="pl-0 mb-0 list-unstyled">
+                              <ul class="pl-0 mb-0 list-unstyled">
                                   <li>
                                     <span data-toggle="tooltip" title="" class="b-black" data-original-title="Black"></span>
                                   </li>
                                   <li>
                                     <span data-toggle="tooltip" title="" class="b-blue" data-original-title="Blue"></span>
                                   </li> 
-                              </ul> -->
-                          </div>
+                              </ul>
+                          </div> -->
                          </div>
                       </div>
                     </div>

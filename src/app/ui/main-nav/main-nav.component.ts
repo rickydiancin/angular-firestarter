@@ -49,7 +49,8 @@ export class MainNavComponent {
     // })
 
     this.productsService.getAllCategories(res => {
-      this.categories = res;
+      // this.categories = res;
+      this.categories = _(res).filter({ 'parent': '' }).value();;
       console.log(res)
       // _(res).each((value, index) => {
       //   // console.log(value.categoryCode)

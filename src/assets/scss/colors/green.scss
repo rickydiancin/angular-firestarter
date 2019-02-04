@@ -1,6 +1,7 @@
-$green_color: #8CC761;
+$green_color: #95C448;
 .b-header_bg{
-	background-color: #222222;
+	background-color: $green_color;
+	// background-color: #222222;
 }
 .b-sidemenu_sides{
 	background-color: #f4f4f4; position: relative;

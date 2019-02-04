@@ -61,7 +61,7 @@ getAllAbout(){
 }
 
   getAllProductsByCategory(){
-    return this.afs.collection('products').snapshotChanges().pipe(
+    return this.afs.collection('products', (ref) => ref.limit(2)).snapshotChanges().pipe(
         map((actions) => {
             return actions.map((a) => {
             const data = a.payload.doc.data();
@@ -71,7 +71,7 @@ getAllAbout(){
 }
 
   getAllCategoryProducts(id){
-    return this.afs.collection('products', (ref) => ref.where('categories', "array-contains", id) ).snapshotChanges().pipe(
+    return this.afs.collection('products', (ref) => ref.where('categories', "array-contains", id).limit(2) ).snapshotChanges().pipe(
         map((actions) => {
             return actions.map((a) => {
             const data = a.payload.doc.data();
@@ -134,7 +134,7 @@ getCategory(id, callback){
   getProductByArray(id: string) {
     // return this.afs.doc<any>(`products/${id}`, ref => ref);
     // return this.afs.collection('products', (ref) => ref.where('categories', "array-contains", id).limit(2)).snapshotChanges();
-    return this.afs.collection('products', (ref) => ref.where('categories', "array-contains", id)).snapshotChanges().pipe(
+    return this.afs.collection('products', (ref) => ref.where('categories', "array-contains", id).limit(2)).snapshotChanges().pipe(
       map((actions) => {
         return actions.map((a) => {
           const data = a.payload.doc.data();
