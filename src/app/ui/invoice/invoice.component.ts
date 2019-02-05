@@ -33,7 +33,7 @@ export class InvoiceComponent implements OnInit {
       this.productProject = productProject;
       console.log(this.productProject)
       if(this.productProject.length) {
-        this.downloadPDF();
+        // this.downloadPDF();
       }
     });
   }

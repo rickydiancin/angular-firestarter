@@ -29,9 +29,10 @@ import { SingleCategoryComponent } from './category/single-category/single-categ
 import { NewsComponent } from './news/news.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { TypeaheadModule } from 'ngx-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, NgxPaginationModule, TruncateModule, FormsModule, NgPipesModule, NgbModule, Angular2CsvModule, TypeaheadModule.forRoot()],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, NgxPaginationModule, TruncateModule, FormsModule, NgPipesModule, NgbModule, Angular2CsvModule, TypeaheadModule.forRoot(), HttpClientModule],
   declarations: [
     UserLoginComponent,
     HomePageComponent,

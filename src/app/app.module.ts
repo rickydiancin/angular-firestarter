@@ -23,6 +23,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TypeaheadModule } from 'ngx-bootstrap';
 
 // IMPORTANT
 // Add your own project credentials to environments/*.ts
@@ -44,6 +45,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AngularFireFunctionsModule,
     FormsModule,
     NgbModule.forRoot(),
+    TypeaheadModule.forRoot(),
     ServiceWorkerModule.register('/ngsw-worker.js', {
       enabled: environment.production
     })

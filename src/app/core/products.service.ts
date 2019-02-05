@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from './auth.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +14,16 @@ export class ProductsService {
   productsCollection: AngularFirestoreCollection<any>;
   productDocument:   AngularFirestoreDocument<any>;
 
-  constructor(private afs: AngularFirestore, private auth: AuthService) {
+  constructor(private afs: AngularFirestore,
+    private auth: AuthService,
+    public http: HttpClient
+    ) {
     // Add collections here..
     this.productsCollection = this.afs.collection('products', (ref) => ref.orderBy('dateCreated', 'desc').limit(2));
+  }
+
+  getFile(): Observable<any> {
+    return this.http.get('../../assets/datafiles/categories.json');
   }
 
   getData(): Observable<any[]> {

@@ -48,6 +48,13 @@
               </div>
             </div>
 
+            <div class="b-additional-video-wrap ml-0">
+              <a href="https://www.youtube.com/embed/h_MPR25JD3E" class="b-additional-video-btn" data-rel="lightcase">
+                <span class="b-icon"><i class="icon-control-play icons"></i></span>
+                <span>Watch Video</span>
+              </a>
+            </div><!-- /b-additional-video-wrap -->
+            
             <div class="b-show-product-gallery-wrap">
               <a href="javaScript:void(0)">
                 <i class="icon-magnifier-add icons"></i>
@@ -87,13 +94,6 @@
             </div><!-- /b-display-item-list-wrapper -->
           </div>
         </div>
-
-        <div class="b-additional-video-wrap ml-0">
-          <a href="https://www.youtube.com/embed/h_MPR25JD3E" class="b-additional-video-btn" data-rel="lightcase">
-            <span class="b-icon"><i class="icon-control-play icons"></i></span>
-            <span>Watch Video</span>
-          </a>
-        </div><!-- /b-additional-video-wrap -->
       </div>
       <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12">
         <div class="b-product_single_summary" *ngIf="theproduct">
@@ -233,16 +233,10 @@
     <div class="row">
       <ul class="nav nav-tabs clearfix" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" href="#tab-01" role="tab" data-toggle="tab">Description</a>
+          <a class="nav-link active text-uppercase" href="#tab-01" role="tab" data-toggle="tab">FEATURES</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#tab-02" role="tab" data-toggle="tab">Additional information</a>
-        </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link" href="#tab-03" role="tab" data-toggle="tab">Reviews (0)</a>
-        </li> -->
-        <li class="nav-item">
-          <a class="nav-link" href="#tab-04" role="tab" data-toggle="tab">Shipping & Delivery</a>
+          <a class="nav-link text-uppercase" href="#tab-02" role="tab" data-toggle="tab">Product Details</a>
         </li>
       </ul>
       <!-- Tab panes -->
@@ -250,16 +244,7 @@
         <div role="tabpanel" class="tab-pane fade in active show" id="tab-01">
           <div class="row clearfix">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-              <h5><strong>Viverra a consectetur</strong></h5>
-              <p class="b-font_title pt-1 pb-1"><i>Enim in malesuada fusce dolor mi massa leo taciti nulla vestibulum dignissim senectus vitae elit ullamcorper primis.</i></p>
-              <h5><strong>Facilisis scelerisque mi</strong></h5>
-              <p>Amet quisque adipiscing scelerisque vestibulum a parturient aptent et pretium a a suspendisse a vestibulum dolor a adipiscing a curabitur integer vulputate praesent convallis. Est nisi ante accumsan pulvinar facilisi orci dignissim lacinia ad sodales conubia viverra a consectetur lectus cras quis aliquam eros curabitur ultricies mauris lectus dictumst magna hac aenean. Odio nec adipiscing.&nbsp;Pulvinar in taciti dui condimentum a vel bibendum aliquet velit nam ultrices.&nbsp;Odio nec adipiscing neque purus parturient a est eu accumsan placerat vestibulum.</p>
-            </div>
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-              <h5><strong>Ullamcorper metus</strong></h5>
-              <p>Nam orci mi non ultricies ut eu in vitae pharetra est in dapibus eu cum nam. Nisl orci quisque congue in ullamcorper metus a hac a arcu tristique class ullamcorper mi lacinia leo id mi at lectus. Pulvinar in taciti dui condimentum a vel bibendum aliquet velit nam ultrices.&nbsp;Odio nec adipiscing neque purus parturient a est eu accumsan placerat dapibus adipiscing parturient placerat a tincidunt enim.</p>
-              <h5><strong>Dignissim a leo cum</strong></h5>
-              <p>A&nbsp;parturient adipiscing dignissim facilisi ullamcorper ut natoque vestibulum class. Mus sit ridiculus risus dignissim a leo cum adipiscing vehicula et adipiscing maecenas adipiscing senectus ultrices at pulvinar neque iaculis a viverra.&nbsp;Bibendum class nec sapien at cubilia dictumst torquent felis.</p>
+              <p>{{theproduct?.feautures}}</p>
             </div>
           </div>
         </div>
@@ -267,17 +252,25 @@
           <table class="b-shop_attributes">
             <tbody>
               <tr>
-                <th>Color</th>
-                <td><p>Black, Brown, Blue</p></td>
+                <th>Colours/Finish</th>
+                <td><p>{{theproduct?.colourFinish}}</p></td>
               </tr>
               <tr>
-                <th>Size</th>
-                <td><p>L, M, XS</p></td>
+                <th>Dimensions - Depth (mm)</th>
+                <td><p>{{theproduct?.depth || 'n/a'}}</p></td>
+              </tr>
+              <tr>
+                <th>Dimensions - Height (mm)</th>
+                <td><p>{{theproduct?.height || 'n/a'}}</p></td>
+              </tr>
+              <tr>
+                <th>Dimensions - Width (mm)</th>
+                <td><p>{{theproduct?.width || 'n/a'}}</p></td>
               </tr>
             </tbody>
           </table>
         </div>
-        <div role="tabpanel" class="tab-pane fade" id="tab-03">
+        <!-- <div role="tabpanel" class="tab-pane fade" id="tab-03">
           <div class="row clearfix">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <div class="b-review_listing_wrapper">
@@ -357,8 +350,8 @@
               </div>
             </div>
           </div>
-        </div>
-        <div role="tabpanel" class="tab-pane fade" id="tab-04">
+        </div> -->
+        <!-- <div role="tabpanel" class="tab-pane fade" id="tab-04">
           <div>
             <img alt="" src="assets/images/products/product-single/shipping.jpg" class="alignleft">
             <p>Vestibulum curae torquent diam diam commodo parturient penatibus nunc dui adipiscing convallis bulum parturient suspendisse parturient a.Parturient in parturient scelerisque nibh lectus quam a natoque adipiscing a vestibulum hendrerit et pharetra fames.Consequat net</p>
@@ -369,7 +362,7 @@
 
             <div class="clearfix"></div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

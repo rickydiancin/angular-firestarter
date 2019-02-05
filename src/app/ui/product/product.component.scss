@@ -43,3 +43,29 @@ button.text-uppercase.pull-left.btn {
     border: 1px solid #95c448;
     background-color: #ffffff;
 }
+
+.nav {
+    display: flex !important;
+}
+
+.nav-tabs .nav-item {
+    width: 100%;
+}
+
+.b-product_tabs .nav li {
+    border-bottom: 0px;
+}
+
+.b-product_tabs .b-shop_attributes {
+    max-width: 700px;
+}
+
+.b-additional-video-wrap {
+    position: absolute;
+    bottom: 10px;
+    z-index: 99;
+}
+
+.b-product_tabs {
+    margin-top: 30px !important;
+}

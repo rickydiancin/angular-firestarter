@@ -150,23 +150,32 @@ export class ProductComponent implements OnInit {
     private modalService: NgbModal,
     public vs: VariablesService,
     private router: Router
-  ) { }
+  ) {  }
+
+  getFile() {
+    this.productsService.getFile().subscribe((data) => {
+      console.log(data, 'files')
+    })
+  }
 
   ngOnInit() {
-    this.catName = this.route.snapshot.params.id;
+    this.getFile();
+    // this.catName = this.route.snapshot.params.id;
     this.pid = this.route.snapshot.params.id;
     this.products = this.productsService.getData();
-    console.log(this.products);
-    setTimeout(() => {
-      this.scriptsService.prepareJquery();
-       },1000)
-       this.productsService.getProduct(this.pid).valueChanges()
-       .subscribe(res => {
-         this.productExport = [];
-        console.log(res);
-        this.theproduct = res;
-         this.productExport.push(res);
-      });
+    this.route.params.subscribe((params) => {
+      console.log(this.products);
+      setTimeout(() => {
+        this.scriptsService.prepareJquery();
+      }, 1000)
+      this.productsService.getProduct(params.id).valueChanges()
+        .subscribe(res => {
+          this.productExport = [];
+          console.log(res);
+          this.theproduct = res;
+          this.productExport.push(res);
+        });
+    });
   }
 
   addToProduct(product) {

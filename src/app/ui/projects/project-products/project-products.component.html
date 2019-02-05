@@ -16,6 +16,13 @@
           <div class="mt-4" id="mail-status"></div>
         </div> -->
         <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
+          <!-- <div class="alert alert-success">New Project Successfully Added.</div> -->
+          <div class="alert alert-success" *ngIf="success">
+            <i class="fa fa-check-circle-o fa-fw"></i> {{message}}
+            <button (click)="success = false;" type="button" class="close" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
           <div class="b-title b-title_line_righ mt-5 mt-lg -0">
             <h2 class="text-uppercase">{{id.split('.')[0]}}</h2>
           </div>
@@ -31,7 +38,6 @@
                   <th colspan="2">Product</th>
                   <th>Type</th>
                   <th>Summary</th>
-                  <th class="text-center">Quantity</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -42,9 +48,11 @@
                   </td>
                   <td width="20%">{{product?.productTitle | titlecase}}</td>
                   <td >type</td>
-                  <td width="50%">summary</td>
-                  <td width="10%">
-                    <input type="text">
+                  <td width="50%" style="font-size: 12px">
+                    <p>Colours/Finish: {{product?.colourFinish}}</p>
+                    <p>Depth(mm): {{product?.depth || 'n/a'}}</p>
+                    <p>Height(mm): {{product?.height || 'n/a'}}</p>
+                    <p>Width(mm): {{product?.width || 'n/a'}}</p>
                   </td>
                   <td class="action">
                     <div class="btn-group">
@@ -55,41 +63,43 @@
                       </button>
                       <div class="dropdown-menu">
                         <a (click)="removeToProject(product)" class="dropdown-item" href="javascript:void(0);">Remove</a>
-                        <!-- <a class="dropdown-item" href="javascript:void(0);">Another action</a> -->
-                        <!-- <a class="dropdown-item" href="javascript:void(0);">Something else here</a> -->
-                        <!-- <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Separated link</a> -->
                       </div>
                     </div>
-                    <!-- <div class="btn-group" role="group">
-                      <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                        <a class="dropdown-item" href="#">Dropdown link</a>
-                        <a class="dropdown-item" href="#">Dropdown link</a>
-                      </div>
-                    </div> -->
                   </td>
                 </tr>
               </tbody>
               <tfoot>
                 <tr>
                   <td>
-                    <button type="button" class="btn btn-primary btn-block">Update Quantities</button>
-                  </td>
-                  <td>
-                    <a href="projects/{{product?.productTitle}}.{{product?.productCode}}/invoice"><button type="button" class="btn btn-primary btn-block">Save as PDF</button></a>
-                  </td>
-                  <td>
-                    <button [disabled]="!productProject" (click)="downloadFile()" type="button" class="btn btn-primary btn-block">Export as Excel</button>
-                    <angular2csv *ngIf="productProject?.length > 0" [data]="productProject" filename="product" [options]="options" class="d-none"></angular2csv>
+                    <button (click)="downloadPDF()" type="button" class="btn btn-primary btn-block">Save as PDF</button>
                   </td>
                 </tr>
               </tfoot>
             </table>
-
+            <table id="content" class="table table-bordered table-condensed d-none" *ngIf="productProject">
+              <thead>
+                <tr>
+                  <th colspan="2" class="text-center">Product</th>
+                  <th class="text-center">Code</th>
+                  <th class="text-center">Summary</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let product of productProject">
+                  <td>
+                    <img [src]="product?.imageURL || './assets/images/not_available.jpg'" alt="" height="100px" width="100px">
+                  </td>
+                  <td width="20%">{{product?.productTitle | titlecase}}</td>
+                  <td >{{product?.productCode | uppercase}}</td>
+                  <td width="50%" style="font-size: 12px">
+                    <p>Colours/Finish: {{product?.colourFinish}}</p>
+                    <p>Depth(mm): {{product?.depth || 'n/a'}}</p>
+                    <p>Height(mm): {{product?.height || 'n/a'}}</p>
+                    <p>Width(mm): {{product?.width || 'n/a'}}</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
         </div>
       </div>
       <!-- <div> -->

@@ -1,3 +1,11 @@
 .table td, .table thead th {
     border-width: 0.5px !important;
 }
+
+td p {
+    margin-bottom: 1px;
+}
+
+.b-cart_default td, .b-cart_default th {
+    vertical-align: top;
+}
