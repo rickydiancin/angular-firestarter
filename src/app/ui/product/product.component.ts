@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ScriptsService } from 'src/app/core/scripts.service';
 import { ProductsService } from 'src/app/core/products.service';
 import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddToProjectComponent } from './add-to-project/add-to-project.component';
 import { VariablesService } from 'src/app/core/variables.service';
@@ -148,7 +148,8 @@ export class ProductComponent implements OnInit {
     private productsService: ProductsService,
     private route: ActivatedRoute,
     private modalService: NgbModal,
-    public vs: VariablesService
+    public vs: VariablesService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -200,6 +201,18 @@ export class ProductComponent implements OnInit {
 
     doc.save('test.pdf');
 
+  }
+
+  viewTechnicalDetails(link) {
+    window.location.href = link;
+  }
+
+  dwgFile(link) {
+    window.location.href = link;
+  }
+
+  revitFile(link) {
+    window.location.href = link;
   }
 
 }

@@ -51,7 +51,7 @@ getAllAbout(){
       }));
 }
   getAllProducts(){
-    return this.afs.collection('products').snapshotChanges().pipe(
+    return this.afs.collection('products', (ref) => ref.limit(2)).snapshotChanges().pipe(
         map((actions) => {
             return actions.map((a) => {
             const data = a.payload.doc.data();
