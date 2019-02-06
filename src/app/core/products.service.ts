@@ -19,7 +19,7 @@ export class ProductsService {
     public http: HttpClient
     ) {
     // Add collections here..
-    this.productsCollection = this.afs.collection('products', (ref) => ref.orderBy('dateCreated', 'desc').limit(2));
+    this.productsCollection = this.afs.collection('products', (ref) => ref.orderBy('dateCreated', 'desc').limit(15));
   }
 
   getFile(): Observable<any> {
@@ -59,7 +59,7 @@ getAllAbout(){
       }));
 }
   getAllProducts(){
-    return this.afs.collection('products', (ref) => ref.limit(2)).snapshotChanges().pipe(
+    return this.afs.collection('products', (ref) => ref.limit(50)).snapshotChanges().pipe(
         map((actions) => {
             return actions.map((a) => {
             const data = a.payload.doc.data();
@@ -69,7 +69,7 @@ getAllAbout(){
 }
 
   getAllProductsByCategory(){
-    return this.afs.collection('products', (ref) => ref.limit(2)).snapshotChanges().pipe(
+    return this.afs.collection('products', (ref) => ref.limit(15)).snapshotChanges().pipe(
         map((actions) => {
             return actions.map((a) => {
             const data = a.payload.doc.data();

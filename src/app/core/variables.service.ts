@@ -34,27 +34,27 @@ export class VariablesService {
     let menus3 = [
       {
         title: 'Rails & Accessible Equipment',
-        url: 'category/twr',
+        url: 'category',
         isparent: true
       },
       {
         title: 'Anti Microbial',
-        url: 'category/twr',
+        url: 'category',
        
       },
       {
        
         title: 'Stainless Stell',
-        url: 'category/twr',
+        url: 'category',
       },
       {
         title: 'Bathroom Accessories',
-        url: 'category/twr',
+        url: 'category',
         isparent: true
       },
       {
         title: 'Grate Seal',
-        url: 'category/twr',
+        url: 'category',
         isparent: true
       }
       
@@ -69,53 +69,53 @@ export class VariablesService {
     let menus2 = [
       {
         title: 'Showers',
-        url: 'category/twr',
+        url: 'category',
         issub: true
       },
       {
         title: 'Safety Showers & Equipment',
-        url: 'category/twr',
+        url: 'category',
         issub: true
       },
       {
        
         title: 'Safety Showers',
-        url: 'category/twr',
+        url: 'category',
       },
       {
       
         title: 'Eyewash Combination',
-        url: 'category/twr',
+        url: 'category',
       },
       {
        
         title: 'Other Safety Equipment',
-        url: 'category/twr',
+        url: 'category',
       },
       {
         title: 'Pre-Rinse Units',
-        url: 'category/twr',
+        url: 'category',
         issub: true
       },
       {
         title: 'Thermostatic Valves',
-        url: 'category/twr',
-        issub: true
+        url: 'category',
+        isparent: true
       },
       {
         title: 'Sanitary Ware',
-        url: 'category/twr',
-        issub: true
+        url: 'category',
+        isparent: true
       },
       {
        
         title: 'Basins',
-        url: 'category/twr',
+        url: 'category',
       },
       {
        
         title: 'Toilets',
-        url: 'category/twr',
+        url: 'category',
       }
       
     ]
@@ -136,57 +136,57 @@ export class VariablesService {
       {
        
         title: 'Single Lever Mixer',
-        url: 'category/twr',
+        url: 'category',
       },
       {
       
         title: 'Lever Action Tapware',
-        url: 'category/twr',
+        url: 'category',
       },
       {
        
         title: 'Anti Ligature',
-        url: 'category/twr',
+        url: 'category',
       },
       {
        
         title: 'Thermostatic Mixing Taps',
-        url: 'category/twr',
+        url: 'category',
       },
       {
         title: 'Timed Flow',
-        url: 'category/twr',
+        url: 'category',
         issub: true
       },
       {
         title: 'Bubblers',
-        url: 'category/twr',
+        url: 'category',
       },
       {
         title: 'Timed Flow Taps',
-        url: 'category/twr',
+        url: 'category',
       },
       {
         title: 'Timed Flow Shower',
-        url: 'category/twr',
+        url: 'category',
       },
       {
         title: 'Timed Flow Valves',
-        url: 'category/twr',
+        url: 'category',
       },
       {
         title: 'Electronic Tapware',
-        url: 'category/twr',
+        url: 'category',
         issub: true
       },
       {
         title: 'Laboratory Taps',
-        url: 'category/twr',
+        url: 'category',
         issub: true
       },
       {
         title: 'Spouts & Outlets',
-        url: 'category/twr',
+        url: 'category',
         issub: true
       }
       

@@ -93,7 +93,7 @@ body.mobile-menu-open:after {
 		font-size:0; display:inline-block; text-align: left;
 		&.block {display:block;}
 		> li{
-			display:inline-block; position:relative; font-size:14px;
+			display:inline-block; position:relative; font-size:16px;
 			> a{
 				color: rgba(0, 0, 0, 0.9); display:block; padding-right:11px; padding-left:11px; letter-spacing: 0.5px; text-transform:uppercase;
 				> .top{transition:opacity 400ms; -webkit-transition:opacity 400ms;}

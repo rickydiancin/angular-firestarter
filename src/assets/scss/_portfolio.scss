@@ -119,10 +119,12 @@ blockquote {
 }
 .b-socail_color{
 	.fa-facebook{background-color: $facebook_color; &:hover{background-color: $facebook_color;}}
+	.fa-linkedin{background-color: $twitter_color; &:hover{background-color: $twitter_color;}}
 	.fa-twitter{background-color: $twitter_color; &:hover{background-color: $twitter_color;}}
 	.fa-google-plus{background-color: $google_color; &:hover{background-color: $google_color;}}
 	.fa-envelope{background-color: $email_color; &:hover{background-color: $email_color;}}
 	.fa-pinterest{background-color: $pinterest_color; &:hover{background-color: $pinterest_color;}}
+	.fa-youtube{background-color: $pinterest_color; &:hover{background-color: $pinterest_color;}}
 }
 
 

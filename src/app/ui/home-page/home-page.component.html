@@ -73,67 +73,65 @@
 
               <div class="row clearfix" *ngIf="products2">
                 <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12" *ngFor="let product of products | slice:15:17">
-                  <div class="b-product_grid_single">
-                      <div class="b-product_grid_header">
-                          <a href="#" routerLink="/product/{{product.productTitle}}.{{product.id}}">
-                            <!-- <img data-src="assets/images/products/home/product_grid_01_01.jpg, assets/images/products/home/product_grid_01_02.jpg" src="assets/images/products/home/product_grid_01_01.jpg" class="img-fluid img-switch d-block" alt="" style="">
-                          -->
-                          <div class="b-product_grid_info">
-                          <h5 class="product-title">
-                            <a href="#" routerLink="/product/{{product?.productTitle}}.{{product?.id}}"><b>{{ product?.productTitle | words: 4}}</b></a>
-                          </h5>
-                          </div>
-                            <img [src]="product?.imageURL || product?.primaryImageURL || './assets/images/not_available.jpg'" width="100%" height="auto" class="img-fluid img-switch d-block">
-                         
-                          </a> 
-                          <div class="b-product_grid_action">
-                            <a href="javascript:void(0)" data-whishurl="whishlist.html" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to Whishlist">
-                              <i class="icon-heart icons b-add_to_whish">
-                                <img [src]="(product?.imageURL || product?.primaryImageURL || './assets/images/not_available.jpg')" class="g-loading_gif" alt="">
-                              </i>
-                            </a>
-                            <i data-toggle="tooltip" data-placement="left" title="" class="icon-refresh icons" data-original-title="Compare"></i>
-                            <a href="javascript:void(0);" data-toggle="modal" data-target="#b-qucik_view">
-                                <i data-toggle="tooltip" data-placement="left" title="" class="icon-magnifier-add icons" data-original-title="Quick View"></i>
+                    <div class="b-product_grid_single">
+                        <div class="b-product_grid_header">
+                            <a href="#" routerLink="/product/{{product?.id}}">
+                              <!-- routerLink="/product/{{routeParamsName.split('.')[0]}}/{{product.productTitle}}.{{product.id}}" -->
+                              <!-- <img data-src="assets/images/products/home/product_grid_01_01.jpg, assets/images/products/home/product_grid_01_02.jpg" src="assets/images/products/home/product_grid_01_01.jpg" class="img-fluid img-switch d-block" alt="" style="">
+                            -->
+                            <div class="b-product_grid_info">
+                            <h1 class="product-title">
+                              <a href="#" routerLink="/product/{{product?.id}}"><b>{{ product?.productTitle | truncate: 30 | trim:'�'}}</b></a>
+                              <!-- routerLink="/product/{{routeParamsName.split('.')[0]}}/{{product?.productTitle}}.{{product?.id}}" -->
+                            </h1>
+                            </div>
+                              <img [src]="product?.primaryImageURLS || './assets/images/not_available.jpg'" width="100%" height="auto" class="img-fluid img-switch d-block">
+                           
+                            </a> 
+                            <div class="b-product_grid_action">
+                              <a href="javascript:void(0)" data-whishurl="whishlist.html" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to Whishlist">
+                                <i class="icon-heart icons b-add_to_whish">
+                                  <img [src]="(product?.imageURL || product?.primaryImageURL || './assets/images/not_available.jpg')" class="g-loading_gif" alt="">
+                                </i>
                               </a>
-                          </div>
-                          <div class="b-product_labels b-labels_rounded b-new">
-                            <span class="b-product_label">New</span>
-                           </div>
-                      </div>
-                    <div class="b-product_grid_info">
-                        <!-- <h3 class="product-title">
-                            <a href="#" routerLink="/product/{{product?.productTitle}}.{{product?.id}}">{{ product?.productTitle}}</a>
-                        </h3> -->
-                        <h3>{{ product?.categoryName | titlecase}}</h3>
-                        <p>{{ product?.productDescription | words : 8}}</p>
-                        <div class="clearfix">
-                          <div class="b-product_grid_toggle float-left">
-                              <span class="b-price">${{ product?.productPrice}}</span>
-                              <span class="b-add_cart">
-                                  <i class="icon-plus icons"></i>
-                                  <a href="#">Add To Project</a>
-                              </span>
-                          </div>
-                          <div class="b-product_options float-right">
-                           <a href="javascript:void(0);" class="d-inline-block b-active mr-3">
-                             <i class="fa fa-star"></i>
-                             <i class="fa fa-star"></i>
-                             <i class="fa fa-star"></i>
-                           </a>
-                             <!-- <ul class="pl-0 mb-0 list-unstyled">
-                                 <li>
-                                   <span data-toggle="tooltip" title="" class="b-black" data-original-title="Black"></span>
-                                 </li>
-                                 <li>
-                                   <span data-toggle="tooltip" title="" class="b-blue" data-original-title="Blue"></span>
-                                 </li> 
-                             </ul> -->
-                         </div>
+                              <i data-toggle="tooltip" data-placement="left" title="" class="icon-refresh icons" data-original-title="Compare"></i>
+                              <a href="javascript:void(0);" data-toggle="modal" data-target="#b-qucik_view">
+                                  <i data-toggle="tooltip" data-placement="left" title="" class="icon-magnifier-add icons" data-original-title="Quick View"></i>
+                                </a>
+                            </div>
                         </div>
-                    
-                     </div>
-                  </div>
+                        <div class="b-product_grid_info">
+                           <!-- <h3 class="product-title">
+                               <a href="#" routerLink="/product/{{product?.productTitle}}.{{product?.id}}">{{ product?.productTitle}}</a>
+                           </h3> -->
+                           <!-- <h3>{{ product?.categoryName | titlecase}}</h3> -->
+                           <p>{{ product?.productDescription | truncate : 25 | trim:'�'}}</p>
+                           <div class="clearfix">
+                             <div class="b-product_grid_toggle float-left">
+                                 <!-- <span class="b-price">Add To Project</span> -->
+                                 <span class="b-add_cart" (click)="addToProduct(product)">
+                                     <i class="icon-plus icons"></i>
+                                     <a href="javascript:void();">Add To Project</a>
+                                 </span>
+                             </div>
+                             <!-- <div class="b-product_options float-right">
+                              <a href="javascript:void(0);" class="d-inline-block b-active mr-3">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                              </a>
+                                <ul class="pl-0 mb-0 list-unstyled">
+                                    <li>
+                                      <span data-toggle="tooltip" title="" class="b-black" data-original-title="Black"></span>
+                                    </li>
+                                    <li>
+                                      <span data-toggle="tooltip" title="" class="b-blue" data-original-title="Blue"></span>
+                                    </li> 
+                                </ul>
+                            </div> -->
+                           </div>
+                        </div>
+                      </div>
                 </div>
 
               </div>
@@ -148,9 +146,9 @@
         </div>
         <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12">
           <div class="b-section_title">
-            <span class="b-section_title_over d-block text-center">Latest Articles</span>
+            <!-- <span class="b-section_title_over d-block text-center">Latest Articles</span> -->
             <h4 class="text-center text-uppercase">
-              PROMOTIONS
+              LATEST NEWS
               <!-- <span class="b-title_separator"><span></span></span> -->
             </h4>
           </div>
@@ -163,10 +161,10 @@
                               <img [src]="post?.imgURL"  class="img-fluid" alt="">
                           </a>
                       </div>
-                      <div class="b-post_time text-center">
+                      <!-- <div class="b-post_time text-center">
                           <span class="b-post_day">08</span>
                           <span class="b-post_month">Jan</span>
-                      </div>
+                      </div> -->
                       <div class="b-post_categories">
                          <div class="b-post_categorie_list">
                             <a href="#" rel="category tag">Health</a>
@@ -177,14 +175,14 @@
                       <h5 class="b-entry_title">
                           <a href="#" rel="bookmark">{{post?.title}}</a>
                       </h5>
-                      <div class="b-author_info">
+                      <!-- <div class="b-author_info">
                           <span class="b-author_name">
                               By <a href="#" rel="author">Gentec Editor</a>
                           </span>
                           <span class="b-reply">
                               <a href="#">Leave a comment</a>
                           </span>
-                      </div>
+                      </div> -->
                       <div class="b-blog_single_content">
                           <p [innerHTML]="post?.content | slice:0:200"></p> </div> 
                   </div>
@@ -202,12 +200,12 @@
   </div>
 </section>
 <section id="b-blog" style="background-color: #fbf6f6;">
-  <!-- <div class="b-section_title">
+  <div class="b-section_title">
             <h4 class="text-center text-uppercase">
-              LATEST NEWS
-              <span class="b-title_separator"><span></span></span>
+              Our Solutions
+        
             </h4>
-        </div> -->
+        </div>
   <div class="b-blog b-blog_grid text-center b-blog_grid_three mb-5 pt-5">
     <div class="container">
       <div class="row clearfix">
@@ -290,7 +288,79 @@
     </div>
   </div>
 </section>
+<section id="distribution" class="pb-5">
+    <div class="b-section_title">
+              <h4 class="text-center text-uppercase">
+               Distribution
+          
+              </h4>
+          </div>
+          <div class="container">
 
+              <div class="row clearfix">
+                <img src="./assets/images/distribution.jpg" class="img-fluid d-block" style="width: 100%;"/>
+
+              </div>
+              <div class="row clearfix pt-4">
+                  <div class="green1 col-xl-3 col-lg-3 col-mb-6">
+                    <p>Australia<br>
+                      Singapore<br>
+                      India<br>
+                      Middle East<br>
+                    </p>
+                  </div>
+                  <div class="green2 col-xl-9 col-lg-9 col-mb-6">
+                    <p><strong>Gentec Australia - Head Office</strong><br>
+                      Unit 6, 20-28 Ricketty St.<br>
+                      Mascot 2020 NSW<br>
+                      <strong>Tel:</strong> +612 9319 4422<br>
+                      <strong>Fax:</strong> +612 8088 7635<br>
+                      <strong>E-mail:</strong> info@gentecaustralia.com.au<br>
+
+                    </p>
+                  </div>
+                </div>
+                <div class="row clearfix pt-4">
+                    <div class="green1 col-xl-3 col-lg-3 col-mb-6">
+                      <p>North Queensland<br>
+                        Fiji<br>
+                        Papua New Guinea<br>
+               
+                      </p>
+                    </div>
+                    <div class="green2 col-xl-9 col-lg-9 col-mb-6">
+                      <p><strong>Pacific Islands Internations</strong><br>
+                        65 Thuringowa Drive,<br>
+                        Kirwan, QLD, 4817<br>
+                        <strong>Tel:</strong> +617 4773 2444<br>
+              
+                        <strong>E-mail:</strong> sales@gentecaustralia.com.au<br>
+  
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row clearfix pt-4">
+                      <div class="green1 col-xl-3 col-lg-3 col-mb-6">
+                        <p>Hong Kong<br>
+                          Macau<br>
+        
+                 
+                        </p>
+                      </div>
+                      <div class="green2 col-xl-9 col-lg-9 col-mb-6">
+                        <p><strong>Alliance Ascent Holdings Limited</strong><br>
+                         Unit 812, 8/F, Block B,<br>
+                         Hoi Luen Industrial Centre<br>
+                        55 Hoi Yuen Road, Kwun Tong<br>
+                          <strong>Tel:</strong>(852) 9282 3769;<br>
+                          (852) 2372 9939
+                          <strong>E-mail:</strong> phillipchan@allianceascent.com<br>
+    
+                        </p>
+                      </div>
+                    </div>
+              </div>
+          </section>
 <div class="b-contact b-contact_light pt-5 mt-4 b-newslatter_bg_grey">
   <div class="container">
 
@@ -359,33 +429,16 @@
                 </p>
               </div>
             </div>
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-              <div class="clearfix mb-5">
-                <i class="icon-cursor icons pull-left mr-4 b-icon_large"></i>
-                <p class="pull-left mb-0">
-                  Free standard shipping <br>
-                  on all orders in New York.
-                </p>
-              </div>
-            </div>
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-              <div class="clearfix mb-5">
-                <i class="icon-rocket icons pull-left mr-4 b-icon_large"></i>
-                <p class="pull-left mb-0">
-                  Support forum provide <br>
-                  for over 24h, every day
-                </p>
-              </div>
-            </div>
+        
           </div>
         </div>
         <div class="b-blog_social b-socail_color mt-0 pb-5">
           <ul class="list-unstyled clearfix mb-0 pl-0 pr-0">
+              <li><a href="#" class="fa fa-linkedin text-white"></a></li>
             <li><a href="#" class="fa fa-facebook text-white"></a></li>
-            <li><a href="#" class="fa fa-twitter text-white"></a></li>
-            <li><a href="#" class="fa fa-google-plus text-white"></a></li>
-            <li><a href="#" class="fa fa-envelope text-white"></a></li>
-            <li><a href="#" class="fa fa-pinterest text-white"></a></li>
+        
+            <li><a href="#" class="fa fa-youtube text-white"></a></li>
+
           </ul>
         </div>
       </div>
