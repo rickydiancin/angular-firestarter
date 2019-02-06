@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ProductsService } from './products.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +9,26 @@ export class VariablesService {
 
   showAddProjectModal = false;
   categories: any;
+  products: any;
 
-  constructor() {}
+  constructor(
+    private productServices: ProductsService
+  ) {}
+
+  localstorage(collection) {
+    switch (collection) {
+      case 'products':
+        if (typeof localStorage.getItem('products') === 'string') {
+          return true;
+        } else {
+          return false;
+        }
+        break;
+    
+      default:
+        break;
+    }
+  }
 
   allMenus3(){
     let menus3 = [
