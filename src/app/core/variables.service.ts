@@ -11,6 +11,12 @@ export class VariablesService {
 
   constructor() {}
 
+  allMenu(){
+    let menus = [
+      
+    ]
+  }
+
   allCategories () {
     let categories = [
       {
