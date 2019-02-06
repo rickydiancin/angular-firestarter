@@ -11,6 +11,171 @@ export class VariablesService {
 
   constructor() {}
 
+  allMenus3(){
+    let menus3 = [
+      {
+        title: 'Rails & Accessible Equipment',
+        url: 'category/twr',
+        isparent: true
+      },
+      {
+        title: 'Anti Microbial',
+        url: 'category/twr',
+       
+      },
+      {
+       
+        title: 'Stainless Stell',
+        url: 'category/twr',
+      },
+      {
+        title: 'Bathroom Accessories',
+        url: 'category/twr',
+        isparent: true
+      },
+      {
+        title: 'Grate Seal',
+        url: 'category/twr',
+        isparent: true
+      }
+      
+    ]
+
+    
+    return menus3;
+  }
+
+
+  allMenus2(){
+    let menus2 = [
+      {
+        title: 'Showers',
+        url: 'category/twr',
+        issub: true
+      },
+      {
+        title: 'Safety Showers & Equipment',
+        url: 'category/twr',
+        issub: true
+      },
+      {
+       
+        title: 'Safety Showers',
+        url: 'category/twr',
+      },
+      {
+      
+        title: 'Eyewash Combination',
+        url: 'category/twr',
+      },
+      {
+       
+        title: 'Other Safety Equipment',
+        url: 'category/twr',
+      },
+      {
+        title: 'Pre-Rinse Units',
+        url: 'category/twr',
+        issub: true
+      },
+      {
+        title: 'Thermostatic Valves',
+        url: 'category/twr',
+        issub: true
+      },
+      {
+        title: 'Sanitary Ware',
+        url: 'category/twr',
+        issub: true
+      },
+      {
+       
+        title: 'Basins',
+        url: 'category/twr',
+      },
+      {
+       
+        title: 'Toilets',
+        url: 'category/twr',
+      }
+      
+    ]
+
+    
+    return menus2;
+  }
+
+
+  allMenus(){
+    
+    let menus1 = [
+      {
+        title: 'Tapware',
+        url: 'category/twr',
+        isparent: true
+      },
+      {
+       
+        title: 'Single Lever Mixer',
+        url: 'category/twr',
+      },
+      {
+      
+        title: 'Lever Action Tapware',
+        url: 'category/twr',
+      },
+      {
+       
+        title: 'Anti Ligature',
+        url: 'category/twr',
+      },
+      {
+       
+        title: 'Thermostatic Mixing Taps',
+        url: 'category/twr',
+      },
+      {
+        title: 'Timed Flow',
+        url: 'category/twr',
+        issub: true
+      },
+      {
+        title: 'Bubblers',
+        url: 'category/twr',
+      },
+      {
+        title: 'Timed Flow Taps',
+        url: 'category/twr',
+      },
+      {
+        title: 'Timed Flow Shower',
+        url: 'category/twr',
+      },
+      {
+        title: 'Timed Flow Valves',
+        url: 'category/twr',
+      },
+      {
+        title: 'Electronic Tapware',
+        url: 'category/twr',
+        issub: true
+      },
+      {
+        title: 'Laboratory Taps',
+        url: 'category/twr',
+        issub: true
+      },
+      {
+        title: 'Spouts & Outlets',
+        url: 'category/twr',
+        issub: true
+      }
+      
+    ]
+  
+    return menus1;
+  }
+
   allCategories () {
     let categories = [
       {

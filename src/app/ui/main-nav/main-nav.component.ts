@@ -15,6 +15,9 @@ export class MainNavComponent {
 
   show = false;
   categories:any;
+  menus:any;
+  menus2:any;
+  menus3:any;
   products:any;
   solutions:any;
   user: any;
@@ -41,6 +44,10 @@ export class MainNavComponent {
   
   ngOnInit() {
     console.log(this.auth.user);
+    this.menus = this.vs.allMenus();
+    this.menus2 = this.vs.allMenus2();
+    this.menus3 = this.vs.allMenus3();
+    console.log('menus', this.menus);
     this.categories = this.vs.allCategories();
     // this.auth.user.subscribe((data) => {
     //   // console.log(data)

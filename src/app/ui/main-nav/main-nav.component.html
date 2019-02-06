@@ -100,11 +100,14 @@
                                       <div class="dropdown-inner">
                                           <div class="row">
                                            
-                                              <div class="col-xs-12 col-sm-3" *ngFor="let category of categories">
+                                              <div class="col-xs-12 col-sm-4">
                                                   <div class="menu-item">
                                                     <!-- <h5 class="b-filter_title">PRODUCT CATEGORIES</h5> -->
                                                     <ul>
-                                                      <li>
+                                                        <li *ngFor="let menu of menus" class="third-level">
+                                                            <a href="#" routerLink="{{menu?.url}}">{{menu?.title}}</a>
+                                                          </li>
+                                                      <!-- <li>
                                                         <a href="#" routerLink="/category/{{category?.code}}" style="color: #1daaa3;">{{category?.parentCategory |
                                                           uppercase}}</a>
                                                       </li>
@@ -121,7 +124,7 @@
                                                             <a href="#" routerLink="/category/{{sub?.code}}">{{sub?.parentCategory}}</a>
                                                           </li>
                                                         </ng-container>
-                                                      </ng-container>
+                                                      </ng-container> -->
                                                     </ul>
                                                       <!-- <h4 class="column-title"><b> -->
                                                           <!-- <a href="#" routerLink="/category/{{cat.categoryCode}}" style="color:#333333;">{{cat.categoryName}}</a> -->
@@ -139,7 +142,26 @@
                                                       </div> -->
                                                   </div>
                                               </div> 
-                                       
+                                              <div class="col-xs-12 col-sm-4">
+                                                  <div class="menu-item">
+                                                    <!-- <h5 class="b-filter_title">PRODUCT CATEGORIES</h5> -->
+                                                    <ul>
+                                                        <li *ngFor="let menu2 of menus2" class="third-level">
+                                                            <a href="#" routerLink="{{menu2?.url}}">{{menu2?.title}}</a>
+                                                          </li>
+                                                          </ul>
+                                                          </div>
+                                                          </div>
+                                                          <div class="col-xs-12 col-sm-4">
+                                                              <div class="menu-item">
+                                                                <!-- <h5 class="b-filter_title">PRODUCT CATEGORIES</h5> -->
+                                                                <ul>
+                                                                    <li *ngFor="let menu3 of menus3" class="third-level">
+                                                                        <a href="#" routerLink="{{menu3?.url}}">{{menu3?.title}}</a>
+                                                                      </li>
+                                                                      </ul>
+                                                                      </div>
+                                                                      </div>
                                           </div>
                                           <!-- row -->
                                       </div>
