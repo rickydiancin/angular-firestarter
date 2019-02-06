@@ -103,7 +103,7 @@ export class CategoryComponent implements OnInit {
     this.productsService.getAllProducts().subscribe(async (res:any) => {
       // console.log(res)
       // this.productsTemp = res;
-      // this.products = res;
+      this.products = res;
       localStorage.setItem('products', JSON.stringify(res));
       // this.productsService.getAllCategories((resCategory:any) => {
       //   // this.categories = resCategory;

@@ -148,9 +148,9 @@
         </div>
         <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12">
           <div class="b-section_title">
-            <span class="b-section_title_over d-block text-center">Latest Articles</span>
+            <!-- <span class="b-section_title_over d-block text-center">Latest Articles</span> -->
             <h4 class="text-center text-uppercase">
-              PROMOTIONS
+              LATEST NEWS
               <!-- <span class="b-title_separator"><span></span></span> -->
             </h4>
           </div>
@@ -163,10 +163,10 @@
                               <img [src]="post?.imgURL"  class="img-fluid" alt="">
                           </a>
                       </div>
-                      <div class="b-post_time text-center">
+                      <!-- <div class="b-post_time text-center">
                           <span class="b-post_day">08</span>
                           <span class="b-post_month">Jan</span>
-                      </div>
+                      </div> -->
                       <div class="b-post_categories">
                          <div class="b-post_categorie_list">
                             <a href="#" rel="category tag">Health</a>
@@ -177,14 +177,14 @@
                       <h5 class="b-entry_title">
                           <a href="#" rel="bookmark">{{post?.title}}</a>
                       </h5>
-                      <div class="b-author_info">
+                      <!-- <div class="b-author_info">
                           <span class="b-author_name">
                               By <a href="#" rel="author">Gentec Editor</a>
                           </span>
                           <span class="b-reply">
                               <a href="#">Leave a comment</a>
                           </span>
-                      </div>
+                      </div> -->
                       <div class="b-blog_single_content">
                           <p [innerHTML]="post?.content | slice:0:200"></p> </div> 
                   </div>
@@ -202,12 +202,12 @@
   </div>
 </section>
 <section id="b-blog" style="background-color: #fbf6f6;">
-  <!-- <div class="b-section_title">
+  <div class="b-section_title">
             <h4 class="text-center text-uppercase">
-              LATEST NEWS
-              <span class="b-title_separator"><span></span></span>
+              Our Solutions
+        
             </h4>
-        </div> -->
+        </div>
   <div class="b-blog b-blog_grid text-center b-blog_grid_three mb-5 pt-5">
     <div class="container">
       <div class="row clearfix">
