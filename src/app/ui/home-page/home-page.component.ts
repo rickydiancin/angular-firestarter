@@ -3,6 +3,7 @@ import { ScriptsService } from 'src/app/core/scripts.service';
 import { ProductsService } from 'src/app/core/products.service';
 import { TypeaheadMatch } from 'ngx-bootstrap';
 import { Router } from '@angular/router';
+import { VariablesService } from 'src/app/core/variables.service';
 
 @Component({
   selector: 'home-page',
@@ -26,6 +27,7 @@ export class HomePageComponent implements OnInit {
     private scriptsService: ScriptsService,
     private productsService: ProductsService,
     private router: Router,
+    public vs: VariablesService
   ) { }
 
   ngOnInit() {
@@ -36,10 +38,7 @@ export class HomePageComponent implements OnInit {
       console.log(res);
       this.categories = res;
     });
-    this.productsService.getAllProducts().subscribe(res => {
-      console.log(res);
-      this.products = res;
-     });
+    
      this.productsService.getAllPosts().subscribe(res => {
       console.log(res);
       this.posts= res;
@@ -59,6 +58,19 @@ export class HomePageComponent implements OnInit {
       console.log('latest products: ',res);
       this.products2 = res;
      });
+    this.getAllProducts();
+  }
+
+  getAllProducts() {
+    if(this.vs.localstorage('products')) {
+      this.products = JSON.parse(localStorage.getItem('products'));
+    } else {
+      this.productsService.getAllProducts().subscribe(res => {
+        console.log(res);
+        this.products = res;
+        localStorage.setItem('products', JSON.stringify(res));
+      });
+    }
   }
 
   onSelect(event: TypeaheadMatch): void {

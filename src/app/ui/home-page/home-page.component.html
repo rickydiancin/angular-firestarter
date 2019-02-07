@@ -11,7 +11,7 @@
                   <!-- <h5>{{model.productDescription}} {{model.productTitle}} Index: {{ index }}</h5> -->
                   <!-- <a style="color:inherit" href="#" routerLink="/product/{{model?.productCode}}"> -->
                     <img src="{{model?.primaryImageURLS || './assets/images/not_available.jpg'}}" alt="" height="50px" width="50px">
-                    {{model?.productTitle | titlecase}}
+                    {{model?.productTitle | titlecase | trim:'�'}}
                   <!-- </a> -->
                 </ng-template>
                 <div class="form-group">
