@@ -4,6 +4,7 @@ import { ProductsService } from './core/products.service';
 import { TypeaheadMatch } from 'ngx-bootstrap';
 import { Router } from '@angular/router';
 import { ScriptsService } from './core/scripts.service';
+import { VariablesService } from './core/variables.service';
 
 declare var $: any;
 
@@ -16,13 +17,17 @@ export class AppComponent implements OnInit {
   title = 'app';
   products: any;
   model:any;
-  constructor(private auth: AuthService, public productsService: ProductsService, private router: Router, public scriptsService: ScriptsService) {}
+  constructor(private auth: AuthService, public productsService: ProductsService, private router: Router, public scriptsService: ScriptsService, private vs: VariablesService) {}
 
-  getAllPeoducts() {
-    this.productsService.getAllProducts().subscribe(res => {
-      console.log(res);
-      this.products = res;
-    });
+  getAllProducts() {
+    if(this.vs.localstorage('products')) {
+      this.products = JSON.parse(localStorage.getItem('products'));
+    } else {
+      this.productsService.getAllProducts().subscribe(res => {
+        this.products = res;
+        localStorage.setItem('products', JSON.stringify(res));
+      });
+    }
   }
 
   onSelect(event: TypeaheadMatch): void {
@@ -32,7 +37,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getAllPeoducts();
+    this.getAllProducts();
     setTimeout(() => {
       this.scriptsService.prepareJquery();
     }, 1000)

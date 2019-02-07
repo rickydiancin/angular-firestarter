@@ -26,6 +26,8 @@ const routes: Routes = [
   { path: 'news', component: NewsComponent },
   { path: 'category', component: CategoryComponent },
   { path: 'category/:id', component: CategoryComponent },
+  { path: 'solutions', component: CategoryComponent },
+  { path: 'solution/:solutionid', component: CategoryComponent },
   { path: 'search', component: CategoryComponent },
   { path: 'wishlist', component: WishlistComponent },
   { path: 'projects', component: ProjectsComponent },

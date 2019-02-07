@@ -152,6 +152,19 @@ getCategory(id, callback){
     );
   }
 
+  getSolutionProductByArray(id: string) {
+    // return this.afs.doc<any>(`products/${id}`, ref => ref);
+    // return this.afs.collection('products', (ref) => ref.where('categories', "array-contains", id).limit(2)).snapshotChanges();
+    return this.afs.collection('products', (ref) => ref.where('solutions', "array-contains", id)).snapshotChanges().pipe(
+      map((actions) => {
+        return actions.map((a) => {
+          const data = a.payload.doc.data();
+          return { id: a.payload.doc.id, ...data };
+        });
+      })
+    );
+  }
+
   createProduct(content: string) {
     const product = {
       content,

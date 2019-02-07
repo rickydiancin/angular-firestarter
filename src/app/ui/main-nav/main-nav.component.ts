@@ -74,9 +74,16 @@ export class MainNavComponent {
     // });
     // console.log(this.categories);
 
-    this.productsService.getAllSolutions().subscribe((data) => {
-      this.solutions = data;
-    })
+    if(this.vs.localstorage('solutions')) {
+      this.solutions = JSON.parse(localStorage.getItem('solutions'));
+    } else {
+      this.productsService.getAllSolutions().subscribe((data) => {
+        if(data.length) {
+          this.solutions = data;
+          localStorage.setItem('solutions', JSON.stringify(data));
+        }
+      })
+    }
 
     // console.log(this.auth.user);
     setTimeout(() => {

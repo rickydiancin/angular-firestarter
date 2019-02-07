@@ -2,12 +2,12 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { ScriptsService } from 'src/app/core/scripts.service';
 import { ProductsService } from 'src/app/core/products.service';
 import { Observable } from 'rxjs';
-import * as _ from 'lodash';
 import { PaginationInstance } from 'ngx-pagination';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddToProjectComponent } from '../product/add-to-project/add-to-project.component';
 import { VariablesService } from 'src/app/core/variables.service';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'category',
@@ -23,6 +23,7 @@ export class CategoryComponent implements OnInit {
   routeParamsName: any;
   routeParamsid: any;
   category: any;
+  solution: any;
 
   @Input('data') meals: string[] = [];
 
@@ -53,13 +54,54 @@ export class CategoryComponent implements OnInit {
     this.categories = this.vs.allCategories();
 
     this.route.params.subscribe(params => {
-      // this.getAllCategoryProducts(params.id);
+      console.log(params)
       if (Object.entries(params).length !== 0) {
-        this.getAllCategoryProducts(params.id);
-        this.productsService.getCategory(params.id, res => {
-        console.log(res);
-        this.category = res;
-      });
+          if(params.id) {
+            this.productsService.getCategory(params.id, res => {
+              console.log(res);
+              this.category = res;
+            });
+            if (this.vs.localstorage('products')) {
+              this.products = _(JSON.parse(localStorage.getItem('products'))).filter((value) => {
+                return value.categories.includes(params.id)
+              }).value();
+            } else {
+              this.productsService.getAllProducts().subscribe((res: any) => {
+                if (res.length) {
+                  this.products = _(res).filter((value) => {
+                    return value.solutions.includes(params.solutionid)
+                  }).value();
+                  localStorage.setItem('products', JSON.stringify(res));
+                }
+              });
+            }
+          } else if (params.solutionid) {
+            this.productsService.getSolution(params.solutionid).subscribe(res => {
+              console.log(res);
+              this.solution = res;
+            });
+            if(this.vs.localstorage('products')) {
+              this.products = _(JSON.parse(localStorage.getItem('products'))).filter((value) => {
+                return value.solutions.includes(params.solutionid)
+              }).value();
+            } else {
+              this.productsService.getAllProducts().subscribe((res: any) => {
+                if (res.length) {
+                  this.products = _(res).filter((value) => {
+                    return value.solutions.includes(params.solutionid)
+                  }).value();
+                  localStorage.setItem('products', JSON.stringify(res));
+
+                  // this.productsService.getAllCategories((resCategory: any) => {
+                  //   this.categories = _(resCategory).filter({ 'parent': '' }).value();
+                  //   console.log(resCategory, this.categories)
+                  // });
+                }
+              });
+            }
+          }
+      } else {
+        this.getAllProducts();
       }
       // this.initialiseState(); // reset and set based on new parameter this time
     });
@@ -72,8 +114,6 @@ export class CategoryComponent implements OnInit {
     //  });
     // this.products = this.productsService.getData();
     // console.log(this.products);
-
-      this.getAllProducts();
       // this.productsService.getCategory(this.routeParamsName.split('.')[1], res => {
       //   console.log(res);
       //   this.category = res;
