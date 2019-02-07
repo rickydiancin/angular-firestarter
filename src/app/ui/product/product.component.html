@@ -377,11 +377,11 @@
     <div class="b-products b-product_grid b-product_grid_four mb-4">
         <div class="container">
             <div class="row clearfix">
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12" *ngFor="let related of relateds">
                      <div class="b-product_grid_single">
                        <div class="b-product_grid_header">
                            <a href="#">
-                             <img data-src="assets/images/products/product-single/product_grid_10_01.jpg, assets/images/products/product-single/product_grid_10_02.jpg" src=" assets/images/products/product-single/product_grid_10_01.jpg" class="img-fluid img-switch d-block" alt="" style="">
+                             <img data-src="assets/images/products/product-single/product_grid_10_01.jpg, assets/images/products/product-single/product_grid_10_02.jpg" src="{{related?.primaryImageURLS || './assets/images/not_available.jpg'}}" class="img-fluid img-switch d-block" alt="" style="">
                            </a>
                            <div class="b-product_grid_action">
                              <a href="javascript:void(0)" data-whishurl="whishlist.html" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to Whishlist">
@@ -397,17 +397,17 @@
                        </div>
                        <div class="b-product_grid_info">
                           <h3 class="product-title">
-                              <a href="#">Houble strap backpack</a>
+                              <a href="#">{{related?.productTitle | titlecase | words:4}}</a>
                           </h3>
                           <div class="clearfix">
                             <div class="b-product_grid_toggle float-left">
-                                <span class="b-price">$120</span>
-                                <span class="b-add_cart">
+                                <span class="b-price">{{related?.productCode | uppercase}}</span>
+                                <!-- <span class="b-add_cart">
                                     <i class="icon-basket icons"></i>
                                     <a href="#">Select Options</a>
-                                </span>
+                                </span> -->
                             </div>
-                            <div class="b-product_options float-right">
+                            <!-- <div class="b-product_options float-right">
                                <ul class="pl-0 mb-0 list-unstyled">
                                    <li>
                                      <span data-toggle="tooltip" title="" class="b-black" data-original-title="Black"></span>
@@ -416,12 +416,12 @@
                                      <span data-toggle="tooltip" title="" class="b-blue" data-original-title="Blue"></span>
                                    </li>
                                </ul>
-                           </div>
+                           </div> -->
                           </div>
                        </div>
                      </div>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12">
                   <div class="b-product_grid_single">
                      <div class="b-product_grid_header">
                          <a href="#">
@@ -470,8 +470,8 @@
                           </div>
                      </div>
                   </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                </div> -->
+                <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12">
                   <div class="b-product_grid_single">
                      <div class="b-product_grid_header">
                          <a href="#">
@@ -514,8 +514,8 @@
                           </div>
                      </div>
                   </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                </div> -->
+                <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12">
                   <div class="b-product_grid_single">
                      <div class="b-product_grid_header">
                          <a href="#">
@@ -548,7 +548,7 @@
                           </div>
                      </div>
                   </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

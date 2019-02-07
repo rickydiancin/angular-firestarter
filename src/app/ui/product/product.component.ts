@@ -7,6 +7,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddToProjectComponent } from './add-to-project/add-to-project.component';
 import { VariablesService } from 'src/app/core/variables.service';
 import * as jsPDF from 'jspdf';
+import * as _ from 'lodash';
 
 declare var $: any;
 
@@ -25,6 +26,7 @@ export class ProductComponent implements OnInit {
   theproduct: any;
   productExport: any = [];
   catName: any;
+  relateds: any;
 
   options = {
     fieldSeparator: ',',
@@ -170,6 +172,13 @@ export class ProductComponent implements OnInit {
       }, 1000)
       this.productsService.getProduct(params.id).valueChanges()
         .subscribe(res => {
+          var lookup = _.keyBy(res.categories, (o) => {
+            return o.toString()
+          });
+          var relateds = _.filter(JSON.parse(localStorage.getItem('products')), function (u) {
+            return lookup[u.categories.toString()] !== undefined;
+          });
+          this.relateds = relateds;
           this.productExport = [];
           console.log(res);
           this.theproduct = res;
