@@ -834,6 +834,7 @@ var App = (function(window){
         })
         $('.customNextBtn').click(function() {
           owl.trigger('next.owl.carousel');
+          console.log('next');
         })
         // Go to the previous item
         $('.customPrevBtn').click(function() {

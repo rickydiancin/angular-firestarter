@@ -828,6 +828,7 @@ export class ScriptsService {
           },
       
           RelatedProducts: function(){
+            console.log('related prods');
             if($("#b-related_products").length > 0){
               var owl = $('#b-related_products').owlCarousel({
                   loop:true,

@@ -169,7 +169,7 @@ export class ProductComponent implements OnInit {
       console.log(this.products);
       setTimeout(() => {
         this.scriptsService.prepareJquery();
-      }, 1000)
+      }, 2000)
       this.productsService.getProduct(params.id).valueChanges()
         .subscribe(res => {
           var lookup = _.keyBy(res.categories, (o) => {
@@ -179,6 +179,7 @@ export class ProductComponent implements OnInit {
             return lookup[u.categories.toString()] !== undefined;
           });
           this.relateds = relateds;
+          console.log('related', this.relateds);
           this.productExport = [];
           console.log(res);
           this.theproduct = res;
