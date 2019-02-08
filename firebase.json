@@ -1,6 +1,13 @@
 {
   "hosting": {
     "public": "dist/firestarter",
+    "headers": [ {
+      "source": "**/*.@(eot|otf|ttf|ttc|woff|json|font.css)",
+      "headers": [ {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      } ]
+    }],
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -14,3 +21,5 @@
     ]
   }
 }
+
+
