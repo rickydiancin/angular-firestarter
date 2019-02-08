@@ -25,6 +25,10 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TypeaheadModule } from 'ngx-bootstrap';
 
+import * as firebase from 'firebase/app';
+
+firebase.initializeApp(environment.firebase);
+
 // IMPORTANT
 // Add your own project credentials to environments/*.ts
 
