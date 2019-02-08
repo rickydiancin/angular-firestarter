@@ -4,7 +4,7 @@ import { ProductsService } from 'src/app/core/products.service';
 import { TypeaheadMatch } from 'ngx-bootstrap';
 import { Router } from '@angular/router';
 import { VariablesService } from 'src/app/core/variables.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'home-page',
@@ -37,10 +37,10 @@ export class HomePageComponent implements OnInit {
 
   createForm() {
     this.form = this.formBuilder.group({
-      fullname: [],
-      email: [],
-      subject: [],
-      message: []
+      fullname: ['', Validators.required],
+      email: ['', Validators.required],
+      subject: [''],
+      message: ['']
     })
   }
 
