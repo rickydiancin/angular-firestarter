@@ -24,6 +24,13 @@ export class VariablesService {
           return false;
         }
         break;
+      case 'solutions':
+        if (typeof localStorage.getItem('solutions') === 'string') {
+          return true;
+        } else {
+          return false;
+        }
+        break;
     
       default:
         break;
@@ -34,27 +41,27 @@ export class VariablesService {
     let menus3 = [
       {
         title: 'Rails & Accessible Equipment',
-        url: 'category',
+        url: 'category/RAE',
         isparent: true
       },
       {
         title: 'Anti Microbial',
-        url: 'category',
+        url: 'category/AM',
        
       },
       {
        
-        title: 'Stainless Stell',
-        url: 'category',
+        title: 'Stainless Steel',
+        url: 'category/SS',
       },
       {
         title: 'Bathroom Accessories',
-        url: 'category',
+        url: 'category/BA',
         isparent: true
       },
       {
         title: 'Grate Seal',
-        url: 'category',
+        url: 'category/GRTS',
         isparent: true
       }
       
@@ -69,23 +76,24 @@ export class VariablesService {
     let menus2 = [
       {
         title: 'Showers',
-        url: 'category',
+        url: 'category/SHOWR',
         issub: true
       },
       {
         title: 'Safety Showers & Equipment',
-        url: 'category',
+        url: 'category/SSHOWE',
         issub: true
       },
       {
        
         title: 'Safety Showers',
-        url: 'category',
+        url: 'category/SSHOW',
       },
       {
       
-        title: 'Eyewash Combination',
-        url: 'category',
+        title: 'Emergency Eye/Face Wash',
+        // title: 'Eyewash Combination',
+        url: 'category/EEFW',
       },
       {
        
@@ -94,28 +102,28 @@ export class VariablesService {
       },
       {
         title: 'Pre-Rinse Units',
-        url: 'category',
+        url: 'category/JETFLO',
         issub: true
       },
       {
         title: 'Thermostatic Valves',
-        url: 'category',
+        url: 'category/TMV',
         isparent: true
       },
       {
         title: 'Sanitary Ware',
-        url: 'category',
+        url: 'category/SAHN',
         isparent: true
       },
       {
        
         title: 'Basins',
-        url: 'category',
+        url: 'category/BASI',
       },
       {
        
         title: 'Toilets',
-        url: 'category',
+        url: 'category/TOIL',
       }
       
     ]
@@ -130,58 +138,58 @@ export class VariablesService {
     let menus1 = [
       {
         title: 'Tapware',
-        url: 'category/twr',
+        url: 'category/TPWR',
         isparent: true
       },
       {
        
         title: 'Single Lever Mixer',
-        url: 'category',
+        url: 'category/SLM',
       },
       {
       
         title: 'Lever Action Tapware',
-        url: 'category',
+        url: 'category/LAT',
       },
       {
        
         title: 'Anti Ligature',
-        url: 'category',
+        url: 'category/ANTIV',
       },
       {
        
         title: 'Thermostatic Mixing Taps',
-        url: 'category',
+        url: 'category/THMT',
       },
       {
         title: 'Timed Flow',
-        url: 'category',
+        url: 'category/TFT',
         issub: true
       },
       {
         title: 'Bubblers',
-        url: 'category',
+        url: 'category/BUB',
       },
       {
         title: 'Timed Flow Taps',
-        url: 'category',
+        url: 'category/TFTAP',
       },
       {
         title: 'Timed Flow Shower',
-        url: 'category',
+        url: 'category/TFTSHO',
       },
       {
         title: 'Timed Flow Valves',
-        url: 'category',
+        url: 'category/TFTVAL',
       },
       {
         title: 'Electronic Tapware',
-        url: 'category',
+        url: 'category/ELEC',
         issub: true
       },
       {
         title: 'Laboratory Taps',
-        url: 'category',
+        url: 'category/DURA',
         issub: true
       },
       {
@@ -198,97 +206,97 @@ export class VariablesService {
   allCategories () {
     let categories = [
       {
-        code: 'twr',
+        code: 'TPWR',
         parentCategory: 'tapware',
-        url: '',
+        url: 'category/TPWR',
         subParent: [
           {
             code: 'tf',
             parentCategory: 'Timed Flow',
-            url: '',
+            url: 'category/TFT',
             sub: [
               {
-                code: 'twr',
+                code: 'BUB',
                 parentCategory: 'Bubblers',
-                url: '',
+                url: 'category/BUB',
               },{
-                code: 'twr',
+                code: 'TFTAP',
                 parentCategory: 'timed flow taps',
-                url: '',
+                url: 'category/TFTAP',
               },{
-                code: 'twr',
+                code: 'TFTSHO',
                 parentCategory: 'timed flow showers',
-                url: '',
+                url: 'category/TFTSHO',
               }, {
-                code: 'twr',
+                code: 'TFTVAL',
                 parentCategory: 'timed flow valves',
-                url: '',
+                url: 'tegory/TFTVAL',
               }
             ]
           }, {
-            code: 'tf',
+            code: 'ELEC',
             parentCategory: 'Electronic Tapware',
-            url: '',
+            url: 'category/ELEC',
             sub: []
           }, {
-            code: 'tf',
+            code: 'DURA',
             parentCategory: 'Laboratory Taps',
-            url: '',
+            url: 'category/DURA',
             sub: []
           }, {
             code: 'tf',
             parentCategory: 'spouts & outlets',
-            url: '',
+            url: 'category',
             sub: []
           }, {
-            code: 'tf',
+            code: 'SHOWR',
             parentCategory: 'showers',
-            url: '',
+            url: 'category/SHOWR',
             sub: []
           }
         ],
         sub: [
           {
-            code: 'twr',
+            code: 'SLM',
             parentCategory: 'Single Lever Mixer',
-            url: '',
+            url: 'category/SLM',
           },{
-            code: 'twr',
+            code: 'LAT',
             parentCategory: 'Lever Action Tapware',
-            url: '',
+            url: 'category/LAT',
           },{
-            code: 'twr',
+            code: 'ANTIV',
             parentCategory: 'Anti Ligature',
-            url: '',
+            url: 'category/ANTIV',
           },{
-            code: 'twr',
+            code: 'THMT',
             parentCategory: 'Thermostatic Mixing Taps',
-            url: '',
+            url: 'category/THMT',
           }
         ]
       }, {
-        code: 'twr',
+        code: 'TMV',
         parentCategory: 'Thermostatic Valves',
-        url: '',
+        url: 'category/TMV',
         subParent: [
           {
-            code: 'tf',
+            code: 'TFT',
             parentCategory: 'Timed Flow',
-            url: '',
+            url: 'category/TFT',
             sub: [
               {
-                code: 'twr',
+                code: 'BUB',
                 parentCategory: 'Bubblers',
-                url: '',
+                url: 'category/BUB',
               }
             ]
           }
         ],
         sub: [
           {
-            code: 'twr',
+            code: 'SLM',
             parentCategory: 'Single Lever Mixer',
-            url: '',
+            url: 'category/SLM',
           }
         ]
       }
