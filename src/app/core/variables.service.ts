@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { ProductsService } from './products.service';
 
 @Injectable({
@@ -26,6 +25,20 @@ export class VariablesService {
         break;
       case 'solutions':
         if (typeof localStorage.getItem('solutions') === 'string') {
+          return true;
+        } else {
+          return false;
+        }
+        break;
+      case 'banners':
+        if (typeof localStorage.getItem('banners') === 'string') {
+          return true;
+        } else {
+          return false;
+        }
+        break;
+      case 'posts':
+        if (typeof localStorage.getItem('posts') === 'string') {
           return true;
         } else {
           return false;
