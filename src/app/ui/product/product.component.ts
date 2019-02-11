@@ -157,6 +157,17 @@ export class ProductComponent implements OnInit {
     private router: Router,
     private afAuth: AngularFireAuth
   ) { 
+    
+  }
+
+  getFile() {
+    this.productsService.getFile().subscribe((data) => {
+      console.log(data, 'files')
+    })
+  }
+
+  ngOnInit() {
+
     this.afAuth.authState.pipe(
       take(1),
       map(user => {
@@ -171,15 +182,7 @@ export class ProductComponent implements OnInit {
         }
       })
     );
-  }
 
-  getFile() {
-    this.productsService.getFile().subscribe((data) => {
-      console.log(data, 'files')
-    })
-  }
-
-  ngOnInit() {
     this.getFile();
     // this.catName = this.route.snapshot.params.id;
     this.pid = this.route.snapshot.params.id;

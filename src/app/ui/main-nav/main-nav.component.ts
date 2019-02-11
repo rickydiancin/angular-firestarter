@@ -74,16 +74,19 @@ export class MainNavComponent {
     // });
     // console.log(this.categories);
 
-    if(this.vs.localstorage('solutions')) {
-      this.solutions = JSON.parse(localStorage.getItem('solutions'));
-    } else {
-      this.productsService.getAllSolutions().subscribe((data) => {
-        if(data.length) {
-          this.solutions = data;
-          localStorage.setItem('solutions', JSON.stringify(data));
-        }
-      })
-    }
+    this.vs.localstorage('solutions').subscribe((solutions) => {
+      this.solutions = solutions
+    })
+    // if(this.vs.localstorage('solutions')) {
+    //   this.solutions = JSON.parse(localStorage.getItem('solutions'));
+    // } else {
+    //   this.productsService.getAllSolutions().subscribe((data) => {
+    //     if(data.length) {
+    //       this.solutions = data;
+    //       localStorage.setItem('solutions', JSON.stringify(data));
+    //     }
+    //   })
+    // }
 
     // console.log(this.auth.user);
     setTimeout(() => {
