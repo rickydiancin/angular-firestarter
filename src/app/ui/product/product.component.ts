@@ -29,7 +29,7 @@ export class ProductComponent implements OnInit {
   productExport: any = [];
   catName: any;
   relateds: any;
-  addToProject: boolean;
+  addToProject = true;
 
   options = {
     fieldSeparator: ',',
