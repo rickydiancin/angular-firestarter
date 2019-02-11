@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'login', component: UserLoginComponent },
   { path: 'products', component: CategoryComponent },
   { path: 'news', component: NewsComponent },
-  { path: ':catName', component: CategoryComponent },
+  { path: ':catName/all', component: CategoryComponent },
   { path: 'category/:id', component: CategoryComponent },
   // { path: ':solutionsName', component: CategoryComponent },
   { path: 'solution/:solutionid', component: CategoryComponent },
