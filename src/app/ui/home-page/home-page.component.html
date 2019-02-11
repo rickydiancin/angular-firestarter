@@ -396,7 +396,7 @@
               </div>
             </div>
             <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
-              <button (click)="sendContact()" class="btn btn-bg text-white">SEND A MESSAGE</button>
+              <button [disabled]="form.invalid" (click)="sendContact()" class="btn btn-bg text-white">SEND A MESSAGE</button>
             </div>
           </div>
         </form>
