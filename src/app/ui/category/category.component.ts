@@ -24,6 +24,9 @@ export class CategoryComponent implements OnInit {
   routeParamsid: any;
   category: any;
   solution: any;
+  paramsCategory: any;
+  paramsSolution: any;
+  params: any;
 
   @Input('data') meals: string[] = [];
 
@@ -52,56 +55,82 @@ export class CategoryComponent implements OnInit {
   ngOnInit() {
 
     this.categories = this.vs.allCategories();
+    console.log(this.route.snapshot.params.id)
 
     this.route.params.subscribe(params => {
       console.log(params)
+      this.params = params
       if (Object.entries(params).length !== 0) {
           if(params.id) {
+            this.paramsCategory = params.id
+            console.log(this.paramsCategory)
             this.productsService.getCategory(params.id, res => {
               console.log(res);
               this.category = res;
             });
-            if (this.vs.localstorage('products')) {
-              this.products = _(JSON.parse(localStorage.getItem('products'))).filter((value) => {
-                return value.categories.includes(params.id)
-              }).value();
-            } else {
-              this.productsService.getAllProducts().subscribe((res: any) => {
-                if (res.length) {
-                  this.products = _(res).filter((value) => {
-                    return value.solutions.includes(params.solutionid)
+            this.vs.localstorage('products').subscribe((products: any) => {
+              if (products.length) {
+                // this.products = products;
+                // console.log(this.products)
+                this.products = _(products).filter((value) => {
+                    return value.categories.includes(params.id)
                   }).value();
-                  localStorage.setItem('products', JSON.stringify(res));
-                }
-              });
-            }
+              }
+            })
+            // if (this.vs.localstorage('products')) {
+            //   this.products = _(JSON.parse(localStorage.getItem('products'))).filter((value) => {
+            //     return value.categories.includes(params.id)
+            //   }).value();
+            // } else {
+            //   this.productsService.getAllProducts().subscribe((res: any) => {
+            //     if (res.length) {
+            //       this.products = _(res).filter((value) => {
+            //         return value.solutions.includes(params.solutionid)
+            //       }).value();
+            //       localStorage.setItem('products', JSON.stringify(res));
+            //     }
+            //   });
+            // }
           } else if (params.solutionid) {
-            this.productsService.getSolution(params.solutionid).subscribe(res => {
-              console.log(res);
-              this.solution = res;
+            this.paramsSolution = params.solutionid;
+            console.log(this.paramsSolution, this.paramsCategory)
+            this.vs.localstorage('solutions').subscribe(res => {
+              this.solution = _(res).filter((value:any) => {
+                return value.solutionCode == params.solutionid;
+              }).value()[0];
+              console.log(this.solution);
             });
-            if(this.vs.localstorage('products')) {
-              this.products = _(JSON.parse(localStorage.getItem('products'))).filter((value) => {
-                return value.solutions.includes(params.solutionid)
-              }).value();
-            } else {
-              this.productsService.getAllProducts().subscribe((res: any) => {
-                if (res.length) {
-                  this.products = _(res).filter((value) => {
-                    return value.solutions.includes(params.solutionid)
-                  }).value();
-                  localStorage.setItem('products', JSON.stringify(res));
+            this.vs.localstorage('products').subscribe((products: any) => {
+              if (products.length) {
+                // this.products = products;
+                // console.log(this.products)
+                this.products = _(products).filter((value) => {
+                  return value.solutions.includes(params.solutionid)
+                }).value();
+              }
+            })
+            // if(this.vs.localstorage('products')) {
+            //   this.products = _(JSON.parse(localStorage.getItem('products'))).filter((value) => {
+            //     return value.solutions.includes(params.solutionid)
+            //   }).value();
+            // } else {
+            //   this.productsService.getAllProducts().subscribe((res: any) => {
+            //     if (res.length) {
+            //       this.products = _(res).filter((value) => {
+            //         return value.solutions.includes(params.solutionid)
+            //       }).value();
+            //       localStorage.setItem('products', JSON.stringify(res));
 
-                  // this.productsService.getAllCategories((resCategory: any) => {
-                  //   this.categories = _(resCategory).filter({ 'parent': '' }).value();
-                  //   console.log(resCategory, this.categories)
-                  // });
-                }
-              });
-            }
+            //       // this.productsService.getAllCategories((resCategory: any) => {
+            //       //   this.categories = _(resCategory).filter({ 'parent': '' }).value();
+            //       //   console.log(resCategory, this.categories)
+            //       // });
+            //     }
+            //   });
+            // }
+          } else {
+            this.getAllProducts();
           }
-      } else {
-        this.getAllProducts();
       }
       // this.initialiseState(); // reset and set based on new parameter this time
     });
@@ -134,22 +163,29 @@ export class CategoryComponent implements OnInit {
   // }
 
   getAllProducts() {
-    if (this.vs.localstorage('products')) {
-      console.log('true', JSON.parse(localStorage.getItem('products')));
-      this.products = JSON.parse(localStorage.getItem('products'));
-    } else {
-      this.productsService.getAllProducts().subscribe((res: any) => {
-        if(res.length) {
-          this.products = res;
-          console.log(res)
-          localStorage.setItem('products', JSON.stringify(res));
-          this.productsService.getAllCategories((resCategory: any) => {
-            this.categories = _(resCategory).filter({ 'parent': '' }).value();
-            console.log(resCategory, this.categories)
-          });
-        }
-      });
-    }
+    console.log(this.vs.localstorage('products'))
+    this.vs.localstorage('products').subscribe((products:any) => {
+      if (products.length) {
+        this.products = products;
+        console.log(this.products)
+      }
+    })
+    // if (this.vs.localstorage('products')) {
+    //   console.log('true', JSON.parse(localStorage.getItem('products')));
+    //   this.products = JSON.parse(localStorage.getItem('products'));
+    // } else {
+    //   this.productsService.getAllProducts().subscribe((res: any) => {
+    //     if(res.length) {
+    //       this.products = res;
+    //       console.log(res)
+    //       localStorage.setItem('products', JSON.stringify(res));
+    //       this.productsService.getAllCategories((resCategory: any) => {
+    //         this.categories = _(resCategory).filter({ 'parent': '' }).value();
+    //         console.log(resCategory, this.categories)
+    //       });
+    //     }
+    //   });
+    // }
   }
 
   // getAllCategories() {

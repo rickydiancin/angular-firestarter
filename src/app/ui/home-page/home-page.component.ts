@@ -62,10 +62,14 @@ export class HomePageComponent implements OnInit {
       console.log(res);
       this.abouts= res;
      });
-     this.productsService.getAllBanners().subscribe(res => {
+     this.vs.localstorage('banners').subscribe(res => {
       console.log('banners: ',res);
       this.banners = res;
      });
+    //  this.productsService.getAllBanners().subscribe(res => {
+    //   console.log('banners: ',res);
+    //   this.banners = res;
+    //  });
     //  this.productsService.getAllSolutions().subscribe((data) => {
     //   this.solutions = data;
     // })

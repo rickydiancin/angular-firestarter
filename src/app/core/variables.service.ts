@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
 import { ProductsService } from './products.service';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+
+import { Observable, Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { AuthService } from './auth.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -9,45 +15,58 @@ export class VariablesService {
   showAddProjectModal = false;
   categories: any;
   products: any;
+  productsCollection: AngularFirestoreCollection<{}>;
 
   constructor(
-    private productServices: ProductsService
-  ) {}
+    private afs: AngularFirestore,
+    private productServices: ProductsService,
+    private httpClient: HttpClient
+  ) {
+    this.productsCollection = this.afs.collection('products', (ref) => ref.orderBy('dateCreated', 'desc'));
+  }
 
   localstorage(collection) {
-    switch (collection) {
-      case 'products':
-        if (typeof localStorage.getItem('products') === 'string') {
-          return true;
-        } else {
-          return false;
-        }
-        break;
-      case 'solutions':
-        if (typeof localStorage.getItem('solutions') === 'string') {
-          return true;
-        } else {
-          return false;
-        }
-        break;
-      case 'banners':
-        if (typeof localStorage.getItem('banners') === 'string') {
-          return true;
-        } else {
-          return false;
-        }
-        break;
-      case 'posts':
-        if (typeof localStorage.getItem('posts') === 'string') {
-          return true;
-        } else {
-          return false;
-        }
-        break;
-    
-      default:
-        break;
+    if (collection == 'products') {
+      return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/products.json?alt=media&token=27e8bc46-0a87-4631-b73d-eb4b1b80a626');
+    } else if (collection == 'solutions') {
+      return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/solutions.json?alt=media&token=4918ad6f-670a-454e-bec6-287a1eec008a');
+    } else if(collection == 'banners') {
+      return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/banners.json?alt=media&token=a5ac86cd-925e-48fc-9ae9-a365c6466a04');
     }
+    // switch (collection) {
+    //   case 'products':
+    //     return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/products.json?alt=media&token=27e8bc46-0a87-4631-b73d-eb4b1b80a626');
+    //     // if (typeof localStorage.getItem('products') === 'string') {
+    //     //   return true;
+    //     // } else {
+    //     //   return false;
+    //     // }
+    //     break;
+    //   case 'solutions':
+    //     if (typeof localStorage.getItem('solutions') === 'string') {
+    //       return true;
+    //     } else {
+    //       return false;
+    //     }
+    //     break;
+    //   case 'banners':
+    //     if (typeof localStorage.getItem('banners') === 'string') {
+    //       return true;
+    //     } else {
+    //       return false;
+    //     }
+    //     break;
+    //   case 'posts':
+    //     if (typeof localStorage.getItem('posts') === 'string') {
+    //       return true;
+    //     } else {
+    //       return false;
+    //     }
+    //     break;
+    
+    //   default:
+    //     break;
+    // }
   }
 
   allMenus3(){
