@@ -93,15 +93,9 @@ export class HomePageComponent implements OnInit {
   }
 
   getAllProducts() {
-    if(this.vs.localstorage('products')) {
-      this.products = JSON.parse(localStorage.getItem('products'));
-    } else {
-      this.productsService.getAllProducts().subscribe(res => {
-        console.log(res);
-        this.products = res;
-        localStorage.setItem('products', JSON.stringify(res));
-      });
-    }
+    this.vs.localstorage('products').subscribe((products) => {
+      this.products = products
+    });
   }
 
   onSelect(event: TypeaheadMatch): void {
