@@ -73,11 +73,11 @@ export class ProjectProductsComponent implements OnInit {
       'flowRate',
       'fireResistanceLevel',
       'patentNumber',
-      'secondaryImageURLS',
+      // 'secondaryImageURLS',
       'technicalSheetURL',
       'DWGFileURL',
       'revitFileURL',
-      'imageURL',
+      // 'imageURL',
     ],
     keys: [
       'productCode',
@@ -126,11 +126,11 @@ export class ProjectProductsComponent implements OnInit {
       'flowRate',
       'fireResistanceLevel',
       'patentNumber',
-      'secondaryImageURLS',
+      // 'secondaryImageURLS',
       'technicalSheetURL',
       'DWGFileURL',
       'revitFileURL',
-      'imageURL'
+      // 'imageURL'
     ]
   };
 
@@ -209,6 +209,10 @@ export class ProjectProductsComponent implements OnInit {
     //   'elementHandlers': specialElementHandlers
     // });
     // doc.save('test.pdf');
+  }
+
+  downloadFile() {
+    $('#exportFile').click();
   }
 
 }
