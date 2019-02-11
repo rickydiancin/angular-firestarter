@@ -184,9 +184,9 @@
             </ul>
             <div class="b-product_single_action clearfix">
               <button *ngIf="addToProject" [disabled]="!theproduct" (click)="addToProduct(theproduct)" class="text-uppercase btn-block btn"><i class="fa fa-plus fa-fw"></i>
-                add to project</button>
+                add to projectaaa</button>
               <button *ngIf="!addToProject" [disabled]="!theproduct" routerLink="/login" class="text-uppercase btn-block btn"><i class="fa fa-plus fa-fw"></i>
-                add to project</button>
+                add to projectsss</button>
               <button [disabled]="!theproduct || !theproduct?.technicalSheetURL" (click)="viewTechnicalDetails(theproduct?.technicalSheetURL)" class="text-uppercase btn-block btn"><i class="fa fa-file-pdf-o fa-fw"></i>
                 View Technical Details</button>
             </div>

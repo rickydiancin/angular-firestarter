@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductsService } from 'src/app/core/products.service';
 import { VariablesService } from 'src/app/core/variables.service';
+import { AuthService } from 'src/app/core/auth.service';
 
 declare var $: any;
 
@@ -22,7 +23,8 @@ export class AddProjectComponent implements OnInit {
     public formBuilder: FormBuilder,
     private activeModal: NgbActiveModal,
     public productServices: ProductsService,
-    public vs: VariablesService
+    public vs: VariablesService,
+    public authService: AuthService
   ) {
     this.createForm();
   }
@@ -32,7 +34,7 @@ export class AddProjectComponent implements OnInit {
       this.scriptsService.prepareJquery();
     }, 1000)
 
-    console.log(this.hideForm);
+    console.log(this.authService.user);
   }
 
   createForm() {
