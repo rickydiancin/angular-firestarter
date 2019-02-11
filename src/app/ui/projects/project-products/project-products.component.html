@@ -71,6 +71,11 @@
               <tfoot>
                 <tr>
                   <td>
+                    <button (click)="downloadFile()" type="button" class="btn btn-primary btn-block">Export as CSV</button>
+                    <angular2csv *ngIf="productProject?.length > 0" [data]="productProject" filename="{{id.split('.')[0]}}" [options]="options" class="d-none">
+                    </angular2csv>
+                  </td>
+                  <td>
                     <button (click)="downloadPDF()" type="button" class="btn btn-primary btn-block">Save as PDF</button>
                   </td>
                 </tr>

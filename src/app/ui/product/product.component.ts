@@ -172,14 +172,21 @@ export class ProductComponent implements OnInit {
       }, 2000)
       this.productsService.getProduct(params.id).valueChanges()
         .subscribe(res => {
-          var lookup = _.keyBy(res.categories, (o) => {
-            return o.toString()
-          });
-          var relateds = _.filter(JSON.parse(localStorage.getItem('products')), function (u) {
-            return lookup[u.categories.toString()] !== undefined;
-          });
-          this.relateds = relateds;
-          console.log('related', this.relateds);
+
+          this.vs.localstorage('products').subscribe((products: any) => {
+            if (products.length) {
+              this.products = products;
+              console.log(this.products)
+              var lookup = _.keyBy(res.categories, (o) => {
+                return o.toString()
+              });
+              var relateds = _.filter(products, function (u) {
+                return lookup[u.categories.toString()] !== undefined;
+              });
+
+              this.relateds = relateds;
+            }
+          })
           this.productExport = [];
           console.log(res);
           this.theproduct = res;
