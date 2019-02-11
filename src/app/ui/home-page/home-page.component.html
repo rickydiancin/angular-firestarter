@@ -3,36 +3,40 @@
 
     <div class="b-featured_cat">
       <div class="container">
+          <!-- <div class="row">
+              <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
+                  <div class="b-search_bar">
+                      <form action="#">
+                        <ng-template #customItemTemplate let-model="item" let-index="index">
+                         
+                            <img src="{{model?.primaryImageURLS || './assets/images/not_available.jpg'}}" alt="" height="50px" width="50px">
+                            {{model?.productTitle | titlecase | trim:'�'}}
+              
+                        </ng-template>
+                        <div class="form-group">
+                          <input
+                          autocomplete="off"
+                          [disabled]="!products"
+                          name="model"
+                          (typeaheadOnSelect)="onSelect($event)"
+                          [(ngModel)]="model"
+                          [typeahead]="products"
+                          typeaheadOptionField="productTitle"
+                          [typeaheadItemTemplate]="customItemTemplate"
+                          [typeaheadMinLength]="2"
+                          type="text" placeholder="Search Products">
+                          <button class="btn"><i class="icons icon-magnifier"></i></button>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+          </div> -->
         <div class="row">
           <div class="col-xl-9 col-lg-9 col-mb-9 col-sm-9 col-xs-12">
-            <div class="b-search_bar">
-              <form action="#">
-                <ng-template #customItemTemplate let-model="item" let-index="index">
-                  <!-- <h5>{{model.productDescription}} {{model.productTitle}} Index: {{ index }}</h5> -->
-                  <!-- <a style="color:inherit" href="#" routerLink="/product/{{model?.productCode}}"> -->
-                    <img src="{{model?.primaryImageURLS || './assets/images/not_available.jpg'}}" alt="" height="50px" width="50px">
-                    {{model?.productTitle | titlecase | trim:'�'}}
-                  <!-- </a> -->
-                </ng-template>
-                <div class="form-group">
-                  <input
-                  autocomplete="off"
-                  [disabled]="!products"
-                  name="model"
-                  (typeaheadOnSelect)="onSelect($event)"
-                  [(ngModel)]="model"
-                  [typeahead]="products"
-                  typeaheadOptionField="productTitle"
-                  [typeaheadItemTemplate]="customItemTemplate"
-                  [typeaheadMinLength]="2"
-                  type="text" placeholder="Search Products">
-                  <button class="btn"><i class="icons icon-magnifier"></i></button>
-                </div>
-              </form>
-            </div>
+        
             <ngb-carousel *ngIf="banners">
               <ng-template ngbSlide *ngFor="let banner of banners ">
-                <img [src]="banner?.imgURL"  alt="{{banner.bannerTitle}}" height="500">
+                <img [src]="banner?.imgURL"  alt="{{banner.bannerTitle}}" style="width: 100%;">
                 <div class="carousel-caption">
                   <h3>{{banner.bannerTitle}}</h3>
                   <p>{{banner.description}}</p>
@@ -45,7 +49,7 @@
           <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-3 col-xs-12">
             <div class="b-featured_cat_in">
               <a href="#" routerLink="/news">
-               <img src="assets/images/sidebanner.png" class="img-fluid d-block" alt="">
+               <img src="assets/images/sidebanner.jpg" class="img-fluid d-block" alt="" style="height: 430px;">
               </a>
               <div class="b-cat_mask">
                 <a href="#" routerLink="/news" class="category-link-overlay">Learn More</a> 
