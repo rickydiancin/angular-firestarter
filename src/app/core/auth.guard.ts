@@ -19,20 +19,23 @@ export class AuthGuard implements CanActivate {
   constructor(
     private auth: AuthService,
     private router: Router,
-    private notify: NotifyService
+    private notify: NotifyService,
+    private afAuth: AngularFireAuth
   ) {}
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<boolean> | Promise<boolean> | boolean {
-    return this.auth.user.pipe(
+  ) {
+    return this.afAuth.authState.pipe(
       take(1),
-      map(user => !!user),
-      tap(loggedIn => {
-        if (!loggedIn) {
-          console.log('access denied');
-          this.notify.update('You must be logged in!', 'error');
+      map(user => {
+        if(!user) {
+          console.log('not')
           this.router.navigate(['/login']);
+          return false
+        } else {
+          console.log('ok')
+          return true
         }
       })
     );

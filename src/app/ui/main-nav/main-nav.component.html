@@ -186,17 +186,17 @@
                                 <a href="#" class="p-relative description " routerLink="/category">
                                 <span class="top">Company</span> 
                                 </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="p-relative description " routerLink="/projects">
-                                    <span class="top">Specifications</span> 
-                                    </a>
-                                    </li>
-                                    <li>
-                                      <a href="#" class="p-relative description ">
-                                      <span class="top">Retailers</span> 
-                                      </a>
-                                      </li>
+                              </li>
+                              <li *ngIf="auth?.user">
+                                <a href="#" class="p-relative description " routerLink="/projects">
+                                <span class="top">Specifications</span> 
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#" class="p-relative description ">
+                                <span class="top">Retailers</span> 
+                                </a>
+                              </li>
                           </ul>
                       </div>
                   </div> 
