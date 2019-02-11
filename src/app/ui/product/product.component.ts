@@ -166,23 +166,19 @@ export class ProductComponent implements OnInit {
     })
   }
 
-  ngOnInit() {
-
-    this.afAuth.authState.pipe(
+  checkAuth() {
+    // console.log('wow',this.afAuth.authState)
+    return this.afAuth.authState.pipe(
       take(1),
-      map(user => {
-        if (!user) {
-          console.log('not')
-          this.addToProject = false
-          return false
-        } else {
-          console.log('ok')
-          this.addToProject = true
-          return true
-        }
-      })
+      map(user => !!user)
     );
+  }
 
+  ngOnInit() {
+    this.checkAuth().subscribe((res) => {
+      this.addToProject = res;
+    });
+    // this.checkAuth();
     this.getFile();
     // this.catName = this.route.snapshot.params.id;
     this.pid = this.route.snapshot.params.id;

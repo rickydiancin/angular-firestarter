@@ -245,6 +245,7 @@ getCategory(id, callback){
   }
 
   getAllProjectProducts(product) {
+    console.log(this.auth.user)
     return this.afs.collection('projectproducts', (ref) => ref.where('userID', "==", this.auth.user.uid).where('productCode', '==', product.productCode)).snapshotChanges().pipe(
       map((actions) => {
         return actions.map((a) => {
