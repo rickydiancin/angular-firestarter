@@ -20,14 +20,9 @@ export class AppComponent implements OnInit {
   constructor(private auth: AuthService, public productsService: ProductsService, private router: Router, public scriptsService: ScriptsService, private vs: VariablesService) {}
 
   getAllProducts() {
-    if(this.vs.localstorage('products')) {
-      this.products = JSON.parse(localStorage.getItem('products'));
-    } else {
-      this.productsService.getAllProducts().subscribe(res => {
-        this.products = res;
-        localStorage.setItem('products', JSON.stringify(res));
-      });
-    }
+    this.vs.localstorage('products').subscribe((products) => {
+      this.products = products;
+    })
   }
 
   onSelect(event: TypeaheadMatch): void {
