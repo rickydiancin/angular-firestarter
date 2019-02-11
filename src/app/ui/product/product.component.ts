@@ -8,6 +8,8 @@ import { AddToProjectComponent } from './add-to-project/add-to-project.component
 import { VariablesService } from 'src/app/core/variables.service';
 import * as jsPDF from 'jspdf';
 import * as _ from 'lodash';
+import { take, map } from 'rxjs/operators';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 declare var $: any;
 
@@ -27,6 +29,7 @@ export class ProductComponent implements OnInit {
   productExport: any = [];
   catName: any;
   relateds: any;
+  addToProject: boolean;
 
   options = {
     fieldSeparator: ',',
@@ -151,8 +154,24 @@ export class ProductComponent implements OnInit {
     private route: ActivatedRoute,
     private modalService: NgbModal,
     public vs: VariablesService,
-    private router: Router
-  ) {  }
+    private router: Router,
+    private afAuth: AngularFireAuth
+  ) { 
+    this.afAuth.authState.pipe(
+      take(1),
+      map(user => {
+        if (!user) {
+          console.log('not')
+          this.addToProject = false
+          return false
+        } else {
+          console.log('ok')
+          this.addToProject = true
+          return true
+        }
+      })
+    );
+  }
 
   getFile() {
     this.productsService.getFile().subscribe((data) => {

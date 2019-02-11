@@ -41,7 +41,7 @@ export class UserProfileComponent implements OnInit {
     this.auth.getCurrentUser(this.auth.user).subscribe((user) => {
       this.user = user;
       this.form.patchValue(user)
-      console.log('user: ',this.user);
+      // console.log('user: ',this.user);
     })
   }
 

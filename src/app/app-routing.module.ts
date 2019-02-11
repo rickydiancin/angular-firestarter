@@ -30,7 +30,7 @@ const routes: Routes = [
   { path: 'solution/:solutionid', component: CategoryComponent },
   { path: 'search', component: CategoryComponent },
   { path: 'wishlist', component: WishlistComponent },
-  { path: 'projects', component: ProjectsComponent },
+  { path: 'projects', component: ProjectsComponent, canActivate: [AuthGuard] },
   { path: 'projects/:id', component: ProjectProductsComponent },
   { path: 'projects/:id/invoice', component: InvoiceComponent },
   { path: 'company', component: CompanyComponent },
