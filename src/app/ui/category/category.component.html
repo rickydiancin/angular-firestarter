@@ -163,10 +163,10 @@
             <span *ngIf="params?.catName == 'category'">Category</span>
             <span *ngIf="params?.catName == 'solution'">Solution</span>
 
-            <a *ngIf="category" href="#" routerLink="/category">Category</a>
+            <a *ngIf="category" href="#" routerLink="/category/all">All Category</a>
             <span *ngIf="category">{{category?.categoryName | titlecase}}</span>
 
-            <a *ngIf="solution" href="#" routerLink="/solution">Solution</a>
+            <a *ngIf="solution" href="#" routerLink="/solution/all">All Solution</a>
             <span *ngIf="solution">{{solution?.solutionName | titlecase}}</span>
           </nav>
         </div>
