@@ -30,6 +30,7 @@ import { NewsComponent } from './news/news.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { TypeaheadModule } from 'ngx-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
+import { NewssingleComponent } from './newssingle/newssingle.component';
 
 @NgModule({
   imports: [CommonModule, RouterModule, ReactiveFormsModule, NgxPaginationModule, TruncateModule, FormsModule, NgPipesModule, NgbModule, Angular2CsvModule, TypeaheadModule.forRoot(), HttpClientModule],
@@ -52,7 +53,8 @@ import { HttpClientModule } from '@angular/common/http';
     ProjectProductsComponent,
     SingleCategoryComponent,
     NewsComponent,
-    InvoiceComponent
+    InvoiceComponent,
+    NewssingleComponent
   ],
   entryComponents:[
     AddProjectComponent,

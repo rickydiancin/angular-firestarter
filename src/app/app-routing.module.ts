@@ -17,6 +17,7 @@ import { ProjectProductsComponent } from './ui/projects/project-products/project
 import { SingleCategoryComponent } from './ui/category/single-category/single-category.component';
 import { NewsComponent } from './ui/news/news.component';
 import { InvoiceComponent } from './ui/invoice/invoice.component';
+import { NewssingleComponent } from './ui/newssingle/newssingle.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'login', component: UserLoginComponent },
   { path: 'products', component: CategoryComponent },
   { path: 'news', component: NewsComponent },
+  { path: 'news/:id', component: NewssingleComponent },
   { path: ':catName/all', component: CategoryComponent },
   { path: 'category/:id', component: CategoryComponent },
   // { path: ':solutionsName', component: CategoryComponent },
