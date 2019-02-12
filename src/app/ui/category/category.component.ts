@@ -164,8 +164,8 @@ export class CategoryComponent implements OnInit {
     // console.log(this.vs.localstorage('products'))
     this.vs.localstorage('products').subscribe((products:any) => {
       if (products.length) {
-        this.products = _.each(products, o => _.each(o, (v, k) => o[k] = _(v).trim(' �↵').replace(/\n/ig, '').replace('�', '')))
-        this.productsTemp = _.each(products, o => _.each(o, (v, k) => o[k] = _(v).trim(' �↵').replace(/\n/ig, '').replace('�','')))
+        this.products = _.each(products, o => _.each(o, (v, k) => o[k] = _(v).trim(' �↵').replace('�', '')))
+        this.productsTemp = _.each(products, o => _.each(o, (v, k) => o[k] = _(v).trim(' �\n').replace('�','')))
         // this.productsTemp = products;
         console.log(this.productsTemp)
         
@@ -231,7 +231,7 @@ export class CategoryComponent implements OnInit {
     console.log(event.target.value)
 
     // this.products = this.productsTemp;
-    this.products = _(this.productsTemp).sortBy(['productTitle']).value();
+    this.products = _(this.productsTemp).sortBy([event.target.value]).value();
     console.log(this.products)
   }
 
