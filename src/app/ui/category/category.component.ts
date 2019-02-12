@@ -93,12 +93,10 @@ export class CategoryComponent implements OnInit {
             // }
           } else if (params.solutionid) {
             this.paramsSolution = params.solutionid;
-            console.log(this.paramsSolution, this.paramsCategory)
             this.vs.localstorage('solutions').subscribe(res => {
               this.solution = _(res).filter((value:any) => {
                 return value.solutionCode == params.solutionid;
               }).value()[0];
-              console.log(this.solution);
             });
             this.vs.localstorage('products').subscribe((products: any) => {
               if (products.length) {
@@ -163,11 +161,14 @@ export class CategoryComponent implements OnInit {
   // }
 
   getAllProducts() {
-    console.log(this.vs.localstorage('products'))
+    // console.log(this.vs.localstorage('products'))
     this.vs.localstorage('products').subscribe((products:any) => {
       if (products.length) {
-        this.products = products;
-        console.log(this.products)
+        this.products = _.each(products, o => _.each(o, (v, k) => o[k] = _(v).trim(' �↵').replace(/\n/ig, '')))
+        this.productsTemp = _.each(products, o => _.each(o, (v, k) => o[k] = _(v).trim(' �↵').replace(/\n/ig, '').replace('', '')))
+        // this.productsTemp = products;
+        console.log(this.productsTemp)
+        
       }
     })
     // if (this.vs.localstorage('products')) {
@@ -230,7 +231,8 @@ export class CategoryComponent implements OnInit {
     console.log(event.target.value)
 
     // this.products = this.productsTemp;
-    this.products = _(this.productsTemp).sortBy(event).value();
+    this.products = _(this.productsTemp).sortBy(['productTitle']).value();
+    console.log(this.products)
   }
 
   rangeFilter() {

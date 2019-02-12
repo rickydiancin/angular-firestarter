@@ -160,13 +160,13 @@
         <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12"> 
           <nav class="b-shop_breadcrumb">
             <a href="#">Home</a>
-            <span *ngIf="params?.catName == 'category'">Category</span>
-            <span *ngIf="params?.catName == 'solution'">Solution</span>
+            <span *ngIf="params?.catName == 'category'">All Category</span>
+            <span *ngIf="params?.catName == 'solution'">All Solution</span>
 
-            <a *ngIf="category" href="#" routerLink="/category/all">All Category</a>
+            <a *ngIf="category" href="#" routerLink="/category/all">Category</a>
             <span *ngIf="category">{{category?.categoryName | titlecase}}</span>
 
-            <a *ngIf="solution" href="#" routerLink="/solution/all">All Solution</a>
+            <a *ngIf="solution" href="#" routerLink="/solution/all">Solution</a>
             <span *ngIf="solution">{{solution?.solutionName | titlecase}}</span>
           </nav>
         </div>

@@ -211,8 +211,8 @@ export class ProjectProductsComponent implements OnInit {
     // doc.save('test.pdf');
   }
 
-  downloadFile() {
-    $('#exportFile').click();
-  }
+  // downloadFile() {
+  //   $('#exportFile').click();
+  // }
 
 }
