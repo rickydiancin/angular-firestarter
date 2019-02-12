@@ -83,9 +83,9 @@ h1 {
 .sortBy {
     width: 100px;
     float: right;
-    position: absolute;
-    top: 75px;
-    right: 15px;
+    position: relative;
+    top: -60px;
+    right: 0px;
     select {
         border-radius: 0px;
     }

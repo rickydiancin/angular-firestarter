@@ -22,14 +22,16 @@ export class ProductComponent implements OnInit {
 
   @ViewChild('content') content: ElementRef
 
-  products: Observable<any[]>;
+  products = [];
   // content: string;
   pid: string;
   theproduct: any;
   productExport: any = [];
   catName: any;
   relateds: any;
-  addToProject = true;
+  addToProject: boolean = true;
+  nextProduct:any;
+  prevProduct:any;
 
   options = {
     fieldSeparator: ',',
@@ -179,34 +181,37 @@ export class ProductComponent implements OnInit {
       this.addToProject = res;
     });
     // this.checkAuth();
-    this.getFile();
+    // this.getFile();
     // this.catName = this.route.snapshot.params.id;
     this.pid = this.route.snapshot.params.id;
-    this.products = this.productsService.getData();
+    // this.products = this.productsService.getData();
     this.route.params.subscribe((params) => {
-      console.log(this.products);
       setTimeout(() => {
         this.scriptsService.prepareJquery();
-      }, 2000)
+      }, 1000)
+
       this.productsService.getProduct(params.id).valueChanges()
-        .subscribe(res => {
+        .subscribe(async res => {
+          // await this.vs.localstorage('products').subscribe((products: any) => {
+            // if (res.length > 0 && this.products.length > 0) {
+            var lookup = await _.keyBy(res.categories, (o) => {
+              return o.toString()
+            });
+            var relateds = await _.filter(this.vs.products, function (u: any) {
+              return lookup[u.categories.toString()] !== undefined;
+            });
 
-          this.vs.localstorage('products').subscribe((products: any) => {
-            if (products.length) {
-              this.products = products;
-              console.log(this.products)
-              var lookup = _.keyBy(res.categories, (o) => {
-                return o.toString()
-              });
-              var relateds = _.filter(products, function (u) {
-                return lookup[u.categories.toString()] !== undefined;
-              });
+            this.relateds = await relateds;
 
-              this.relateds = relateds;
-            }
-          })
+            let index = this.vs.products.findIndex(x => x.productCode == params.id);
+            this.nextProduct = this.vs.products[index + 1];
+            this.prevProduct = this.vs.products[index - 1];
+              console.log(index)
+            // }
+          // })
+
           this.productExport = [];
-          console.log(res);
+          
           this.theproduct = res;
           this.productExport.push(res);
         });

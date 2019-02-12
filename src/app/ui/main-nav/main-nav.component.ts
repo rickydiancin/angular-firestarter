@@ -92,9 +92,9 @@ export class MainNavComponent {
     setTimeout(() => {
       this.scriptsService.prepareJquery();
        },1000)
-       this.productsService.getAllProducts().subscribe(res => {
+       this.vs.localstorage('products').subscribe(res => {
         // console.log(res);
-        this.products = res;
+        this.vs.products = res;
        });
   }
 
