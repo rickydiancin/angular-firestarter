@@ -49,7 +49,7 @@ export class SingleCategoryComponent implements OnInit {
     });
     // this.id = this.route.snapshot.params.id;
     // this.getCategory();
-    this.getAllCategories();
+    // this.getAllCategories();
   }
 
   getCategory(id) {

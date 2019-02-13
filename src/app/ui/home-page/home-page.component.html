@@ -6,7 +6,7 @@
           <div class="row">
               <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
                   <div class="b-search_bar">
-                      <!-- <form action="#"> -->
+                      <form action="#">
                         <ng-template #customItemTemplate let-model="item" let-index="index">
                          
                             <img src="{{model?.primaryImageURLS || './assets/images/not_available.jpg'}}" alt="" height="50px" width="50px">
@@ -15,21 +15,27 @@
                         </ng-template>
                         <div class="form-group">
                           <input
-                          [(ngModel)]="filterQuery"
                           autocomplete="off"
                           [disabled]="!products"
+                          name="model"
+                          (typeaheadOnSelect)="onSelect($event)"
+                          [(ngModel)]="model"
+                          [typeahead]="products"
+                          typeaheadOptionField="productTitle"
+                          [typeaheadItemTemplate]="customItemTemplate"
+                          [typeaheadMinLength]="2"
                           type="text" placeholder="Search Products">
                           <button class="btn"><i class="icons icon-magnifier"></i></button>
                         </div>
-                      <!-- </form> -->
-                      <div class="productList dropdown-menu">
+                      </form>
+                      <!-- <div class="productList dropdown-menu">
                         <ng-container *ngFor="let product of products | productFilter : filterQuery">
                           <button class="dropdown-item">
                             <img src="{{product?.primaryImageURLS || './assets/images/not_available.jpg'}}" alt="" height="50px" width="50px">
                             {{product?.productTitle | titlecase}}
                           </button>
                         </ng-container>
-                      </div>
+                      </div> -->
                     </div>
                 </div>
           </div>

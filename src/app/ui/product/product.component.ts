@@ -193,27 +193,68 @@ export class ProductComponent implements OnInit {
       this.productsService.getProduct(params.id).valueChanges()
         .subscribe(async res => {
           // if(res) {
-            await this.vs.localstorage('products').subscribe((products: any) => {
-            // if (res.length > 0 && this.products.length > 0) {
+          if (this.vs.localstorage('products')) {
+            // this.vs.products = JSON.parse(localStorage.getItem('products'));
             var lookup = _.keyBy(res.categories, (o) => {
               return o.toString()
             });
-              var relateds = _.filter(products, function (u: any) {
+            var relateds = _.filter(JSON.parse(localStorage.getItem('products')), function (u: any) {
               return lookup[u.categories.toString()] !== undefined;
             });
-
             this.relateds = relateds;
-              console.log(this.relateds)
+            console.log(this.relateds)
 
-              let index = products.findIndex(x => x.productCode == params.id);
-            this.nextProduct = products[index + 1];
-              this.prevProduct = products[index - 1];
+            let index = JSON.parse(localStorage.getItem('products')).findIndex(x => x.productCode == params.id);
+            this.nextProduct = JSON.parse(localStorage.getItem('products'))[index + 1];
+            this.prevProduct = JSON.parse(localStorage.getItem('products'))[index - 1];
 
             this.productExport = [];
 
             this.theproduct = res;
             this.productExport.push(res);
-          })
+          } else {
+            this.productsService.getAllProducts().subscribe((data) => {
+              var lookup = _.keyBy(res.categories, (o) => {
+                return o.toString()
+              });
+              var relateds = _.filter(data, function (u: any) {
+                return lookup[u.categories.toString()] !== undefined;
+              });
+              localStorage.setItem('products', JSON.stringify(data));
+              this.relateds = relateds;
+              console.log(this.relateds)
+
+              let index = data.findIndex((x:any) => x.productCode == params.id);
+              this.nextProduct = data[index + 1];
+              this.prevProduct = data[index - 1];
+
+              this.productExport = [];
+
+              this.theproduct = res;
+              this.productExport.push(res);
+            })
+          }
+          //   await this.vs.localstorage('products').subscribe((products: any) => {
+          //   // if (res.length > 0 && this.products.length > 0) {
+          //   // var lookup = _.keyBy(res.categories, (o) => {
+          //   //   return o.toString()
+          //   // });
+          //   //   var relateds = _.filter(products, function (u: any) {
+          //   //   return lookup[u.categories.toString()] !== undefined;
+          //   // });
+
+          //   this.relateds = relateds;
+          //     console.log(this.relateds)
+
+          //     let index = products.findIndex(x => x.productCode == params.id);
+          //   this.nextProduct = products[index + 1];
+          //     this.prevProduct = products[index - 1];
+
+          //   this.productExport = [];
+
+          //   this.theproduct = res;
+          //   this.productExport.push(res);
+          // })
           // }
         });
     });
