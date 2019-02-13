@@ -135,7 +135,7 @@ getCategory(id, callback){
       return callback(res);
   })
 }
-  getProduct(id: string) {
+  getProduct(id) {
     return this.afs.doc<any>(`products/${id}`);
   }
 

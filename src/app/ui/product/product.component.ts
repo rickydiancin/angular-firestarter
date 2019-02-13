@@ -192,28 +192,29 @@ export class ProductComponent implements OnInit {
 
       this.productsService.getProduct(params.id).valueChanges()
         .subscribe(async res => {
-          // await this.vs.localstorage('products').subscribe((products: any) => {
+          // if(res) {
+            await this.vs.localstorage('products').subscribe((products: any) => {
             // if (res.length > 0 && this.products.length > 0) {
-            var lookup = await _.keyBy(res.categories, (o) => {
+            var lookup = _.keyBy(res.categories, (o) => {
               return o.toString()
             });
-            var relateds = await _.filter(this.vs.products, function (u: any) {
+              var relateds = _.filter(products, function (u: any) {
               return lookup[u.categories.toString()] !== undefined;
             });
 
-            this.relateds = await relateds;
+            this.relateds = relateds;
+              console.log(this.relateds)
 
-            let index = this.vs.products.findIndex(x => x.productCode == params.id);
-            this.nextProduct = this.vs.products[index + 1];
-            this.prevProduct = this.vs.products[index - 1];
-              console.log(index)
-            // }
-          // })
+              let index = products.findIndex(x => x.productCode == params.id);
+            this.nextProduct = products[index + 1];
+              this.prevProduct = products[index - 1];
 
-          this.productExport = [];
-          
-          this.theproduct = res;
-          this.productExport.push(res);
+            this.productExport = [];
+
+            this.theproduct = res;
+            this.productExport.push(res);
+          })
+          // }
         });
     });
   }
