@@ -17,3 +17,43 @@ $green_color: #95C448;
 .product-title{
     font-size: 1.5em;
 }
+
+/deep/.productList {
+    position: absolute;
+    display: block;
+    overflow-y: visible;
+    height: auto;
+    visibility: visible;
+    top: 53px;
+    left: 14px;
+    width: 22rem;
+}
+
+/deep/.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 15px 1.5rem;
+    clear: both;
+    font-weight: normal;
+    color: #292b2c;
+    text-align: inherit;
+    white-space: nowrap;
+    background: none;
+    border: 0;
+}
+
+/ddep/.dropdown-item.active, .dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #23c6d1;
+}
+
+/deep/.dropdown-item:focus, .dropdown-item:hover {
+    color: #fff;
+    text-decoration: none;
+    background-color: #23c6d1;
+}
+
+// button.dropdown-item:hover {
+//     color: #fff !important;
+// }

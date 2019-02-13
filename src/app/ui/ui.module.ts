@@ -31,6 +31,7 @@ import { InvoiceComponent } from './invoice/invoice.component';
 import { TypeaheadModule } from 'ngx-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { NewssingleComponent } from './newssingle/newssingle.component';
+import { ProductFilterPipe } from './home-page/productPipe';
 
 @NgModule({
   imports: [CommonModule, RouterModule, ReactiveFormsModule, NgxPaginationModule, TruncateModule, FormsModule, NgPipesModule, NgbModule, Angular2CsvModule, TypeaheadModule.forRoot(), HttpClientModule],
@@ -54,7 +55,8 @@ import { NewssingleComponent } from './newssingle/newssingle.component';
     SingleCategoryComponent,
     NewsComponent,
     InvoiceComponent,
-    NewssingleComponent
+    NewssingleComponent,
+    ProductFilterPipe
   ],
   entryComponents:[
     AddProjectComponent,
@@ -66,7 +68,9 @@ import { NewssingleComponent } from './newssingle/newssingle.component';
     NotificationMessageComponent,
     UserProfileComponent,
     UserFormComponent,
+    ProductFilterPipe
     // AddProjectComponent
-  ]
+  ],
+  providers: [ProductFilterPipe]
 })
 export class UiModule {}

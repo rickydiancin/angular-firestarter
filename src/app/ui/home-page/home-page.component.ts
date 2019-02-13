@@ -15,6 +15,7 @@ export class HomePageComponent implements OnInit {
 
   public model: string;
   // states: string[] = [];
+  filterQuery = '';
 
   categories: any;
   products:any;
