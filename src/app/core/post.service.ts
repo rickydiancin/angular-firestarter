@@ -15,7 +15,7 @@ export class PostService {
   ) { }
 
   getAllPostsByCategory(category) {
-    return this.afs.collection('posts', (ref) => ref.where('category', '==', category)).snapshotChanges().pipe(
+    return this.afs.collection('posts', (ref) => ref.where('category', '==', category).orderBy('dateCreated', 'desc')).snapshotChanges().pipe(
       map((actions) => {
         return actions.map((a) => {
           const data = a.payload.doc.data();
