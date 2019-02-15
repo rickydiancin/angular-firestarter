@@ -5,7 +5,7 @@
     <span>Blog Single</span>
   </div>
 </div> 
-<section id="b-blog_alternative">
+<section id="b-blog_alternative" *ngIf="singleNews">
     <div class="container">
       <div class="row clearfix">
         <div class="col-xl-9 col-lg-9 col-mb-8 col-sm-12 col-xs-12">
@@ -20,7 +20,7 @@
                       </div>   
                     </div>
                     <h3 class="b-entry_title">
-                        <a href="#" rel="bookmark">Venenatis veulum peus</a>
+                        <a href="#" rel="bookmark">{{singleNews?.title | titlecase}}</a>
                     </h3>
                     <!-- <div class="b-author_info pb-1">
                         <span class="b-author_name">
@@ -34,7 +34,7 @@
                <div class="b-blog_single_header">
                     <div class="b-blog_img_wrap">
                         <a href="#">
-                            <img src="assets/images/blog/home/blog_default_01.jpg" class="img-fluid" alt="">
+                            <img src="{{singleNews?.imgURL || 'assets/images/blog/home/blog_default_01.jpg'}}" class="img-fluid" alt="">
                         </a>
                     </div>
                     <!-- <div class="b-post_time text-center">
@@ -43,14 +43,17 @@
                     </div>  -->
                 </div>  
                 <div class="b-blog_single_info"> 
-                    <div class="b-blog_single_content text-left pt-3">.
-                        <h6 class="font-title b-font_lora font-italic mb-3">Tortor ac litora phasellus a porta hac vestibulum fringilla taciti gravida adipiscing est litora sed massa per a ut vivamus libero vel. Ridiculus non et dis fermentum non libero per hac vestibulum senectus tortor leo nisl lobortis consectetur senectus habitant facilisi sodales.</h6>
-                        <p>Susp endisse ullam corper a adipiscing class ullam corper inceptos nisl consequat eros congue ullamcorper suspendisse a penatibus a varius. Montes a platea viva mus ridiculus consequat parturient parturient pretium nascetur at cras porta parturient scelerisque ad mollis at in vivamus risus. Euismod maecenas.</p>
-                        <blockquote>
+                    <div class="b-blog_single_content text-left pt-3">
+                      
+                        <h6 class="font-title b-font_lora font-italic mb-3" [innerHTML]="singleNews?.content">
+                          <!-- <span [innerHTML]="singleNews?.content"></span> -->
+                        </h6>
+                        <!-- <p>Susp endisse ullam corper a adipiscing class ullam corper inceptos nisl consequat eros congue ullamcorper suspendisse a penatibus a varius. Montes a platea viva mus ridiculus consequat parturient parturient pretium nascetur at cras porta parturient scelerisque ad mollis at in vivamus risus. Euismod maecenas.</p> -->
+                        <!-- <blockquote>
                           <p class="b-font_lora mt-4">
                              Massa class fringilla parturient felis quisque adipiscing praesent velit duis odio velit sit dignissim hac adipiscing facilisis id inceptos suspendisse aliquam a quam a mi litora. Condimentum cum semper conubia taciti lorem hac lacinia adipiscing adipiscing parturient amet litora velit consectetur etiam a suspendisse fames blandit diam vehicula facilisis cras condimentum mi dui.
                           </p>
-                        </blockquote>
+                        </blockquote> -->
                         <div class="b-footer_socail b-socail_large b-socail_color mt-5">
                           <ul class="list-unstyled clearfix mb-0">
                             <li><a href="#" data-toggle="tooltip" title="" data-original-title="Facebook" class="fa fa-facebook"></a></li>

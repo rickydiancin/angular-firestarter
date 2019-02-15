@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PostService } from 'src/app/core/post.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'newssingle',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewssingleComponent implements OnInit {
 
-  constructor() { }
+  singleNews:any;
+
+  constructor(
+    private postService: PostService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
+    this.route.params.subscribe((params) => {
+      this.getSinglePost(params.id);
+    })
+  }
+
+  getSinglePost(id) {
+    this.postService.getSinglePost(id).subscribe((res) => {
+      this.singleNews = res;
+      console.log(res)
+    })
   }
 
 }

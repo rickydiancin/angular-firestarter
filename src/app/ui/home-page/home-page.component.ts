@@ -5,6 +5,7 @@ import { TypeaheadMatch } from 'ngx-bootstrap';
 import { Router } from '@angular/router';
 import { VariablesService } from 'src/app/core/variables.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { PostService } from 'src/app/core/post.service';
 
 @Component({
   selector: 'home-page',
@@ -31,7 +32,8 @@ export class HomePageComponent implements OnInit {
     private productsService: ProductsService,
     private router: Router,
     public vs: VariablesService,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    public postService: PostService,
   ) {
     this.createForm();
   }
@@ -54,11 +56,11 @@ export class HomePageComponent implements OnInit {
       this.categories = res;
     });
     
-     this.productsService.getAllPosts().subscribe(res => {
+    this.postService.getAllPostsByCategory('news').subscribe(res => {
       console.log(res);
       this.posts= res;
      });
-     this.productsService.getAllAbout().subscribe(res => {
+    this.postService.getAllPostsByCategory('about').subscribe(res => {
       console.log(res);
       this.abouts= res;
      });

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/core/products.service';
 import { ScriptsService } from 'src/app/core/scripts.service';
+import { PostService } from 'src/app/core/post.service';
 
 @Component({
   selector: 'news',
@@ -12,6 +13,7 @@ export class NewsComponent implements OnInit {
   constructor(
     public productServices: ProductsService,
     public scriptsService: ScriptsService,
+    public postService: PostService,
   ) { }
 
   ngOnInit() {
@@ -22,7 +24,7 @@ export class NewsComponent implements OnInit {
   }
 
   getAllPosts() {
-    this.productServices.getAllPosts().subscribe((res) => {
+    this.postService.getAllPostsByCategory('news').subscribe((res) => {
       console.log(res)
       this.posts = res;
     })

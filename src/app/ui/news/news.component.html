@@ -18,8 +18,8 @@
                       </a>
                   </div>
                   <div class="b-post_time text-center">
-                      <span class="b-post_day">08</span>
-                      <span class="b-post_month">Jan</span>
+                      <span class="b-post_day">{{post?.dateCreated | date:'dd'}}</span>
+                      <span class="b-post_month">{{post?.dateCreated | date:'MMM'}}</span>
                   </div>
                   <div class="b-post_categories">
                      <div class="b-post_categorie_list">
