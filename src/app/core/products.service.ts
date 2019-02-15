@@ -267,10 +267,10 @@ getCategory(id, callback){
     return this.afs.collection('inquiries').add(data);
   }
 
-  getfile() {
-    this.http.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/categories.json?alt=media&token=e5da0331-7c06-4221-9c21-4b4483618f0f').subscribe((data) => {
-      console.log(data)
-    })
-  }
+  // getfile() {
+  //   this.http.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/categories.json?alt=media&token=e5da0331-7c06-4221-9c21-4b4483618f0f').subscribe((data) => {
+  //     console.log(data)
+  //   })
+  // }
 
 }

@@ -74,36 +74,36 @@ export class MainNavComponent {
     // });
     // console.log(this.categories);
 
-    // this.vs.localstorage('solutions').subscribe((solutions) => {
-    //   this.solutions = solutions
-    // })
-    if(this.vs.localstorage('solutions')) {
-      this.solutions = JSON.parse(localStorage.getItem('solutions'));
-    } else {
-      this.productsService.getAllSolutions().subscribe((data) => {
-        if(data.length) {
-          this.solutions = data;
-          localStorage.setItem('solutions', JSON.stringify(data));
-        }
-      })
-    }
+    this.vs.localstorage('solutions').subscribe((solutions) => {
+      this.solutions = solutions
+    })
+    // if(this.vs.localstorage('solutions')) {
+    //   this.solutions = JSON.parse(localStorage.getItem('solutions'));
+    // } else {
+    //   this.productsService.getAllSolutions().subscribe((data) => {
+    //     if(data.length) {
+    //       this.solutions = data;
+    //       localStorage.setItem('solutions', JSON.stringify(data));
+    //     }
+    //   })
+    // }
 
     // console.log(this.auth.user);
     setTimeout(() => {
       this.scriptsService.prepareJquery();
        },1000)
-      //  this.vs.localstorage('products').subscribe(res => {
-      //   // console.log(res);
-      //   this.vs.products = res;
-      //  });
-    if (this.vs.localstorage('products')) {
-      this.vs.products = JSON.parse(localStorage.getItem('products'));
-    } else {
-      this.productsService.getAllProducts().subscribe((data) => {
-        this.vs.products = data;
-        localStorage.setItem('products', JSON.stringify(data));
-      })
-    }
+       this.vs.localstorage('products').subscribe(res => {
+        // console.log(res);
+        this.vs.products = res;
+       });
+    // if (this.vs.localstorage('products')) {
+    //   this.vs.products = JSON.parse(localStorage.getItem('products'));
+    // } else {
+    //   this.productsService.getAllProducts().subscribe((data) => {
+    //     this.vs.products = data;
+    //     localStorage.setItem('products', JSON.stringify(data));
+    //   })
+    // }
   }
 
   logout() {

@@ -46,7 +46,6 @@ export class HomePageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.productsService.getfile();
     setTimeout(() => {
       this.scriptsService.prepareJquery();
     }, 1000)
@@ -63,14 +62,14 @@ export class HomePageComponent implements OnInit {
       console.log(res);
       this.abouts= res;
      });
-    //  this.vs.localstorage('banners').subscribe(res => {
-    //   console.log('banners: ',res);
-    //   this.banners = res;
-    //  });
-     this.productsService.getAllBanners().subscribe(res => {
+     this.vs.localstorage('banners').subscribe(res => {
       console.log('banners: ',res);
       this.banners = res;
      });
+    //  this.productsService.getAllBanners().subscribe(res => {
+    //   console.log('banners: ',res);
+    //   this.banners = res;
+    //  });
     //  this.productsService.getAllSolutions().subscribe((data) => {
     //   this.solutions = data;
     // })
@@ -83,28 +82,31 @@ export class HomePageComponent implements OnInit {
   }
 
   getAllSolutions() {
-    if(this.vs.localstorage('solutions')) {
-      this.solutions = JSON.parse(localStorage.getItem('solutions'));
-    } else {
-      this.productsService.getAllSolutions().subscribe((data) => {
-        this.solutions = data;
-        localStorage.setItem('solutions', JSON.stringify(data));
-      })
-    }
+    this.vs.localstorage('solutions').subscribe((solutions) => {
+      this.solutions = solutions;
+    });
+    // if(this.vs.localstorage('solutions')) {
+    //   this.solutions = JSON.parse(localStorage.getItem('solutions'));
+    // } else {
+    //   this.productsService.getAllSolutions().subscribe((data) => {
+    //     this.solutions = data;
+    //     localStorage.setItem('solutions', JSON.stringify(data));
+    //   })
+    // }
   }
 
   getAllProducts() {
-    // this.vs.localstorage('products').subscribe((products) => {
-    //   this.products = products
-    // });
-    if (this.vs.localstorage('products')) {
-      this.products = JSON.parse(localStorage.getItem('products'));
-    } else {
-      this.productsService.getAllProducts().subscribe((data) => {
-        this.products = data;
-        localStorage.setItem('products', JSON.stringify(data));
-      })
-    }
+    this.vs.localstorage('products').subscribe((products) => {
+      this.products = products
+    });
+    // if (this.vs.localstorage('products')) {
+    //   this.products = JSON.parse(localStorage.getItem('products'));
+    // } else {
+    //   this.productsService.getAllProducts().subscribe((data) => {
+    //     this.products = data;
+    //     localStorage.setItem('products', JSON.stringify(data));
+    //   })
+    // }
   }
 
   onSelect(event: TypeaheadMatch): void {

@@ -26,48 +26,48 @@ export class VariablesService {
   }
 
   localstorage(collection) {
-    // if (collection == 'products') {
-    //   // return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/products.json?alt=media&token=27e8bc46-0a87-4631-b73d-eb4b1b80a626');
-    //   return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin-development.appspot.com/o/products.json?alt=media&token=be6670ac-2a0a-431c-8a57-dc57b32d49b9');
-    // } else if (collection == 'solutions') {
-    //   return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/solutions.json?alt=media&token=4918ad6f-670a-454e-bec6-287a1eec008a');
-    // } else if(collection == 'banners') {
-    //   return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/banners.json?alt=media&token=a5ac86cd-925e-48fc-9ae9-a365c6466a04');
-    // }
-    switch (collection) {
-      case 'products':
-        // return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/products.json?alt=media&token=27e8bc46-0a87-4631-b73d-eb4b1b80a626');
-        if (typeof localStorage.getItem('products') === 'string') {
-          return true;
-        } else {
-          return false;
-        }
-        break;
-      case 'solutions':
-        if (typeof localStorage.getItem('solutions') === 'string') {
-          return true;
-        } else {
-          return false;
-        }
-        break;
-      case 'banners':
-        if (typeof localStorage.getItem('banners') === 'string') {
-          return true;
-        } else {
-          return false;
-        }
-        break;
-      case 'posts':
-        if (typeof localStorage.getItem('posts') === 'string') {
-          return true;
-        } else {
-          return false;
-        }
-        break;
-    
-      default:
-        break;
+    if (collection == 'products') {
+      return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/products.json?alt=media&token=27e8bc46-0a87-4631-b73d-eb4b1b80a626');
+      // return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin-development.appspot.com/o/products.json?alt=media&token=be6670ac-2a0a-431c-8a57-dc57b32d49b9');
+    } else if (collection == 'solutions') {
+      return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/solutions.json?alt=media&token=4918ad6f-670a-454e-bec6-287a1eec008a');
+    } else if(collection == 'banners') {
+      return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/banners.json?alt=media&token=a5ac86cd-925e-48fc-9ae9-a365c6466a04');
     }
+    // switch (collection) {
+    //   case 'products':
+    //     // return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/products.json?alt=media&token=27e8bc46-0a87-4631-b73d-eb4b1b80a626');
+    //     if (typeof localStorage.getItem('products') === 'string') {
+    //       return true;
+    //     } else {
+    //       return false;
+    //     }
+    //     break;
+    //   case 'solutions':
+    //     if (typeof localStorage.getItem('solutions') === 'string') {
+    //       return true;
+    //     } else {
+    //       return false;
+    //     }
+    //     break;
+    //   case 'banners':
+    //     if (typeof localStorage.getItem('banners') === 'string') {
+    //       return true;
+    //     } else {
+    //       return false;
+    //     }
+    //     break;
+    //   case 'posts':
+    //     if (typeof localStorage.getItem('posts') === 'string') {
+    //       return true;
+    //     } else {
+    //       return false;
+    //     }
+    //     break;
+    
+    //   default:
+    //     break;
+    // }
   }
 
   allMenus3(){
