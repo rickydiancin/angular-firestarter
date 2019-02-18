@@ -195,9 +195,8 @@ export class CategoryComponent implements OnInit {
     console.log(this.vs.localstorage('products'))
     this.vs.localstorage('products').subscribe((products:any) => {
       if (products.length) {
-        this.products = _.each(products, o => _.each(o, (v, k) => o[k] = _(v).replace(/[^\w\s]/gi, '')))
-        this.productsTemp = _.each(products, o => _.each(o, (v, k) => o[k] = _(v).replace(/[^\w\s]/gi, '')))
-        // this.productsTemp = products;
+        this.products = products;
+        this.productsTemp = products;
         console.log(this.productsTemp)
         
       }
