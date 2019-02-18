@@ -193,6 +193,9 @@ export class ProductComponent implements OnInit {
       this.productsService.getProduct(params.id).valueChanges()
         .subscribe(async res => {
 
+
+          this.theproduct = await res;
+
           console.log(res)
           // if(res) {
           // if (this.vs.localstorage('products')) {
@@ -254,8 +257,6 @@ export class ProductComponent implements OnInit {
               this.prevProduct = products[index - 1];
 
             this.productExport = [];
-
-            this.theproduct = res;
             this.productExport.push(res);
             // }
           })

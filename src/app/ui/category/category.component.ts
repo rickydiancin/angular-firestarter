@@ -192,32 +192,32 @@ export class CategoryComponent implements OnInit {
   // }
 
   getAllProducts() {
-    // console.log(this.vs.localstorage('products'))
-    // this.vs.localstorage('products').subscribe((products:any) => {
-    //   if (products.length) {
-    //     this.products = _.each(products, o => _.each(o, (v, k) => o[k] = _(v).trim('�\n').replace('�', '')))
-    //     this.productsTemp = _.each(products, o => _.each(o, (v, k) => o[k] = _(v).trim('�\n').replace('�','')))
-    //     // this.productsTemp = products;
-    //     console.log(this.productsTemp)
+    console.log(this.vs.localstorage('products'))
+    this.vs.localstorage('products').subscribe((products:any) => {
+      if (products.length) {
+        this.products = _.each(products, o => _.each(o, (v, k) => o[k] = _(v).trim('�\n').replace('�', '')))
+        this.productsTemp = _.each(products, o => _.each(o, (v, k) => o[k] = _(v).trim('�\n').replace('�','')))
+        // this.productsTemp = products;
+        console.log(this.productsTemp)
         
-    //   }
-    // })
-    if (this.vs.localstorage('products')) {
-      console.log('true', JSON.parse(localStorage.getItem('products')));
-      this.products = JSON.parse(localStorage.getItem('products'));
-    } else {
-      this.productsService.getAllProducts().subscribe((res: any) => {
-        if(res.length) {
-          this.products = res;
-          console.log(res)
-          localStorage.setItem('products', JSON.stringify(res));
-          this.productsService.getAllCategories((resCategory: any) => {
-            this.categories = _(resCategory).filter({ 'parent': '' }).value();
-            console.log(resCategory, this.categories)
-          });
-        }
-      });
-    }
+      }
+    })
+    // if (this.vs.localstorage('products')) {
+    //   console.log('true', JSON.parse(localStorage.getItem('products')));
+    //   this.products = JSON.parse(localStorage.getItem('products'));
+    // } else {
+    //   this.productsService.getAllProducts().subscribe((res: any) => {
+    //     if(res.length) {
+    //       this.products = res;
+    //       console.log(res)
+    //       localStorage.setItem('products', JSON.stringify(res));
+    //       this.productsService.getAllCategories((resCategory: any) => {
+    //         this.categories = _(resCategory).filter({ 'parent': '' }).value();
+    //         console.log(resCategory, this.categories)
+    //       });
+    //     }
+    //   });
+    // }
   }
 
   // getAllCategories() {

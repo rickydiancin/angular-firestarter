@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/core/products.service';
 import { ScriptsService } from 'src/app/core/scripts.service';
 import { PostService } from 'src/app/core/post.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'news',
@@ -14,6 +15,7 @@ export class NewsComponent implements OnInit {
     public productServices: ProductsService,
     public scriptsService: ScriptsService,
     public postService: PostService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {

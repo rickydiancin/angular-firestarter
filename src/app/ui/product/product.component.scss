@@ -1,12 +1,29 @@
 .sub-header {
-    line-height: 2.14285714;
+    line-height: .5;
+    // line-height: 2.14285714;
     font-weight: normal !important;
     color: #555555;
-    font-size: 18px !important;
+    font-size: 15px !important;
     // padding-top: 30px;
 }
 
-h5 {
+// .b-price {
+//     margin-bottom: 1.5rem;
+// }
+
+.b-produt_description p {
+    font-weight: 600;
+    font-size: 15px !important;
+}
+
+.b-produt_description h4 {
+    font-size: 20px;
+    font-family: "Noto Sans", sans-serif;
+    margin-bottom: 1.3rem;
+    font-weight: 600;
+}
+
+h6 {
     font-size: 1.25rem !important;
 }
 
@@ -26,7 +43,7 @@ ul li {
 }
 
 .b-product_single_summary .b-price span {
-    font-size: 24px;
+    font-size: 20px;
 }
 
 .b-product_single_summary .b-product_single_action {
@@ -68,4 +85,16 @@ button.text-uppercase.pull-left.btn {
 
 .b-product_tabs {
     margin-top: 30px !important;
+}
+
+/deep/.owl-carousel .owl-item img {
+    display: block;
+    width: 34rem;
+    height: 24rem;
+    object-fit: scale-down;
+    border: 1px solid #C9C9C9;
+}
+
+.product-features {
+    margin-top: 10px !important;
 }

@@ -1,4 +1,4 @@
-<div class="b-product_single_breadcrumbs pt-3 pb-3">
+<div class="b-product_single_breadcrumbs pt-3 pb-3 hide">
   <div class="container">
     <div class="row clearfix">
       <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-12">
@@ -51,12 +51,13 @@
               </div>
             </div>
 
-            <div class="b-additional-video-wrap ml-0">
+            <!-- <div class="b-additional-video-wrap ml-0">
               <a href="https://www.youtube.com/embed/h_MPR25JD3E" class="b-additional-video-btn" data-rel="lightcase">
                 <span class="b-icon"><i class="icon-control-play icons"></i></span>
                 <span>Watch Video</span>
               </a>
-            </div><!-- /b-additional-video-wrap -->
+            </div> -->
+            <!-- /b-additional-video-wrap -->
             
             <div class="b-show-product-gallery-wrap">
               <a href="javaScript:void(0)">
@@ -106,9 +107,9 @@
           </p>
           <div class="b-produt_description">
 
-            <div>
+            <!-- <div> -->
               <!-- <p>{{theproduct?.productDescription}}</p></div> -->
-          </div>
+          <!-- </div> -->
           <!-- <div class="b-product_attr">
             <div class="b-product_attr_single">
               <ul class="pl-0 list-unstyled clearfix">
@@ -152,18 +153,15 @@
                 </div>
               </div> -->
             <!-- </div> -->
+            <h4>{{theproduct?.welsRating || '0 star' | titlecase }} Rating, {{theproduct?.litresPerMinute}} Lpm</h4>
             <h5 class="sub-header">Product Description</h5>
+            <p>{{theproduct?.productDescription}}.</p>
           </div>
-          <hr>
           <div class="b-product_single_option">
             <ul class="pl-0 list-unstyled">
-              <li class="detail-width">
+              <!-- <li class="detail-width">
                 <p>{{theproduct?.productDescription}}.</p>
-                <!-- <button type="button" class="btn btn-default">{{theproduct?.productDescription}}.</button> -->
-                <!-- <a href="javascript:void(0);">
-                  <img class="swatch-squares" [src]="'./assets/images/colours/Storm Grey.jpg'" alt="">
-                </a> -->
-              </li>
+              </li> -->
               <!-- <li class="detail-width">
                 <a href="javascript:void(0);">
                   <img class="swatch-squares" [src]="'./assets/images/colours/Storm Grey.jpg'" alt="">
@@ -193,11 +191,14 @@
               <button [disabled]="!theproduct || !theproduct?.technicalSheetURL" (click)="viewTechnicalDetails(theproduct?.technicalSheetURL)" class="text-uppercase btn-block btn"><i class="fa fa-file-pdf-o fa-fw"></i>
                 View Technical Details</button>
             </div>
-            <div class="row">
+            <div class="row clearfix">
               <div class="col-sm-12">
                 <button [disabled]="!theproduct?.DWGFileURL" (click)="dwgFile(theproduct?.DWGFileURL)" class="text-uppercase pull-left btn">DWG File</button>
                 <button [disabled]="!theproduct?.revitFileURL" (click)="revitFile(theproduct?.revitFileURL)" class="text-uppercase pull-left btn">Revit File</button>
               </div>
+            </div>
+            <div class="b-product_single_action clearfix product-features">
+              <button class="text-uppercase btn-block btn">View Product Features</button>
             </div>
           </div>
           <!-- <div class="b-product_single_action clearfix">
@@ -369,6 +370,14 @@
           </div>
         </div> -->
       </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row clearfix">
+    <div class="col-sm-12">
+      <iframe src="https://e.issuu.com/anonymous-embed.html?u=gentecaustralia&d=8jan_gentec_template_pre-rinse_unit"
+        style="border:none;width:100%;height:500px;" allowfullscreen></iframe>
     </div>
   </div>
 </div>
