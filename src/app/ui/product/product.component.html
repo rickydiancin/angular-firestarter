@@ -29,7 +29,7 @@
           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 b-display-single">
             <div class="b-product-carousel owl-carousel" id="bSingleProductCarousel" data-slider-id="bSingleProductCarousel">
               <div class="b-produt-item">
-                <img [src]="theproduct?.primaryImageURLS || './assets/images/not_available.jpg'" alt="" class="img-fluid" data-zoomed="">
+                <img [src]="theproduct?.primaryURL || './assets/images/not_available.jpg'" alt="" class="img-fluid" data-zoomed="">
               </div>
               <div class="b-produt-item">
                 <img src="assets/images/products/product-single/woman-3.jpg" alt="" class="img-fluid" data-zoomed="assets/images/products/product-single/woman-3.jpg">
@@ -400,7 +400,7 @@
                      <div class="b-product_grid_single">
                        <div class="b-product_grid_header">
                            <a href="#" routerLink="/product/{{related?.productCode}}">
-                             <img data-src="assets/images/products/product-single/product_grid_10_01.jpg, assets/images/products/product-single/product_grid_10_02.jpg" src="{{related?.primaryImageURLS || './assets/images/not_available.jpg'}}" class="img-fluid img-switch d-block" alt="" style="">
+                             <img data-src="assets/images/products/product-single/product_grid_10_01.jpg, assets/images/products/product-single/product_grid_10_02.jpg" src="{{related?.primaryURL || './assets/images/not_available.jpg'}}" class="img-fluid img-switch d-block" alt="" style="">
                            </a>
                            <div class="b-product_grid_action">
                              <a href="javascript:void(0)" data-whishurl="whishlist.html" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to Whishlist">

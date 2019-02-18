@@ -227,7 +227,7 @@
         <ng-template #customItemTemplate let-model="item" let-index="index">
             <!-- <h5>{{model.productDescription}} {{model.productTitle}} Index: {{ index }}</h5> -->
             <!-- <a style="color:inherit" href="#" routerLink="/product/{{model?.productCode}}"> -->
-            <img src="{{model?.primaryImageURLS || './assets/images/not_available.jpg'}}" alt="" height="50px" width="50px">
+            <img src="{{model?.primaryURL || './assets/images/not_available.jpg'}}" alt="" height="50px" width="50px">
             {{model?.productTitle | titlecase}}
             <!-- </a> -->
         </ng-template>
