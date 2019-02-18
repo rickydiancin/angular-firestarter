@@ -50,7 +50,7 @@
         
             <ngb-carousel *ngIf="banners">
               <ng-template ngbSlide *ngFor="let banner of banners ">
-                <img [src]="banner?.imgURL"  alt="{{banner.bannerTitle}}" style="width: 100%;">
+                <img [src]="banner?.imgURL"  alt="{{banner.bannerTitle}}" class="img-fluid">
                 <div class="carousel-caption">
                   <h3>{{banner.bannerTitle}}</h3>
                   <p>{{banner.description}}</p>

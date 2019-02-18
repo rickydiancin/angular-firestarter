@@ -185,7 +185,7 @@ export class ScriptsService {
       
           MobileNavToggle: function(){
             $("#b-nav_icon").on('click', function(event) {
-              $("body").toggleClass('mobile-menu-open');
+              $("body").addClass('mobile-menu-open');
               return false;
             });
             $(document).on('click', function(e) {
