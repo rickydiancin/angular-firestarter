@@ -4,7 +4,7 @@
       <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-12">
           <div class="b-breadcrumbs">
             <a href="#">Home</a>
-            <a href="#" routerLink="/category">Products</a>
+            <a href="#" routerLink="/category/all">Products</a>
             <span>{{theproduct?.productTitle | titlecase}}</span>
           </div>
       </div>
@@ -156,6 +156,8 @@
             <h4>{{theproduct?.welsRating || '0 star' | titlecase }} Rating, {{theproduct?.litresPerMinute}} Lpm</h4>
             <h5 class="sub-header">Product Description</h5>
             <p>{{theproduct?.productDescription}}.</p>
+
+            <h6>Wells Registration : {{theproduct?.wellsRegistration || 'N/A'}}</h6>
           </div>
           <div class="b-product_single_option">
             <ul class="pl-0 list-unstyled">
@@ -193,12 +195,15 @@
             </div>
             <div class="row clearfix">
               <div class="col-sm-12">
-                <button [disabled]="!theproduct?.DWGFileURL" (click)="dwgFile(theproduct?.DWGFileURL)" class="text-uppercase pull-left btn">DWG File</button>
-                <button [disabled]="!theproduct?.revitFileURL" (click)="revitFile(theproduct?.revitFileURL)" class="text-uppercase pull-left btn">Revit File</button>
+                <button style="cursor: not-allowed;opacity: .65;" *ngIf="!isLoggin" tooltip="Please login to download DWG File" class="text-uppercase pull-left btn">DWG File</button>
+                <button *ngIf="isLoggin" tooltip="Download" (click)="dwgFile(theproduct?.DWGFileURL)" class="text-uppercase pull-left btn">DWG File</button>
+                
+                <button style="cursor: not-allowed;opacity: .65;" *ngIf="!isLoggin" tooltip="Please login to download REVIT File" class="text-uppercase pull-left btn">Revit File</button>
+                <button *ngIf="isLoggin" tooltip="Download" (click)="revitFile(theproduct?.revitFileURL)" class="text-uppercase pull-left btn">Revit File</button>
               </div>
             </div>
             <div class="b-product_single_action clearfix product-features">
-              <button class="text-uppercase btn-block btn">View Product Features</button>
+             <button (click)="featureLink('features')" class="text-uppercase btn-block btn">View Product Features</button>
             </div>
           </div>
           <!-- <div class="b-product_single_action clearfix">
@@ -233,7 +238,7 @@
     </div>
   </div>
 </div>
-
+<div id="features"></div>
 <div class="b-gray_bg b-product_tabs">
   <div class="container">
     <div class="row">

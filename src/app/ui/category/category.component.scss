@@ -59,7 +59,8 @@ input {
     width: 100%;
     margin-top: 15px;
     height: 1px;
-    background-color: #ccc;
+    // background-color: #ccc;
+    background-color: rgba(0, 0, 0, 0.1);
     display: block;
 }
 
@@ -83,13 +84,29 @@ h1 {
 .sortBy {
     width: 100px;
     float: right;
-    position: relative;
-    top: -60px;
-    right: 0px;
+    margin-bottom: 1.5rem;
     select {
         border-radius: 0px;
     }
     label {
         font-size: 12px !important;
+    }
+}
+
+.img-container {
+    height: 10rem;
+    width: 100%;
+}
+
+.img-container img {
+    object-fit: scale-down;
+    height: 10rem;
+    width: 100%;
+}
+
+.b-title .img-description {
+    margin-left: 1.5rem;
+    small {
+        font-size: 13px;
     }
 }
