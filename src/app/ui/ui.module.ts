@@ -33,9 +33,24 @@ import { HttpClientModule } from '@angular/common/http';
 import { NewssingleComponent } from './newssingle/newssingle.component';
 import { ProductFilterPipe } from './home-page/productPipe';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 @NgModule({
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, NgxPaginationModule, TruncateModule, FormsModule, NgPipesModule, NgbModule, Angular2CsvModule, TypeaheadModule.forRoot(), HttpClientModule, NgxSpinnerModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    ReactiveFormsModule,
+    NgxPaginationModule,
+    TruncateModule,
+    FormsModule,
+    NgPipesModule,
+    NgbModule,
+    Angular2CsvModule,
+    TypeaheadModule.forRoot(),
+    HttpClientModule,
+    NgxSpinnerModule,
+    TooltipModule.forRoot()
+  ],
   declarations: [
     UserLoginComponent,
     HomePageComponent,

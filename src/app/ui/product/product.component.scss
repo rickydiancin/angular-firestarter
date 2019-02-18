@@ -11,6 +11,10 @@
 //     margin-bottom: 1.5rem;
 // }
 
+.b-produt_description {
+    margin-bottom: 2rem;
+}
+
 .b-produt_description p {
     font-weight: 600;
     font-size: 15px !important;
@@ -24,7 +28,8 @@
 }
 
 h6 {
-    font-size: 1.25rem !important;
+    font-size: 13px;
+    font-weight: bolder;
 }
 
 ul li {
@@ -84,7 +89,7 @@ button.text-uppercase.pull-left.btn {
 }
 
 .b-product_tabs {
-    margin-top: 30px !important;
+    margin-top: 150px !important;
 }
 
 /deep/.owl-carousel .owl-item img {

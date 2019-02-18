@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ScriptsService } from 'src/app/core/scripts.service';
 import { ProductsService } from 'src/app/core/products.service';
 import { Observable } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddToProjectComponent } from './add-to-project/add-to-project.component';
 import { VariablesService } from 'src/app/core/variables.service';
@@ -32,6 +32,8 @@ export class ProductComponent implements OnInit {
   addToProject: boolean = true;
   nextProduct:any;
   prevProduct:any;
+  isLoggin:Boolean;
+  private fragment: string;
 
   options = {
     fieldSeparator: ',',
@@ -162,6 +164,13 @@ export class ProductComponent implements OnInit {
     
   }
 
+  featureLink(link) {
+    if (link) {
+      const element = document.querySelector("#" + link);
+      if (element) { element.scrollIntoView(true); }
+    }
+  }
+
   // getFile() {
   //   this.productsService.getFile().subscribe((data) => {
   //     console.log(data, 'files')
@@ -179,6 +188,7 @@ export class ProductComponent implements OnInit {
   ngOnInit() {
     this.checkAuth().subscribe((res) => {
       this.addToProject = res;
+      this.isLoggin = res
     });
     // this.checkAuth();
     // this.getFile();
@@ -195,7 +205,6 @@ export class ProductComponent implements OnInit {
 
 
           this.theproduct = await res;
-
           console.log(res)
           // if(res) {
           // if (this.vs.localstorage('products')) {
@@ -240,7 +249,6 @@ export class ProductComponent implements OnInit {
           //   })
           // }
             await this.vs.localstorage('products').subscribe((products: any) => {
-              console.log(products)
               // if (res.length > 0 && products.length > 0) {
             var lookup = _.keyBy(res.categories, (o) => {
               return o.toString()
@@ -250,7 +258,6 @@ export class ProductComponent implements OnInit {
             });
 
             this.relateds = relateds;
-              console.log(this.relateds)
 
               let index = products.findIndex(x => x.productCode == params.id);
             this.nextProduct = products[index + 1];
