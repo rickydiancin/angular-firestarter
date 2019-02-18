@@ -9,7 +9,7 @@
                       <!-- <form action="#"> -->
                         <ng-template #customItemTemplate let-model="item" let-index="index">
                          
-                            <img src="{{model?.primaryImageURLS || './assets/images/not_available.jpg'}}" alt="" height="50px" width="50px">
+                            <img src="{{model?.primaryURL || './assets/images/not_available.jpg'}}" alt="" height="50px" width="50px">
                             {{model?.productTitle | titlecase | trim:'�'}}
               
                         </ng-template>
@@ -32,7 +32,7 @@
                       <div class="productList dropdown-menu" *ngIf="filterQuery">
                         <ng-container *ngFor="let product of products | productFilter : filterQuery; let i = index;">
                           <button class="dropdown-item" *ngIf="product !== -1">
-                            <img src="{{product?.primaryImageURLS || './assets/images/not_available.jpg'}}" alt="" height="50px" width="50px">
+                            <img src="{{product?.primaryURL || './assets/images/not_available.jpg'}}" alt="" height="50px" width="50px">
                             {{product?.productTitle | titlecase}} ({{product?.productCode}})
                             <br>
                             <small><b>Category Code: </b>{{product?.categories}}</small>
@@ -103,7 +103,7 @@
                               <!-- routerLink="/product/{{routeParamsName.split('.')[0]}}/{{product?.productTitle}}.{{product?.id}}" -->
                             </h1>
                             </div>
-                              <img [src]="product?.primaryImageURLS || './assets/images/not_available.jpg'" width="100%" height="auto" class="img-fluid img-switch d-block">
+                              <img [src]="product?.primaryURL || './assets/images/not_available.jpg'" width="100%" height="auto" class="img-fluid img-switch d-block">
                            
                             </a> 
                             <div class="b-product_grid_action">
