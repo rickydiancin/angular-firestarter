@@ -312,11 +312,11 @@
                           -->
                           <div class="b-product_grid_info">
                           <h1 class="product-title">
-                            <a href="#" routerLink="/product/{{product?.productCode}}"><b>{{ product?.productTitle | truncate: 20 | trim:'�'}}</b></a>
+                            <a href="#" routerLink="/product/{{product?.productCode}}"><b>{{ product?.productTitle | truncate: 40 }}</b></a>
                             <!-- routerLink="/product/{{routeParamsName.split('.')[0]}}/{{product?.productTitle}}.{{product?.id}}" -->
                           </h1>
                           </div>
-                            <img [src]="product?.primaryImageURLS || './assets/images/not_available.jpg'" width="100%" height="auto" class="img-fluid img-switch d-block">
+                            <img [src]="product?.primaryURL || './assets/images/not_available.jpg'" width="100%" height="auto" class="img-fluid img-switch d-block">
                          
                           </a> 
                           <div class="b-product_grid_action">
