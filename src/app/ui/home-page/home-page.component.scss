@@ -18,6 +18,15 @@ $green_color: #95C448;
     font-size: 1.5em;
 }
 
+.b-product_grid a{
+    color: #333;
+    font-weight: bold;
+}
+.b-product_grid a:hover{
+    color:#95C448;
+
+}
+
 /deep/.productList {
     position: absolute;
     display: block;
