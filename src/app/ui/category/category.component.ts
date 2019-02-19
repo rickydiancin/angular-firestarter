@@ -8,6 +8,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddToProjectComponent } from '../product/add-to-project/add-to-project.component';
 import { VariablesService } from 'src/app/core/variables.service';
 import * as _ from 'lodash';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'category',
@@ -51,15 +52,13 @@ export class CategoryComponent implements OnInit {
     private productsService: ProductsService,
     private route: ActivatedRoute,
     private modalService: NgbModal,
-    public vs: VariablesService
+    public vs: VariablesService,
+    public titleService: Title
   ) { }
 
   ngOnInit() {
-
-
-
     this.route.queryParams.subscribe((queryParams) => {
-      console.log(queryParams)
+      this.titleService.setTitle(`You searched for ${queryParams.s} - Gentec Australia`)
       this.queryParams = queryParams.s;
       this.getAllProducts(queryParams.s);
     })
@@ -68,23 +67,20 @@ export class CategoryComponent implements OnInit {
     console.log(this.route.snapshot.params.id)
 
     this.route.params.subscribe(params => {
-      console.log(params)
       this.params = params
       if (Object.entries(params).length !== 0) {
+        this.titleService.setTitle(`Gentec Product Range Archives - Gentec Australia`)
           if(params.id) {
             this.paramsCategory = params.id
-            console.log(this.paramsCategory)
             this.productsService.getCategory(params.id, res => {
-              console.log(res);
               this.category = res;
             });
             this.vs.localstorage('products').subscribe((products: any) => {
               if (products.length) {
-                // this.products = products;
-                // console.log(this.products)
                 this.products = _(products).filter((value) => {
                     return value.categories.includes(params.id)
                   }).value();
+                this.productsLoaded = true;
               }
             })
 
@@ -141,32 +137,31 @@ export class CategoryComponent implements OnInit {
             // }
             this.vs.localstorage('products').subscribe((products: any) => {
               if (products.length) {
-                // this.products = products;
-                // console.log(this.products)
                 this.products = _(products).filter((value) => {
                   return value.solutions.includes(params.solutionid)
                 }).value();
+                this.productsLoaded = true;
               }
             })
-            if(this.vs.localstorage('products')) {
-              this.products = _(JSON.parse(localStorage.getItem('products'))).filter((value) => {
-                return value.solutions.includes(params.solutionid)
-              }).value();
-            } else {
-              this.productsService.getAllProducts().subscribe((res: any) => {
-                if (res.length) {
-                  this.products = _(res).filter((value) => {
-                    return value.solutions.includes(params.solutionid)
-                  }).value();
-                  localStorage.setItem('products', JSON.stringify(res));
+            // if(this.vs.localstorage('products')) {
+            //   this.products = _(JSON.parse(localStorage.getItem('products'))).filter((value) => {
+            //     return value.solutions.includes(params.solutionid)
+            //   }).value();
+            // } else {
+            //   this.productsService.getAllProducts().subscribe((res: any) => {
+            //     if (res.length) {
+            //       this.products = _(res).filter((value) => {
+            //         return value.solutions.includes(params.solutionid)
+            //       }).value();
+            //       localStorage.setItem('products', JSON.stringify(res));
 
-                  // this.productsService.getAllCategories((resCategory: any) => {
-                  //   this.categories = _(resCategory).filter({ 'parent': '' }).value();
-                  //   console.log(resCategory, this.categories)
-                  // });
-                }
-              });
-            }
+            //       // this.productsService.getAllCategories((resCategory: any) => {
+            //       //   this.categories = _(resCategory).filter({ 'parent': '' }).value();
+            //       //   console.log(resCategory, this.categories)
+            //       // });
+            //     }
+            //   });
+            // }
           } else {
             this.getAllProducts();
           }
@@ -230,7 +225,7 @@ export class CategoryComponent implements OnInit {
         if (products.length) {
           this.products = products;
           this.productsTemp = products;
-          console.log(this.productsTemp)
+          this.productsLoaded = true;
         }
       })
     }

@@ -10,6 +10,7 @@ import * as jsPDF from 'jspdf';
 import * as _ from 'lodash';
 import { take, map } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 declare var $: any;
 
@@ -159,9 +160,9 @@ export class ProductComponent implements OnInit {
     private modalService: NgbModal,
     public vs: VariablesService,
     private router: Router,
-    private afAuth: AngularFireAuth
-  ) { 
-    
+    private afAuth: AngularFireAuth,
+    private spinner: NgxSpinnerService
+  ) {
   }
 
   featureLink(link) {
@@ -203,10 +204,7 @@ export class ProductComponent implements OnInit {
 
       this.productsService.getProduct(params.id).valueChanges()
         .subscribe(async res => {
-
-
           this.theproduct = await res;
-          console.log(res)
           // if(res) {
           // if (this.vs.localstorage('products')) {
           //   // this.vs.products = JSON.parse(localStorage.getItem('products'));
