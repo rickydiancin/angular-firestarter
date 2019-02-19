@@ -48,8 +48,8 @@
                     data-zoomed="">
                 </div>
                 <div class="b-produt-item">
-                  <img src="assets/images/products/product-single/woman-3.jpg" alt="" class="img-fluid"
-                    data-zoomed="assets/images/products/product-single/woman-3.jpg">
+                  <img [src]="theproduct?.lineDrawing || './assets/images/not_available.jpg'" alt="" class="img-fluid"
+                    data-zoomed="">
                 </div>
                 <div class="b-produt-item">
                   <img src="assets/images/products/product-single/woman-4.jpg" alt="" class="img-fluid"
@@ -85,17 +85,17 @@
                 <a href="javaScript:void(0)">
                   <i class="icon-magnifier-add icons"></i>
                 </a>
-              </div> <!-- /b-show-product-gallery-wrap-->
+              </div>
             </div>
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
               <div class="b-display-list-wrapper">
                 <div class="owl-thumbs b-display-item-list" id="bSingleProductBottom"
                   data-slider-id="bSingleProductCarousel">
                   <div class="owl-thumb-item b-display-item">
-                    <img src="assets/images/products/product-single/woman-1.jpg" alt="" class="img-fluid">
+                    <img [src]="theproduct?.primaryURL || './assets/images/not_available.jpg'" alt="" class="img-fluid">
                   </div>
                   <div class="owl-thumb-item b-display-item">
-                    <img src="assets/images/products/product-single/woman-3.jpg" alt="" class="img-fluid">
+                    <img [src]="theproduct?.lineDrawing || './assets/images/not_available.jpg'" alt="" class="img-fluid">
                   </div>
                   <div class="owl-thumb-item b-display-item">
                     <img src="assets/images/products/product-single/woman-4.jpg" alt="" class="img-fluid">
@@ -112,13 +112,13 @@
                   <div class="owl-thumb-item b-display-item">
                     <img src="assets/images/products/product-single/woman-22.jpg" alt="" class="img-fluid">
                   </div>
-                </div><!-- /b-display-item-list -->
+                </div>
   
                 <div class="b-slider-action">
                   <button class="slick-prev"><i class="icon-arrow-left icons"></i></button>
                   <button class="slick-next"><i class="icon-arrow-right icons"></i></button>
-                </div> <!-- /b-slider-action-->
-              </div><!-- /b-display-item-list-wrapper -->
+                </div>
+              </div>
             </div>
           </div>
         </div>
