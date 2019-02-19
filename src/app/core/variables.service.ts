@@ -383,7 +383,7 @@ export class VariablesService {
         sub: [
           {
             subName: 'laboratory tapware',
-            url: 'category/LABT',
+            url: 'category/DURA',
             isBold: true
           }
         ]
@@ -580,7 +580,7 @@ export class VariablesService {
           },
           {
             categoryName: 'laboratory tapware',
-            url: 'category/LABT'
+            url: 'category/DURA'
           },
           {
             categoryName: 'spouts and outlets',
