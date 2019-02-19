@@ -6,7 +6,7 @@
           <div class="row">
               <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
                   <div class="b-search_bar">
-                      <form (submit)="search()">
+                      <form (submit)="search(e)">
                         <ng-template #customItemTemplate let-model="item" let-index="index">
                          
                             <img src="{{model?.primaryURL || './assets/images/not_available.jpg'}}" alt="" height="50px" width="50px">

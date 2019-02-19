@@ -84,6 +84,7 @@ export class CategoryComponent implements OnInit {
             this.paramsCategory = params.id
             this.productsService.getCategory(params.id, res => {
               this.category = res;
+              console.log("category",this.category );
             });
             this.vs.localstorage('products').subscribe((products: any) => {
               if (products.length) {
@@ -336,6 +337,7 @@ export class CategoryComponent implements OnInit {
   getAllCategoryProducts(id) {
     this.productsService.getAllCategoryProducts(id).subscribe(async (res: any) => {
       this.products = res;
+
     });
   }
 
