@@ -27,6 +27,7 @@ export class CategoryComponent implements OnInit {
   paramsCategory: any;
   paramsSolution: any;
   params: any;
+  queryParams: any;
 
   @Input('data') meals: string[] = [];
 
@@ -53,6 +54,14 @@ export class CategoryComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+
+
+    this.route.queryParams.subscribe((queryParams) => {
+      console.log(queryParams)
+      this.queryParams = queryParams.s;
+      this.getAllProducts();
+    })
 
     this.categories = this.vs.allCategories();
     console.log(this.route.snapshot.params.id)
@@ -192,13 +201,11 @@ export class CategoryComponent implements OnInit {
   // }
 
   getAllProducts() {
-    console.log(this.vs.localstorage('products'))
     this.vs.localstorage('products').subscribe((products:any) => {
       if (products.length) {
         this.products = products;
         this.productsTemp = products;
         console.log(this.productsTemp)
-        
       }
     })
     // if (this.vs.localstorage('products')) {

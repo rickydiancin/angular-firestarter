@@ -186,6 +186,7 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.checkAuth().subscribe((res) => {
       this.addToProject = res;
       this.isLoggin = res

@@ -126,4 +126,12 @@ export class HomePageComponent implements OnInit {
     })
   }
 
+  search(value) {
+    if(value) {
+      this.router.navigate(['/products'], { queryParams: { s: value.toLowerCase() } })
+    } else {
+      this.router.navigate(['/products'], { queryParams: { s: this.filterQuery } })
+    }
+  }
+
 }
