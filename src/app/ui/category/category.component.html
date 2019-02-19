@@ -330,9 +330,18 @@
                 </form>
               </div>
             </div>
-  
-              <ng-container *ngFor="let product of products | searchFilter : queryParams | paginate: config">
-                <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-6" *ngIf="product">
+              <ng-container *ngIf="!productsLoaded">
+                <div class="col-sm-12">
+                  <h6>Loading please wait</h6>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="productsLoaded && !products?.length">
+                <div class="col-sm-12">
+                  <h6>No products were found matching your selection.</h6>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="products?.length">
+                <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-6" *ngFor="let product of products | paginate: config">
                   <div class="b-product_grid_single">
                     <div class="b-product_grid_header">
                       <a href="#" routerLink="/product/{{product?.productCode}}">
@@ -417,7 +426,7 @@
           </div> -->
           <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
 
-          <pagination-template #p="paginationApi" (pageChange)="config.currentPage = $event">
+          <pagination-template *ngIf="products?.length" #p="paginationApi" (pageChange)="config.currentPage = $event">
 
             <div class="b-pagination pt-2 pb-4">
               <ul class="pl-0 text-center list-unstyled mb-0">

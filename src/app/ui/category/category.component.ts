@@ -28,6 +28,7 @@ export class CategoryComponent implements OnInit {
   paramsSolution: any;
   params: any;
   queryParams: any;
+  productsLoaded:boolean = false;
 
   @Input('data') meals: string[] = [];
 
@@ -60,7 +61,7 @@ export class CategoryComponent implements OnInit {
     this.route.queryParams.subscribe((queryParams) => {
       console.log(queryParams)
       this.queryParams = queryParams.s;
-      this.getAllProducts();
+      this.getAllProducts(queryParams.s);
     })
 
     this.categories = this.vs.allCategories();
@@ -200,14 +201,39 @@ export class CategoryComponent implements OnInit {
   //   }
   // }
 
-  getAllProducts() {
-    this.vs.localstorage('products').subscribe((products:any) => {
-      if (products.length) {
-        this.products = products;
-        this.productsTemp = products;
-        console.log(this.productsTemp)
-      }
-    })
+  getAllProducts(value?) {
+    console.log(value)
+    if (value) {
+      let result = [];
+      this.vs.localstorage('products').subscribe((products: any) => {
+        if (products.length) {
+          if (!value) {
+            this.products = products;
+            this.productsTemp = products;
+            this.productsLoaded = true;
+          } else {
+            result = _.filter(products, row => row.productTitle.toString().toLowerCase().indexOf(value) > -1 || row.productCode.toString().toLowerCase().indexOf(value) > -1 || row.categories.toString().toLowerCase().indexOf(value) > -1);
+            if (result.length > 0) {
+              this.products = result;
+              this.productsTemp = result;
+              this.productsLoaded = true;
+            } else {
+              this.products = [];
+              this.productsTemp = [];
+              this.productsLoaded = true;
+            }
+          }
+        }
+      })
+    } else {
+      this.vs.localstorage('products').subscribe((products: any) => {
+        if (products.length) {
+          this.products = products;
+          this.productsTemp = products;
+          console.log(this.productsTemp)
+        }
+      })
+    }
     // if (this.vs.localstorage('products')) {
     //   console.log('true', JSON.parse(localStorage.getItem('products')));
     //   this.products = JSON.parse(localStorage.getItem('products'));
