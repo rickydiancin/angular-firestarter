@@ -78,10 +78,10 @@ export class HomePageComponent implements OnInit {
     //  this.productsService.getAllSolutions().subscribe((data) => {
     //   this.solutions = data;
     // })
-     this.productsService.getData().subscribe(res => {
-      console.log('latest products: ',res);
-      this.products2 = res;
-     });
+    //  this.productsService.getData().subscribe(res => {
+    //   console.log('latest products: ',res);
+    //   this.products2 = res;
+    //  });
     this.getAllProducts();
     this.getAllSolutions();
   }
