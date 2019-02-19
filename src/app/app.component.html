@@ -41,17 +41,74 @@
         <div class="container b-main_footer">
             <!-- footer-main -->
             <aside class="row clearfix">
+                <div class="footer-column footer-column-2 col-md-3 col-sm-6">
+                    <div id="text-18" class="footer-widget widget_text">
+                        <h5 class="widget-title text-uppercase">industry solutions</h5>
+                        <div class="textwidget">
+                            <ul class="menu">
+                                <li *ngFor="let solution of solutions"><a href="#" routerLink="/solution/{{solution?.solutionCode}}">{{solution?.solutionName | titlecase}} Solutions</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-column footer-column-2 col-md-2 col-sm-6">
+                    <div id="text-18" class="footer-widget widget_text">
+                        <h5 class="widget-title text-uppercase">Products</h5>
+                        <div class="textwidget">
+                            <ul class="menu">
+                                <li *ngFor="let a of footerMenus?.menu1"><a href="#" [routerLink]="a?.url">{{a?.categoryName | titlecase}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-column footer-column-2 col-md-2 col-sm-6">
+                    <div id="text-18" class="footer-widget widget_text">
+                        <h5 class="widget-title text-uppercase" style="opacity: 0;">Products</h5>
+                        <div class="textwidget">
+                            <ul class="menu">
+                                <li *ngFor="let b of footerMenus?.menu2"><a href="#" [routerLink]="b?.url">{{b?.categoryName | titlecase}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-column footer-column-2 col-md-2 col-sm-6">
+                    <div id="text-18" class="footer-widget widget_text">
+                        <h5 class="widget-title text-uppercase" style="opacity: 0">Products</h5>
+                        <div class="textwidget">
+                            <ul class="menu">
+                                <li *ngFor="let c of footerMenus?.menu3"><a href="#" [routerLink]="c?.url">{{c?.categoryName | titlecase}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-column footer-column-2 col-md-2 col-sm-6">
+                    <div id="text-18" class="footer-widget widget_text">
+                        <h5 class="widget-title text-uppercase">Others</h5>
+                        <div class="textwidget">
+                            <ul class="menu">
+                                <li *ngFor="let other of footerMenus?.others"><a href="#" [routerLink]="other?.url">{{other?.categoryName | titlecase}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
                 <div class="b-footer_column col-md-12 col-sm-12">
                     <div class="b-footer_block">
                         <div class="b-footer_block_in">
-                            <p class="text-center mb-0"><img src="assets/images/gentec-logo.png" class="d-block m-auto img-fluid" alt="" title=""></p>
-                            <ul class="b-social-icons text-center">
-                                <li class="b-social_facebook"><a href="#" target="_blank"><i class="fa fa-facebook"></i>Facebook</a></li>
-                                <li class="b-social_twitter"><a href="#" target="_blank"><i class="fa fa-twitter"></i>Twitter</a></li>
-                                <li class="b-social_google"><a href="#" target="_blank"><i class="fa fa-google-plus"></i>Google</a></li>
-                                <li class="b-social_email"><a href="#" target="_blank"><i class="fa fa-envelope"></i>Email</a></li>
-                                <li class="b-social_pinterest"><a href="#" target="_blank"><i class="fa fa-pinterest"></i>Pinterest</a></li>
-                            </ul>
+                            <div class="row">
+                                <div class="col-sm-7">
+                                    <p class="mb-0 mt-5">
+                                        <img src="assets/images/gentec-logo.png" class="d-block img-fluid" alt="" title="">
+                                    </p>
+                                    <pre style="margin-top: 1rem;font-size: 13px;white-space:pre-wrap;color:#6f7375">Privacy Policy  |  Warranty      &#169; All Right Reserved 2019. Gentec Australia Pty. Limited.</pre>
+                                </div>
+                                <div class="col-sm-5 mt-5">
+                                    <ul class="b-social-icons mt-3">
+                                        <li class="b-social_facebook"><a href="#" target="_blank"><i class="fa fa-linkedin"></i>Linkedin</a></li>
+                                        <li class="b-social_facebook"><a href="#" target="_blank"><i class="fa fa-facebook"></i>Facebook</a></li>
+                                        <li class="b-social_twitter"><a href="#" target="_blank"><i class="fa fa-youtube"></i>Twitter</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                             <br>
                         </div>
                     </div>

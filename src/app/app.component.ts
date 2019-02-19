@@ -17,20 +17,15 @@ export class AppComponent implements OnInit {
   title = 'app';
   products: any;
   model:any;
+  solutions:any;
+  footerMenus:any;
+
   constructor(private auth: AuthService, public productsService: ProductsService, private router: Router, public scriptsService: ScriptsService, private vs: VariablesService) {}
 
   getAllProducts() {
-    // this.vs.localstorage('products').subscribe((products) => {
-    //   this.products = products;
-    // })
-    if (this.vs.localstorage('products')) {
-      this.products = localStorage.getItem('products');
-    } else {
-      this.productsService.getAllProducts().subscribe((data) => {
-        this.products = data;
-        localStorage.setItem('products', JSON.stringify(data));
-      })
-    }
+    this.vs.localstorage('products').subscribe((products) => {
+      this.products = products;
+    });
   }
 
   onSelect(event: TypeaheadMatch): void {
@@ -40,9 +35,19 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.footerMenus = this.vs.footer();
+
     this.getAllProducts();
+    this.getAllSolution();
     setTimeout(() => {
       this.scriptsService.prepareJquery();
     }, 1000)
+  }
+
+  getAllSolution() {
+    this.vs.localstorage('solutions').subscribe((solutions) => {
+      this.solutions = solutions;
+    })
   }
 }
