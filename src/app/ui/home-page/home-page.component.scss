@@ -80,3 +80,19 @@ $green_color: #95C448;
     color: #000;
     font-size: 1.2rem;
 }
+
+.b-title {
+    margin-bottom: 20px;
+    p {
+        font-size: 23px;
+    }
+}
+
+p.pull-left.mb-0 {
+    margin-bottom: 1rem !important;
+}
+
+.b-blog_social {
+    text-align: left;
+    position: unset;
+}
