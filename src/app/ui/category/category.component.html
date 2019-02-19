@@ -15,7 +15,39 @@
         <div class="b-filters_inner_area p-0">
           <div class="b-sidebar_widget categories">
             <h5 class="b-filter_title">PRODUCT CATEGORIES</h5>
-            <ul *ngFor="let category of categories">
+            <ul>
+              <li *ngFor="let menu of finalMenu1" class="third-level">
+                <a href="#" routerLink="{{menu?.url}}" class="isparent">
+                  <h5 class="text-uppercase">{{menu?.categoryName}}</h5>
+                </a>
+                <ul style="margin-bottom: 1rem;" *ngIf="menu?.sub?.length">
+                  <li *ngFor="let sub of menu?.sub">
+                    <a href="#" [routerLink]="sub?.url" [ngClass]="sub?.isBold?'parentSub text-uppercase':''">{{sub?.subName}}</a>
+                  </li>
+                </ul>
+              </li>
+              <li *ngFor="let menu of finalMenu2" class="third-level">
+                <a href="#" routerLink="{{menu?.url}}" class="isparent">
+                  <h5 class="text-uppercase">{{menu?.categoryName}}</h5>
+                </a>
+                <ul style="margin-bottom: 1rem;" *ngIf="menu?.sub?.length">
+                  <li *ngFor="let sub of menu?.sub">
+                    <a href="#" [routerLink]="sub?.url" [ngClass]="sub?.isBold?'parentSub text-uppercase':''">{{sub?.subName}}</a>
+                  </li>
+                </ul>
+              </li>
+              <li *ngFor="let menu of finalMenu3" class="third-level">
+                <a href="#" routerLink="{{menu?.url}}" class="isparent">
+                  <h5 class="text-uppercase">{{menu?.categoryName}}</h5>
+                </a>
+                <ul style="margin-bottom: 1rem;" *ngIf="menu?.sub?.length">
+                  <li *ngFor="let sub of menu?.sub">
+                    <a href="#" [routerLink]="sub?.url" [ngClass]="sub?.isBold?'parentSub text-uppercase':''">{{sub?.subName}}</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <!-- <ul *ngFor="let category of categories">
               <li>
                 <a href="#" routerLink="/category/{{category?.code}}" style="color: #1daaa3;">{{category?.parentCategory | uppercase}}</a>
               </li>
@@ -32,7 +64,7 @@
                   </li>
                 </ng-container>
               </ng-container>
-            </ul>
+            </ul> -->
             <!-- <div *ngFor="let cat of categories">
               <h6 class="column-title">
                 <b>
@@ -175,7 +207,7 @@
         </div>
         <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12 text-right">
           <p class="b-result_count d-inline-block hidden-md-down">
-            Showing {{config?.currentPage || 0}}-{{p?.pages?.length || 0}} of {{products?.length || 0}} results
+            Showing {{config?.currentPage || 0}}-{{config?.itemsPerPage || 0}} of {{products?.length || 0}} results
           </p>
           <div class="b-filter_button d-inline-block">
             <a href="javascript:void(0);" class="b-open_filters">Filters</a>

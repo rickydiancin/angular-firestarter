@@ -129,12 +129,12 @@
               <span class="b-amount">{{theproduct?.productCode | uppercase}}</span>
             </p>
             <div class="b-produt_description">
-              <h4>{{theproduct?.welsRating?theproduct?.welsRating+' star':'' | titlecase }}{{theproduct?.litresPerMinute && theproduct?.welsRating?', ':''}}{{theproduct?.litresPerMinute !== ''?theproduct?.litresPerMinute+' Lpm':''}}
+              <h4 *ngIf="theproduct?.welsRating || theproduct?.litresPerMinute">{{theproduct?.welsRating?theproduct?.welsRating+' star':'' | titlecase }}{{theproduct?.litresPerMinute && theproduct?.welsRating?', ':''}}{{theproduct?.litresPerMinute !== ''?theproduct?.litresPerMinute+' Lpm':''}}
               </h4>
               <h5 class="sub-header">Product Description</h5>
               <p>{{theproduct?.productDescription}}.</p>
   
-              <h6>Wels Registration : {{theproduct?.welsRegistrationNumber || 'N/A'}}</h6>
+              <h6 *ngIf="theproduct?.welsRegistrationNumber">Wels Registration : {{theproduct?.welsRegistrationNumber}}</h6>
             </div>
             <div class="b-product_single_option">
               <ul class="pl-0 list-unstyled">

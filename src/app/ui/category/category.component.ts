@@ -30,6 +30,9 @@ export class CategoryComponent implements OnInit {
   params: any;
   queryParams: any;
   productsLoaded:boolean = false;
+  finalMenu1:any;
+  finalMenu2:any;
+  finalMenu3:any;
 
   @Input('data') meals: string[] = [];
 
@@ -57,10 +60,17 @@ export class CategoryComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    this.finalMenu1 = this.vs.finalMenu1();
+    this.finalMenu2 = this.vs.finalMenu2();
+    this.finalMenu3 = this.vs.finalMenu3();
+
     this.route.queryParams.subscribe((queryParams) => {
-      this.titleService.setTitle(`You searched for ${queryParams.s} - Gentec Australia`)
-      this.queryParams = queryParams.s;
-      this.getAllProducts(queryParams.s);
+      if (Object.entries(queryParams).length !== 0) {
+        this.titleService.setTitle(`You searched for ${queryParams.s} - Gentec Australia`)
+        this.queryParams = queryParams.s;
+        this.getAllProducts(queryParams.s);
+      }
     })
 
     this.categories = this.vs.allCategories();
