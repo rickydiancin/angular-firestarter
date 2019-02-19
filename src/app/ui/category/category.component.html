@@ -17,12 +17,12 @@
             <h5 class="b-filter_title">PRODUCT CATEGORIES</h5>
             <ul>
               <li *ngFor="let menu of finalMenu1" class="third-level">
-                <a href="#" routerLink="{{menu?.url}}" class="isparent">
+                <a href="#" routerLink="/{{menu?.url}}" class="isparent">
                   <h5 class="text-uppercase">{{menu?.categoryName}}</h5>
                 </a>
                 <ul style="margin-bottom: 1rem;" *ngIf="menu?.sub?.length">
                   <li *ngFor="let sub of menu?.sub">
-                    <a href="#" [routerLink]="sub?.url" [ngClass]="sub?.isBold?'parentSub text-uppercase':''">{{sub?.subName}}</a>
+                    <a href="#" routerLink="/{{sub?.url}}"[ngClass]="sub?.isBold?'parentSub text-uppercase':''">{{sub?.subName}}</a>
                   </li>
                 </ul>
               </li>
