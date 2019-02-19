@@ -153,11 +153,11 @@
                 </div>
               </div> -->
             <!-- </div> -->
-            <h4>{{theproduct?.welsRating || '0 star' | titlecase }} Rating, {{theproduct?.litresPerMinute}} Lpm</h4>
+            <h4>{{theproduct?.welsRating || '0 star' | titlecase }} Rating, {{theproduct?.litresPerMinute || '0'}} Lpm</h4>
             <h5 class="sub-header">Product Description</h5>
             <p>{{theproduct?.productDescription}}.</p>
 
-            <h6>Wells Registration : {{theproduct?.wellsRegistration || 'N/A'}}</h6>
+            <h6>Wels Registration : {{theproduct?.welsRegistrationNumber || 'N/A'}}</h6>
           </div>
           <div class="b-product_single_option">
             <ul class="pl-0 list-unstyled">
@@ -255,7 +255,7 @@
         <div role="tabpanel" class="tab-pane fade in active show" id="tab-01">
           <div class="row clearfix">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-              <p>{{theproduct?.feautures}}</p>
+              <p>{{theproduct?.features}}</p>
             </div>
           </div>
         </div>

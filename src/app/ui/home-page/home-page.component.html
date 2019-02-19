@@ -31,7 +31,7 @@
                       [typeaheadMinLength]="2" -->
                       <div class="productList dropdown-menu" *ngIf="filterQuery">
                         <ng-container *ngFor="let product of products | productFilter : filterQuery; let i = index;">
-                          <button class="dropdown-item" *ngIf="product !== -1">
+                          <button class="dropdown-item" *ngIf="product !== -1" routerLink="/product/{{product?.productCode}}">
                             <img src="{{product?.primaryURL || './assets/images/not_available.jpg'}}" alt="" height="50px" width="50px">
                             {{product?.productTitle | titlecase}} ({{product?.productCode}})
                             <br>
