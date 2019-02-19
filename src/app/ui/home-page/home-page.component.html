@@ -6,11 +6,11 @@
           <div class="row">
               <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
                   <div class="b-search_bar">
-                      <!-- <form action="#"> -->
+                      <form (submit)="search()">
                         <ng-template #customItemTemplate let-model="item" let-index="index">
                          
                             <img src="{{model?.primaryURL || './assets/images/not_available.jpg'}}" alt="" height="50px" width="50px">
-                            {{model?.productTitle | titlecase | trim:'�'}}
+                            {{model?.productTitle | titlecase}}
               
                         </ng-template>
                         <div class="form-group">
@@ -18,10 +18,11 @@
                           autocomplete="off"
                           [disabled]="!products"
                           [(ngModel)]="filterQuery"
-                          type="text" placeholder="Search Products">
+                          type="text" placeholder="Search Products"
+                          [ngModelOptions]="{standalone: true}">
                           <button class="btn"><i class="icons icon-magnifier"></i></button>
                         </div>
-                      <!-- </form> -->
+                      </form>
                       <!-- name="model"
                       (typeaheadOnSelect)="onSelect($event)"
                       [(ngModel)]="model"
@@ -31,7 +32,7 @@
                       [typeaheadMinLength]="2" -->
                       <div class="productList dropdown-menu" *ngIf="filterQuery">
                         <ng-container *ngFor="let product of products | productFilter : filterQuery; let i = index;">
-                          <button class="dropdown-item" *ngIf="product !== -1">
+                          <button class="dropdown-item" *ngIf="product !== -1" (click)="search(product?.productCode)">
                             <img src="{{product?.primaryURL || './assets/images/not_available.jpg'}}" alt="" height="50px" width="50px">
                             {{product?.productTitle | titlecase}} ({{product?.productCode}})
                             <br>
@@ -82,14 +83,14 @@
         <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12 text-center">
           <div class="b-section_title">
             <!-- <span class="b-section_title_over d-block text-center">Accessories store</span> -->
-            <h4 class="text-center text-uppercase">
+            <h4 class="text-center text-uppercase" *ngIf="products?.length">
               BEST SELLERS
               <!-- <span class="b-title_separator"><span></span></span> -->
             </h4>
           </div>
             <div class="b-products b-product_grid b-product_grid_two mb-2">
 
-              <div class="row clearfix" *ngIf="products2">
+              <div class="row clearfix" *ngIf="products">
                 <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12" *ngFor="let product of products | slice:0:2">
                     <div class="b-product_grid_single">
                         <div class="b-product_grid_header">
@@ -165,7 +166,7 @@
         <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12">
           <div class="b-section_title">
             <!-- <span class="b-section_title_over d-block text-center">Latest Articles</span> -->
-            <h4 class="text-center text-uppercase">
+            <h4 class="text-center text-uppercase" *ngIf="posts?.length">
               LATEST NEWS
               <!-- <span class="b-title_separator"><span></span></span> -->
             </h4>
@@ -384,9 +385,9 @@
 
     <div class="row clearfix">
       <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12">
-        <div class="b-title b-title_line_right">
+        <!-- <div class="b-title b-title_line_right">
           <h2 class="text-uppercase">get in touch with us</h2>
-        </div>
+        </div> -->
         <form [formGroup]="form" novalidate>
         <div class="clearfix row">
             <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12">
@@ -421,38 +422,54 @@
         <div class="mt-4" id="mail-status"></div>
       </div>
       <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12">
-        <div class="b-title b-title_line_righ mt-5 mt-lg -0">
-          <h2 class="text-uppercase">information about us</h2>
+        <div class="b-title b-title_line_righ mt-lg -0" style="margin-bottom: 1px;">
+          <h2 class="text-uppercase">get in touch with us</h2>
         </div>
-        <p>At Gentec we understand the true meaning of green. That’s why we’re committed to using the latest technology
-          to provide custom-made products and fit-for-purpose solutions to suit any specification, alongside our
-          standard range of products.</p><br>
-        <div class="b-title b-title_line_right">
+        <div class="b-title b-title_line_righ mt-3 mt-lg -0">
+          <p>We're here to answer any question you might have. Leave a message and we'll be in touch!</p>
+        </div>
+        <!-- <p>We're here to answer any question you might have. Leave a message and we'll be in touch!</p><br> -->
+        <!-- <div class="b-title b-title_line_right">
           <h2 class="text-uppercase">contact us</h2>
-        </div>
+        </div> -->
         <div class="b-block_four_info">
           <div class="row clearfix">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-              <div class="clearfix mb-5">
-                <i class="icon-envelope icons pull-left mr-4 b-icon_large"></i>
+              <div class="clearfix">
+                <!-- <i class="icon-envelope icons pull-left mr-4 b-icon_large"></i> -->
                 <p class="pull-left mb-0">
-                  Tel: (+612) 9319 4422<br>
-                  E-Mail: info@gentecaustralia.com.au
+                  Unit 6, 20- 28 Ricketty Street,<br>
+                  Mascot, NSW 2020, Austrilla
+                </p>
+                <p class="pull-left mb-0">
+                  (+612) 9319 4422
+                </p>
+                <p class="pull-left mb-0">
+                  info@gentecaustrilla.com.au
                 </p>
               </div>
+              <div class="b-blog_social b-socail_color mt-0 pb-5">
+                <ul class="list-unstyled clearfix mb-0 pl-0 pr-0">
+                  <li><a href="#" class="fa fa-linkedin text-white"></a></li>
+                  <li><a href="#" class="fa fa-facebook text-white"></a></li>
+              
+                  <li><a href="#" class="fa fa-youtube text-white"></a></li>
+              
+                </ul>
+              </div>
             </div>
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
               <div class="clearfix mb-5">
                 <i class="icon-clock icons pull-left mr-4 b-icon_large"></i>
                 <p class="pull-left mb-0">
                   Unit 6, 20- 28 Ricketty Street, <br>Mascot, NSW 2020, Australia
                 </p>
               </div>
-            </div>
+            </div> -->
         
           </div>
         </div>
-        <div class="b-blog_social b-socail_color mt-0 pb-5">
+        <!-- <div class="b-blog_social b-socail_color mt-0 pb-5">
           <ul class="list-unstyled clearfix mb-0 pl-0 pr-0">
               <li><a href="#" class="fa fa-linkedin text-white"></a></li>
             <li><a href="#" class="fa fa-facebook text-white"></a></li>
@@ -460,7 +477,7 @@
             <li><a href="#" class="fa fa-youtube text-white"></a></li>
 
           </ul>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

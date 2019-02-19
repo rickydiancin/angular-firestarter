@@ -23,10 +23,20 @@ nav {
         color: #2eb7c5;
         border-bottom: 2px solid #333;
         padding-bottom: 15px;
+        margin-bottom: 10px;
+        h5 {
+            font-size: 1.1rem;
+        }
+    }
+    .parentSub{
+        color: #2eb7c5;
+        // border-bottom: 2px solid #333;
+        padding-bottom: 15px;
         margin-bottom: 15px;
+        font-size: 1.1rem;
     }
     .explore{
-        margin-top: 8em;
+        margin-top: 1.5rem;
     }
 
 }

@@ -15,7 +15,39 @@
         <div class="b-filters_inner_area p-0">
           <div class="b-sidebar_widget categories">
             <h5 class="b-filter_title">PRODUCT CATEGORIES</h5>
-            <ul *ngFor="let category of categories">
+            <ul>
+              <li *ngFor="let menu of finalMenu1" class="third-level">
+                <a href="#" routerLink="{{menu?.url}}" class="isparent">
+                  <h5 class="text-uppercase">{{menu?.categoryName}}</h5>
+                </a>
+                <ul style="margin-bottom: 1rem;" *ngIf="menu?.sub?.length">
+                  <li *ngFor="let sub of menu?.sub">
+                    <a href="#" [routerLink]="sub?.url" [ngClass]="sub?.isBold?'parentSub text-uppercase':''">{{sub?.subName}}</a>
+                  </li>
+                </ul>
+              </li>
+              <li *ngFor="let menu of finalMenu2" class="third-level">
+                <a href="#" routerLink="{{menu?.url}}" class="isparent">
+                  <h5 class="text-uppercase">{{menu?.categoryName}}</h5>
+                </a>
+                <ul style="margin-bottom: 1rem;" *ngIf="menu?.sub?.length">
+                  <li *ngFor="let sub of menu?.sub">
+                    <a href="#" [routerLink]="sub?.url" [ngClass]="sub?.isBold?'parentSub text-uppercase':''">{{sub?.subName}}</a>
+                  </li>
+                </ul>
+              </li>
+              <li *ngFor="let menu of finalMenu3" class="third-level">
+                <a href="#" routerLink="{{menu?.url}}" class="isparent">
+                  <h5 class="text-uppercase">{{menu?.categoryName}}</h5>
+                </a>
+                <ul style="margin-bottom: 1rem;" *ngIf="menu?.sub?.length">
+                  <li *ngFor="let sub of menu?.sub">
+                    <a href="#" [routerLink]="sub?.url" [ngClass]="sub?.isBold?'parentSub text-uppercase':''">{{sub?.subName}}</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <!-- <ul *ngFor="let category of categories">
               <li>
                 <a href="#" routerLink="/category/{{category?.code}}" style="color: #1daaa3;">{{category?.parentCategory | uppercase}}</a>
               </li>
@@ -32,7 +64,7 @@
                   </li>
                 </ng-container>
               </ng-container>
-            </ul>
+            </ul> -->
             <!-- <div *ngFor="let cat of categories">
               <h6 class="column-title">
                 <b>
@@ -156,7 +188,7 @@
       </div>
     </div>  
     <div class="col-xl-9 col-lg-9 col-mb-8 col-sm-12 col-xs-12"> 
-      <div class="row clearfix b-shop_head d-sm-none d-none"> 
+      <div class="row clearfix b-shop_head"> 
         <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12"> 
           <nav class="b-shop_breadcrumb">
             <a href="#">Home</a>
@@ -168,11 +200,14 @@
 
             <a *ngIf="solution" href="#" routerLink="/solution/all">Solution</a>
             <span *ngIf="solution">{{solution?.solutionName | titlecase}}</span>
+
+            <a *ngIf="queryParams" href="#" routerLink="/category/all">Products</a>
+            <span *ngIf="queryParams">Search results for “{{queryParams}}”</span>
           </nav>
         </div>
         <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12 text-right">
           <p class="b-result_count d-inline-block hidden-md-down">
-            Showing {{config?.currentPage || 0}}-{{p?.pages?.length || 0}} of {{products?.length || 0}} results
+            Showing {{config?.currentPage || 0}}-{{config?.itemsPerPage || 0}} of {{products?.length || 0}} results
           </p>
           <div class="b-filter_button d-inline-block">
             <a href="javascript:void(0);" class="b-open_filters">Filters</a>
@@ -286,11 +321,11 @@
           <h2 *ngIf="!paramsSolution && !paramsCategory" class="text-uppercase">All Products</h2>
           <h2 *ngIf="paramsCategory" class="text-uppercase">{{category?.categoryName | titlecase}}</h2>
           <h2 *ngIf="paramsSolution" class="text-uppercase">{{solution?.solutionName | titlecase}}</h2>
-          <hr>
-          <div>
+          <hr *ngIf="category || solution">
+          <div *ngIf="category || solution">
             <img style="max-height:300px" [src]="category?.imgURL || '../../../assets/images/banner/category-banner/cat-placeholder.jpg'" alt="" class="img-fluid">
           </div>
-          <div class="img-description">
+          <div class="img-description" *ngIf="category || solution">
             <small>{{category?.description}}</small>
           </div>
         </div>
@@ -310,12 +345,14 @@
         <!-- <div>
           <img [src]="category?.imgURL || './assets/images/not_available.jpg'" alt="">
         </div> -->
-          <div class="row clearfix" *ngIf="products">
-
-            <div class="col-sm-12">
+          <div class="row clearfix">
+            <div class="col-sm-8">
+              <h3 *ngIf="queryParams">SEARCH RESULTS: “{{queryParams}}”</h3>
+            </div>
+            <div class="col-sm-4">
               <div class="sortBy">
-                <form action="">
-                  <div class="form-group">
+                <form>
+                  <div class="form-group" *ngIf="products?.length > 0">
                     <label for="">Sort by</label>
                     <select name="" id="" (change)="sortBy($event)" class="form-control-sm">
                       <option value="productTitle">Name</option>
@@ -325,69 +362,85 @@
                 </form>
               </div>
             </div>
-  
-              <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-6" *ngFor="let product of products | paginate: config">
+              <ng-container *ngIf="!productsLoaded">
+                <div class="col-sm-12">
+                  <h6>Loading please wait</h6>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="productsLoaded && !products?.length">
+                <div class="col-sm-12">
+                  <h6>No products were found matching your selection.</h6>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="products?.length">
+                <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-6" *ngFor="let product of products | paginate: config">
                   <div class="b-product_grid_single">
-                      <div class="b-product_grid_header">
-                          <a href="#" routerLink="/product/{{product?.productCode}}">
-                            <!-- routerLink="/product/{{routeParamsName.split('.')[0]}}/{{product.productTitle}}.{{product.id}}" -->
-                            <!-- <img data-src="assets/images/products/home/product_grid_01_01.jpg, assets/images/products/home/product_grid_01_02.jpg" src="assets/images/products/home/product_grid_01_01.jpg" class="img-fluid img-switch d-block" alt="" style="">
-                          -->
-                          <div class="b-product_grid_info">
+                    <div class="b-product_grid_header">
+                      <a href="#" routerLink="/product/{{product?.productCode}}" (click)="titleService.setTitle(product?.productTitle)">
+                        <!-- routerLink="/product/{{routeParamsName.split('.')[0]}}/{{product.productTitle}}.{{product.id}}" -->
+                        <!-- <img data-src="assets/images/products/home/product_grid_01_01.jpg, assets/images/products/home/product_grid_01_02.jpg" src="assets/images/products/home/product_grid_01_01.jpg" class="img-fluid img-switch d-block" alt="" style="">
+                                          -->
+                        <div class="b-product_grid_info">
                           <h1 class="product-title">
                             <a href="#" routerLink="/product/{{product?.productCode}}"><b>{{ product?.productTitle | truncate: 40 }}</b></a>
                             <!-- routerLink="/product/{{routeParamsName.split('.')[0]}}/{{product?.productTitle}}.{{product?.id}}" -->
                           </h1>
-                          </div>
-                            <img [src]="product?.primaryURL || './assets/images/not_available.jpg'" width="100%" height="auto" class="img-fluid img-switch d-block">
-                         
-                          </a> 
-                          <div class="b-product_grid_action">
-                            <a href="javascript:void(0)" data-whishurl="whishlist.html" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to Whishlist">
-                              <i class="icon-heart icons b-add_to_whish">
-                                <img [src]="(product?.imageURL || product?.primaryImageURL || './assets/images/not_available.jpg')" class="g-loading_gif" alt="">
-                              </i>
-                            </a>
-                            <i data-toggle="tooltip" data-placement="left" title="" class="icon-refresh icons" data-original-title="Compare"></i>
-                            <a href="javascript:void(0);" data-toggle="modal" data-target="#b-qucik_view">
-                                <i data-toggle="tooltip" data-placement="left" title="" class="icon-magnifier-add icons" data-original-title="Quick View"></i>
-                              </a>
-                          </div>
-                      </div>
-                      <div class="b-product_grid_info">
-                         <!-- <h3 class="product-title">
-                             <a href="#" routerLink="/product/{{product?.productTitle}}.{{product?.id}}">{{ product?.productTitle}}</a>
-                         </h3> -->
-                         <!-- <h3>{{ product?.categoryName | titlecase}}</h3> -->
-                         <p>{{ product?.productDescription | truncate : 25 | trim:'�'}}</p>
-                         <div class="clearfix">
-                           <div class="b-product_grid_toggle float-left">
-                               <!-- <span class="b-price">Add To Project</span> -->
-                               <span class="b-add_cart" (click)="addToProduct(product)">
-                                   <i class="icon-plus icons"></i>
-                                   <a href="javascript:void();">Add To Project</a>
-                               </span>
-                           </div>
-                           <!-- <div class="b-product_options float-right">
-                            <a href="javascript:void(0);" class="d-inline-block b-active mr-3">
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                            </a>
-                              <ul class="pl-0 mb-0 list-unstyled">
-                                  <li>
-                                    <span data-toggle="tooltip" title="" class="b-black" data-original-title="Black"></span>
-                                  </li>
-                                  <li>
-                                    <span data-toggle="tooltip" title="" class="b-blue" data-original-title="Blue"></span>
-                                  </li> 
-                              </ul>
-                          </div> -->
-                         </div>
+                        </div>
+                        <img [src]="product?.primaryURL || './assets/images/not_available.jpg'" width="100%" height="auto"
+                          class="img-fluid img-switch d-block">
+                
+                      </a>
+                      <div class="b-product_grid_action">
+                        <a href="javascript:void(0)" data-whishurl="whishlist.html" data-toggle="tooltip" data-placement="left" title=""
+                          data-original-title="Add to Whishlist">
+                          <i class="icon-heart icons b-add_to_whish">
+                            <img [src]="(product?.imageURL || product?.primaryImageURL || './assets/images/not_available.jpg')"
+                              class="g-loading_gif" alt="">
+                          </i>
+                        </a>
+                        <i data-toggle="tooltip" data-placement="left" title="" class="icon-refresh icons"
+                          data-original-title="Compare"></i>
+                        <a href="javascript:void(0);" data-toggle="modal" data-target="#b-qucik_view">
+                          <i data-toggle="tooltip" data-placement="left" title="" class="icon-magnifier-add icons"
+                            data-original-title="Quick View"></i>
+                        </a>
                       </div>
                     </div>
+                    <div class="b-product_grid_info">
+                      <!-- <h3 class="product-title">
+                                             <a href="#" routerLink="/product/{{product?.productTitle}}.{{product?.id}}">{{ product?.productTitle}}</a>
+                                         </h3> -->
+                      <!-- <h3>{{ product?.categoryName | titlecase}}</h3> -->
+                      <p>{{ product?.productDescription | truncate : 25}}</p>
+                      <div class="clearfix">
+                        <div class="b-product_grid_toggle float-left">
+                          <!-- <span class="b-price">Add To Project</span> -->
+                          <span class="b-add_cart" (click)="addToProduct(product)">
+                            <i class="icon-plus icons"></i>
+                            <a href="javascript:void();">Add To Project</a>
+                          </span>
+                        </div>
+                        <!-- <div class="b-product_options float-right">
+                                            <a href="javascript:void(0);" class="d-inline-block b-active mr-3">
+                                              <i class="fa fa-star"></i>
+                                              <i class="fa fa-star"></i>
+                                              <i class="fa fa-star"></i>
+                                            </a>
+                                              <ul class="pl-0 mb-0 list-unstyled">
+                                                  <li>
+                                                    <span data-toggle="tooltip" title="" class="b-black" data-original-title="Black"></span>
+                                                  </li>
+                                                  <li>
+                                                    <span data-toggle="tooltip" title="" class="b-blue" data-original-title="Blue"></span>
+                                                  </li> 
+                                              </ul>
+                                          </div> -->
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                </div>
+              </ng-container>
+              </div>
  
  
           <!-- <div class="b-pagination pt-2 pb-4">
@@ -404,7 +457,7 @@
           </div> -->
           <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
 
-          <pagination-template #p="paginationApi" (pageChange)="config.currentPage = $event">
+          <pagination-template *ngIf="products?.length" #p="paginationApi" (pageChange)="config.currentPage = $event">
 
             <div class="b-pagination pt-2 pb-4">
               <ul class="pl-0 text-center list-unstyled mb-0">

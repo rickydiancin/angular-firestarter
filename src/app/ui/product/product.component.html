@@ -1,577 +1,294 @@
-<div class="b-product_single_breadcrumbs pt-3 pb-3 hide">
-  <div class="container">
-    <div class="row clearfix">
-      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-12">
+<ngx-spinner
+  bdOpacity=1
+  bdColor="#E9E9E9"
+  size="medium"
+  color="#ffffff"
+  type="square-spin"
+  fullScreen="false">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<ng-container *ngIf="theproduct">
+  <div class="b-product_single_breadcrumbs pt-3 pb-3 hide">
+    <div class="container">
+      <div class="row clearfix">
+        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-12">
           <div class="b-breadcrumbs">
             <a href="#">Home</a>
             <a href="#" routerLink="/category/all">Products</a>
             <span>{{theproduct?.productTitle | titlecase}}</span>
           </div>
-      </div>
-      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12">
-        <ul class="list-unstyled pl-0 float-right">
-          <li style="cursor: pointer;" [ngClass]="prevProduct == 'undefined'?'':'d-none'" class="mr-2"><i class="fa fa-long-arrow-left"></i></li>
-          <li style="cursor: pointer;" [ngClass]="prevProduct == 'undefined'?'d-none':''" [routerLink]="'../'+prevProduct?.productCode" class="mr-2"><i class="fa fa-long-arrow-left"></i></li>
-          
-          <li style="cursor: pointer;" [ngClass]="nextProduct == 'undefined'?'':'d-none'" class=""><i class="fa fa-long-arrow-right"></i></li>
-          <li style="cursor: pointer;" [ngClass]="nextProduct == 'undefined'?'d-none':''" [routerLink]="'../'+nextProduct?.productCode" class=""><i class="fa fa-long-arrow-right"></i></li>
-        </ul>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <ul class="list-unstyled pl-0 float-right">
+            <li style="cursor: pointer;" [ngClass]="prevProduct == 'undefined'?'':'d-none'" class="mr-2"><i
+                class="fa fa-long-arrow-left"></i></li>
+            <li style="cursor: pointer;" [ngClass]="prevProduct == 'undefined'?'d-none':''"
+              [routerLink]="'../'+prevProduct?.productCode" class="mr-2"><i class="fa fa-long-arrow-left"></i></li>
+  
+            <li style="cursor: pointer;" [ngClass]="nextProduct == 'undefined'?'':'d-none'" class=""><i
+                class="fa fa-long-arrow-right"></i></li>
+            <li style="cursor: pointer;" [ngClass]="nextProduct == 'undefined'?'d-none':''"
+              [routerLink]="'../'+nextProduct?.productCode" class=""><i class="fa fa-long-arrow-right"></i></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
-<div class="b-product_single pb-5">
-  <div class="container">
-    <div class="row clearfix">
-      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-        <div class="row clearfix b-product-display b-bottom-thumbs">
-          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 b-display-single">
-            <div class="b-product-carousel owl-carousel" id="bSingleProductCarousel" data-slider-id="bSingleProductCarousel">
-              <div class="b-produt-item">
-                <img [src]="theproduct?.primaryURL || './assets/images/not_available.jpg'" alt="" class="img-fluid" data-zoomed="">
+  
+  <div class="b-product_single pb-5">
+    <div class="container">
+      <div class="row clearfix">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <div class="row clearfix b-product-display b-bottom-thumbs">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 b-display-single">
+              <div class="b-product-carousel owl-carousel" id="bSingleProductCarousel"
+                data-slider-id="bSingleProductCarousel">
+                <div class="b-produt-item">
+                  <img [src]="theproduct?.primaryURL || './assets/images/not_available.jpg'" alt="" class="img-fluid"
+                    data-zoomed="">
+                </div>
+                <div class="b-produt-item">
+                  <img [src]="theproduct?.lineDrawing || './assets/images/not_available.jpg'" alt="" class="img-fluid"
+                    data-zoomed="">
+                </div>
+                <div class="b-produt-item">
+                  <img src="assets/images/products/product-single/woman-4.jpg" alt="" class="img-fluid"
+                    data-zoomed="assets/images/products/product-single/woman-4.jpg">
+                </div>
+                <div class="b-produt-item">
+                  <img src="assets/images/products/product-single/woman-6.jpg" alt="" class="img-fluid"
+                    data-zoomed="assets/images/products/product-single/woman-6.jpg">
+                </div>
+                <div class="b-produt-item">
+                  <img src="assets/images/products/product-single/woman-14.jpg" alt="" class="img-fluid"
+                    data-zoomed="assets/images/products/product-single/woman-14.jpg">
+                </div>
+                <div class="b-produt-item">
+                  <img src="assets/images/products/product-single/woman-17.jpg" alt="" class="img-fluid"
+                    data-zoomed="assets/images/products/product-single/woman-17.jpg">
+                </div>
+                <div class="b-produt-item">
+                  <img src="assets/images/products/product-single/woman-22.jpg" alt="" class="img-fluid"
+                    data-zoomed="assets/images/products/product-single/woman-22.jpg">
+                </div>
               </div>
-              <div class="b-produt-item">
-                <img src="assets/images/products/product-single/woman-3.jpg" alt="" class="img-fluid" data-zoomed="assets/images/products/product-single/woman-3.jpg">
-              </div>
-              <div class="b-produt-item">
-                <img src="assets/images/products/product-single/woman-4.jpg" alt="" class="img-fluid" data-zoomed="assets/images/products/product-single/woman-4.jpg">
-              </div>
-              <div class="b-produt-item">
-                <img src="assets/images/products/product-single/woman-6.jpg" alt="" class="img-fluid" data-zoomed="assets/images/products/product-single/woman-6.jpg">
-              </div>
-              <div class="b-produt-item">
-                <img src="assets/images/products/product-single/woman-14.jpg" alt="" class="img-fluid" data-zoomed="assets/images/products/product-single/woman-14.jpg">
-              </div>
-              <div class="b-produt-item">
-                <img src="assets/images/products/product-single/woman-17.jpg" alt="" class="img-fluid" data-zoomed="assets/images/products/product-single/woman-17.jpg">
-              </div>
-              <div class="b-produt-item">
-                <img src="assets/images/products/product-single/woman-22.jpg" alt="" class="img-fluid" data-zoomed="assets/images/products/product-single/woman-22.jpg">
-              </div>
-            </div>
-
-            <!-- <div class="b-additional-video-wrap ml-0">
-              <a href="https://www.youtube.com/embed/h_MPR25JD3E" class="b-additional-video-btn" data-rel="lightcase">
-                <span class="b-icon"><i class="icon-control-play icons"></i></span>
-                <span>Watch Video</span>
-              </a>
-            </div> -->
-            <!-- /b-additional-video-wrap -->
-            
-            <div class="b-show-product-gallery-wrap">
-              <a href="javaScript:void(0)">
-                <i class="icon-magnifier-add icons"></i>
-              </a>
-            </div> <!-- /b-show-product-gallery-wrap-->
-          </div>
-          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-            <div class="b-display-list-wrapper">
-              <div class="owl-thumbs b-display-item-list" id="bSingleProductBottom" data-slider-id="bSingleProductCarousel">
-                <div class="owl-thumb-item b-display-item">
-                  <img src="assets/images/products/product-single/woman-1.jpg" alt="" class="img-fluid">
-                </div>
-                <div class="owl-thumb-item b-display-item">
-                  <img src="assets/images/products/product-single/woman-3.jpg" alt="" class="img-fluid">
-                </div>
-                <div class="owl-thumb-item b-display-item">
-                  <img src="assets/images/products/product-single/woman-4.jpg" alt="" class="img-fluid">
-                </div>
-                <div class="owl-thumb-item b-display-item">
-                  <img src="assets/images/products/product-single/woman-6.jpg" alt="" class="img-fluid">
-                </div>
-                <div class="owl-thumb-item b-display-item">
-                  <img src="assets/images/products/product-single/woman-14.jpg" alt="" class="img-fluid">
-                </div>
-                <div class="owl-thumb-item b-display-item">
-                  <img src="assets/images/products/product-single/woman-17.jpg" alt="" class="img-fluid">
-                </div>
-                <div class="owl-thumb-item b-display-item">
-                  <img src="assets/images/products/product-single/woman-22.jpg" alt="" class="img-fluid">
-                </div>
-              </div><!-- /b-display-item-list -->
-
-              <div class="b-slider-action">
-                <button class="slick-prev"><i class="icon-arrow-left icons"></i></button>
-                <button class="slick-next"><i class="icon-arrow-right icons"></i></button>
-              </div> <!-- /b-slider-action-->
-            </div><!-- /b-display-item-list-wrapper -->
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12">
-        <div class="b-product_single_summary" *ngIf="theproduct">
-          <h1 id="content" #content>{{theproduct?.productTitle}}</h1>
-          <p class="b-price">
-            <span class="b-amount">{{theproduct?.productCode | uppercase}}</span>
-          </p>
-          <div class="b-produt_description">
-
-            <!-- <div> -->
-              <!-- <p>{{theproduct?.productDescription}}</p></div> -->
-          <!-- </div> -->
-          <!-- <div class="b-product_attr">
-            <div class="b-product_attr_single">
-              <ul class="pl-0 list-unstyled clearfix">
-                <li><span class="b-product_attr_title pt-1">Color:</span></li>
-                <li><a href="#"><span data-toggle="tooltip" title="" data-original-title="Black" class="b-color_attr b-black"></span></a></li>
-                <li><a href="#"><span data-toggle="tooltip" title="" data-original-title="Red" class="b-color_attr b-red"></span></a></li>
-                <li><a href="#"><span data-toggle="tooltip" title="" data-original-title="Yellow" class="b-color_attr b-yellow"></span></a></li>
-              </ul>
-            </div>
-            <div class="b-product_attr_single">
-              <ul class="pl-0 list-unstyled clearfix">
-                <li><span class="b-product_attr_title">Size:</span></li>
-                <li><a href="#"><span class="b-size_attr">L</span></a></li>
-                <li><a href="#"><span class="b-size_attr">XL</span></a></li>
-                <li><a href="#"><span class="b-size_attr">XXL</span></a></li>
-              </ul>
-            </div>
-          </div> -->
-          <!-- <div class="b-product_single_action clearfix"> -->
-            <!-- <div class="b-quantity pull-left">
-              <input type="button" value="-" class="b-minus">
-              <input type="text" step="1" min="1" max="" name="b-quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric">
-              <input type="button" value="+" class="b-plus">
-            </div> -->
-            <!-- <div>
-              <button [disabled]="!theproduct" (click)="addToProduct(theproduct)" class="text-uppercase pull-left btn"><i class="fa fa-plus fa-fw"></i>
-                add to project</button>
-              <button [disabled]="!theproduct" (click)="addToProduct(theproduct)" class="text-uppercase pull-left btn"><i class="fa fa-file-pdf-o fa-fw"></i>
-                View Technical Details</button> -->
-              <!-- <div class="btn-group" role="group">
-                <button [disabled]="!theproduct" id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  View Technical Details
-                </button>
-                <angular2csv *ngIf="productExport" [data]="productExport" filename="productExport" [options]="options" class="d-none"></angular2csv>
-                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                  <a class="dropdown-item" [ngClass]="!theproduct?.technicalSheetURL?'disabled':''" *ngIf="!theproduct?.technicalSheetURL" href="javascript:void(0)">View PDF</a>
-                  <a class="dropdown-item" *ngIf="theproduct?.technicalSheetURL" href="{{theproduct?.technicalSheetURL}}" target="_blank">View
-                    PDF</a>
-                  <a (click)="downloadFile()" class="dropdown-item" href="javascript:void(0)">Download CSV</a>
-                </div>
-              </div> -->
-            <!-- </div> -->
-            <h4>{{theproduct?.welsRating || '0 star' | titlecase }} Rating, {{theproduct?.litresPerMinute}} Lpm</h4>
-            <h5 class="sub-header">Product Description</h5>
-            <p>{{theproduct?.productDescription}}.</p>
-
-            <h6>Wells Registration : {{theproduct?.wellsRegistration || 'N/A'}}</h6>
-          </div>
-          <div class="b-product_single_option">
-            <ul class="pl-0 list-unstyled">
-              <!-- <li class="detail-width">
-                <p>{{theproduct?.productDescription}}.</p>
-              </li> -->
-              <!-- <li class="detail-width">
-                <a href="javascript:void(0);">
-                  <img class="swatch-squares" [src]="'./assets/images/colours/Storm Grey.jpg'" alt="">
+  
+              <!-- <div class="b-additional-video-wrap ml-0">
+                <a href="https://www.youtube.com/embed/h_MPR25JD3E" class="b-additional-video-btn" data-rel="lightcase">
+                  <span class="b-icon"><i class="icon-control-play icons"></i></span>
+                  <span>Watch Video</span>
                 </a>
-              </li> -->
-              <!-- <li><a href="#"><i class="icon-refresh icons"></i> Compare</a></li>
-              <li><b class="text-uppercase">Sku</b>: {{theproduct?.productCode}}</li>
-              <li><b>Categories:</b>: <a href="#">To Follow</a></li>
-              <li><b>Solutions:</b>: <a href="#">To Follow</a></li>
-              <li>
-                <b>Share</b>:
-                <span class="b-share_product">
-                  <a href="#" class="fa fa-facebook"></a>
-                  <a href="#" class="fa fa-twitter"></a>
-                  <a href="#" class="fa fa-instagram"></a>
-                  <a href="#" class="fa fa-envelope"></a>
-                  <a href="#" class="fa fa-google-plus"></a>
-                  <a href="#" class="fa fa-pint"></a>
-                </span>
-              </li> -->
-            </ul>
-            <div class="b-product_single_action clearfix">
-              <button *ngIf="addToProject" [disabled]="!theproduct" (click)="addToProduct(theproduct)" class="text-uppercase btn-block btn"><i class="fa fa-plus fa-fw"></i>
-                add to project</button>
-              <button *ngIf="!addToProject" [disabled]="!theproduct" routerLink="/login" class="text-uppercase btn-block btn"><i class="fa fa-plus fa-fw"></i>
-                add to project</button>
-              <button [disabled]="!theproduct || !theproduct?.technicalSheetURL" (click)="viewTechnicalDetails(theproduct?.technicalSheetURL)" class="text-uppercase btn-block btn"><i class="fa fa-file-pdf-o fa-fw"></i>
-                View Technical Details</button>
-            </div>
-            <div class="row clearfix">
-              <div class="col-sm-12">
-                <button style="cursor: not-allowed;opacity: .65;" *ngIf="!isLoggin" tooltip="Please login to download DWG File" class="text-uppercase pull-left btn">DWG File</button>
-                <button *ngIf="isLoggin" tooltip="Download" (click)="dwgFile(theproduct?.DWGFileURL)" class="text-uppercase pull-left btn">DWG File</button>
-                
-                <button style="cursor: not-allowed;opacity: .65;" *ngIf="!isLoggin" tooltip="Please login to download REVIT File" class="text-uppercase pull-left btn">Revit File</button>
-                <button *ngIf="isLoggin" tooltip="Download" (click)="revitFile(theproduct?.revitFileURL)" class="text-uppercase pull-left btn">Revit File</button>
+              </div> -->
+              <!-- /b-additional-video-wrap -->
+  
+              <div class="b-show-product-gallery-wrap">
+                <a href="javaScript:void(0)">
+                  <i class="icon-magnifier-add icons"></i>
+                </a>
               </div>
             </div>
-            <div class="b-product_single_action clearfix product-features">
-             <button (click)="featureLink('features')" class="text-uppercase btn-block btn">View Product Features</button>
-            </div>
-          </div>
-          <!-- <div class="b-product_single_action clearfix">
-            <h5 class="pull-left sub-header">Product Description</h5>
-          </div> -->
-          <!-- <div class="b-product_single_option"> -->
-            <!-- <ul class="pl-0 list-unstyled"> -->
-              <!-- <p>{{theproduct?.productDescription}}.</p> -->
-            <!-- </ul> -->
-          <!-- <div class="b-product_single_option">
-            <ul class="pl-0 list-unstyled">
-              <li><a href="#"><i class="icon-heart icons"></i> Add to wishlist</a></li>
-              <li><a href="#"><i class="icon-refresh icons"></i> Compare</a></li>
-              <li><b class="text-uppercase">Sku</b>: {{theproduct?.productCode}}</li>
-              <li><b>Categories:</b>: <a href="#">To Follow</a></li>
-              <li><b>Solutions:</b>: <a href="#">To Follow</a></li>
-              <li>
-                <b>Share</b>:
-                <span class="b-share_product">
-                  <a href="#" class="fa fa-facebook"></a>
-                  <a href="#" class="fa fa-twitter"></a>
-                  <a href="#" class="fa fa-instagram"></a>
-                  <a href="#" class="fa fa-envelope"></a>
-                  <a href="#" class="fa fa-google-plus"></a>
-                  <a href="#" class="fa fa-pint"></a>
-                </span>
-              </li>
-            </ul>
-          </div> -->
-        <!-- </div> -->
-      </div>
-    </div>
-  </div>
-</div>
-<div id="features"></div>
-<div class="b-gray_bg b-product_tabs">
-  <div class="container">
-    <div class="row">
-      <ul class="nav nav-tabs clearfix" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link active text-uppercase" href="#tab-01" role="tab" data-toggle="tab">FEATURES</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-uppercase" href="#tab-02" role="tab" data-toggle="tab">Product Details</a>
-        </li>
-      </ul>
-      <!-- Tab panes -->
-      <div class="tab-content">
-        <div role="tabpanel" class="tab-pane fade in active show" id="tab-01">
-          <div class="row clearfix">
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-              <p>{{theproduct?.feautures}}</p>
-            </div>
-          </div>
-        </div>
-        <div role="tabpanel" class="tab-pane fade" id="tab-02">
-          <table class="b-shop_attributes">
-            <tbody>
-              <tr>
-                <th>Colours/Finish</th>
-                <td><p>{{theproduct?.colourFinish}}</p></td>
-              </tr>
-              <tr>
-                <th>Dimensions - Depth (mm)</th>
-                <td><p>{{theproduct?.depth || 'n/a'}}</p></td>
-              </tr>
-              <tr>
-                <th>Dimensions - Height (mm)</th>
-                <td><p>{{theproduct?.height || 'n/a'}}</p></td>
-              </tr>
-              <tr>
-                <th>Dimensions - Width (mm)</th>
-                <td><p>{{theproduct?.width || 'n/a'}}</p></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <!-- <div role="tabpanel" class="tab-pane fade" id="tab-03">
-          <div class="row clearfix">
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-              <div class="b-review_listing_wrapper">
-                <h5 class="pb-2"><b>Reviews</b></h5>
-                <div class="b-review_listing">
-                  <div class="b-review_single">
-                    <img src="assets/images/products/product-single/user.png" class="img-fluid" alt="">
-                    <div class="b-review_header clearfix">
-                      <p class="float-left">
-                        <em>Your review is awaiting approval</em>
-                      </p>
-                      <p class="float-right">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="icon-star icons"></i>
-                        <i class="icon-star icons"></i>
-                        <i class="icon-star icons"></i>
-                      </p>
-                    </div>
-                    <div class="b-review_content">
-                      <p>Dis vestibulum ullamcorper senectus conubia suspendisse vestibulum nam condimentum aliquet ipsum justo. </p>
-                    </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+              <div class="b-display-list-wrapper">
+                <div class="owl-thumbs b-display-item-list" id="bSingleProductBottom"
+                  data-slider-id="bSingleProductCarousel">
+                  <div class="owl-thumb-item b-display-item">
+                    <img [src]="theproduct?.primaryURL || './assets/images/not_available.jpg'" alt="" class="img-fluid">
                   </div>
+                  <div class="owl-thumb-item b-display-item">
+                    <img [src]="theproduct?.lineDrawing || './assets/images/not_available.jpg'" alt="" class="img-fluid">
+                  </div>
+                  <div class="owl-thumb-item b-display-item">
+                    <img src="assets/images/products/product-single/woman-4.jpg" alt="" class="img-fluid">
+                  </div>
+                  <div class="owl-thumb-item b-display-item">
+                    <img src="assets/images/products/product-single/woman-6.jpg" alt="" class="img-fluid">
+                  </div>
+                  <div class="owl-thumb-item b-display-item">
+                    <img src="assets/images/products/product-single/woman-14.jpg" alt="" class="img-fluid">
+                  </div>
+                  <div class="owl-thumb-item b-display-item">
+                    <img src="assets/images/products/product-single/woman-17.jpg" alt="" class="img-fluid">
+                  </div>
+                  <div class="owl-thumb-item b-display-item">
+                    <img src="assets/images/products/product-single/woman-22.jpg" alt="" class="img-fluid">
+                  </div>
+                </div>
+  
+                <div class="b-slider-action">
+                  <button class="slick-prev"><i class="icon-arrow-left icons"></i></button>
+                  <button class="slick-next"><i class="icon-arrow-right icons"></i></button>
                 </div>
               </div>
             </div>
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-              <div class="b-review_form_wrapper">
-                <h5 class="pb-2"><b>Add a review</b></h5>
-                <p class="b-comment_notes pb-2">
-                  <span id="b-email_notes">Your email address will not be published.</span> Required fields are marked
-                  <span class="b-required">*</span>
-                </p>
-                <p class="b-rating_area">
-                  <span class="d-inline-block pr-3">Your Rating:</span>
-                  <a href="#" class="d-inline-block mr-3">
-                    <i class="icon-star icons"></i>
-                  </a>
-                  <a href="#" class="d-inline-block b-active mr-3">
-                    <i class="icon-star icons"></i>
-                    <i class="icon-star icons"></i>
-                  </a>
-                  <a href="#" class="d-inline-block mr-3">
-                    <i class="icon-star icons"></i>
-                    <i class="icon-star icons"></i>
-                    <i class="icon-star icons"></i>
-                  </a>
-                  <a href="#" class="d-inline-block mr-3">
-                    <i class="icon-star icons"></i>
-                    <i class="icon-star icons"></i>
-                    <i class="icon-star icons"></i>
-                    <i class="icon-star icons"></i>
-                  </a>
-                  <a href="#" class="d-inline-block mr-3">
-                    <i class="icon-star icons"></i>
-                    <i class="icon-star icons"></i>
-                    <i class="icon-star icons"></i>
-                    <i class="icon-star icons"></i>
-                    <i class="icon-star icons"></i>
-                  </a>
-                </p>
-                <p class="b-comment_form_comment">
-                  <label for="comment">Your review <span class="b-required">*</span></label>
-                  <textarea id="comment" name="comment" cols="45" rows="8" required=""></textarea>
-                </p>
-                <p class="b-comment_form_author">
-                  <label for="author">Name <span class="b-required">*</span></label>
-                  <input id="author" name="author" type="text" value="" size="30" aria-required="true" required="">
-                </p>
-                <p class="b-comment_form_email clearfix">
-                  <label for="email">Email <span class="b-required">*</span></label>
-                  <input id="email" name="email" type="email" value="" size="30" aria-required="true" required="">
-                </p>
-                <p>
-                  <button class="btn" type="submit">submit</button>
-                </p>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12">
+          <div class="b-product_single_summary" *ngIf="theproduct">
+            <h1 id="content" #content>{{theproduct?.productTitle}}</h1>
+            <p class="b-price">
+              <span class="b-amount">{{theproduct?.productCode | uppercase}}</span>
+            </p>
+            <div class="b-produt_description">
+              <h4 *ngIf="theproduct?.welsRating || theproduct?.litresPerMinute">{{theproduct?.welsRating?theproduct?.welsRating+' star':'' | titlecase }}{{theproduct?.litresPerMinute && theproduct?.welsRating?', ':''}}{{theproduct?.litresPerMinute !== ''?theproduct?.litresPerMinute+' Lpm':''}}
+              </h4>
+              <h5 class="sub-header">Product Description</h5>
+              <p>{{theproduct?.productDescription}}.</p>
+  
+              <h6 *ngIf="theproduct?.welsRegistrationNumber">Wels Registration : {{theproduct?.welsRegistrationNumber}}</h6>
+            </div>
+            <div class="b-product_single_option">
+              <ul class="pl-0 list-unstyled">
+              </ul>
+              <div class="b-product_single_action clearfix">
+                <button *ngIf="addToProject" [disabled]="!theproduct" (click)="addToProduct(theproduct)"
+                  class="text-uppercase btn-block btn"><i class="fa fa-plus fa-fw"></i>
+                  add to project</button>
+                <button *ngIf="!addToProject" [disabled]="!theproduct" routerLink="/login"
+                  class="text-uppercase btn-block btn"><i class="fa fa-plus fa-fw"></i>
+                  add to project</button>
+                <button [disabled]="!theproduct || !theproduct?.technicalSheetURL"
+                  (click)="viewTechnicalDetails(theproduct?.technicalSheetURL)" class="text-uppercase btn-block btn"><i
+                    class="fa fa-file-pdf-o fa-fw"></i>
+                  View Technical Details</button>
+              </div>
+              <div class="row clearfix">
+                <div class="col-sm-12">
+                  <button style="cursor: not-allowed;opacity: .65;" *ngIf="!isLoggin"
+                    tooltip="Please login to download DWG File" class="text-uppercase pull-left btn">DWG File</button>
+                  <button *ngIf="isLoggin" tooltip="Download" (click)="dwgFile(theproduct?.DWGFileURL)"
+                    class="text-uppercase pull-left btn">DWG File</button>
+  
+                  <button style="cursor: not-allowed;opacity: .65;" *ngIf="!isLoggin"
+                    tooltip="Please login to download REVIT File" class="text-uppercase pull-left btn">Revit File</button>
+                  <button *ngIf="isLoggin" tooltip="Download" (click)="revitFile(theproduct?.revitFileURL)"
+                    class="text-uppercase pull-left btn">Revit File</button>
+                </div>
+              </div>
+              <div class="b-product_single_action clearfix product-features">
+                <button (click)="featureLink('features')" class="text-uppercase btn-block btn">View Product
+                  Features</button>
               </div>
             </div>
           </div>
-        </div> -->
-        <!-- <div role="tabpanel" class="tab-pane fade" id="tab-04">
-          <div>
-            <img alt="" src="assets/images/products/product-single/shipping.jpg" class="alignleft">
-            <p>Vestibulum curae torquent diam diam commodo parturient penatibus nunc dui adipiscing convallis bulum parturient suspendisse parturient a.Parturient in parturient scelerisque nibh lectus quam a natoque adipiscing a vestibulum hendrerit et pharetra fames.Consequat net</p>
-
-            <p>Vestibulum parturient suspendisse parturient a.Parturient in parturient scelerisque  nibh lectus quam a natoque adipiscing a vestibulum hendrerit et pharetra fames.Consequat netus.</p>
-
-            <p>Scelerisque adipiscing bibendum sem vestibulum et in a a a purus lectus faucibus lobortis tincidunt purus lectus nisl class eros.Condimentum a et ullamcorper dictumst mus et tristique elementum nam inceptos hac vestibulum amet elit</p>
-
-            <div class="clearfix"></div>
-          </div>
-        </div> -->
+        </div>
       </div>
     </div>
-  </div>
-</div>
-<div class="container">
-  <div class="row clearfix">
-    <div class="col-sm-12">
-      <iframe src="https://e.issuu.com/anonymous-embed.html?u=gentecaustralia&d=8jan_gentec_template_pre-rinse_unit"
-        style="border:none;width:100%;height:500px;" allowfullscreen></iframe>
+    <div id="features"></div>
+    <div class="b-gray_bg b-product_tabs">
+      <div class="container">
+        <div class="row">
+          <ul class="nav nav-tabs clearfix" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active text-uppercase" href="#tab-01" role="tab" data-toggle="tab">FEATURES</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-uppercase" href="#tab-02" role="tab" data-toggle="tab">Product Details</a>
+            </li>
+          </ul>
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active show" id="tab-01">
+              <div class="row clearfix">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                  <p>{{theproduct?.features}}</p>
+                </div>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="tab-02">
+              <table class="b-shop_attributes">
+                <tbody>
+                  <tr>
+                    <th>Colours/Finish</th>
+                    <td>
+                      <p>{{theproduct?.colourFinish}}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Dimensions - Depth (mm)</th>
+                    <td>
+                      <p>{{theproduct?.depth || 'n/a'}}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Dimensions - Height (mm)</th>
+                    <td>
+                      <p>{{theproduct?.height || 'n/a'}}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Dimensions - Width (mm)</th>
+                    <td>
+                      <p>{{theproduct?.width || 'n/a'}}</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-<section id="b-products">
-    <div class="b-section_title">
-       <h4 class="text-center text-uppercase">
-        RELATED PRODUCTS
-        <span class="b-title_separator"><span></span></span>
-       </h4>
+    <div class="container">
+      <div class="row clearfix">
+        <div class="col-sm-12">
+          <iframe src="https://e.issuu.com/anonymous-embed.html?u=gentecaustralia&d=8jan_gentec_template_pre-rinse_unit"
+            style="border:none;width:100%;height:500px;" allowfullscreen></iframe>
+        </div>
+      </div>
     </div>
-    <div class="b-products b-product_grid b-product_grid_four mb-4">
+    <section id="b-products">
+      <div class="b-section_title">
+        <h4 class="text-center text-uppercase">
+          RELATED PRODUCTS
+          <span class="b-title_separator"><span></span></span>
+        </h4>
+      </div>
+      <div class="b-products b-product_grid b-product_grid_four mb-4">
         <div class="container">
-            <div class="row clearfix">
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12" *ngFor="let related of relateds">
-                     <div class="b-product_grid_single">
-                       <div class="b-product_grid_header">
-                           <a href="#" routerLink="/product/{{related?.productCode}}">
-                             <img data-src="assets/images/products/product-single/product_grid_10_01.jpg, assets/images/products/product-single/product_grid_10_02.jpg" src="{{related?.primaryURL || './assets/images/not_available.jpg'}}" class="img-fluid img-switch d-block" alt="" style="">
-                           </a>
-                           <div class="b-product_grid_action">
-                             <a href="javascript:void(0)" data-whishurl="whishlist.html" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to Whishlist">
-                               <i class="icon-heart icons b-add_to_whish">
-                                 <img src="assets/images/products/product_loading.gif" class="g-loading_gif" alt="">
-                               </i>
-                             </a>
-                             <i data-toggle="tooltip" data-placement="left" title="" class="icon-refresh icons" data-original-title="Compare"></i>
-                             <a href="javascript:void(0);" data-toggle="modal" data-target="#b-qucik_view">
-                               <i data-toggle="tooltip" data-placement="left" title="" class="icon-magnifier-add icons" data-original-title="Quick View"></i>
-                             </a>
-                           </div>
-                       </div>
-                       <div class="b-product_grid_info">
-                          <h3 class="product-title">
-                              <a href="#" routerLink="/product/{{related?.productCode}}">{{related?.productTitle | titlecase | words:4}}</a>
-                          </h3>
-                          <div class="clearfix">
-                            <div class="b-product_grid_toggle float-left">
-                                <span class="b-price">{{related?.productCode | uppercase}}</span>
-                                <!-- <span class="b-add_cart">
-                                    <i class="icon-basket icons"></i>
-                                    <a href="#">Select Options</a>
-                                </span> -->
-                            </div>
-                            <!-- <div class="b-product_options float-right">
-                               <ul class="pl-0 mb-0 list-unstyled">
-                                   <li>
-                                     <span data-toggle="tooltip" title="" class="b-black" data-original-title="Black"></span>
-                                   </li>
-                                   <li>
-                                     <span data-toggle="tooltip" title="" class="b-blue" data-original-title="Blue"></span>
-                                   </li>
-                               </ul>
-                           </div> -->
-                          </div>
-                       </div>
-                     </div>
+          <div class="row clearfix">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12" *ngFor="let related of relateds">
+              <div class="b-product_grid_single">
+                <div class="b-product_grid_header">
+                  <a href="#" routerLink="/product/{{related?.productCode}}">
+                    <img
+                      data-src="assets/images/products/product-single/product_grid_10_01.jpg, assets/images/products/product-single/product_grid_10_02.jpg"
+                      src="{{related?.primaryURL || './assets/images/not_available.jpg'}}"
+                      class="img-fluid img-switch d-block" alt="">
+                  </a>
+                  <div class="b-product_grid_action">
+                    <a href="javascript:void(0)" data-whishurl="whishlist.html" data-toggle="tooltip"
+                      data-placement="left" title="" data-original-title="Add to Whishlist">
+                      <i class="icon-heart icons b-add_to_whish">
+                        <img src="assets/images/products/product_loading.gif" class="g-loading_gif" alt="">
+                      </i>
+                    </a>
+                    <i data-toggle="tooltip" data-placement="left" title="" class="icon-refresh icons"
+                      data-original-title="Compare"></i>
+                    <a href="javascript:void(0);" data-toggle="modal" data-target="#b-qucik_view">
+                      <i data-toggle="tooltip" data-placement="left" title="" class="icon-magnifier-add icons"
+                        data-original-title="Quick View"></i>
+                    </a>
+                  </div>
                 </div>
-                <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                  <div class="b-product_grid_single">
-                     <div class="b-product_grid_header">
-                         <a href="#">
-                           <img data-src="assets/images/products/product-single/product_grid_11_01.jpg, assets/images/products/product-single/product_grid_11_02.jpg" src="assets/images/products/product-single/product_grid_11_01.jpg" class="img-fluid img-switch d-block" alt="" style="">
-                         </a>
-                         <div class="b-product_grid_action">
-                           <a href="javascript:void(0)" data-whishurl="whishlist.html" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to Whishlist">
-                             <i class="icon-heart icons b-add_to_whish">
-                               <img src="assets/images/products/product_loading.gif" class="g-loading_gif" alt="">
-                             </i>
-                           </a>
-                           <i data-toggle="tooltip" data-placement="left" title="" class="icon-refresh icons" data-original-title="Compare"></i>
-                           <a href="javascript:void(0);" data-toggle="modal" data-target="#b-qucik_view">
-                               <i data-toggle="tooltip" data-placement="left" title="" class="icon-magnifier-add icons" data-original-title="Quick View"></i>
-                             </a>
-                         </div>
-                         <div class="b-product_labels b-labels_rounded b-new">
-                          <span class="b-product_label">New</span>
-                         </div>
-                     </div>
-                     <div class="b-product_grid_info">
-                          <h3 class="product-title">
-                              <a href="#">Basic contrast sneakers</a>
-                          </h3>
-                          <div class="clearfix">
-                            <div class="b-product_grid_toggle float-left">
-                                <span class="b-price">$20</span>
-                                <span class="b-add_cart">
-                                    <i class="icon-basket icons"></i>
-                                    <a href="#">Select Options</a>
-                                </span>
-                            </div>
-                            <div class="b-product_options float-right">
-                               <ul class="pl-0 mb-0 list-unstyled">
-                                   <li>
-                                     <span data-toggle="tooltip" title="" class="b-black" data-original-title="Black"></span>
-                                   </li>
-                                   <li>
-                                     <span data-toggle="tooltip" title="" class="b-brown" data-original-title="Brown"></span>
-                                   </li>
-                                   <li>
-                                     <span data-toggle="tooltip" title="" class="b-red" data-original-title="Red"></span>
-                                   </li>
-                               </ul>
-                           </div>
-                          </div>
-                     </div>
+                <div class="b-product_grid_info">
+                  <h3 class="product-title">
+                    <a href="#"
+                      routerLink="/product/{{related?.productCode}}">{{related?.productTitle | titlecase | words:4}}</a>
+                  </h3>
+                  <div class="clearfix">
+                    <div class="b-product_grid_toggle float-left">
+                      <span class="b-price">{{related?.productCode | uppercase}}</span>
+                    </div>
                   </div>
-                </div> -->
-                <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                  <div class="b-product_grid_single">
-                     <div class="b-product_grid_header">
-                         <a href="#">
-                           <img data-src="assets/images/products/product-single/product_grid_12_01.jpg, assets/images/products/product-single/product_grid_12_02.jpg" src="assets/images/products/product-single/product_grid_12_01.jpg" class="img-fluid img-switch d-block" alt="" style="">
-                         </a>
-                         <div class="b-product_grid_action">
-                           <a href="javascript:void(0)" data-whishurl="whishlist.html" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to Whishlist">
-                             <i class="icon-heart icons b-add_to_whish">
-                               <img src="assets/images/products/product_loading.gif" class="g-loading_gif" alt="">
-                             </i>
-                           </a>
-                           <i data-toggle="tooltip" data-placement="left" title="" class="icon-refresh icons" data-original-title="Compare"></i>
-                           <a href="javascript:void(0);" data-toggle="modal" data-target="#b-qucik_view">
-                               <i data-toggle="tooltip" data-placement="left" title="" class="icon-magnifier-add icons" data-original-title="Quick View"></i>
-                             </a>
-                         </div>
-                     </div>
-                     <div class="b-product_grid_info">
-                          <h3 class="product-title">
-                              <a href="#">Basic Korean-style coat</a>
-                          </h3>
-                          <div class="clearfix">
-                            <div class="b-product_grid_toggle float-left">
-                                <span class="b-price">$214</span>
-                                <span class="b-add_cart">
-                                    <i class="icon-basket icons"></i>
-                                    <a href="#">Add to cart</a>
-                                </span>
-                            </div>
-                            <div class="b-product_options float-right">
-                               <ul class="pl-0 mb-0 list-unstyled">
-                                   <li>
-                                     <span data-toggle="tooltip" title="" class="b-brown" data-original-title="Brown"></span>
-                                   </li>
-                                   <li>
-                                     <span data-toggle="tooltip" title="" class="b-blue" data-original-title="Blue"></span>
-                                   </li>
-                               </ul>
-                           </div>
-                          </div>
-                     </div>
-                  </div>
-                </div> -->
-                <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                  <div class="b-product_grid_single">
-                     <div class="b-product_grid_header">
-                         <a href="#">
-                           <img data-src="assets/images/products/product-single/product_grid_13_01.jpg, assets/images/products/product-single/product_grid_13_02.jpg" src="assets/images/products/product-single/product_grid_13_01.jpg" class="img-fluid img-switch d-block" alt="" style="">
-                         </a>
-                         <div class="b-product_grid_action">
-                           <a href="javascript:void(0)" data-whishurl="whishlist.html" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to Whishlist">
-                             <i class="icon-heart icons b-add_to_whish">
-                               <img src="assets/images/products/product_loading.gif" class="g-loading_gif" alt="">
-                             </i>
-                           </a>
-                           <i data-toggle="tooltip" data-placement="left" title="" class="icon-refresh icons" data-original-title="Compare"></i>
-                           <a href="javascript:void(0);" data-toggle="modal" data-target="#b-qucik_view">
-                               <i data-toggle="tooltip" data-placement="left" title="" class="icon-magnifier-add icons" data-original-title="Quick View"></i>
-                             </a>
-                         </div>
-                     </div>
-                     <div class="b-product_grid_info">
-                          <h3 class="product-title">
-                              <a href="#">Before decaf phone case</a>
-                          </h3>
-                          <div class="clearfix">
-                            <div class="b-product_grid_toggle float-left">
-                                <span class="b-price">$49</span>
-                                <span class="b-add_cart">
-                                    <i class="icon-basket icons"></i>
-                                    <a href="#">Add to cart</a>
-                                </span>
-                            </div>
-                          </div>
-                     </div>
-                  </div>
-                </div> -->
+                </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+    </section>
+    <div class="container">
+      <hr class="pb-4">
     </div>
-</section>
-<div class="container">
-  <hr class="pb-4">
-</div>
+    </div>
+</ng-container>

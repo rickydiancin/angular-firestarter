@@ -338,4 +338,156 @@ export class VariablesService {
     return categories;
   }
 
+  finalMenu1() {
+    let finalMenu1 = [
+      {
+        categoryName: 'tapware',
+        url: 'category/TPWR',
+        sub: [
+          {
+            subName: 'single lever mixer',
+            url:'category/SLM'
+          }
+        ]
+      },
+      {
+        categoryName: 'antiligature systems',
+        url: 'category/ANTIV',
+        sub: []
+      },
+      {
+        categoryName: 'time flow tapware',
+        url: 'category/TFT',
+        sub: [
+          {
+            subName: 'bubblers',
+            url: 'category/BUB'
+          },
+          {
+            subName: 'timed flow taps',
+            url:'category/TFTAP'
+          },
+          {
+            subName: 'timed flow shower',
+            url: 'category/TFTSHO'
+          },
+          {
+            subName: 'timed flow valves',
+            url: 'category/TFTVAL'
+          }
+        ]
+      },
+      {
+        categoryName: 'electronic tapware',
+        url: 'category/ELEC',
+        sub: [
+          {
+            subName: 'laboratory tapware',
+            url: 'category/LABT',
+            isBold: true
+          }
+        ]
+      }
+    ];
+    return finalMenu1;
+  }
+
+  finalMenu2() {
+    let finalMenu2 = [
+      {
+        categoryName: 'sanitary ware',
+        url: 'category/SAHN',
+        sub: [
+          {
+            subName: 'basins',
+            url:'category/BASI'
+          },
+          {
+            subName: 'tiolets',
+            url: 'category/TOIL'
+          }
+        ]
+      },
+      {
+        categoryName: 'safety showers & equipement',
+        url: 'category/SSHOWE',
+        sub: [
+          {
+            subName: 'safety showers',
+            url: 'category/SSHOW'
+          },
+          {
+            subName: 'emergency eye/face wash',
+            url: 'category/EEFW'
+          },
+          {
+            subName: 'other safety equipment',
+            url: 'category/OSE'
+          }
+        ]
+      },
+      {
+        categoryName: 'pre-rinse units',
+        url: 'category/PRU',
+        sub: []
+      },
+      {
+        categoryName: 'showers',
+        url: 'category/SHOWR',
+        sub: [
+          {
+            subName: 'spouts and outlets',
+            url: 'category/SAO',
+            isBold: true
+          }
+        ]
+      }
+    ];
+    return finalMenu2;
+  }
+
+  finalMenu3() {
+    let finalMenu3 = [
+      {
+        categoryName: 'thermostatics',
+        url: 'category/TH',
+        sub: [
+          {
+            subName: 'thermostatics mixing taps',
+            url:'category/TMT'
+          },
+          {
+            subName: 'thermostatics mixing valves',
+            url: 'category/TMV'
+          }
+        ]
+      },
+      {
+        categoryName: 'rails & accessible equipment',
+        url: 'category/RAE',
+        sub: [
+          {
+            subName: 'anti microbial',
+            url: 'category/AM'
+          },
+          {
+            subName: 'stainless steel',
+            url: 'category/SS'
+          }
+        ]
+      },
+      {
+        categoryName: 'bathroom accessories',
+        url: 'category/BA',
+        sub: []
+      },
+      {
+        categoryName: 'grate seal',
+        url: 'category/GRTS',
+        sub: []
+      }
+    ];
+    return finalMenu3;
+  }
+
 }

@@ -34,6 +34,7 @@ import { NewssingleComponent } from './newssingle/newssingle.component';
 import { ProductFilterPipe } from './home-page/productPipe';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { SearchFilterPipe } from './category/searchPipe';
 
 @NgModule({
   imports: [
@@ -72,7 +73,8 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     NewsComponent,
     InvoiceComponent,
     NewssingleComponent,
-    ProductFilterPipe
+    ProductFilterPipe,
+    SearchFilterPipe
   ],
   entryComponents:[
     AddProjectComponent,
@@ -84,9 +86,10 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     NotificationMessageComponent,
     UserProfileComponent,
     UserFormComponent,
-    ProductFilterPipe
+    ProductFilterPipe,
+    SearchFilterPipe
     // AddProjectComponent
   ],
-  providers: [ProductFilterPipe]
+  providers: [ProductFilterPipe, SearchFilterPipe]
 })
 export class UiModule {}

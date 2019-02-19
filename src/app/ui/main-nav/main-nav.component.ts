@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ScriptsService } from 'src/app/core/scripts.service';
 import { AuthService } from 'src/app/core/auth.service';
 import { ProductsService } from 'src/app/core/products.service';
@@ -11,13 +11,16 @@ import { VariablesService } from 'src/app/core/variables.service';
   templateUrl: './main-nav.component.html',
   styleUrls: ['./main-nav.component.scss']
 })
-export class MainNavComponent {
+export class MainNavComponent implements OnInit {
 
   show = false;
   categories:any;
   menus:any;
   menus2:any;
   menus3:any;
+  finalMenu1:any;
+  finalMenu2:any;
+  finalMenu3:any;
   products:any;
   solutions:any;
   user: any;
@@ -40,14 +43,15 @@ export class MainNavComponent {
     //   }
     // })
   }
-
   
   ngOnInit() {
     console.log(this.auth.user);
     this.menus = this.vs.allMenus();
     this.menus2 = this.vs.allMenus2();
     this.menus3 = this.vs.allMenus3();
-    console.log('menus', this.menus);
+    this.finalMenu1 = this.vs.finalMenu1();
+    this.finalMenu2 = this.vs.finalMenu2();
+    this.finalMenu3 = this.vs.finalMenu3();
     this.categories = this.vs.allCategories();
     // this.auth.user.subscribe((data) => {
     //   // console.log(data)
@@ -89,9 +93,6 @@ export class MainNavComponent {
     // }
 
     // console.log(this.auth.user);
-    setTimeout(() => {
-      this.scriptsService.prepareJquery();
-       },1000)
        this.vs.localstorage('products').subscribe(res => {
         // console.log(res);
         this.vs.products = res;

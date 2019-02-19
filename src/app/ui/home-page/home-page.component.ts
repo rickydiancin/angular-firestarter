@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { VariablesService } from 'src/app/core/variables.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { PostService } from 'src/app/core/post.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'home-page',
@@ -34,8 +35,10 @@ export class HomePageComponent implements OnInit {
     public vs: VariablesService,
     public formBuilder: FormBuilder,
     public postService: PostService,
+    private titleService: Title
   ) {
     this.createForm();
+    this.titleService.setTitle(`Leading Provider and Supplier of Tapware in Australia | Gentec Australia`)
   }
 
   createForm() {
@@ -75,10 +78,10 @@ export class HomePageComponent implements OnInit {
     //  this.productsService.getAllSolutions().subscribe((data) => {
     //   this.solutions = data;
     // })
-     this.productsService.getData().subscribe(res => {
-      console.log('latest products: ',res);
-      this.products2 = res;
-     });
+    //  this.productsService.getData().subscribe(res => {
+    //   console.log('latest products: ',res);
+    //   this.products2 = res;
+    //  });
     this.getAllProducts();
     this.getAllSolutions();
   }
@@ -124,6 +127,14 @@ export class HomePageComponent implements OnInit {
         this.form.reset();
       }
     })
+  }
+
+  search(value) {
+    if(value) {
+      this.router.navigate(['/products'], { queryParams: { s: value.toLowerCase() } })
+    } else {
+      this.router.navigate(['/products'], { queryParams: { s: this.filterQuery } })
+    }
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { ScriptsService } from 'src/app/core/scripts.service';
 import { ProductsService } from 'src/app/core/products.service';
 import { Observable } from 'rxjs';
@@ -10,6 +10,7 @@ import * as jsPDF from 'jspdf';
 import * as _ from 'lodash';
 import { take, map } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 declare var $: any;
 
@@ -18,7 +19,7 @@ declare var $: any;
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent implements OnInit, AfterViewInit {
 
   @ViewChild('content') content: ElementRef
 
@@ -159,9 +160,9 @@ export class ProductComponent implements OnInit {
     private modalService: NgbModal,
     public vs: VariablesService,
     private router: Router,
-    private afAuth: AngularFireAuth
-  ) { 
-    
+    private afAuth: AngularFireAuth,
+    private spinner: NgxSpinnerService
+  ) {
   }
 
   featureLink(link) {
@@ -185,7 +186,14 @@ export class ProductComponent implements OnInit {
     );
   }
 
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.scriptsService.prepareJquery();
+    }, 1000)
+  }
+
   ngOnInit() {
+
     this.checkAuth().subscribe((res) => {
       this.addToProject = res;
       this.isLoggin = res
@@ -196,16 +204,9 @@ export class ProductComponent implements OnInit {
     this.pid = this.route.snapshot.params.id;
     // this.products = this.productsService.getData();
     this.route.params.subscribe((params) => {
-      setTimeout(() => {
-        this.scriptsService.prepareJquery();
-      }, 1000)
-
       this.productsService.getProduct(params.id).valueChanges()
         .subscribe(async res => {
-
-
           this.theproduct = await res;
-          console.log(res)
           // if(res) {
           // if (this.vs.localstorage('products')) {
           //   // this.vs.products = JSON.parse(localStorage.getItem('products'));

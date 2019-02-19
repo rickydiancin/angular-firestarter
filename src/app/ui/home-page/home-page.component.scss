@@ -69,8 +69,8 @@ $green_color: #95C448;
 
 /deep/.b-search_bar button.btn {
     position: absolute;
-    right: 15px;
-    top: 8px;
+    right: 0;
+    top: 0;
     background: transparent;
     border: none;
     padding-top: 13px;
@@ -79,31 +79,29 @@ $green_color: #95C448;
     font-weight: 700;
 }
 
-ngb-carousel {
-    width: inherit;
-    height: inherit;
+
+
+.b-cat_mask {
+    left: 22% !important;
 }
 
-
-.carousel-inner {
-    overflow: visible;
+.b-entry_title a {
+    color: #000;
+    font-size: 1.2rem;
 }
 
-.carousel-item {
-    display: flex !important;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 1.2s ease-in-out, visibility 1.2s;
-    z-index: -1;
-    position: absolute;
+.b-title {
+    margin-bottom: 20px;
+    p {
+        font-size: 23px;
+    }
 }
 
-.carousel-item.active{
-    opacity: 1;
-    visibility: visible;
-    z-index: 10;
+p.pull-left.mb-0 {
+    margin-bottom: 1rem !important;
 }
 
-.carousel-control-prev {
-     z-index: 20;
+.b-blog_social {
+    text-align: left;
+    position: unset;
 }
