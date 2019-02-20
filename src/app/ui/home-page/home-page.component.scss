@@ -114,3 +114,11 @@ p.pull-left.mb-0 {
 #homebanner img{
    height: 390px;
 }
+@media (max-width: 767px) {
+    #homebanner img{
+        height: auto;
+     }
+     .b-cat_mask {
+        left: 35% !important;
+    }
+}

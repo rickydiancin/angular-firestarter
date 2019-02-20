@@ -4,7 +4,7 @@
 		img{@extend .d-transition;}
 		.b-cat_mask{
 			position: absolute; bottom: 20px; left: 45%; box-shadow: 1px 1px 3px rgba(136,136,136,.19); -webkit-box-shadow: 1px 1px 3px rgba(136,136,136,.19); background-color: #fff; padding: 12px 25px;
-			a{font-family: $blog_heading_font; color: #000; font-style: italic; letter-spacing: 1.5px;}
+			a{font-family: $blog_heading_font; color: #000; letter-spacing: 1.5px;}
 		}
 		&:hover{
 			img{transform: scale(1.1); -webkit-transform: scale(1.1);}
