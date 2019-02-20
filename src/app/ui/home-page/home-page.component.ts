@@ -51,9 +51,9 @@ export class HomePageComponent implements OnInit {
   }
 
   ngOnInit() {
-    setTimeout(() => {
-      this.scriptsService.prepareJquery();
-    }, 1000)
+      setTimeout(() => {
+        this.scriptsService.prepareJquery();
+      }, 1000)
     this.productsService.getAllCategories(res => {
       console.log(res);
       this.categories = res;
@@ -129,7 +129,7 @@ export class HomePageComponent implements OnInit {
     })
   }
 
-  search(value) {
+  search(value?) {
     if(value) {
       this.router.navigate(['/products'], { queryParams: { s: value.toLowerCase() } })
     } else {

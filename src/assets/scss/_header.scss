@@ -260,6 +260,9 @@ body.b-header_fixed{
     .b-search_popup input[type="text"]{font-size: 38px;}
 }
 @media (max-width: 767px){
+    .social{
+        display: none;
+    }
     .b-header{
         .container{width: 100%;}
         .col-xs-6{

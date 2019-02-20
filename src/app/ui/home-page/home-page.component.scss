@@ -18,6 +18,15 @@ $green_color: #95C448;
     font-size: 1.5em;
 }
 
+.b-product_grid a{
+    color: #333;
+    font-weight: bold;
+}
+.b-product_grid a:hover{
+    color:#95C448;
+
+}
+
 /deep/.productList {
     position: absolute;
     display: block;
@@ -95,4 +104,10 @@ p.pull-left.mb-0 {
 .b-blog_social {
     text-align: left;
     position: unset;
+}
+.start{
+    background-color: #95c448;
+    margin-bottom: -30px;
+    font-size: 24px;
+    padding: 1em 2em;
 }

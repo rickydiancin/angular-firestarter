@@ -1,4 +1,62 @@
 
+      
+                <div class="b-main_menu-wrapper hidden-lg-up">
+                  <ul class="mobile-top"> 
+                      <li class="search">
+                          <div class="search-holder-mobile">
+                              <input type="text" name="search-mobile" value="" placeholder="Search" class="form-control">
+                              <a class="fa fa-search"></a>
+                          </div>
+                      </li>
+                  </ul>
+                  <ul class="categories"> 
+                    <li class="has-sub dropdown-wrapper from-bottom">
+                        <a href="#" routerLink="/solution/all"><span class="top">Solutions</span><i class="fa fa-angle-down"></i></a>
+                        <div class="dropdown-content sub-holder dropdown-left narrow">
+                            <div class="dropdown-inner">
+                                <div class="clearfix">
+                                    <div class="col-xs-12 col-sm-12 ">
+                                        <div class="menu-item">
+                                            <!-- CATEGORIES CONTENT -->
+                                            <div class="categories">
+                                                <div class="clearfix">
+                                                    <div class="col-sm-12 hover-menu text-uppercase">
+                                                        <ul *ngFor="let cat of solutions">
+                                                            <li> <a href="#" routerLink="/solution/{{cat?.solutionCode}}" class="d-block"><strong> {{cat.solutionName}} Solutions </strong></a></li>
+                                                           
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- row -->
+                            </div>
+                        </div>
+                    </li>
+                    <li class="has-sub dropdown-wrapper from-bottom">
+                      <a href="#" routerLink="/category/all"><span class="top">Products</span></a>
+              
+                  </li>
+               
+                  <li>
+                    <a href="#" class="p-relative description " routerLink="/category">
+                    <span class="top">Company</span> 
+                    </a>
+                  </li>
+                  <li *ngIf="auth?.user">
+                    <a href="#" class="p-relative description " routerLink="/projects">
+                    <span class="top">Specifications</span> 
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="p-relative description ">
+                    <span class="top">Retailers</span> 
+                    </a>
+                  </li>
+                  </ul> 
+                </div>  
       <header id="b-header"> 
             <div class="b-header b-header_bg">
                     <div class="container">
@@ -140,7 +198,7 @@
                                                       </ul>
                                                     </li>
                                                     <li>
-                                                      <a href="#" class="explore" routerLink="/category">Explore Entire Catalogue ></a>
+                                                      <a href="#" class="explore" routerLink="/category/all">Explore Entire Catalogue ></a>
                                                     </li>
                                                   </ul>
                                                   <!-- <ul>
