@@ -18,6 +18,8 @@ import { SingleCategoryComponent } from './ui/category/single-category/single-ca
 import { NewsComponent } from './ui/news/news.component';
 import { InvoiceComponent } from './ui/invoice/invoice.component';
 import { NewssingleComponent } from './ui/newssingle/newssingle.component';
+import { WarrantyComponent } from './ui/warranty/warranty.component';
+import { DistributionComponent } from './ui/distribution/distribution.component';
 
 
 const routes: Routes = [
@@ -36,6 +38,8 @@ const routes: Routes = [
   { path: 'projects/:id', component: ProjectProductsComponent },
   { path: 'projects/:id/invoice', component: InvoiceComponent },
   { path: 'company', component: CompanyComponent },
+  { path: 'warranty', component: WarrantyComponent },
+  { path: 'distribution', component: DistributionComponent },
   { path: 'product/:id', component: ProductComponent },
   { path: 'notes', component: NotesListComponent,  canActivate: [AuthGuard] },
   { path: 'uploads',  component: UploadPageComponent,  canActivate: [AuthGuard] },
