@@ -626,11 +626,11 @@ export class VariablesService {
         others: [
           {
             categoryName: 'about us',
-            url: ''
+            url: '/company'
           },
           {
             categoryName: 'warranty',
-            url: ''
+            url: '/warranty'
           },
           {
             categoryName: 'news',
@@ -638,7 +638,7 @@ export class VariablesService {
           },
           {
             categoryName: 'distribution',
-            url: ''
+            url: '/distribution'
           }
         ]
       }
