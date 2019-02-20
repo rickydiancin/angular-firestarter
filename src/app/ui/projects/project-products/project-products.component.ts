@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from 'src/app/core/products.service';
+import * as html2canvas from 'html2canvas';
+import * as rasterizeHTML from 'rasterizeHTML';
 
 declare var $: any;
 declare let jsPDF;
+// declare let html2canvas;
 
 @Component({
   selector: 'project-products',
@@ -198,7 +201,7 @@ export class ProjectProductsComponent implements OnInit {
     doc.addPage();
     doc.autoTable({ html: document.getElementById("content") });
 
-    doc.save("table.pdf");
+    doc.save(`${this.id.split('.')[0]}.pdf`);
     // let content = this.content.nativeElement;
 
     // doc.autoTable({ html: content.innerHTML })
@@ -214,5 +217,23 @@ export class ProjectProductsComponent implements OnInit {
   // downloadFile() {
   //   $('#exportFile').click();
   // }
+
+  download() {
+    console.log(document.querySelector("#content"))
+    // var template = document.getElementById("content");
+    var canvas = <HTMLCanvasElement>document.querySelector("#content"); // rasterizeHTML.drawHTML(template.innerHTML, canvas).then((result) => {
+    //   console.log(result)
+    // })
+    html2canvas(canvas, { useCORS: true }).then(canvas => {
+      var doc = new jsPDF('p', 'mm');
+        var imgData = canvas.toDataURL('image/png');
+      console.log(canvas)
+      document.querySelector("#display").append(canvas)
+      var width = 200;
+      var height = 50;
+      doc.addImage(imgData, 'PNG', 5, 5, width, height);
+      doc.save(`${this.id.split('.')[0]}.pdf`);
+    });
+  }
 
 }

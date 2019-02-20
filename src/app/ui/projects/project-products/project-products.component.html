@@ -44,7 +44,7 @@
               <tbody>
                 <tr *ngFor="let product of productProject">
                   <td>
-                    <img [src]="product?.imageURL || './assets/images/not_available.jpg'" alt="" height="100px" width="100px">
+                    <img [src]="product?.primaryURL || './assets/images/not_available.jpg'" alt="" height="100px" width="100px">
                   </td>
                   <td width="20%">{{product?.productTitle | titlecase}}</td>
                   <td >type</td>
@@ -76,26 +76,30 @@
                     </angular2csv>
                   </td>
                   <td>
-                    <button (click)="downloadPDF()" type="button" class="btn btn-primary btn-block">Save as PDF</button>
+                    <button (click)="download()" type="button" class="btn btn-primary btn-block">Save as PDF</button>
+                    <!-- <button (click)="downloadPDF()" type="button" class="btn btn-primary btn-block">Save as PDF</button> -->
                   </td>
                 </tr>
               </tfoot>
             </table>
-            <table id="content" class="table table-bordered table-condensed d-none" *ngIf="productProject">
+            <!-- <div style="visibility: hidden;">
+            <table class="table table-bordered table-condensed" id="content" *ngIf="productProject">
               <thead>
                 <tr>
                   <th colspan="2" class="text-center">Product</th>
                   <th class="text-center">Code</th>
+                  <th class="text-center">Type</th>
                   <th class="text-center">Summary</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let product of productProject">
                   <td>
-                    <img [src]="product?.imageURL || './assets/images/not_available.jpg'" alt="" height="100px" width="100px">
+                    <img [src]="product?.primaryURL || './assets/images/not_available.jpg'" alt="" height="100px" width="100px">
                   </td>
                   <td width="20%">{{product?.productTitle | titlecase}}</td>
                   <td >{{product?.productCode | uppercase}}</td>
+                  <td>type</td>
                   <td width="50%" style="font-size: 12px">
                     <p>Colours/Finish: {{product?.colourFinish}}</p>
                     <p>Depth(mm): {{product?.depth || 'n/a'}}</p>
@@ -105,6 +109,7 @@
                 </tr>
               </tbody>
             </table>
+            </div> -->
         </div>
       </div>
       <!-- <div> -->
