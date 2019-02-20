@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from 'src/app/core/products.service';
 import * as html2canvas from 'html2canvas';
-import * as rasterizeHTML from 'rasterizeHTML';
 import { VariablesService } from 'src/app/core/variables.service';
 
 declare var $: any;
