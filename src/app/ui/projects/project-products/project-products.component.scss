@@ -9,3 +9,20 @@ td p {
 .b-cart_default td, .b-cart_default th {
     vertical-align: top;
 }
+
+table tr td i {
+    visibility:hidden;
+}
+
+table tr:hover td i {
+    visibility:visible;
+}
+
+// table tr:hover td {
+//     background-color: #ececec;
+// }
+
+table tr td i {
+    padding: 5px;
+    cursor: pointer;
+}

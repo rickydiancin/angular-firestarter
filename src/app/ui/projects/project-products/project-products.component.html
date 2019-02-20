@@ -1,3 +1,4 @@
+<ng-container *ngIf="productProject">
 <div class="b-page_title b-page_title_default text-center">
   <h1 class="b-entry_title"><span>PROJECTS</span></h1>
   <div class="b-breadcrumbs">
@@ -25,6 +26,13 @@
           </div>
           <div class="b-title b-title_line_righ mt-5 mt-lg -0">
             <h2 class="text-uppercase">{{id.split('.')[0]}}</h2>
+            <div class="float-right mb-3">
+              <button (click)="downloadFile()" type="button" class="btn btn-primary mr-2">Export as CSV</button>
+              <angular2csv *ngIf="productProject?.length > 0" [data]="productProject" filename="{{id.split('.')[0]}}"
+                [options]="options" class="d-none">
+              </angular2csv>
+              <button (click)="download()" type="button" class="btn btn-primary">Save as PDF</button>
+            </div>
           </div>
           <!-- <p>For Architects, Developers or Designers who would like indicative pricing on your specification click the
             button below to request approval and leave us your name, email and company info with the subject 'Quote
@@ -32,43 +40,51 @@
           <p>Once approved you will be able to submit any Project you have created by clicking 'Request Quote' from
             within your project.</p> -->
 
-            <table id="cart" class="table table-bordered table-condensed" *ngIf="productProject">
+            <table id="content" class="table table-bordered table-condensed table-hover">
               <thead>
                 <tr>
                   <th colspan="2">Product</th>
-                  <th>Type</th>
-                  <th>Summary</th>
-                  <th>Action</th>
+                  <th>Code</th>
+                  <th>Descriptions</th>
+                  <th>Wels</th>
+                  <th>Warranty</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let product of productProject">
-                  <td>
-                    <img [src]="product?.imageURL || './assets/images/not_available.jpg'" alt="" height="100px" width="100px">
-                  </td>
-                  <td width="20%">{{product?.productTitle | titlecase}}</td>
-                  <td >type</td>
-                  <td width="50%" style="font-size: 12px">
-                    <p>Colours/Finish: {{product?.colourFinish}}</p>
-                    <p>Depth(mm): {{product?.depth || 'n/a'}}</p>
-                    <p>Height(mm): {{product?.height || 'n/a'}}</p>
-                    <p>Width(mm): {{product?.width || 'n/a'}}</p>
-                  </td>
-                  <td class="action">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-default">Action</button>
-                      <button type="button" class="btn btn-default dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        <span class="sr-only">Toggle Dropdown</span>
-                      </button>
-                      <div class="dropdown-menu">
-                        <a (click)="removeToProject(product)" class="dropdown-item" href="javascript:void(0);">Remove</a>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
+                <ng-container *ngFor="let product of productProject; let i = index;">
+                  <tr>
+                    <td class="text-center">
+                      <img [src]="product?.primaryURL || './assets/images/not_available.jpg'" alt="" height="100px" width="100px">
+                    </td>
+                    <td width="20%">{{product?.productTitle | titlecase}}</td>
+                    <td>{{product?.productCode}}</td>
+                    <td width="20%">{{product?.productDescription}}</td>
+                    <td>{{product?.welsRating || 'n/a'}}</td>
+                    <td>
+                      {{product?.warranty || 'n/a'}}
+                      <!-- <p>Colours/Finish: {{product?.colourFinish}}</p>
+                      <p>Depth(mm): {{product?.depth || 'n/a'}}</p>
+                      <p>Height(mm): {{product?.height || 'n/a'}}</p>
+                      <p>Width(mm): {{product?.width || 'n/a'}}</p> -->
+                    </td>
+                    <td class="action text-center align-middle action">
+                      <i (click)="removeToProject(product)" class="fa fa-times-circle-o"></i>
+                      <!-- <div class="btn-group">
+                        <button type="button" class="btn btn-default">Action</button>
+                        <button type="button" class="btn btn-default dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="false">
+                          <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">
+                          <a (click)="removeToProject(product)" class="dropdown-item" href="javascript:void(0);">Remove</a>
+                        </div>
+                      </div> -->
+                    </td>
+                  </tr>
+                </ng-container>
               </tbody>
-              <tfoot>
+              <!-- <tfoot>
                 <tr>
                   <td>
                     <button (click)="downloadFile()" type="button" class="btn btn-primary btn-block">Export as CSV</button>
@@ -76,26 +92,30 @@
                     </angular2csv>
                   </td>
                   <td>
-                    <button (click)="downloadPDF()" type="button" class="btn btn-primary btn-block">Save as PDF</button>
-                  </td>
+                    <button (click)="download()" type="button" class="btn btn-primary btn-block">Save as PDF</button> -->
+                    <!-- <button (click)="downloadPDF()" type="button" class="btn btn-primary btn-block">Save as PDF</button> -->
+                  <!-- </td>
                 </tr>
-              </tfoot>
+              </tfoot> -->
             </table>
-            <table id="content" class="table table-bordered table-condensed d-none" *ngIf="productProject">
+            <!-- <div style="visibility: hidden;">
+            <table class="table table-bordered table-condensed" id="content" *ngIf="productProject">
               <thead>
                 <tr>
                   <th colspan="2" class="text-center">Product</th>
                   <th class="text-center">Code</th>
+                  <th class="text-center">Type</th>
                   <th class="text-center">Summary</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let product of productProject">
                   <td>
-                    <img [src]="product?.imageURL || './assets/images/not_available.jpg'" alt="" height="100px" width="100px">
+                    <img [src]="product?.primaryURL || './assets/images/not_available.jpg'" alt="" height="100px" width="100px">
                   </td>
                   <td width="20%">{{product?.productTitle | titlecase}}</td>
                   <td >{{product?.productCode | uppercase}}</td>
+                  <td>type</td>
                   <td width="50%" style="font-size: 12px">
                     <p>Colours/Finish: {{product?.colourFinish}}</p>
                     <p>Depth(mm): {{product?.depth || 'n/a'}}</p>
@@ -105,6 +125,7 @@
                 </tr>
               </tbody>
             </table>
+            </div> -->
         </div>
       </div>
       <!-- <div> -->
@@ -154,3 +175,4 @@
     </div>
   </div>
 </section>
+</ng-container>
