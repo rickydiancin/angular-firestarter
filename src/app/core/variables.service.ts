@@ -74,12 +74,12 @@ export class VariablesService {
     let menus3 = [
       {
         title: 'Rails & Accessible Equipment',
-        url: 'category/RAE',
+        url: 'category/COMC',
         isparent: true
       },
       {
         title: 'Anti Microbial',
-        url: 'category/AM',
+        url: 'category/AVW',
        
       },
       {
@@ -437,7 +437,7 @@ export class VariablesService {
         sub: [
           {
             subName: 'spouts and outlets',
-            url: 'category/SAO',
+            url: 'category/SPO',
             isBold: true
           }
         ]
@@ -464,11 +464,11 @@ export class VariablesService {
       },
       {
         categoryName: 'rails & accessible equipment',
-        url: 'category/RAE',
+        url: 'category/COMC',
         sub: [
           {
             subName: 'anti microbial',
-            url: 'category/AM'
+            url: 'category/AVW'
           },
           {
             subName: 'stainless steel',
@@ -558,7 +558,7 @@ export class VariablesService {
           },
           {
             categoryName: 'rails & accessible',
-            url: 'category/RAE'
+            url: 'category/COMC'
           },
           // {
           //   categoryName: 'safety showers & equipement',
@@ -584,7 +584,7 @@ export class VariablesService {
           },
           {
             categoryName: 'spouts and outlets',
-            url: 'category/SAO'
+            url: 'category/SPO'
           },
           {
             categoryName: 'showers',
