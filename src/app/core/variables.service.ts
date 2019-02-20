@@ -114,7 +114,7 @@ export class VariablesService {
       },
       {
         title: 'Safety Showers & Equipment',
-        url: 'category/SSHOWE',
+        url: 'category/ESHOW',
         issub: true
       },
       {
@@ -410,7 +410,7 @@ export class VariablesService {
       },
       {
         categoryName: 'safety showers & equipement',
-        url: 'category/SSHOWE',
+        url: 'category/ESHOW',
         sub: [
           {
             subName: 'safety showers',
@@ -534,7 +534,7 @@ export class VariablesService {
         menu2: [
           {
             categoryName: 'antiligature systems',
-            url: 'category/SAHN'
+            url: 'category/SANH'
           },
           {
             categoryName: 'electronic tapware',
