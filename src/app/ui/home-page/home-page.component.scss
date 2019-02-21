@@ -115,3 +115,7 @@ p.pull-left.mb-0 {
 form input[type=text] {
     font-family: "Montserrat", sans-serif;
 }
+
+/deep/.b-header_right .b-search_icon {
+    padding-right: 25px;
+}

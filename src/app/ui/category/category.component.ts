@@ -89,9 +89,11 @@ export class CategoryComponent implements OnInit {
             this.vs.localstorage('products').subscribe((products: any) => {
               if (products.length) {
                 this.products = _(products).filter((value) => {
+                    value.categories = value.categories.split(';').join(',').match(/(?=\S)[^,]+?(?=\s*(,|$))/g);
                     return value.categories.includes(params.id)
                   }).value();
                 this.productsLoaded = true;
+                console.log(this.products)
               }
             })
 
@@ -149,6 +151,7 @@ export class CategoryComponent implements OnInit {
             this.vs.localstorage('products').subscribe((products: any) => {
               if (products.length) {
                 this.products = _(products).filter((value) => {
+                  value.solutions = value.solutions.split(';').join(',').match(/(?=\S)[^,]+?(?=\s*(,|$))/g);
                   return value.solutions.includes(params.solutionid)
                 }).value();
                 this.productsLoaded = true;
@@ -217,6 +220,7 @@ export class CategoryComponent implements OnInit {
             this.productsLoaded = true;
           } else {
             _(products).each(async (a: any, b) => {
+              a.categories = a.categories.split(';').join(',').match(/(?=\S)[^,]+?(?=\s*(,|$))/g);
               let c = [];
               await _(a.categories).each(async (j: any, k) => {
                 if (j) {

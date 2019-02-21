@@ -10,7 +10,7 @@ export class ProductFilterPipe implements PipeTransform {
         if (!query) {
             return;
         } else {
-            let result = _.filter(array, row => row.productTitle.toString().toLowerCase().indexOf(query) > -1 || row.productCode.toString().toLowerCase().indexOf(query) > -1 || row.categories.toString().toLowerCase().indexOf(query) > -1 || row.categoryName.toString().toLowerCase().indexOf(query) > -1);
+            let result = _.filter(array, row => row.productTitle.toString().toLowerCase().indexOf(query) > -1 || row.productCode.toString().toLowerCase().indexOf(query) > -1 || row.categories.toString().toLowerCase().indexOf(query) > -1 || row.categoryName.toLowerCase().indexOf(query) > -1);
             if(result.length > 0) {
                 return result;
             } else {

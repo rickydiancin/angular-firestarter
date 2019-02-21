@@ -105,6 +105,8 @@ export class HomePageComponent implements OnInit {
     this.vs.localstorage('products').subscribe((products:any) => {
       if(products.length) {
         _(products).each(async (a: any, b) => {
+          a.categories = await a.categories.split(';').join(',').match(/(?=\S)[^,]+?(?=\s*(,|$))/g);
+          console.log(a.categories)
           let c = [];
           await _(a.categories).each(async (j: any, k) => {
             if (j) {
