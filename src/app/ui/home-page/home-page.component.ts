@@ -110,17 +110,18 @@ export class HomePageComponent implements OnInit {
           let c = [];
           await _(a.categories).each(async (j: any, k) => {
             if (j) {
-              await this.productsService.getCategoryByArray(j).subscribe((data: any) => {
+              await this.productsService.getCategoryByArray(j).subscribe(async (data: any) => {
                 if (data) {
-                  c.push(data.categoryName)
+                  await c.push(data.categoryName)
                   if (c.length) {
-                    products[b].categoryName = c;
-                    this.products = products
+                    products[b].categoryName = await c;
+                    this.products = await products
                   }
                 } else {
-                  this.products = products;
-                  this.products[b].categoryName = [];
+                  this.products = await products;
+                  this.products[b].categoryName = await [null];
                 }
+                console.log(this.products)
               })
             }
           })

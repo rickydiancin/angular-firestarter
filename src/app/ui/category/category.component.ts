@@ -230,9 +230,8 @@ export class CategoryComponent implements OnInit {
                       if (c.length > 0) {
                         products[b].categoryName = c;
                         _(products).each((i:any) => {
-                          if(i.categoryName.length) {
                             console.log(products)
-                            result = _.filter(products, row => row.productTitle.toString().toLowerCase().indexOf(value) > -1 || row.productCode.toString().toLowerCase().indexOf(value) > -1 || row.categories.toString().toLowerCase().indexOf(value) > -1 || row.categoryName.toString().toLowerCase().indexOf(value) > -1);
+                            result = _.filter(products, row => row.productTitle.toString().toLowerCase().indexOf(value) > -1 || row.productCode.toString().toLowerCase().indexOf(value) > -1 || row.categoryName.toString().toLowerCase().indexOf(value) > -1);
                             if (result.length > 0) {
                               this.products = result;
                               this.productsTemp = result;
@@ -242,11 +241,10 @@ export class CategoryComponent implements OnInit {
                               this.productsTemp = [];
                               this.productsLoaded = true;
                             }
-                          }
                         })
                       }
                     } else {
-                      products[b].categoryName = [];
+                      products[b].categoryName = [null];
                     }
                   })
                 }
