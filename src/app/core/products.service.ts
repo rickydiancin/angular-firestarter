@@ -135,6 +135,19 @@ getCategory(id, callback){
       return callback(res);
   })
 }
+
+getCategoryByArray(id) {
+  return this.afs.doc('categories/' + id).valueChanges();
+  // return this.afs.collection('categories', (ref) => ref.where('categoryCode', "==", id).limit(2)).snapshotChanges().pipe(
+  //   map((actions) => {
+  //     return actions.map((a) => {
+  //       const data = a.payload.doc.data();
+  //       return { id: a.payload.doc.id, ...data };
+  //     });
+  //   })
+  // );
+}
+
   getProduct(id) {
     return this.afs.doc<any>(`products/${id}`);
   }
@@ -204,7 +217,6 @@ getCategory(id, callback){
   }
 
   getSolution(id) {
-    console.log(id)
     return this.afs.doc('solutions/' + id).valueChanges();
   }
 

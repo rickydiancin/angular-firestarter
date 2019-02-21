@@ -7,6 +7,7 @@ import { VariablesService } from 'src/app/core/variables.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { PostService } from 'src/app/core/post.service';
 import { Title } from '@angular/platform-browser';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'home-page',
@@ -103,6 +104,25 @@ export class HomePageComponent implements OnInit {
   getAllProducts() {
     this.vs.localstorage('products').subscribe((products) => {
       this.products = products
+      // this.productsService.getCategoryByArray()
+      _(products).each(async (a:any,b) => {
+        let c = [];
+        await _(a.categories).each(async (j:any,k) => {
+          if (j) {
+          await this.productsService.getCategoryByArray(j).subscribe((data:any) => {
+            if(data) {
+              c.push(data.categoryName)
+              if(c.length) {
+                this.products[b].categoryName = c;
+              }
+              console.log(this.products);
+            } else {
+              this.products[b].categoryName = [];
+            }
+          })
+          }
+        })
+      })
     });
     // if (this.vs.localstorage('products')) {
     //   this.products = JSON.parse(localStorage.getItem('products'));

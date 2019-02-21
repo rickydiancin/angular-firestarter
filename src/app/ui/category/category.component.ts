@@ -208,9 +208,7 @@ export class CategoryComponent implements OnInit {
   // }
 
   getAllProducts(value?) {
-    console.log(value)
-    if (value) {
-      let result = [];
+    let result = [];
       this.vs.localstorage('products').subscribe((products: any) => {
         if (products.length) {
           if (!value) {
@@ -218,44 +216,41 @@ export class CategoryComponent implements OnInit {
             this.productsTemp = products;
             this.productsLoaded = true;
           } else {
-            result = _.filter(products, row => row.productTitle.toString().toLowerCase().indexOf(value) > -1 || row.productCode.toString().toLowerCase().indexOf(value) > -1 || row.categories.toString().toLowerCase().indexOf(value) > -1);
-            if (result.length > 0) {
-              this.products = result;
-              this.productsTemp = result;
-              this.productsLoaded = true;
-            } else {
-              this.products = [];
-              this.productsTemp = [];
-              this.productsLoaded = true;
-            }
+            _(products).each(async (a: any, b) => {
+              let c = [];
+              await _(a.categories).each(async (j: any, k) => {
+                if (j) {
+                  await this.productsService.getCategoryByArray(j).subscribe((data: any) => {
+                    if (data) {
+                      c.push(data.categoryName)
+                      if (c.length > 0) {
+                        products[b].categoryName = c;
+                        _(products).each((i:any) => {
+                          if(i.categoryName.length) {
+                            console.log(products)
+                            result = _.filter(products, row => row.productTitle.toString().toLowerCase().indexOf(value) > -1 || row.productCode.toString().toLowerCase().indexOf(value) > -1 || row.categories.toString().toLowerCase().indexOf(value) > -1 || row.categoryName.toString().toLowerCase().indexOf(value) > -1);
+                            if (result.length > 0) {
+                              this.products = result;
+                              this.productsTemp = result;
+                              this.productsLoaded = true;
+                            } else {
+                              this.products = [];
+                              this.productsTemp = [];
+                              this.productsLoaded = true;
+                            }
+                          }
+                        })
+                      }
+                    } else {
+                      products[b].categoryName = [];
+                    }
+                  })
+                }
+              })
+            })
           }
         }
-      })
-    } else {
-      this.vs.localstorage('products').subscribe((products: any) => {
-        if (products.length) {
-          this.products = products;
-          this.productsTemp = products;
-          this.productsLoaded = true;
-        }
-      })
-    }
-    // if (this.vs.localstorage('products')) {
-    //   console.log('true', JSON.parse(localStorage.getItem('products')));
-    //   this.products = JSON.parse(localStorage.getItem('products'));
-    // } else {
-    //   this.productsService.getAllProducts().subscribe((res: any) => {
-    //     if(res.length) {
-    //       this.products = res;
-    //       console.log(res)
-    //       localStorage.setItem('products', JSON.stringify(res));
-    //       this.productsService.getAllCategories((resCategory: any) => {
-    //         this.categories = _(resCategory).filter({ 'parent': '' }).value();
-    //         console.log(resCategory, this.categories)
-    //       });
-    //     }
-    //   });
-    // }
+    })
   }
 
   // getAllCategories() {

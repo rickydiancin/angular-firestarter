@@ -35,8 +35,8 @@
                           <button class="dropdown-item" *ngIf="product !== -1" (click)="search(product?.productCode)">
                             <img src="{{product?.primaryURL || './assets/images/not_available.jpg'}}" alt="" height="50px" width="50px">
                             {{product?.productTitle | titlecase}} ({{product?.productCode}})
-                            <br>
-                            <small><b>Category Code: </b>{{product?.categories}}</small>
+                            <!-- <br>
+                            <small><b>Category Code: </b>{{product?.categories}}</small> -->
                           </button>
                           <button class="dropdown-item" *ngIf="product === -1">
                             No Result(s) Found
