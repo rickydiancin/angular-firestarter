@@ -102,26 +102,28 @@ export class HomePageComponent implements OnInit {
   }
 
   getAllProducts() {
-    this.vs.localstorage('products').subscribe((products) => {
-      _(products).each(async (a:any,b) => {
-        let c = [];
-        await _(a.categories).each(async (j:any,k) => {
-          if (j) {
-          await this.productsService.getCategoryByArray(j).subscribe((data:any) => {
-            if(data) {
-              c.push(data.categoryName)
-              if(c.length) {
-                products[b].categoryName = c;
-                this.products = products
-              }
-              console.log(this.products);
-            } else {
-              this.products[b].categoryName = [];
+    this.vs.localstorage('products').subscribe((products:any) => {
+      if(products.length) {
+        _(products).each(async (a: any, b) => {
+          let c = [];
+          await _(a.categories).each(async (j: any, k) => {
+            if (j) {
+              await this.productsService.getCategoryByArray(j).subscribe((data: any) => {
+                if (data) {
+                  c.push(data.categoryName)
+                  if (c.length) {
+                    products[b].categoryName = c;
+                    this.products = products
+                  }
+                } else {
+                  this.products = products;
+                  this.products[b].categoryName = [];
+                }
+              })
             }
           })
-          }
         })
-      })
+      }
     });
     // if (this.vs.localstorage('products')) {
     //   this.products = JSON.parse(localStorage.getItem('products'));

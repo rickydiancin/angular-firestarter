@@ -146,7 +146,7 @@
                                                         <!-- <a href="#" routerLink="{{menu?.url}}">{{menu?.title}}</a> -->
                                                         <ul *ngIf="menu?.sub">
                                                           <li *ngFor="let sub of menu?.sub">
-                                                            <a href="#" [routerLink]="sub?.url" [ngClass]="sub?.isBold?'parentSub text-uppercase':''">{{sub?.subName}}</a>
+                                                            <a href="#" [routerLink]="sub?.url" [ngClass]="sub?.isBold?'parentSub text-uppercase':''">{{sub?.subName | titlecase}}</a>
                                                           </li>
                                                         </ul>
                                                       </li>
@@ -168,7 +168,7 @@
                                                       </a>
                                                       <ul *ngIf="menu?.sub">
                                                         <li *ngFor="let sub of menu?.sub">
-                                                          <a href="#" [routerLink]="sub?.url" [ngClass]="sub?.isBold?'parentSub text-uppercase':''">{{sub?.subName}}</a>
+                                                          <a href="#" [routerLink]="sub?.url" [ngClass]="sub?.isBold?'parentSub text-uppercase':''">{{sub?.subName | titlecase}}</a>
                                                         </li>
                                                       </ul>
                                                     </li>
@@ -193,7 +193,7 @@
                                                       </a>
                                                       <ul *ngIf="menu?.sub">
                                                         <li *ngFor="let sub of menu?.sub">
-                                                          <a href="#" [routerLink]="sub?.url" [ngClass]="sub?.isBold?'parentSub text-uppercase':''">{{sub?.subName}}</a>
+                                                          <a href="#" [routerLink]="sub?.url" [ngClass]="sub?.isBold?'parentSub text-uppercase':''">{{sub?.subName | titlecase}}</a>
                                                         </li>
                                                       </ul>
                                                     </li>
