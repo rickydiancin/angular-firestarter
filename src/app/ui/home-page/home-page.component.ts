@@ -102,27 +102,31 @@ export class HomePageComponent implements OnInit {
   }
 
   getAllProducts() {
-    this.vs.localstorage('products').subscribe((products) => {
-      this.products = products
-      // this.productsService.getCategoryByArray()
-      _(products).each(async (a:any,b) => {
-        let c = [];
-        await _(a.categories).each(async (j:any,k) => {
-          if (j) {
-          await this.productsService.getCategoryByArray(j).subscribe((data:any) => {
-            if(data) {
-              c.push(data.categoryName)
-              if(c.length) {
-                this.products[b].categoryName = c;
-              }
-              console.log(this.products);
-            } else {
-              this.products[b].categoryName = [];
+    this.vs.localstorage('products').subscribe((products:any) => {
+      if(products.length) {
+        _(products).each(async (a: any, b) => {
+          a.categories = await a.categories.split(';').join(',').match(/(?=\S)[^,]+?(?=\s*(,|$))/g);
+          console.log(a.categories)
+          let c = [];
+          await _(a.categories).each(async (j: any, k) => {
+            if (j) {
+              await this.productsService.getCategoryByArray(j).subscribe(async (data: any) => {
+                if (data) {
+                  await c.push(data.categoryName)
+                  if (c.length) {
+                    products[b].categoryName = await c;
+                    this.products = await products
+                  }
+                } else {
+                  this.products = await products;
+                  this.products[b].categoryName = await [null];
+                }
+                console.log(this.products)
+              })
             }
           })
-          }
         })
-      })
+      }
     });
     // if (this.vs.localstorage('products')) {
     //   this.products = JSON.parse(localStorage.getItem('products'));

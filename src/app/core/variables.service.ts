@@ -347,6 +347,10 @@ export class VariablesService {
           {
             subName: 'single lever mixer',
             url:'category/SLM'
+          },
+          {
+            subName: 'lever action tapware',
+            url:'category/LAT'
           }
         ]
       },

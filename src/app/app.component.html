@@ -110,7 +110,7 @@
                                 </div>
                                 <div class="col-sm-2 mt-5">
                                     <p class="mb-0 mt-2">
-                                      <img src="assets/images/ISO/ISO 9001-Logo.png" class="d-block img-fluid" alt="" title="" style="height:4rem;">
+                                      <img src="assets/images/ISO/ISO 9001-Logo.png" class="d-block img-fluid" alt="" title="" style="height:6rem;">
                                     </p>
                                 </div>
                             </div>
@@ -141,7 +141,7 @@
       <span class="basel-tooltip-label">Scroll To Top</span>Scroll To Top
     </a>
     <div class="b-search_popup">
-      <form role="search" method="get" id="searchform" class="searchform  basel-ajax-search" action="#" data-thumbnail="1" data-price="1" data-count="3">
+      <form (submit)="search()" id="searchform" class="searchform  basel-ajax-search">
         <ng-template #customItemTemplate let-model="item" let-index="index">
             <!-- <h5>{{model.productDescription}} {{model.productTitle}} Index: {{ index }}</h5> -->
             <!-- <a style="color:inherit" href="#" routerLink="/product/{{model?.productCode}}"> -->
@@ -152,22 +152,25 @@
         <div>
           <label class="screen-reader-text" for="s"></label>
           <input
+            [(ngModel)]="filterQuery"
             autocomplete="off"
-            [disabled]="!products"
-            name="model"
-            (typeaheadOnSelect)="onSelect($event)"
-            [(ngModel)]="model"
-            [typeahead]="products"
-            typeaheadOptionField="productTitle"
-            [typeaheadItemTemplate]="customItemTemplate"
-            [typeaheadMinLength]="2"
-            type="text" placeholder="Search Products">
+            type="text" placeholder="Search Products"
+            [ngModelOptions]="{standalone: true}">
           <input type="hidden" name="post_type" id="post_type" value="product">
           <button type="submit" class="b-searchsubmit" id="b-searchsubmit">Search</button>
         </div>
       </form>
       <span class="b-close_search" id="b-close_search">close</span>
     </div>
+
+    <!-- [disabled]="!products"
+    name="model"
+    (typeaheadOnSelect)="onSelect($event)"
+    [(ngModel)]="model"
+    [typeahead]="products"
+    typeaheadOptionField="productTitle"
+    [typeaheadItemTemplate]="customItemTemplate"
+    [typeaheadMinLength]="2" -->
 
       <!-- Modal -->
       <!-- <div class="modal fade product_view" id="b-qucik_view" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -89,9 +89,11 @@ export class CategoryComponent implements OnInit {
             this.vs.localstorage('products').subscribe((products: any) => {
               if (products.length) {
                 this.products = _(products).filter((value) => {
+                    value.categories = value.categories.split(';').join(',').match(/(?=\S)[^,]+?(?=\s*(,|$))/g);
                     return value.categories.includes(params.id)
                   }).value();
                 this.productsLoaded = true;
+                console.log(this.products)
               }
             })
 
@@ -149,6 +151,7 @@ export class CategoryComponent implements OnInit {
             this.vs.localstorage('products').subscribe((products: any) => {
               if (products.length) {
                 this.products = _(products).filter((value) => {
+                  value.solutions = value.solutions.split(';').join(',').match(/(?=\S)[^,]+?(?=\s*(,|$))/g);
                   return value.solutions.includes(params.solutionid)
                 }).value();
                 this.productsLoaded = true;
@@ -217,18 +220,17 @@ export class CategoryComponent implements OnInit {
             this.productsLoaded = true;
           } else {
             _(products).each(async (a: any, b) => {
+              a.categories = a.categories.split(';').join(',').match(/(?=\S)[^,]+?(?=\s*(,|$))/g);
               let c = [];
               await _(a.categories).each(async (j: any, k) => {
                 if (j) {
-                  await this.productsService.getCategoryByArray(j).subscribe((data: any) => {
+                  await this.productsService.getCategoryByArray(j).subscribe(async (data: any) => {
+                    console.log(typeof data)
                     if (data) {
-                      c.push(data.categoryName)
+                      await c.push(data.categoryName.toLowerCase())
                       if (c.length > 0) {
-                        products[b].categoryName = c;
-                        _(products).each((i:any) => {
-                          if(i.categoryName.length) {
-                            console.log(products)
-                            result = _.filter(products, row => row.productTitle.toString().toLowerCase().indexOf(value) > -1 || row.productCode.toString().toLowerCase().indexOf(value) > -1 || row.categories.toString().toLowerCase().indexOf(value) > -1 || row.categoryName.toString().toLowerCase().indexOf(value) > -1);
+                        products[b].categoryName = await c;
+                        result = await _.filter(products, row => row.productTitle.toString().toLowerCase().indexOf(value) > -1 || row.productCode.toString().toLowerCase().indexOf(value) > -1 || row.categories.toString().toLowerCase().indexOf(value) > -1 || row.categoryName.indexOf(value) > -1);
                             if (result.length > 0) {
                               this.products = result;
                               this.productsTemp = result;
@@ -238,11 +240,9 @@ export class CategoryComponent implements OnInit {
                               this.productsTemp = [];
                               this.productsLoaded = true;
                             }
-                          }
-                        })
                       }
                     } else {
-                      products[b].categoryName = [];
+                      products[b].categoryName = [null];
                     }
                   })
                 }
