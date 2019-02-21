@@ -103,8 +103,6 @@ export class HomePageComponent implements OnInit {
 
   getAllProducts() {
     this.vs.localstorage('products').subscribe((products) => {
-      this.products = products
-      // this.productsService.getCategoryByArray()
       _(products).each(async (a:any,b) => {
         let c = [];
         await _(a.categories).each(async (j:any,k) => {
@@ -113,7 +111,8 @@ export class HomePageComponent implements OnInit {
             if(data) {
               c.push(data.categoryName)
               if(c.length) {
-                this.products[b].categoryName = c;
+                products[b].categoryName = c;
+                this.products = products
               }
               console.log(this.products);
             } else {

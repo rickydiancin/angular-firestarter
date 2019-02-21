@@ -78,7 +78,7 @@
                                             <ul id="b-menu_top_bar" class="b-menu">
                                                 <li *ngIf="auth.user"><a href="javascript:void(0)" (click)="logout()">Logout</a></li>
                                                 <li *ngIf="auth.user "><a href="#" routerLink="/login"><i class="fa fa-user mr-1"></i>My Account</a></li>
-                                                <li *ngIf="auth.user "><a href="#" routerLink="/projects"> <i class="fa fa-star-o icons"></i> Specifications</a></li>
+                                                <!-- <li *ngIf="auth.user "><a href="#" routerLink="/projects"> <i class="fa fa-star-o icons"></i> Specifications</a></li> -->
                                                 <li *ngIf="!(auth.user )"><a href="#" routerLink="/login">Login</a></li>
                                                 <li *ngIf="!(auth.user)"><a href="#" routerLink="/login">Register</a></li>
                                                
@@ -246,7 +246,7 @@
                     </a>
                   </div>
                   <div class="b-wishlist_icon">
-                    <button routerLink="/projects" style="color:#fff;background-color:#95C448;" type="button" class="btn btn-success d-none d-sm-block">My Specifications <i class="fa fa-folder-open-o fa-fw" aria-hidden="true"></i></button>
+                    <button routerLink="/projects" style="color:#fff;background-color:#95C448;font-family:'Montserrat', sans-serif" type="button" class="btn btn-success d-none d-sm-block">My Specifications <i class="fa fa-folder-open-o fa-fw" aria-hidden="true"></i></button>
                     <!-- <a href="#" routerLink="/projects" class="d-inline-block">
                       <i class="fa fa-star-o icons"></i>
                       <span>3</span>
