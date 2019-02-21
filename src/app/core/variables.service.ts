@@ -145,7 +145,7 @@ export class VariablesService {
       },
       {
         title: 'Sanitary Ware',
-        url: 'category/SAHN',
+        url: 'category/SANH',
         isparent: true
       },
       {
@@ -396,7 +396,7 @@ export class VariablesService {
     let finalMenu2 = [
       {
         categoryName: 'sanitary ware',
-        url: 'category/SAHN',
+        url: 'category/SANH',
         sub: [
           {
             subName: 'basins',
@@ -546,7 +546,7 @@ export class VariablesService {
           },
           {
             categoryName: 'sanitary ware',
-            url: 'category/SAHN'
+            url: 'category/SANH'
           },
           {
             categoryName: 'basins',
