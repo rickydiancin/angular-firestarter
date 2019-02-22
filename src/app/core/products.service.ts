@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 
@@ -6,17 +6,22 @@ import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import { HttpClient } from '@angular/common/http';
+import { VariablesService } from './variables.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
+
+  @Output() event = new EventEmitter;
+
   productsCollection: AngularFirestoreCollection<any>;
   productDocument:   AngularFirestoreDocument<any>;
 
   constructor(private afs: AngularFirestore,
     private auth: AuthService,
-    public http: HttpClient
+    public http: HttpClient,
+    private vs: VariablesService
     ) {
     // Add collections here..
     this.productsCollection = this.afs.collection('products', (ref) => ref.orderBy('dateCreated', 'desc').limit(15));
@@ -138,14 +143,6 @@ getCategory(id, callback){
 
 getCategoryByArray(id) {
   return this.afs.doc('categories/' + id).valueChanges();
-  // return this.afs.collection('categories', (ref) => ref.where('categoryCode', "==", id).limit(2)).snapshotChanges().pipe(
-  //   map((actions) => {
-  //     return actions.map((a) => {
-  //       const data = a.payload.doc.data();
-  //       return { id: a.payload.doc.id, ...data };
-  //     });
-  //   })
-  // );
 }
 
   getProduct(id) {
@@ -284,5 +281,32 @@ getCategoryByArray(id) {
   //     console.log(data)
   //   })
   // }
+
+  getProductsWithCategory(callback) {
+    return this.http.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/products.json?alt=media&token=27e8bc46-0a87-4631-b73d-eb4b1b80a626')
+    .subscribe(async (res:any) => {
+      await res.forEach(products => {
+        let c = []
+        products.categories = products.categories.split(';').join(',').match(/(?=\S)[^,]+?(?=\s*(,|$))/g);
+        products.categories.map(async (category) => {
+          await this.getCategoryByArrayProduct(category, cb => {
+            if (cb) {
+              c.push(cb.categoryName.toLowerCase());
+              products['categoryName'] = c;
+            } else {
+              products['categoryName'] = [];
+            }
+          })
+        })
+      });
+      return callback(res);
+    },err => console.log(err))
+  }
+
+  getCategoryByArrayProduct(id, cb) {
+    return this.afs.doc('categories/' + id).valueChanges().subscribe(async (res) => {
+      return await cb(res)
+    })
+  }
 
 }

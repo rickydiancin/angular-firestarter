@@ -106,13 +106,12 @@ export class HomePageComponent implements OnInit {
       if(products.length) {
         _(products).each(async (a: any, b) => {
           a.categories = await a.categories.split(';').join(',').match(/(?=\S)[^,]+?(?=\s*(,|$))/g);
-          console.log(a.categories)
           let c = [];
           await _(a.categories).each(async (j: any, k) => {
             if (j) {
               await this.productsService.getCategoryByArray(j).subscribe(async (data: any) => {
                 if (data) {
-                  await c.push(data.categoryName)
+                  await c.push(data.categoryName.toLowerCase())
                   if (c.length) {
                     products[b].categoryName = await c;
                     this.products = await products
@@ -121,7 +120,6 @@ export class HomePageComponent implements OnInit {
                   this.products = await products;
                   this.products[b].categoryName = await [null];
                 }
-                console.log(this.products)
               })
             }
           })

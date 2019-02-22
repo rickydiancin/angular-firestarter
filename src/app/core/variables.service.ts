@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ProductsService } from './products.service';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 
 import { Observable, Subject } from 'rxjs';
@@ -19,7 +18,6 @@ export class VariablesService {
 
   constructor(
     private afs: AngularFirestore,
-    private productServices: ProductsService,
     private httpClient: HttpClient
   ) {
     this.productsCollection = this.afs.collection('products', (ref) => ref.orderBy('dateCreated', 'desc'));
