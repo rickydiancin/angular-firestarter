@@ -458,7 +458,7 @@
           </div> -->
           <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
 
-          <pagination-template #p="paginationApi" (pageChange)="config.currentPage = $event">
+          <pagination-template *ngIf="products?.length" #p="paginationApi" (pageChange)="config.currentPage = $event">
 
             <div class="b-pagination pt-2 pb-4" *ngIf="p?.pages?.length">
               <ul class="pl-0 text-center list-unstyled mb-0">
