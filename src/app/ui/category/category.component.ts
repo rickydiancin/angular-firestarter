@@ -9,6 +9,7 @@ import { AddToProjectComponent } from '../product/add-to-project/add-to-project.
 import { VariablesService } from 'src/app/core/variables.service';
 import * as _ from 'lodash';
 import { Title } from '@angular/platform-browser';
+import { canvasToBlob } from 'blob-util';
 
 @Component({
   selector: 'category',
@@ -33,6 +34,7 @@ export class CategoryComponent implements OnInit {
   finalMenu1:any;
   finalMenu2:any;
   finalMenu3:any;
+  input:any;
 
   @Input('data') meals: string[] = [];
 
@@ -152,7 +154,9 @@ export class CategoryComponent implements OnInit {
               if (products.length) {
                 this.products = _(products).filter((value) => {
                   value.solutions = value.solutions.split(';').join(',').match(/(?=\S)[^,]+?(?=\s*(,|$))/g);
-                  return value.solutions.includes(params.solutionid)
+                  if (value.solutions) {
+                    return value.solutions.includes(params.solutionid)
+                  }
                 }).value();
                 this.productsLoaded = true;
               }
@@ -219,35 +223,28 @@ export class CategoryComponent implements OnInit {
             this.productsTemp = products;
             this.productsLoaded = true;
           } else {
-            _(products).each(async (a: any, b) => {
-              a.categories = a.categories.split(';').join(',').match(/(?=\S)[^,]+?(?=\s*(,|$))/g);
-              let c = [];
-              await _(a.categories).each(async (j: any, k) => {
-                if (j) {
-                  await this.productsService.getCategoryByArray(j).subscribe(async (data: any) => {
-                    console.log(typeof data)
-                    if (data) {
-                      await c.push(data.categoryName.toLowerCase())
-                      if (c.length > 0) {
-                        products[b].categoryName = await c;
-                        result = await _.filter(products, row => row.productTitle.toString().toLowerCase().indexOf(value) > -1 || row.productCode.toString().toLowerCase().indexOf(value) > -1 || row.categories.toString().toLowerCase().indexOf(value) > -1 || row.categoryName.indexOf(value) > -1);
-                            if (result.length > 0) {
-                              this.products = result;
-                              this.productsTemp = result;
-                              this.productsLoaded = true;
-                            } else {
-                              this.products = [];
-                              this.productsTemp = [];
-                              this.productsLoaded = true;
-                            }
-                      }
-                    } else {
-                      products[b].categoryName = [null];
-                    }
+            this.productsService.getProductsWithCategory(cb => {
+              if(cb) {
+                setTimeout(() => {
+                  result = _.filter(cb, row => row);
+                  // console.log(result)
+                  cb.forEach((cv) => {
+                    console.log(cv.categoryName)
                   })
-                }
-              })
-            })
+                  console.log(cb)
+                  result = _.filter(cb, row => row.productTitle.toString().toLowerCase().indexOf(value) > -1 || row.productCode.toString().toLowerCase().indexOf(value) > -1 || row.categories.toString().toLowerCase().indexOf(value) > -1 || row.categoryName.toString().toLowerCase().indexOf(value) > -1);
+                  if (result.length > 0) {
+                    this.products = result;
+                    this.productsTemp = result;
+                    this.productsLoaded = true;
+                  } else {
+                    this.products = [];
+                    this.productsTemp = [];
+                    this.productsLoaded = true;
+                  }
+                }, 3000);
+              }
+            });
           }
         }
     })

@@ -10,11 +10,13 @@ export class SearchFilterPipe implements PipeTransform {
         if (!query) {
             return array;
         } else {
-            let result = _.filter(array, row => row.productTitle.toString().toLowerCase().indexOf(query) > -1 || row.productCode.toString().toLowerCase().indexOf(query) > -1 || row.categories.toString().toLowerCase().indexOf(query) > -1);
-            if(result.length > 0) {
-                return result;
-            } else {
-                return []
+            if (array) {
+                result = _.filter(array, row => row.productTitle.toString().toLowerCase().indexOf(query) > -1 || row.productCode.toString().toLowerCase().indexOf(query) > -1 || row.categories.toString().toLowerCase().indexOf(query) > -1 || row.categoryName.indexOf(query) > -1);
+                if (result.length > 0) {
+                    return result;
+                } else {
+                    return []
+                }
             }
         }
     }
