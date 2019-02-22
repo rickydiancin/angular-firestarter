@@ -323,7 +323,7 @@
           <h2 *ngIf="paramsSolution" class="text-uppercase">{{solution?.solutionName | titlecase}}</h2>
           <hr *ngIf="category?.imgURL || solution?.imgURL">
           <div *ngIf="category?.imgURL || solution?.imgURL">
-            <img style="max-height:300px" [src]="category?.imgURL || solution?.imgURL" alt="" class="img-fluid" style="width: 100%;">
+            <img style="max-height:300px" [src]="category?.imgURL || solution?.imgURL2" alt="" class="img-fluid" style="width: 100%;">
           </div>
           <div class="img-description" *ngIf="category || solution">
             <small>{{category?.description}}</small>
