@@ -187,9 +187,9 @@ export class ProductComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    setTimeout(() => {
+    // setTimeout(() => {
       this.scriptsService.prepareJquery();
-    }, 1000)
+    // }, 1000)
   }
 
   ngOnInit() {

@@ -198,27 +198,70 @@
               <table class="b-shop_attributes">
                 <tbody>
                   <tr>
-                    <th>Colours/Finish</th>
+                    <th *ngIf="theproduct?.productCode">Product Code(s)</th>
                     <td>
+                      <p>{{theproduct?.productCode}}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Colours/Finish</th>
+                    <td *ngIf="theproduct?.colourFinish">
                       <p>{{theproduct?.colourFinish}}</p>
                     </td>
                   </tr>
-                  <tr>
-                    <th>Dimensions - Depth (mm)</th>
+                  <tr *ngIf="theproduct?.reach">
+                    <th>Dimensions - Reach (mm)</th>
                     <td>
-                      <p>{{theproduct?.depth || 'n/a'}}</p>
+                      <p>{{theproduct?.reach}}</p>
                     </td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="theproduct?.height">
                     <th>Dimensions - Height (mm)</th>
                     <td>
-                      <p>{{theproduct?.height || 'n/a'}}</p>
+                      <p>{{theproduct?.height}}</p>
                     </td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="theproduct?.width">
                     <th>Dimensions - Width (mm)</th>
                     <td>
-                      <p>{{theproduct?.width || 'n/a'}}</p>
+                      <p>{{theproduct?.width}}</p>
+                    </td>
+                  </tr>
+                  <tr *ngIf="theproduct?.leverlength">
+                    <th>Lever Length</th>
+                    <td>
+                      <p>{{theproduct?.leverlength}}</p>
+                    </td>
+                  </tr>
+                  <tr *ngIf="theproduct?.materials">
+                    <th>Materials</th>
+                    <td>
+                      <p>{{theproduct?.materials}}</p>
+                    </td>
+                  </tr>
+                  <tr *ngIf="theproduct?.inlet">
+                    <th>Inlet</th>
+                    <td>
+                      <p>{{theproduct?.inlet}}</p>
+                    </td>
+                  </tr>
+                  <tr *ngIf="theproduct?.outlet">
+                    <th>Outlet</th>
+                    <td>
+                      <p>{{theproduct?.outlet}}</p>
+                    </td>
+                  </tr>
+
+                  <tr *ngIf="theproduct?.servicing">
+                    <th>Servicing</th>
+                    <td>
+                      <p>{{theproduct?.servicing}}</p>
+                    </td>
+                  </tr>
+                  <tr *ngIf="theproduct?.warranty">
+                    <th>Warranty</th>
+                    <td>
+                      <p>{{theproduct?.warranty}}</p>
                     </td>
                   </tr>
                 </tbody>
