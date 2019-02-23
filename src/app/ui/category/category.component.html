@@ -378,24 +378,19 @@
                   <div class="b-product_grid_single">
                     <div class="b-product_grid_header">
                       <a href="#" routerLink="/product/{{product?.productCode}}" (click)="titleService.setTitle(product?.productTitle)">
-                        <!-- routerLink="/product/{{routeParamsName.split('.')[0]}}/{{product.productTitle}}.{{product.id}}" -->
-                        <!-- <img data-src="assets/images/products/home/product_grid_01_01.jpg, assets/images/products/home/product_grid_01_02.jpg" src="assets/images/products/home/product_grid_01_01.jpg" class="img-fluid img-switch d-block" alt="" style="">
-                                          -->
-                        <div class="b-product_grid_info">
+                        <div class="b-product_grid_info" style="min-height: 2.75rem;">
                           <h1 class="product-title">
                             <a href="#" routerLink="/product/{{product?.productCode}}"><b>{{ product?.productTitle | truncate: 40 }}</b></a>
-                            <!-- routerLink="/product/{{routeParamsName.split('.')[0]}}/{{product?.productTitle}}.{{product?.id}}" -->
-                          </h1>
+                           </h1>
                         </div>
                         <img [src]="product?.primaryURL || './assets/images/not_available.jpg'" width="100%" height="auto"
                           class="img-fluid img-switch d-block">
-                
                       </a>
                       <div class="b-product_grid_action">
                         <a href="javascript:void(0)" data-whishurl="whishlist.html" data-toggle="tooltip" data-placement="left" title=""
                           data-original-title="Add to Whishlist">
                           <i class="icon-heart icons b-add_to_whish">
-                            <img [src]="(product?.imageURL || product?.primaryImageURL || './assets/images/not_available.jpg')"
+                            <img [src]="product?.primaryURL || './assets/images/not_available.jpg'"
                               class="g-loading_gif" alt="">
                           </i>
                         </a>
