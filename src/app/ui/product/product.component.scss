@@ -102,4 +102,35 @@ button.text-uppercase.pull-left.btn {
 
 .product-features {
     margin-top: 10px !important;
+    border-bottom: 0px;
+    width: 260px;
+    // margin-bottom: 5px;
+    // padding-bottom: 5px;
+    .btn {
+        background-color: #000;
+        color: #fff;
+    }
+}
+
+.installation-manual {
+    margin-top: 10px !important;
+    border-bottom: 0px;
+    width: 260px;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    .btn {
+        background-color: #95C448;
+    }
+}
+
+.b-filters_inner_area {
+    margin-bottom: 35px;
+    color: rgba(0, 0, 0, 0.8);
+    background-color:unset;
+    padding: 30px 30px 20px 30px;
+}
+
+h5 {
+    font-size: 1.75rem !important;
+    font-weight: 500 !important;
 }
