@@ -8,7 +8,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddToProjectComponent } from '../product/add-to-project/add-to-project.component';
 import { VariablesService } from 'src/app/core/variables.service';
 import * as _ from 'lodash';
-import { Title } from '@angular/platform-browser';
+import { Title, DomSanitizer } from '@angular/platform-browser';
 import { canvasToBlob } from 'blob-util';
 
 @Component({
@@ -58,8 +58,15 @@ export class CategoryComponent implements OnInit {
     private route: ActivatedRoute,
     private modalService: NgbModal,
     public vs: VariablesService,
-    public titleService: Title
+    public titleService: Title,
+    private domSanitizer: DomSanitizer
   ) { }
+
+  makeTrustedImage(item) {
+    const imageString = JSON.stringify(item).replace(/\\n/g, '');
+    const style = 'url(' + imageString + ')';
+    return this.domSanitizer.bypassSecurityTrustStyle(style);
+  }
 
   ngOnInit() {
 
