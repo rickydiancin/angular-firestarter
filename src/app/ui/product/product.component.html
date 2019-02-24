@@ -7,14 +7,17 @@
   fullScreen="false">
   <p style="color: white"> Loading... </p>
 </ngx-spinner>
-<ng-container *ngIf="theproduct">
+<ng-container *ngIf="theproduct && theproduct?.categoryName">
   <div class="b-product_single_breadcrumbs pt-3 pb-3 hide">
     <div class="container">
       <div class="row clearfix">
         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-12">
           <div class="b-breadcrumbs">
             <a href="#">Home</a>
-            <a href="#" routerLink="/category/all">Products</a>
+            <ng-container *ngIf="theproduct?.categoryName?.length">
+              <a href="#" *ngFor="let cat of theproduct?.categoryName" routerLink="/category/{{cat?.code}}">{{cat?.name | titlecase}}</a>
+            </ng-container>
+            <!-- <a href="#" routerLink="/category/all">Products</a> -->
             <span>{{theproduct?.productTitle | titlecase}}</span>
           </div>
         </div>
