@@ -8,7 +8,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddToProjectComponent } from '../product/add-to-project/add-to-project.component';
 import { VariablesService } from 'src/app/core/variables.service';
 import * as _ from 'lodash';
-import { Title } from '@angular/platform-browser';
+import { Title, DomSanitizer } from '@angular/platform-browser';
 import { canvasToBlob } from 'blob-util';
 
 @Component({
@@ -58,8 +58,15 @@ export class CategoryComponent implements OnInit {
     private route: ActivatedRoute,
     private modalService: NgbModal,
     public vs: VariablesService,
-    public titleService: Title
+    public titleService: Title,
+    private domSanitizer: DomSanitizer
   ) { }
+
+  makeTrustedImage(item) {
+    const imageString = JSON.stringify(item).replace(/\\n/g, '');
+    const style = 'url(' + imageString + ')';
+    return this.domSanitizer.bypassSecurityTrustStyle(style);
+  }
 
   ngOnInit() {
 
@@ -79,6 +86,11 @@ export class CategoryComponent implements OnInit {
     console.log(this.route.snapshot.params.id)
 
     this.route.params.subscribe(params => {
+      if(params) {
+        setTimeout(() => {
+          this.scriptsService.prepareJquery();
+        }, 1000)
+      }
       this.params = params
       if (Object.entries(params).length !== 0) {
         this.titleService.setTitle(`Gentec Product Range Archives - Gentec Australia`)
@@ -95,7 +107,6 @@ export class CategoryComponent implements OnInit {
                     return value.categories.includes(params.id)
                   }).value();
                 this.productsLoaded = true;
-                console.log(this.products)
               }
             })
 
@@ -202,9 +213,9 @@ export class CategoryComponent implements OnInit {
     // this.getAllCategories();
     this.getAllSolutions();
 
-    setTimeout(() => {
-      this.scriptsService.prepareJquery();
-       },1000)
+    // setTimeout(() => {
+    //   this.scriptsService.prepareJquery();
+    //    },1000)
   }
 
   // parseArray(array) {

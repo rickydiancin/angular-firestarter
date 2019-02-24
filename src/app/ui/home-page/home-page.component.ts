@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ScriptsService } from 'src/app/core/scripts.service';
 import { ProductsService } from 'src/app/core/products.service';
 import { TypeaheadMatch } from 'ngx-bootstrap';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { VariablesService } from 'src/app/core/variables.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { PostService } from 'src/app/core/post.service';
@@ -28,6 +28,7 @@ export class HomePageComponent implements OnInit {
   banners:any;
   solutions:any;
   form: any;
+  fragment: string;
 
   constructor(
     private scriptsService: ScriptsService,
@@ -36,7 +37,8 @@ export class HomePageComponent implements OnInit {
     public vs: VariablesService,
     public formBuilder: FormBuilder,
     public postService: PostService,
-    private titleService: Title
+    private titleService: Title,
+    private route: ActivatedRoute
   ) {
     this.createForm();
     this.titleService.setTitle(`Leading Provider and Supplier of Tapware in Australia | Gentec Australia`)
@@ -51,7 +53,21 @@ export class HomePageComponent implements OnInit {
     })
   }
 
+  ngAfterViewInit(): void {
+    this.route.fragment.subscribe(fragment => {
+      if (fragment) {
+        console.log(fragment)
+        const element = document.querySelector("#" + fragment);
+      if (element) {
+         element.scrollIntoView(true);
+         this.router.navigate(['/']);
+        }
+      }
+    });
+  }
+
   ngOnInit() {
+
       setTimeout(() => {
         this.scriptsService.prepareJquery();
       }, 1000)

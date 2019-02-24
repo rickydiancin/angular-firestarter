@@ -430,7 +430,7 @@ export class VariablesService {
       },
       {
         categoryName: 'pre-rinse units',
-        url: 'category/PRU',
+        url: 'category/JETFLO',
         sub: []
       },
       {
@@ -455,11 +455,11 @@ export class VariablesService {
         url: 'category/TH',
         sub: [
           {
-            subName: 'thermostatics mixing taps',
+            subName: 'thermostatic mixing taps',
             url:'category/TMT'
           },
           {
-            subName: 'thermostatics mixing valves',
+            subName: 'thermostatic mixing valves',
             url: 'category/TMV'
           }
         ]
@@ -544,7 +544,7 @@ export class VariablesService {
           },
           {
             categoryName: 'pre-rinse units',
-            url: 'category/PRU'
+            url: 'category/JETFLO'
           },
           {
             categoryName: 'sanitary ware',

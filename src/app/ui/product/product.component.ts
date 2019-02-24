@@ -187,9 +187,9 @@ export class ProductComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    setTimeout(() => {
+    // setTimeout(() => {
       this.scriptsService.prepareJquery();
-    }, 1000)
+    // }, 1000)
   }
 
   ngOnInit() {
@@ -198,59 +198,25 @@ export class ProductComponent implements OnInit, AfterViewInit {
       this.addToProject = res;
       this.isLoggin = res
     });
-    // this.checkAuth();
-    // this.getFile();
-    // this.catName = this.route.snapshot.params.id;
     this.pid = this.route.snapshot.params.id;
-    // this.products = this.productsService.getData();
     this.route.params.subscribe((params) => {
       this.productsService.getProduct(params.id).valueChanges()
         .subscribe(async res => {
+          let c = [];
+          res.categories = res.categories.split(';').join(',').match(/(?=\S)[^,]+?(?=\s*(,|$))/g);
+            res.categories.forEach(async (categoryID) => {
+              await this.productsService.getCategoryByArray(categoryID).subscribe((category:any) => {
+                if(category) {
+                  c.push({ code: category.categoryCode, name: category.categoryName.toLowerCase() });
+                  if (c) res.categoryName = c;
+                } else {
+                  res.categoryName = [];
+                }
+              })
+            })
+            console.log(res)
           this.theproduct = await res;
-          // if(res) {
-          // if (this.vs.localstorage('products')) {
-          //   // this.vs.products = JSON.parse(localStorage.getItem('products'));
-          //   var lookup = _.keyBy(res.categories, (o) => {
-          //     return o.toString()
-          //   });
-          //   var relateds = _.filter(JSON.parse(localStorage.getItem('products')), function (u: any) {
-          //     return lookup[u.categories.toString()] !== undefined;
-          //   });
-          //   this.relateds = relateds;
-          //   console.log(this.relateds)
-
-          //   let index = JSON.parse(localStorage.getItem('products')).findIndex(x => x.productCode == params.id);
-          //   this.nextProduct = JSON.parse(localStorage.getItem('products'))[index + 1];
-          //   this.prevProduct = JSON.parse(localStorage.getItem('products'))[index - 1];
-
-          //   this.productExport = [];
-
-          //   this.theproduct = res;
-          //   this.productExport.push(res);
-          // } else {
-          //   this.productsService.getAllProducts().subscribe((data) => {
-          //     var lookup = _.keyBy(res.categories, (o) => {
-          //       return o.toString()
-          //     });
-          //     var relateds = _.filter(data, function (u: any) {
-          //       return lookup[u.categories.toString()] !== undefined;
-          //     });
-          //     localStorage.setItem('products', JSON.stringify(data));
-          //     this.relateds = relateds;
-          //     console.log(this.relateds)
-
-          //     let index = data.findIndex((x:any) => x.productCode == params.id);
-          //     this.nextProduct = data[index + 1];
-          //     this.prevProduct = data[index - 1];
-
-          //     this.productExport = [];
-
-          //     this.theproduct = res;
-          //     this.productExport.push(res);
-          //   })
-          // }
             await this.vs.localstorage('products').subscribe((products: any) => {
-              // if (res.length > 0 && products.length > 0) {
             var lookup = _.keyBy(res.categories, (o) => {
               return o.toString()
             });
@@ -261,19 +227,17 @@ export class ProductComponent implements OnInit, AfterViewInit {
             this.relateds = relateds;
 
               let index = products.findIndex(x => x.productCode == params.id);
-            this.nextProduct = products[index + 1];
+              this.nextProduct = products[index + 1];
               this.prevProduct = products[index - 1];
 
             this.productExport = [];
             this.productExport.push(res);
-            // }
           })
         });
     });
   }
 
   addToProduct(product) {
-    // $('#b-promo_popup').modal('show');
     const activeModal = this.modalService.open(AddToProjectComponent, { size: 'lg', backdrop: 'static' });
     activeModal.componentInstance.product = product
     activeModal.result.then((result) => {

@@ -217,7 +217,7 @@
       <div class="b-filters_area mt-2">
         <div class="b-filters_inner_area">
           <div class="row clearfix">
-            <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-xs-12">
+            <!-- <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-xs-12">
               
               <h5 class="b-filter_title">SET FILTER RANGE</h5>
               <div class="gentec-filter-group">
@@ -242,7 +242,7 @@
                   <input type="text" maxlength="13" (keyup)="rangeFilter()" [(ngModel)]="range.maxDepth" class="gentec-height-range-filter_input"
                     placeholder="Depth Max">
                 </div>
-              </div>
+              </div> -->
               <!-- <h5 class="b-filter_title">Sort by</h5>
               <form action="#" [formGroup]="">
                 <ul>
@@ -254,7 +254,7 @@
                   <li><a href="#">Price: high to low</a></li>
                 </ul> 
               </form> -->
-            </div>
+            <!-- </div> -->
             <!-- <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-6 col-xs-12"> -->
               <!-- <h5 class="b-filter_title">Price Filter</h5>
               <form action="#" [formGroup]="">
@@ -267,19 +267,29 @@
                 </ul> 
               </form> -->
             <!-- </div> -->
-            <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-xs-12">
+            <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
               <h5 class="b-filter_title">FILTER BY SOLUTION</h5>
-              <form action="#" [formGroup]="">
+              <div class="row">
+                <div class="col-sm-4 mb-4" *ngFor="let solution of solutions">
+                  <a href="#" routerLink="/solution/{{solution?.solutionCode}}" class="d-block">
+                    {{solution?.solutionName | titlecase}}
+                    <img [src]="solution?.imgURL" alt="" class="img-fluid d-block m-auto">
+                  </a>
+                </div>
+              </div>
+              <!-- <form action="#" [formGroup]="">
                 <ul class="b-color_filter">
                   <li *ngFor="let solution of solutions">
-                    <a href="javascript:void(0)" (click)="solutionFilter(solution?.solutionCode)">
-                      <span class="b-color_circle b-black"></span>
+                    <a href="#" routerLink="/solution/{{solution?.solutionCode}}" (click)="solutionFilter(solution?.solutionCode)"> -->
+                      <!-- <span [style.background-image]="makeTrustedImage(solution?.imgURL)"></span> -->
+                      <!-- <div [style.background-image]="makeTrustedImage(solution?.imgURL)" [style.min-height.rem]="5"></div> -->
+                      <!-- <img [src]="solution?.imgURL" alt="" [style.height.px]="50">
                       {{solution?.solutionName | titlecase}}
-                    </a>
-                    <span class="b-count float-right">(7)</span>
-                  </li>
+                    </a> -->
+                    <!-- <span class="b-count float-right">(7)</span> -->
+                  <!-- </li>
                 </ul> 
-              </form>
+              </form> -->
             </div>
             <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-6 col-xs-12">
               <!-- <h5 class="b-filter_title">FILTER BY SIZE</h5>
@@ -375,27 +385,22 @@
               <ng-container *ngIf="products?.length && productsLoaded">
                 <!-- <input type="text" [(ngModel)]="input"> -->
                 <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-6" *ngFor="let product of products | paginate: config">
-                  <div class="b-product_grid_single">
+                  <div class="b-product_grid_single" style="min-height: 23rem;">
                     <div class="b-product_grid_header">
                       <a href="#" routerLink="/product/{{product?.productCode}}" (click)="titleService.setTitle(product?.productTitle)">
-                        <!-- routerLink="/product/{{routeParamsName.split('.')[0]}}/{{product.productTitle}}.{{product.id}}" -->
-                        <!-- <img data-src="assets/images/products/home/product_grid_01_01.jpg, assets/images/products/home/product_grid_01_02.jpg" src="assets/images/products/home/product_grid_01_01.jpg" class="img-fluid img-switch d-block" alt="" style="">
-                                          -->
-                        <div class="b-product_grid_info">
+                        <div class="b-product_grid_info" style="min-height: 2.75rem;">
                           <h1 class="product-title">
                             <a href="#" routerLink="/product/{{product?.productCode}}"><b>{{ product?.productTitle | truncate: 40 }}</b></a>
-                            <!-- routerLink="/product/{{routeParamsName.split('.')[0]}}/{{product?.productTitle}}.{{product?.id}}" -->
-                          </h1>
+                           </h1>
                         </div>
                         <img [src]="product?.primaryURL || './assets/images/not_available.jpg'" width="100%" height="auto"
                           class="img-fluid img-switch d-block">
-                
                       </a>
                       <div class="b-product_grid_action">
                         <a href="javascript:void(0)" data-whishurl="whishlist.html" data-toggle="tooltip" data-placement="left" title=""
                           data-original-title="Add to Whishlist">
                           <i class="icon-heart icons b-add_to_whish">
-                            <img [src]="(product?.imageURL || product?.primaryImageURL || './assets/images/not_available.jpg')"
+                            <img [src]="product?.primaryURL || './assets/images/not_available.jpg'"
                               class="g-loading_gif" alt="">
                           </i>
                         </a>
