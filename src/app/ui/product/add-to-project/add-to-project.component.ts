@@ -57,7 +57,7 @@ export class AddToProjectComponent implements OnInit {
   }
 
   getAllProjects() {
-    this.productService.getAllProjects().subscribe((projects) => {
+    this.productService.getAllProjectsByUser(this.auth.user.uid).subscribe((projects) => {
       this.projects = projects
       // _(projects).each((valueA:any, keyA) => {
       let AllProjectProducts = this.productService.getAllProjectProducts(this.product).subscribe((products:any) => {

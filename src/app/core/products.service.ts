@@ -235,6 +235,16 @@ getCategoryByArray(id) {
       }));
   }
 
+  getAllProjectsByUser(id) {
+    return this.afs.collection('projects', (ref) => ref.where('createdBy','==',id)).snapshotChanges().pipe(
+      map((actions) => {
+        return actions.map((a) => {
+          const data = a.payload.doc.data();
+          return { id: a.payload.doc.id, ...data };
+        });
+      }));
+  }
+
   getSelectedProjectProducts(id) {
     return this.afs.collection('projectproducts', (ref) => ref.where('projects', "==", id)).snapshotChanges().pipe(
       map((actions) => {

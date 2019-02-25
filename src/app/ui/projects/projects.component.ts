@@ -4,6 +4,7 @@ import { ProductsService } from 'src/app/core/products.service';
 import { ScriptsService } from 'src/app/core/scripts.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddProjectComponent } from './add-project/add-project.component';
+import { AuthService } from 'src/app/core/auth.service';
 declare var $: any;
 
 @Component({
@@ -21,7 +22,8 @@ export class ProjectsComponent implements OnInit {
     public formBuilder: FormBuilder,
     public productServices: ProductsService,
     public scriptsService: ScriptsService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    public authService: AuthService
   ) {
     this.createForm();
   }
@@ -33,12 +35,14 @@ export class ProjectsComponent implements OnInit {
       code: ['', Validators.required],
       location: ['', Validators.required],
       dateCreated: [''],
-      isActive: []
+      isActive: [''],
+      crearedBy: [this.authService.user.uid]
     })
   }
 
   ngOnInit() {
-    this.getAllProjects();
+    console.log(this.authService.user)
+    this.getAllProjectsByUser();
     setTimeout(() => {
       this.scriptsService.prepareJquery();
     }, 1000)
@@ -77,11 +81,13 @@ export class ProjectsComponent implements OnInit {
     this.isUpdate = false;
   }
 
-  getAllProjects() {
-    this.productServices.getAllProjects().subscribe((projects) => {
-      console.log(projects)
-      this.projects = projects;
-    })
+  getAllProjectsByUser() {
+    if (this.authService.user) {
+      this.productServices.getAllProjectsByUser(this.authService.user.uid).subscribe((projects) => {
+        console.log(projects)
+        this.projects = projects;
+      })
+    }
   }
 
   addProject() {
