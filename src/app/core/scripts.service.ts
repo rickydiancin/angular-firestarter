@@ -1061,7 +1061,7 @@ export class ScriptsService {
       
           ProductZoom: function(){
             $('.b-produt-item').each(function(){
-              $(this).find('img').zoomIt();
+              // $(this).find('img').zoomIt();
             });
           },
       
