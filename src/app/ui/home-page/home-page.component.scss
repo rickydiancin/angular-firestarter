@@ -35,7 +35,7 @@ $green_color: #95C448;
     visibility: visible;
     top: 53px;
     left: 14px;
-    width: 22rem;
+    width: 95%;
 }
 
 /deep/.dropdown-item {
@@ -49,6 +49,7 @@ $green_color: #95C448;
     white-space: nowrap;
     background: none;
     border: 0;
+    font-size: 16px;
 }
 
 /ddep/.dropdown-item.active, .dropdown-item:active {
@@ -110,6 +111,17 @@ p.pull-left.mb-0 {
     margin-bottom: -30px;
     font-size: 24px;
     padding: 1em 2em;
+}
+#homebanner img{
+   height: 390px;
+}
+@media (max-width: 767px) {
+    #homebanner img{
+        height: auto;
+     }
+     .b-cat_mask {
+        left: 35% !important;
+    }
 }
 
 form input[type=text] {

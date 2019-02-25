@@ -1,4 +1,6 @@
 
+
+         
   <section id="b-products_cat"> 
 
     <div class="b-featured_cat">
@@ -35,8 +37,8 @@
                           <button class="dropdown-item" *ngIf="product !== -1" (click)="search(product?.productCode)">
                             <img src="{{product?.primaryURL || './assets/images/not_available.jpg'}}" alt="" height="50px" width="50px">
                             {{product?.productTitle | titlecase}} ({{product?.productCode}})
-                            <!-- <br>
-                            <small><b>Category Code: </b>{{product?.categories}}</small> -->
+                            <br>
+                            <small><b>Category Code: </b>{{product?.categories}}</small>
                           </button>
                           <button class="dropdown-item" *ngIf="product === -1">
                             No Result(s) Found
@@ -47,11 +49,12 @@
                 </div>
           </div>
         <div class="row">
-          <div class="col-xl-9 col-lg-9 col-mb-9 col-sm-9 col-xs-12">
-        
-            <ngb-carousel *ngIf="banners">
+          <div class="col-xl-9 col-lg-9 col-mb-9 col-sm-12 col-xs-12">
+              <!-- <img src="assets/images/distribution.jpg" class="img-fluid d-block" alt="" style="height: 428px;"> -->
+            <ngb-carousel *ngIf="banners" id="homebanner">
+
               <ng-template ngbSlide *ngFor="let banner of banners ">
-                <img [src]="banner?.imgURL"  alt="{{banner.bannerTitle}}" class="img-fluid">
+                <img [src]="banner?.imgURL"  alt="{{banner.bannerTitle}}" class="img-fluid  d-block" >
                 <div class="carousel-caption">
                   <h3>{{banner.bannerTitle}}</h3>
                   <p>{{banner.description}}</p>
@@ -61,10 +64,10 @@
             </ngb-carousel>
           </div>
     
-          <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-3 col-xs-12">
+          <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-12 col-xs-12">
             <div class="b-featured_cat_in">
               <a href="#" routerLink="/news">
-               <img src="assets/images/sidebanner.jpg" class="img-fluid d-block" alt="" style="height: 430px;">
+               <img src="assets/images/sidebanner.jpg" class="img-fluid d-block" alt="" >
               </a>
               <div class="b-cat_mask">
                 <a href="#" routerLink="/news" class="category-link-overlay">Learn More</a> 
@@ -474,13 +477,13 @@
                 <!-- <i class="icon-envelope icons pull-left mr-4 b-icon_large"></i> -->
                 <p class="pull-left mb-0">
                   Unit 6, 20- 28 Ricketty Street,<br>
-                  Mascot, NSW 2020, Austrilla
+                  Mascot, NSW 2020, Australia
                 </p>
                 <p class="pull-left mb-0">
                   (+612) 9319 4422
                 </p>
                 <p class="pull-left mb-0">
-                  info@gentecaustrilla.com.au
+                  info@gentecaustralia.com.au
                 </p>
               </div>
               <div class="b-blog_social b-socail_color mt-0 pb-5">

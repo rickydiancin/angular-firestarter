@@ -1,0 +1,41 @@
+[debug] [2019-02-25T06:55:48.864Z] ----------------------------------------------------------------------
+[debug] [2019-02-25T06:55:48.866Z] Command:       /usr/local/Cellar/node@8/8.12.0/bin/node /usr/local/bin/firebase deploy --only hosting
+[debug] [2019-02-25T06:55:48.866Z] CLI Version:   6.1.0
+[debug] [2019-02-25T06:55:48.866Z] Platform:      darwin
+[debug] [2019-02-25T06:55:48.866Z] Node Version:  v8.12.0
+[debug] [2019-02-25T06:55:48.867Z] Time:          Mon Feb 25 2019 14:55:48 GMT+0800 (PST)
+[debug] [2019-02-25T06:55:48.867Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-02-25T06:55:48.879Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-02-25T06:55:48.879Z] > authorizing via signed-in user
+[debug] [2019-02-25T06:55:48.879Z] [iam] checking project gentec-web for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2019-02-25T06:55:48.880Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-02-25T06:55:48.881Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-02-25T06:55:50.449Z] <<< HTTP RESPONSE 200
+[debug] [2019-02-25T06:55:50.478Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/gentec-web:testIamPermissions  
+
+[debug] [2019-02-25T06:55:52.920Z] <<< HTTP RESPONSE 200
+[debug] [2019-02-25T06:55:52.922Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/gentec-web  
+ 
+[debug] [2019-02-25T06:55:53.733Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'gentec-web'...
+[info] 
+[info] i  deploying hosting
+[debug] [2019-02-25T06:55:55.149Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/gentec-web/versions  
+
+[debug] [2019-02-25T06:55:57.712Z] <<< HTTP RESPONSE 200
+[info] i  hosting[gentec-web]: beginning deploy...
+[info] i  hosting[gentec-web]: found 816 files in dist/firestarter
+[debug] [2019-02-25T06:55:57.846Z] [hosting] hash cache [ZGlzdC9maXJlc3RhcnRlcg] load error: lines is not defined
+[debug] [2019-02-25T06:55:58.719Z] [hosting] hash cache [ZGlzdC9maXJlc3RhcnRlcg] stored for 816 files
+[debug] [2019-02-25T06:55:58.719Z] [hosting][hash queue][FINAL]
+[debug] [2019-02-25T06:55:58.719Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/gentec-web/versions/09615a4b318533d1:populateFiles  
+ <request body omitted>
+[debug] [2019-02-25T06:56:05.093Z] <<< HTTP RESPONSE 200
+[debug] [2019-02-25T06:56:05.097Z] [hosting][populate queue][FINAL]
+[debug] [2019-02-25T06:56:05.098Z] [hosting] uploads queued: undefined
+[debug] [2019-02-25T06:56:12.145Z] [hosting][upload queue][FINAL]
+[info] ✔  hosting[gentec-web]: file upload complete
+[debug] [2019-02-25T06:56:12.146Z] [hosting] deploy completed after 14433ms

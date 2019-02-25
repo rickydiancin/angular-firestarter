@@ -10,14 +10,18 @@
                       </li>
                   </ul>
                   <ul class="categories"> 
+                      <li class="has-sub dropdown-wrapper from-bottom">
+                          <a href="#" routerLink="/"><span class="top">Home</span></a>
+                  
+                      </li>
                     <li class="has-sub dropdown-wrapper from-bottom">
-                        <a href="#" routerLink="/solution/all"><span class="top">Solutions</span><i class="fa fa-angle-down"></i></a>
-                        <div class="dropdown-content sub-holder dropdown-left narrow">
+                        <a href="#" routerLink="/solution/all"><span class="top">Solutions</span></a>
+                        <!-- <div class="dropdown-content sub-holder dropdown-left narrow">
                             <div class="dropdown-inner">
                                 <div class="clearfix">
                                     <div class="col-xs-12 col-sm-12 ">
                                         <div class="menu-item">
-                                            <!-- CATEGORIES CONTENT -->
+                                      
                                             <div class="categories">
                                                 <div class="clearfix">
                                                     <div class="col-sm-12 hover-menu text-uppercase">
@@ -31,9 +35,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- row -->
+                     
                             </div>
-                        </div>
+                        </div> -->
                     </li>
                     <li class="has-sub dropdown-wrapper from-bottom">
                       <a href="#" routerLink="/category/all"><span class="top">Products</span></a>
@@ -218,11 +222,35 @@
                                       </div>
                                   </div>
                               </li>
-                              <li>
+                              
+                              <li class="b-has_sub b-dropdown_wrapper from-bottom p-static">
                                 <a href="#" class="p-relative description " routerLink="/category">
-                                <span class="top">Company</span> 
+                                <span class="top">Company</span> <i class="fa fa-angle-down"></i>
                                 </a>
+                                <div class="b-dropdown_content sub-holder dropdown-left" >
+                                  <div class="dropdown-inner">
+                                      <div class="clearfix">
+                                          <div class="col-xs-12 col-sm-12 ">
+                                              <div class="menu-item"> 
+                                                
+                                                  <div class="categories">
+                                                      <div class="row">
+                                                          <div class="col-sm-12 hover-menu">
+                                                              <ul>
+                                                                  <li><a href="#" routerLink="/company">About Us</a></li>
+                                                                  <li><a href="#" routerLink="/warranty">Warranty</a></li>
+                                                                  <li><a href="#" routerLink="/distribution">Distribution</a></li>
+                                                              </ul>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div> 
+                                  </div>
+                              </div>
                               </li>
+                            
                               <!-- <li *ngIf="auth?.user">
                                 <a href="#" class="p-relative description " routerLink="/projects">
                                 <span class="top">Specifications</span> 

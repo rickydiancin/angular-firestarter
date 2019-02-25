@@ -35,6 +35,8 @@ import { ProductFilterPipe } from './home-page/productPipe';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { SearchFilterPipe } from './category/searchPipe';
+import { WarrantyComponent } from './warranty/warranty.component';
+import { DistributionComponent } from './distribution/distribution.component';
 
 @NgModule({
   imports: [
@@ -74,7 +76,9 @@ import { SearchFilterPipe } from './category/searchPipe';
     InvoiceComponent,
     NewssingleComponent,
     ProductFilterPipe,
-    SearchFilterPipe
+    SearchFilterPipe,
+    WarrantyComponent,
+    DistributionComponent
   ],
   entryComponents:[
     AddProjectComponent,
