@@ -1005,7 +1005,7 @@ export class ScriptsService {
       
           SingleProductCarousel: function(){
             if($("#bSingleProductCarousel").length > 0){
-              $('#bSingleProductCarousel').owlCarousel({
+              $('#bSingleProductCarousel').not('.owl-loaded').owlCarousel({
                   loop:false,
                   margin:0,
                   nav:false,
