@@ -165,6 +165,16 @@ export class ProductComponent implements OnInit, AfterViewInit {
   ) {
   }
 
+  enlarge() {
+    // if ($('.gallery').length > 0) {
+    //   $(this).find('a').click();
+    // }
+    $('.gallery').each(function (index) {
+      console.log(index)
+      $(this).find('.active a').click();
+    });
+  }
+
   featureLink(link) {
     if (link) {
       const element = document.querySelector("#" + link);
@@ -197,6 +207,11 @@ export class ProductComponent implements OnInit, AfterViewInit {
     });
     this.pid = this.route.snapshot.params.id;
     this.route.params.subscribe((params) => {
+      // if(params) {
+        // setTimeout(() => {
+        //   this.scriptsService.prepareJquery();
+        // }, 1000);
+      // }
       this.productsService.getProduct(params.id).valueChanges()
         .subscribe(async res => {
           let c = [];
@@ -213,7 +228,6 @@ export class ProductComponent implements OnInit, AfterViewInit {
             })
             console.log(res)
           this.theproduct = await res;
-
           // $(document).ready(function ($) {
           //   $('[data-toggle="tooltip"]').tooltip();
           //   console.log($(".gallery").length)
@@ -222,10 +236,12 @@ export class ProductComponent implements OnInit, AfterViewInit {
           //   }
           // })
 
-          setTimeout(() => {
-            this.scriptsService.prepareJquery();
-          }, 1000);
-          
+          if(res) {
+            setTimeout(() => {
+              this.scriptsService.prepareJquery();
+            }, 1000);
+          }
+
             await this.vs.localstorage('products').subscribe((products: any) => {
             var lookup = _.keyBy(res.categories, (o) => {
               return o.toString()

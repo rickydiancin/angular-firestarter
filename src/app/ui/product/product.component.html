@@ -44,15 +44,17 @@
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <div class="row clearfix b-product-display b-bottom-thumbs">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 b-display-single">
-              <div class="b-product-carousel owl-carousel" id="bSingleProductCarousel"
+              <div class="b-product-carousel owl-carousel gallery" id="bSingleProductCarousel"
                 data-slider-id="bSingleProductCarousel">
                 <div class="b-produt-item">
-                  <img [src]="theproduct?.primaryURL || './assets/images/not_available.jpg'" alt="" class="img-fluid"
-                    data-zoomed="">
+                  <a href="{{theproduct?.primaryURL || './assets/images/not_available.jpg'}}">
+                    <img [src]="theproduct?.primaryURL || './assets/images/not_available.jpg'" alt="" class="img-fluid">
+                  </a>
                 </div>
                 <div class="b-produt-item">
-                  <img [src]="theproduct?.lineDrawing || './assets/images/not_available.jpg'" alt="" class="img-fluid"
-                    data-zoomed="">
+                  <a href="{{theproduct?.lineDrawing || './assets/images/not_available.jpg'}}">
+                    <img [src]="theproduct?.lineDrawing || './assets/images/not_available.jpg'" alt="" class="img-fluid">
+                  </a>
                 </div>
                 <!-- <div class="b-produt-item">
                   <img src="assets/images/products/product-single/woman-4.jpg" alt="" class="img-fluid"
@@ -84,10 +86,10 @@
               </div> -->
               <!-- /b-additional-video-wrap -->
   
-              <div class="b-show-product-gallery-wrap gallery">
+              <div class="b-show-product-gallery-wrap">
                 <!-- <a href="javaScript:void(0)"> -->
                   <!-- <i class="icon-magnifier-add icons"></i> -->
-                  <a href="{{theproduct?.primaryURL}}" class="b-expand_it"><i class="icon-magnifier-add icons"></i></a>
+                  <a href="javascript:void(0)" (click)="enlarge()" class="b-expand_it"><i class="icon-magnifier-add icons"></i></a>
                 <!-- </a> -->
               </div>
             </div>
@@ -286,7 +288,7 @@
               <h5 class="b-filter_title text-uppercase">installation manual</h5>
             </div>
           </div>
-          <iframe src="https://e.issuu.com/anonymous-embed.html?u=gentecaustralia&d=8jan_gentec_template_pre-rinse_unit"
+          <iframe src="{{theproduct?.issuEmbedURL}}"
             style="border:none;width:100%;height:500px;" allowfullscreen></iframe>
         </div>
       </div>

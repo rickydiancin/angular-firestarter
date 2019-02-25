@@ -30,6 +30,7 @@ export class AddProjectComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.authService.user)
     setTimeout(() => {
       this.scriptsService.prepareJquery();
     }, 1000)
@@ -44,7 +45,8 @@ export class AddProjectComponent implements OnInit {
       code: ['', Validators.required],
       location: ['', Validators.required],
       dateCreated: [''],
-      isActive: []
+      isActive: [''],
+      crearedBy: [this.authService.user.uid]
     })
   }
 

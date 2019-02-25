@@ -62,11 +62,11 @@ export class CategoryComponent implements OnInit {
     private domSanitizer: DomSanitizer
   ) { }
 
-  makeTrustedImage(item) {
-    const imageString = JSON.stringify(item).replace(/\\n/g, '');
-    const style = 'url(' + imageString + ')';
-    return this.domSanitizer.bypassSecurityTrustStyle(style);
-  }
+  // makeTrustedImage(item) {
+  //   const imageString = JSON.stringify(item).replace(/\\n/g, '');
+  //   const style = 'url(' + imageString + ')';
+  //   return this.domSanitizer.bypassSecurityTrustStyle(style);
+  // }
 
   ngOnInit() {
 

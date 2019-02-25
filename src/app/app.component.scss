@@ -56,3 +56,6 @@ $green_color: #95C448;
     color: rgba(255,255,255,.6);
 }
 
+/deep/.sl-image {
+    background: rgb(255, 255, 255) !important;
+}
