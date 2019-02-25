@@ -213,9 +213,19 @@ export class ProductComponent implements OnInit, AfterViewInit {
             })
             console.log(res)
           this.theproduct = await res;
+
+          // $(document).ready(function ($) {
+          //   $('[data-toggle="tooltip"]').tooltip();
+          //   console.log($(".gallery").length)
+          //   if ($(".gallery").length > 0) {
+          //     console.log($(".gallery").length > 0)
+          //   }
+          // })
+
           setTimeout(() => {
             this.scriptsService.prepareJquery();
           }, 1000);
+          
             await this.vs.localstorage('products').subscribe((products: any) => {
             var lookup = _.keyBy(res.categories, (o) => {
               return o.toString()
