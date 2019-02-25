@@ -22,12 +22,11 @@ export class UserProfileComponent implements OnInit {
   createForm() {
     this.form = this.formBuilder.group({
       uid: [''],
-      firstname: [''],
-      lastname: [''],
+      name: [''],
       email: [''],
-      address: [''],
-      phone: [''],
-      bio: [''],
+      state: [''],
+      contact: [''],
+      company: [''],
     })
   }
 

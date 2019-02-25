@@ -17,10 +17,10 @@ interface User {
   uid: string;
   email?: string | null;
   photoURL?: string;
-  firstName?: string;
-  lastName?: string;
-  address?: string;
-  bio?: string;
+  name?:string
+  state?: string;
+  company?: string;
+  contact?: string;
   isActive?: boolean;
   role?:string;
 }
@@ -165,10 +165,11 @@ export class AuthService {
     const data: User = {
       uid: user.uid,
       email: user.email || null,
-      firstName: userdata.fname || 'nameless',
-      lastName: userdata.lname || 'user',
+      name: userdata.name || 'Gentec User',
       photoURL: user.photoURL || 'https://goo.gl/Fz9nrQ',
-      address: userdata,
+      state: userdata.state,
+      contact: userdata.contact,
+      company: userdata.company,
       isActive: true,
       role: 'user'
     };

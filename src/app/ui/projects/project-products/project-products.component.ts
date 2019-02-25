@@ -19,6 +19,7 @@ export class ProjectProductsComponent implements OnInit {
   productProject: any;
   success: Boolean;
   message: any;
+  project: any;
 
   options = {
     fieldSeparator: ',',
@@ -147,6 +148,7 @@ export class ProjectProductsComponent implements OnInit {
     this.id = this.route.snapshot.params.id;
     console.log(this.id)
     this.getAllProjects();
+    this.getProject();
   }
 
   getAllProjects() {
@@ -154,6 +156,13 @@ export class ProjectProductsComponent implements OnInit {
       this.productProject = productProject;
       console.log(this.productProject)
     });
+  }
+
+  getProject() {
+    this.productsService.getProjects(this.id.split('.')[1]).subscribe((project) => {
+      console.log(project);
+      this.project = project;
+    })
   }
 
   removeToProject(product) {
@@ -231,7 +240,7 @@ export class ProjectProductsComponent implements OnInit {
       var width = 200;
       var height = 35;
 
-      doc.addImage(headerImgData, 'JPEG', 5, 5, 200, 160);
+      doc.addImage(headerImgData, 'JPEG', 5, 5, 200, 140);
 
       doc.setFontSize(9);
 

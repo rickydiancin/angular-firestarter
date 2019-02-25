@@ -187,9 +187,6 @@ export class ProductComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // setTimeout(() => {
-      this.scriptsService.prepareJquery();
-    // }, 1000)
   }
 
   ngOnInit() {
@@ -216,6 +213,9 @@ export class ProductComponent implements OnInit, AfterViewInit {
             })
             console.log(res)
           this.theproduct = await res;
+          setTimeout(() => {
+            this.scriptsService.prepareJquery();
+          }, 1000);
             await this.vs.localstorage('products').subscribe((products: any) => {
             var lookup = _.keyBy(res.categories, (o) => {
               return o.toString()
