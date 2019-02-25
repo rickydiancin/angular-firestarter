@@ -1,0 +1,16 @@
+$green_color: #95C448;
+#distribution{
+    p{
+        line-height: 2em;
+        padding: 20px  0 0 20px;
+    }
+    .green1{
+        border: 1px solid $green_color;
+    }
+    .green2{
+        border: 1px solid $green_color;
+        border-left: none;
+    }
+
+    
+}
