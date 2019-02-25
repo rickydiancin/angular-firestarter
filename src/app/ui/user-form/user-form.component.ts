@@ -4,7 +4,7 @@ import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angula
 import { AuthService } from '../../core/auth.service';
 import { StorageService } from 'src/app/core/storage.service';
 
-type UserFields = 'email' | 'password';
+type UserFields = 'email' | 'password' | 'state' | 'contact' | 'company';
 type FormErrors = { [u in UserFields]: string };
 
 @Component({
@@ -21,12 +21,18 @@ export class UserFormComponent implements OnInit {
   passReset = false; // set to true when password reset is triggered
   formErrors: FormErrors = {
     'email': '',
-    'password': ''
+    'password': '',
+    'state': '',
+    'contact': '',
+    'company': ''
   };
   validationMessages = {
     'email': {
       'required': 'Email is required.',
       'email': 'Email must be a valid email',
+      'state': 'State is required',
+      'contact': 'Contact Number is required',
+      'company': 'Company is required'
     },
     'password': {
       'required': 'Password is required.',
@@ -81,8 +87,10 @@ export class UserFormComponent implements OnInit {
     });
 
     this.regform = this.fb.group({
-      fname: ['', Validators.required],
-      lname: ['', Validators.required],
+      name: ['', Validators.required],
+      state: ['', Validators.required],
+      contact: ['', Validators.required],
+      company: ['', Validators.required],
       'email2': ['', [
         Validators.required,
         Validators.email,

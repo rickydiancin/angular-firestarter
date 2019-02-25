@@ -41,7 +41,18 @@
         <div class="container b-main_footer">
             <!-- footer-main -->
             <aside class="row clearfix">
-                <div class="footer-column footer-column-2 col-md-3 col-sm-6">
+              <div class="b-footer_column col-md-3 col-sm-6 mb-4">
+                <div class="b-footer_block">
+                  <h5 class="b-footer_block_title text-uppercase">industry solutions</h5>
+                  <div class="b-footer_block_in">
+                    <ul class="b-footer_menu">
+                      <li *ngFor="let solution of solutions"><a href="#"
+                          routerLink="/solution/{{solution?.solutionCode}}">{{solution?.solutionName | titlecase}} Solutions</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+                <!-- <div class="footer-column footer-column-2 col-md-3 col-sm-6">
                     <div id="text-18" class="footer-widget widget_text">
                         <h5 class="widget-title text-uppercase">industry solutions</h5>
                         <div class="textwidget">
@@ -50,8 +61,8 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                <div class="footer-column footer-column-2 col-md-2 col-sm-6">
+                </div> -->
+                <!-- <div class="footer-column footer-column-2 col-md-2 col-sm-6">
                     <div id="text-18" class="footer-widget widget_text">
                         <h5 class="widget-title text-uppercase">Products</h5>
                         <div class="textwidget">
@@ -60,8 +71,40 @@
                             </ul>
                         </div>
                     </div>
+                </div> -->
+                <div class="b-footer_column col-md-2 col-sm-6 mb-4">
+                  <div class="b-footer_block">
+                    <h5 class="b-footer_block_title text-uppercase">Products</h5>
+                    <div class="b-footer_block_in">
+                      <ul class="b-footer_menu">
+                        <li *ngFor="let a of footerMenus?.menu1"><a href="#" [routerLink]="a?.url">{{a?.categoryName | titlecase}}</a></li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-                <div class="footer-column footer-column-2 col-md-2 col-sm-6">
+                <div class="b-footer_column col-md-2 col-sm-6 mb-4">
+                  <div class="b-footer_block">
+                    <h5 class="b-footer_block_title text-uppercase" style="opacity: 0;">Products</h5>
+                    <div class="b-footer_block_in">
+                      <ul class="b-footer_menu">
+                        <li *ngFor="let a of footerMenus?.menu2"><a href="#" [routerLink]="a?.url">{{a?.categoryName | titlecase}}</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="b-footer_column col-md-2 col-sm-6 mb-4">
+                  <div class="b-footer_block">
+                    <h5 class="b-footer_block_title text-uppercase" style="opacity: 0;">Products</h5>
+                    <div class="b-footer_block_in">
+                      <ul class="b-footer_menu">
+                        <li *ngFor="let a of footerMenus?.menu3"><a href="#" [routerLink]="a?.url">{{a?.categoryName | titlecase}}</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="footer-column footer-column-2 col-md-2 col-sm-6">
                     <div id="text-18" class="footer-widget widget_text">
                         <h5 class="widget-title text-uppercase" style="opacity: 0;">Products</h5>
                         <div class="textwidget">
@@ -70,8 +113,8 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                <div class="footer-column footer-column-2 col-md-2 col-sm-6">
+                </div> -->
+                <!-- <div class="footer-column footer-column-2 col-md-2 col-sm-6">
                     <div id="text-18" class="footer-widget widget_text">
                         <h5 class="widget-title text-uppercase" style="opacity: 0">Products</h5>
                         <div class="textwidget">
@@ -80,8 +123,8 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                <div class="footer-column footer-column-2 col-md-2 col-sm-6">
+                </div> -->
+                <!-- <div class="footer-column footer-column-2 col-md-2 col-sm-6">
                     <div id="text-18" class="footer-widget widget_text">
                         <h5 class="widget-title text-uppercase">Others</h5>
                         <div class="textwidget">
@@ -90,6 +133,17 @@
                             </ul>
                         </div>
                     </div>
+                </div> -->
+                <div class="b-footer_column col-md-2 col-sm-6 mb-4">
+                  <div class="b-footer_block">
+                    <h5 class="b-footer_block_title text-uppercase">Others</h5>
+                    <div class="b-footer_block_in">
+                      <ul class="b-footer_menu">
+                        <li *ngFor="let other of footerMenus?.others"><a href="#"
+                            [routerLink]="other?.url">{{other?.categoryName | titlecase}}</a></li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
                 <div class="b-footer_column col-md-12 col-sm-12">
                     <div class="b-footer_block">

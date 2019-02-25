@@ -35,25 +35,46 @@
                 <h2><i class="icon-user icons"></i> Register</h2>
                 <form [formGroup]="regform" (ngSubmit)="signup()">
                     <div class="form-group">
-                        <label for="">First Name <span class="b-required">*</span></label>
-                        <input type="text" id="fname" name="fname" class="input" formControlName="fname" required autocomplete="new-password">
+                        <label for="">Name <span class="b-required">*</span></label>
+                        <input type="text" id="fname" name="name" class="input" formControlName="name" required autocomplete="off">
           
                       </div>
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                           <label for="">Last Name <span class="b-required">*</span></label>
                           <input type="text" id="lname" name="lname" class="input" formControlName="lname" required autocomplete="new-password">
                         
-                        </div>
+                        </div> -->
                     <div class="form-group">
-                      <label for="">Email address <span class="b-required">*</span></label>
-                      <input type="email" id="email2" name="email2" class="input" formControlName="email2" required autocomplete="new-password">
+                      <label for="">Email <span class="b-required">*</span></label>
+                      <input type="email" id="email2" name="email2" class="input" formControlName="email2" required autocomplete="off">
                       <div *ngIf="formErrors.email" class="help is-danger">
                         {{ formErrors.email }}
                     </div>
                     </div>
                     <div class="form-group">
+                      <label for="">State <span class="b-required">*</span></label>
+                      <input type="text" id="state" name="state" class="input" formControlName="state" required autocomplete="off">
+                      <div *ngIf="formErrors.state" class="help is-danger">
+                        {{ formErrors.state }}
+                    </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="">Contact Number <span class="b-required">*</span></label>
+                      <input type="text" id="contact" name="contact" class="input" formControlName="contact" required autocomplete="off">
+                      <div *ngIf="formErrors.contact" class="help is-danger">
+                        {{ formErrors.contact }}
+                    </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="">Company Name <span class="b-required">*</span></label>
+                      <input type="text" id="company" name="company" class="input" formControlName="company" required autocomplete="off">
+                      <div *ngIf="formErrors.company" class="help is-danger">
+                        {{ formErrors.company }}
+                    </div>
+                    </div>
+                    <div class="form-group">
                       <label for="">Password <span class="b-required">*</span></label>
-                      <input type="password" id="password2" name="password2" class="input" formControlName="password2" required autocomplete="new-password">
+                      <input type="password" id="password2" name="password2" class="input" formControlName="password2" required autocomplete="off">
                       <div *ngIf="formErrors.password" class="help is-danger">
                         {{ formErrors.password }}
                     </div>
