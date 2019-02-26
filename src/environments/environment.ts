@@ -6,14 +6,14 @@ export const environment = {
   production: false,
 
   // ===================== gentec-admin-development2 =============================
-  // firebase: {
-  //   apiKey: "AIzaSyAgi0ciobMur3bDIcm6ayq3AGodjvWnByY",
-  //   authDomain: "gentec-admin-development2.firebaseapp.com",
-  //   databaseURL: "https://gentec-admin-development2.firebaseio.com",
-  //   projectId: "gentec-admin-development2",
-  //   storageBucket: "gentec-admin-development2.appspot.com",
-  //   messagingSenderId: "1018336873974"
-  // }
+  firebase: {
+    apiKey: "AIzaSyAgi0ciobMur3bDIcm6ayq3AGodjvWnByY",
+    authDomain: "gentec-admin-development2.firebaseapp.com",
+    databaseURL: "https://gentec-admin-development2.firebaseio.com",
+    projectId: "gentec-admin-development2",
+    storageBucket: "gentec-admin-development2.appspot.com",
+    messagingSenderId: "1018336873974"
+  }
 
   // ===================== gentec-admin-development =============================
   // firebase: {
@@ -25,14 +25,14 @@ export const environment = {
   //   messagingSenderId: "101340459147"
   // }
 
-  firebase: {
-    apiKey: "AIzaSyDbkwnutDsJ-Glqi3KpwYvC4rTcqjpXKX8",
-    authDomain: "gentec-admin.firebaseapp.com",
-    databaseURL: "https://gentec-admin.firebaseio.com",
-    projectId: "gentec-admin",
-    storageBucket: "gentec-admin.appspot.com",
-    messagingSenderId: "188938269212"
-  }
+  // firebase: {
+  //   apiKey: "AIzaSyDbkwnutDsJ-Glqi3KpwYvC4rTcqjpXKX8",
+  //   authDomain: "gentec-admin.firebaseapp.com",
+  //   databaseURL: "https://gentec-admin.firebaseio.com",
+  //   projectId: "gentec-admin",
+  //   storageBucket: "gentec-admin.appspot.com",
+  //   messagingSenderId: "188938269212"
+  // }
 
 };
 
