@@ -236,11 +236,11 @@ export class ProductComponent implements OnInit, AfterViewInit {
           //   }
           // })
 
-          if(res) {
+          // if(res) {
             setTimeout(() => {
               this.scriptsService.prepareJquery();
             }, 1000);
-          }
+          // }
 
             await this.vs.localstorage('products').subscribe((products: any) => {
             var lookup = _.keyBy(res.categories, (o) => {
