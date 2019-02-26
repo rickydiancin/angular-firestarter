@@ -25,7 +25,8 @@ export class VariablesService {
 
   localstorage(collection) {
     if (collection == 'products') {
-      return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin-development2.appspot.com/o/products.json?alt=media&token=a7bfdbd7-1bd4-4cbf-a750-d1ce6a1aeacb');
+      return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/products.json?alt=media&token=9da7b0d7-b50c-4c44-a980-bc5840ab576c');
+      // return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin-development2.appspot.com/o/products.json?alt=media&token=aedfcde0-43e0-4140-9a1f-2353e123a495');
       // return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/products.json?alt=media&token=27e8bc46-0a87-4631-b73d-eb4b1b80a626');
     } else if (collection == 'solutions') {
       return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/solutions.json?alt=media&token=4918ad6f-670a-454e-bec6-287a1eec008a');

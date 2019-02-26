@@ -107,6 +107,7 @@ export class CategoryComponent implements OnInit {
                     return value.categories.includes(params.id)
                   }).value();
                 this.productsLoaded = true;
+                console.log(this.products)
               }
             })
 
