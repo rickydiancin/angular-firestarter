@@ -69,19 +69,19 @@
               </nav>
             </div>
           </div> -->
-          <div class="b-sidebar_widget">
+          <div class="b-sidebar_widget" *ngIf="recents?.length">
             <h5 class="b-widget_title">RECENT POST</h5>
             <div class="b-sidenav">
               <nav>  
                 <ul class="pl-0 mb-0 list-unstyled b-recent_post">
-                  <li>
-                    <a href="#" class="b-recent_blog_img d-inline-block">
-                        <img src="assets/images/blog/home/blog_recent_01.jpg" class="img-fluid d-block" alt="">
+                  <li *ngFor="let recent of recents">
+                    <a href="javascript:void(0)" class="b-recent_blog_img d-inline-block">
+                        <img [src]="recent?.imgURL" class="img-fluid d-block" alt="">
                     </a>
-                    <h3><a href="#">VENENATIS VEULUM PEUS</a></h3>
-                    <span>August 8, 2015</span>
+                    <h3><a href="#">{{recent?.title}}</a></h3>
+                    <span>{{recent?.dateCreated | date:'longDate'}}</span>
                   </li>
-                  <li>
+                  <!-- <li>
                     <a href="#" class="b-recent_blog_img d-inline-block">
                         <img src="assets/images/blog/home/blog_recent_02.jpg" class="img-fluid d-block" alt="">
                     </a>
@@ -108,7 +108,7 @@
                     </a>
                     <h3><a href="#">CONDINTUM INTELGER RIDIS</a></h3>
                     <span>August 8, 2015</span>
-                  </li> 
+                  </li>  -->
                 </ul>
               </nav>
             </div>
@@ -183,7 +183,7 @@
               </ul>
             </div>
           </div>   -->
-          <div class="b-sidebar_widget">
+          <!-- <div class="b-sidebar_widget">
             <h5 class="b-widget_title">RECENT COMMENT</h5>
             <div class="b-sidenav">
               <nav>  
@@ -195,7 +195,7 @@
                 </ul>
               </nav>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

@@ -37,6 +37,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { SearchFilterPipe } from './category/searchPipe';
 import { WarrantyComponent } from './warranty/warranty.component';
 import { DistributionComponent } from './distribution/distribution.component';
+import { SafePipe } from './product/safePipe';
 
 @NgModule({
   imports: [
@@ -78,7 +79,8 @@ import { DistributionComponent } from './distribution/distribution.component';
     ProductFilterPipe,
     SearchFilterPipe,
     WarrantyComponent,
-    DistributionComponent
+    DistributionComponent,
+    SafePipe
   ],
   entryComponents:[
     AddProjectComponent,

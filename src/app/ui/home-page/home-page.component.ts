@@ -72,20 +72,20 @@ export class HomePageComponent implements OnInit {
         this.scriptsService.prepareJquery();
       }, 1000)
     this.productsService.getAllCategories(res => {
-      console.log(res);
+      // console.log(res);
       this.categories = res;
     });
     
     this.postService.getAllPostsByCategory('news').subscribe(res => {
-      console.log(res);
+      // console.log(res);
       this.posts= res;
      });
     this.postService.getAllPostsByCategory('about').subscribe(res => {
-      console.log(res);
+      // console.log(res);
       this.abouts= res;
      });
      this.vs.localstorage('banners').subscribe(res => {
-      console.log('banners: ',res);
+      // console.log('banners: ',res);
       this.banners = res;
      });
     //  this.productsService.getAllBanners().subscribe(res => {
@@ -106,6 +106,7 @@ export class HomePageComponent implements OnInit {
   getAllSolutions() {
     this.vs.localstorage('solutions').subscribe((solutions) => {
       this.solutions = solutions;
+      // console.log(solutions)
     });
     // if(this.vs.localstorage('solutions')) {
     //   this.solutions = JSON.parse(localStorage.getItem('solutions'));

@@ -199,7 +199,15 @@
             <div role="tabpanel" class="tab-pane fade in active show" id="tab-01">
               <div class="row clearfix">
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                  <p>{{theproduct?.features}}</p>
+                  <ul class="features">
+                    <li *ngFor="let f of theproduct?.features">{{f}}</li>
+                  </ul>
+                  <!-- <ng-container *ngFor="let f of theproduct?.features">
+                    <span>•</span>
+                  <p>
+                    {{f}}
+                  </p>
+                  </ng-container> -->
                 </div>
               </div>
             </div>
@@ -288,8 +296,9 @@
               <h5 class="b-filter_title text-uppercase">installation manual</h5>
             </div>
           </div>
-          <iframe src="{{theproduct?.issuEmbedURL}}"
-            style="border:none;width:100%;height:500px;" allowfullscreen></iframe>
+          <iframe [src]="theproduct?.issuEmbedURL | safe" style="border:none;width:100%;height:500px;" allowfullscreen></iframe>
+          <!-- <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(theproduct?.issuEmbedURL)"
+            style="border:none;width:100%;height:500px;" allowfullscreen></iframe> -->
         </div>
       </div>
     </div>

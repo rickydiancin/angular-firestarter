@@ -34,8 +34,12 @@ $green_color: #95C448;
     height: auto;
     visibility: visible;
     top: 53px;
-    left: 14px;
-    width: 95%;
+    left: 15px;
+    width: calc(100% - 29px);
+    // left: 14px;
+    // width: 95%;
+    max-height: 25rem;
+    overflow-x: auto;
 }
 
 /deep/.dropdown-item {

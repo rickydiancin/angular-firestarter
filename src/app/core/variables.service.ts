@@ -25,8 +25,9 @@ export class VariablesService {
 
   localstorage(collection) {
     if (collection == 'products') {
-      return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/products.json?alt=media&token=27e8bc46-0a87-4631-b73d-eb4b1b80a626');
-      // return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin-development.appspot.com/o/products.json?alt=media&token=be6670ac-2a0a-431c-8a57-dc57b32d49b9');
+      return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/products.json?alt=media&token=9da7b0d7-b50c-4c44-a980-bc5840ab576c');
+      // return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin-development2.appspot.com/o/products.json?alt=media&token=aedfcde0-43e0-4140-9a1f-2353e123a495');
+      // return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/products.json?alt=media&token=27e8bc46-0a87-4631-b73d-eb4b1b80a626');
     } else if (collection == 'solutions') {
       return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/solutions.json?alt=media&token=4918ad6f-670a-454e-bec6-287a1eec008a');
     } else if(collection == 'banners') {
@@ -405,7 +406,7 @@ export class VariablesService {
             url:'category/BASI'
           },
           {
-            subName: 'tiolets',
+            subName: 'toilets',
             url: 'category/TOIL'
           }
         ]
@@ -555,7 +556,7 @@ export class VariablesService {
             url: 'category/BASI'
           },
           {
-            categoryName: 'tiolets',
+            categoryName: 'toilets',
             url: 'category/TOIL'
           },
           {
