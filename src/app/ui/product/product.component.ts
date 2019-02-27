@@ -226,8 +226,10 @@ export class ProductComponent implements OnInit, AfterViewInit {
                 }
               })
             })
-            console.log(res)
+          res.features = res.features.trim().split('•');
+          res.features.shift();
           this.theproduct = await res;
+          console.log(res)
           // $(document).ready(function ($) {
           //   $('[data-toggle="tooltip"]').tooltip();
           //   console.log($(".gallery").length)
