@@ -11,6 +11,7 @@ import * as _ from 'lodash';
 import { take, map } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { DomSanitizer } from '@angular/platform-browser';
 
 declare var $: any;
 
@@ -161,8 +162,13 @@ export class ProductComponent implements OnInit, AfterViewInit {
     public vs: VariablesService,
     private router: Router,
     private afAuth: AngularFireAuth,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    public sanitizer: DomSanitizer
   ) {
+  }
+
+  makeTrustedImage(item) {
+    return this.sanitizer.bypassSecurityTrustUrl(item);
   }
 
   enlarge() {

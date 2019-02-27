@@ -44,7 +44,8 @@ const routes: Routes = [
   { path: 'notes', component: NotesListComponent,  canActivate: [AuthGuard] },
   { path: 'uploads',  component: UploadPageComponent,  canActivate: [AuthGuard] },
   { path: 'ssr', component: SsrPageComponent },
-  { path: '**', component: HomePageComponent },
+  // { path: '**', component: HomePageComponent },
+  { path: '**', redirectTo: '/' },
 ];
 
 @NgModule({
