@@ -79,7 +79,10 @@ export class MainNavComponent implements OnInit {
     // console.log(this.categories);
 
     this.vs.localstorage('solutions').subscribe((solutions) => {
-      this.solutions = solutions
+      this.solutions = _.orderBy(solutions, ['order'], ['asc']);
+      // this.solutions = solutions;
+      // console.log(solutions)
+
     })
     // if(this.vs.localstorage('solutions')) {
     //   this.solutions = JSON.parse(localStorage.getItem('solutions'));
