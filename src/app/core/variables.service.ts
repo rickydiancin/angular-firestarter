@@ -406,7 +406,7 @@ export class VariablesService {
             url:'category/BASI'
           },
           {
-            subName: 'tiolets',
+            subName: 'toilets',
             url: 'category/TOIL'
           }
         ]
@@ -556,7 +556,7 @@ export class VariablesService {
             url: 'category/BASI'
           },
           {
-            categoryName: 'tiolets',
+            categoryName: 'toilets',
             url: 'category/TOIL'
           },
           {
