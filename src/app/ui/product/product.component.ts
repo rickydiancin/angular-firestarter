@@ -227,7 +227,7 @@ export class ProductComponent implements OnInit, AfterViewInit {
               })
             })
           res.features = res.features.trim().split('•');
-          res.features.shift();
+          // res.features.shift();
           this.theproduct = await res;
           console.log(res)
           // $(document).ready(function ($) {
