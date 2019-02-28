@@ -88,7 +88,7 @@ export class VariablesService {
       },
       {
         title: 'Bathroom Accessories',
-        url: 'category/BA',
+        url: 'category/ACCS',
         isparent: true
       },
       {
@@ -481,7 +481,7 @@ export class VariablesService {
       },
       {
         categoryName: 'bathroom accessories',
-        url: 'category/BA',
+        url: 'category/ACCS',
         sub: []
       },
       {
@@ -599,7 +599,7 @@ export class VariablesService {
           },
           {
             categoryName: 'bathroom accessories',
-            url: 'category/BA'
+            url: 'category/ACCS'
           },
           {
             categoryName: 'grate seal',
