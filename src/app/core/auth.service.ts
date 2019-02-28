@@ -144,6 +144,35 @@ export class AuthService {
       .catch(error => this.handleError(error));
   }
 
+  changePassword(secure) {
+    return this.afAuth.auth.currentUser.reauthenticateAndRetrieveDataWithCredential(
+      auth.EmailAuthProvider.credential(
+        this.afAuth.auth.currentUser.email,
+        secure.currentPassword
+      )
+    ).then(() => {
+      if (secure.newPassword !== '' && secure.retypePassword !== '') {
+        if (secure.newPassword === secure.retypePassword) {
+            return this.afAuth.auth.currentUser.updatePassword(secure.newPassword)
+              .then(() => {
+                return { success: true, message: 'Password Changed' }
+              }, error => {
+                return { success: false, message: error }
+              })
+          } else {
+          return { success: false, message: 'New Password did not matched.' }
+          }
+        } else {
+        return { success: false, message: 'New Password cannot be empty' }
+        }
+    }).catch((error) => {
+      return { success: false, message: error.message }
+    })
+
+    // var user = auth().currentUser;
+    // return user;
+  }
+
   signOut() {
     this.afAuth.auth.signOut().then(() => {
       this.router.navigate(['/login']);
