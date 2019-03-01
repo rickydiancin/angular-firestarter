@@ -12,6 +12,7 @@ import { VariablesService } from 'src/app/core/variables.service';
   styleUrls: ['./main-nav.component.scss']
 })
 export class MainNavComponent implements OnInit {
+  filterQuery = '';
 
   show = false;
   categories:any;
