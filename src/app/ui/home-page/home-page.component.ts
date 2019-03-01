@@ -120,6 +120,7 @@ export class HomePageComponent implements OnInit {
 
   getAllProducts() {
     this.vs.localstorage('products').subscribe((products:any) => {
+     // console.log(products);
       if(products.length) {
         _(products).each(async (a: any, b) => {
           a.categories = await a.categories.split(';').join(',').match(/(?=\S)[^,]+?(?=\s*(,|$))/g);
@@ -132,7 +133,7 @@ export class HomePageComponent implements OnInit {
                   if (c.length) {
                     products[b].categoryName = await c;
                     this.products = await products
-                    //console.log(this.products);
+                //   console.log(this.products);
                   }
                 } else {
                   this.products = await products;
