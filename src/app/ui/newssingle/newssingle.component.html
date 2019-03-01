@@ -1,21 +1,21 @@
 <div class="b-page_title b-page_title_default text-center">
   <h1 class="b-entry_title"><span>Lifestyle</span></h1>  
   <div class="b-breadcrumbs">
-    <a href="index.html">Home</a>
-    <span>Blog Single</span>
+    <a href="#" routerLink="/">Home</a>
+    <span><a href="#" routerLink="/news">News</a></span>
   </div>
 </div> 
-<section id="b-blog_alternative" *ngIf="singleNews">
+<section id="b-blog_fullwidth" *ngIf="singleNews">
     <div class="container">
       <div class="row clearfix">
-        <div class="col-xl-9 col-lg-9 col-mb-8 col-sm-12 col-xs-12">
-          <div class="b-blog_default b-blog_grid b-blog_default_list">
+          <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
+              <div class="b-blog_default b-blog_grid b-blog_default_list b-blog_full">
             <div class="b-blog_degault_single">   
                <div class="b-blog_single_info text-center">
                     <div class="b-blog_single_header">
                       <div class="b-post_categories mb-2 d-relative">
                          <div class="b-post_categorie_list">
-                            <a href="#" rel="category tag">Lifestyle</a>
+                            <a href="#" rel="category tag" routerLink="/news">{{singleNews?.category}}</a>
                          </div>
                       </div>   
                     </div>
@@ -73,152 +73,7 @@
             </div> 
           </div>
         </div>  
-        <div class="col-xl-3 col-lg-3 col-mb-4 col-sm-12 col-xs-12">
-          <div class="b-sidebar">
-            <div class="b-sidebar_widget">
-              <h5 class="b-widget_title">CATEGORIES</h5>
-              <div class="b-sidenav">
-                <nav>  
-                  <ul class="pl-0 mb-0 list-unstyled">
-                    <li><a href="#">Creative</a></li>
-                    <li><a href="#">Featured</a></li>
-                    <li><a href="#">Hobbies</a></li>
-                    <li><a href="#">International</a></li>
-                    <li><a href="#">Lifestyle</a></li>
-                    <li><a href="#">Travel</a></li>
-                  </ul>
-                </nav>
-              </div>
-            </div>
-            <div class="b-sidebar_widget">
-              <h5 class="b-widget_title">RECENT POST</h5>
-              <div class="b-sidenav">
-                <nav>  
-                  <ul class="pl-0 mb-0 list-unstyled b-recent_post">
-                    <li>
-                      <a href="#" class="b-recent_blog_img d-inline-block">
-                          <img src="assets/images/blog/home/blog_recent_01.jpg" class="img-fluid d-block" alt="">
-                      </a>
-                      <h3><a href="#">VENENATIS VEULUM PEUS</a></h3>
-                      <span>August 8, 2015</span>
-                    </li>
-                    <li>
-                      <a href="#" class="b-recent_blog_img d-inline-block">
-                          <img src="assets/images/blog/home/blog_recent_02.jpg" class="img-fluid d-block" alt="">
-                      </a>
-                      <h3><a href="#">HAC FAMES TEMPOR</a></h3>
-                      <span>August 8, 2015</span>
-                    </li>
-                    <li>
-                      <a href="#" class="b-recent_blog_img d-inline-block">
-                          <img src="assets/images/blog/home/blog_recent_03.jpg" class="img-fluid d-block" alt="">
-                      </a>
-                      <h3><a href="#">URNA LIGULA INCEPTOS</a></h3>
-                      <span>August 8, 2015</span>
-                    </li>
-                    <li>
-                      <a href="#" class="b-recent_blog_img d-inline-block">
-                          <img src="assets/images/blog/home/blog_recent_04.jpg" class="img-fluid d-block" alt="">
-                      </a>
-                      <h3><a href="#">DAPIBUS A AT GRAVIDA</a></h3>
-                      <span>August 8, 2015</span>
-                    </li>
-                    <li>
-                      <a href="#" class="b-recent_blog_img d-inline-block">
-                          <img src="assets/images/blog/home/blog_recent_05.jpg" class="img-fluid d-block" alt="">
-                      </a>
-                      <h3><a href="#">CONDINTUM INTELGER RIDIS</a></h3>
-                      <span>August 8, 2015</span>
-                    </li> 
-                  </ul>
-                </nav>
-              </div>
-            </div>
-            <div class="b-sidebar_widget">
-              <h5 class="b-widget_title">OUR INSTAGRAM</h5>
-              <div class="b-instagram_feeds">
-                <ul class="b-instagram_pics list-inline">
-                    <li>
-                        <a href="#" target="_self"></a>
-                        <div class="wrapp-pics">
-                            <img src="assets/images/instagram/home/default-instagramm-1.jpg" alt="" class="img-fluid d-block">
-                            <div class="hover-mask"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#" target="_self"></a>
-                        <div class="wrapp-pics">
-                            <img src="assets/images/instagram/home/default-instagramm-2.jpg" alt="" class="img-fluid d-block">
-                            <div class="hover-mask"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#" target="_self"></a>
-                        <div class="wrapp-pics">
-                            <img src="assets/images/instagram/home/default-instagramm-3.jpg" alt="" class="img-fluid d-block">
-                            <div class="hover-mask"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#" target="_self"></a>
-                        <div class="wrapp-pics">
-                            <img src="assets/images/instagram/home/default-instagramm-4.jpg" alt="" class="img-fluid d-block">
-                            <div class="hover-mask"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#" target="_self"></a>
-                        <div class="wrapp-pics">
-                            <img src="assets/images/instagram/home/default-instagramm-5.jpg" alt="" class="img-fluid d-block">
-                            <div class="hover-mask"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#" target="_self"></a>
-                        <div class="wrapp-pics">
-                            <img src="assets/images/instagram/home/default-instagramm-6.jpg" alt="" class="img-fluid d-block">
-                            <div class="hover-mask"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#" target="_self"></a>
-                        <div class="wrapp-pics">
-                            <img src="assets/images/instagram/home/default-instagramm-2.jpg" alt="" class="img-fluid d-block">
-                            <div class="hover-mask"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#" target="_self"></a>
-                        <div class="wrapp-pics">
-                            <img src="assets/images/instagram/home/default-instagramm-3.jpg" alt="" class="img-fluid d-block">
-                            <div class="hover-mask"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#" target="_self"></a>
-                        <div class="wrapp-pics">
-                            <img src="assets/images/instagram/home/default-instagramm-4.jpg" alt="" class="img-fluid d-block">
-                            <div class="hover-mask"></div>
-                        </div>
-                    </li>
-                </ul>
-              </div>
-            </div>  
-            <div class="b-sidebar_widget">
-              <h5 class="b-widget_title">RECENT COMMENT</h5>
-              <div class="b-sidenav">
-                <nav>  
-                  <ul class="pl-0 mb-0 list-unstyled b-recent_comment">
-                    <li><b>admin on </b><a href="#">Basic knit dress chest</a></li>
-                    <li><b>admin on </b><a href="#">Eingerless gloves in camel</a></li>
-                    <li><b>admin on </b><a href="#">Eingerless gloves in camel</a></li>
-                    <li><b>admin on </b><a href="#">Yolour Riche La Palette Nude</a></li> 
-                  </ul>
-                </nav>
-              </div>
-            </div>
-          </div>
-        </div>
+       
       </div>
     </div>
 </section> 
