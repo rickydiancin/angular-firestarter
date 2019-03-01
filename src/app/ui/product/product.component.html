@@ -51,6 +51,11 @@
                     <img [src]="theproduct?.primaryURL || './assets/images/not_available.jpg'" alt="" class="img-fluid">
                   </a>
                 </div>
+                <ng-container *ngIf="theproduct?.secondaryURL">
+                  <div *ngFor="let secondURL of theproduct?.secondaryURL.split(';')" class="owl-thumb-item b-display-item">
+                    <img [src]="secondURL" alt="" class="img-fluid">
+                  </div>
+                </ng-container>
                 <div class="b-produt-item">
                   <a href="{{theproduct?.lineDrawing || './assets/images/not_available.jpg'}}">
                     <img [src]="theproduct?.lineDrawing || './assets/images/not_available.jpg'" alt="" class="img-fluid">
@@ -100,6 +105,11 @@
                   <div class="owl-thumb-item b-display-item">
                     <img [src]="theproduct?.primaryURL || './assets/images/not_available.jpg'" alt="" class="img-fluid">
                   </div>
+                  <ng-container *ngIf="theproduct?.secondaryURL">
+                    <div *ngFor="let secondURL of theproduct?.secondaryURL.split(';')" class="owl-thumb-item b-display-item">
+                      <img [src]="secondURL" alt="" class="img-fluid">
+                    </div>
+                  </ng-container>
                   <div class="owl-thumb-item b-display-item">
                     <img [src]="theproduct?.lineDrawing || './assets/images/not_available.jpg'" alt="" class="img-fluid">
                   </div>
