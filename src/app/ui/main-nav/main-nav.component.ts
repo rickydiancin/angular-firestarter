@@ -45,6 +45,8 @@ export class MainNavComponent implements OnInit {
   }
   
   ngOnInit() {
+    this.getAllProducts();
+    
     console.log(this.auth.user);
     this.menus = this.vs.allMenus();
     this.menus2 = this.vs.allMenus2();
@@ -110,6 +112,42 @@ export class MainNavComponent implements OnInit {
     // }
   }
 
+  getAllProducts() {
+    this.vs.localstorage('products').subscribe((products:any) => {
+     // console.log(products);
+      if(products.length) {
+        _(products).each(async (a: any, b) => {
+          a.categories = await a.categories.split(';').join(',').match(/(?=\S)[^,]+?(?=\s*(,|$))/g);
+          let c = [];
+          await _(a.categories).each(async (j: any, k) => {
+            if (j) {
+              await this.productsService.getCategoryByArray(j).subscribe(async (data: any) => {
+                if (data) {
+                  await c.push(data.categoryName.toLowerCase())
+                  if (c.length) {
+                    products[b].categoryName = await c;
+                    this.products = await products
+                //   console.log(this.products);
+                  }
+                } else {
+                  this.products = await products;
+                  this.products[b].categoryName = await [null];
+                }
+              })
+            }
+          })
+        })
+      }
+    });
+    // if (this.vs.localstorage('products')) {
+    //   this.products = JSON.parse(localStorage.getItem('products'));
+    // } else {
+    //   this.productsService.getAllProducts().subscribe((data) => {
+    //     this.products = data;
+    //     localStorage.setItem('products', JSON.stringify(data));
+    //   })
+    // }
+  }
   logout() {
     console.log('logout...');
     this.auth.signOut();

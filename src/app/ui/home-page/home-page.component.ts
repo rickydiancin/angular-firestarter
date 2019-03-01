@@ -133,7 +133,7 @@ export class HomePageComponent implements OnInit {
                   if (c.length) {
                     products[b].categoryName = await c;
                     this.products = await products
-                //   console.log(this.products);
+                console.log(this.products);
                   }
                 } else {
                   this.products = await products;

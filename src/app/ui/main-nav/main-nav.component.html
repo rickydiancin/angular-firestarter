@@ -4,8 +4,29 @@
                   <ul class="mobile-top"> 
                       <li class="search">
                           <div class="search-holder-mobile">
-                              <input type="text" name="search-mobile" value="" placeholder="Search" class="form-control">
+                              <!-- <input type="text" name="search-mobile" value="" placeholder="Search" class="form-control"> -->
+                              <input
+                              class="form-control"
+                          autocomplete="off"
+                          [disabled]="!products"
+                          [(ngModel)]="filterQuery"
+                          type="text" placeholder="Search Products"
+                          [ngModelOptions]="{standalone: true}">
+
                               <a class="fa fa-search"></a>
+                          </div>
+                          <div class="productList dropdown-menu" *ngIf="filterQuery">
+                            <ng-container *ngFor="let product of products | productFilter : filterQuery; let i = index;">
+                              <button class="dropdown-item" *ngIf="product !== -1" (click)="search(product?.productCode)">
+                                <img src="{{product?.primaryURL || './assets/images/not_available.jpg'}}" alt="" height="50px" width="50px">
+                                {{product?.productTitle | titlecase}} ({{product?.productCode}})
+                                <br>
+                                <small><b>Category Code: </b>{{product?.categories}}</small>
+                              </button>
+                              <button class="dropdown-item" *ngIf="product === -1">
+                                No Result(s) Found
+                              </button>
+                            </ng-container>
                           </div>
                       </li>
                   </ul>
@@ -44,21 +65,44 @@
               
                   </li>
                
-                  <li>
+                  <li class="has-sub dropdown-wrapper from-bottom">
                     <a href="#" class="p-relative description " routerLink="/category">
                     <span class="top">Company</span> 
                     </a>
+                    <div class="dropdown-content sub-holder dropdown-left narrow">
+                           
+                      <div class="clearfix">
+                          <div class="col-xs-12 col-sm-12 ">
+                              <div class="menu-item">
+                            
+                                  <div class="categories">
+                                      <div class="clearfix">
+                                          <div class="col-sm-12 hover-menu text-uppercase">
+                                              <ul id="solutions">
+                                                  <li> <a href="#" routerLink="/company" class="d-block"><strong> About Us</strong></a></li>
+                                                  <li> <a href="#" routerLink="/warranty" class="d-block"><strong> Warranty</strong></a></li>
+                                                  <li> <a href="#" routerLink="/distribution" class="d-block"><strong> Distribution</strong></a></li>
+                                              </ul>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+           
+                
+              </div>
                   </li>
                   <li *ngIf="auth?.user">
                     <a href="#" class="p-relative description " routerLink="/projects">
                     <span class="top">Specifications</span> 
                     </a>
                   </li>
-                  <li>
-                    <a href="#" class="p-relative description ">
+                  <!-- <li>
+                    <a href="#" class="p-relative description " routerLink="/news">
                     <span class="top">Projects</span> 
                     </a>
-                  </li>
+                  </li> -->
                   </ul> 
                 </div>  
       <header id="b-header"> 
@@ -256,11 +300,11 @@
                                 <span class="top">Specifications</span> 
                                 </a>
                               </li> -->
-                              <li>
+                              <!-- <li>
                                 <a href="#" routerLink="/news" class="p-relative description ">
                                 <span class="top">Projects</span> 
                                 </a>
-                              </li>
+                              </li> -->
                               <li>
                                 <a href="#" [routerLink]="['/']" fragment="contactUs" class="p-relative description ">
                                 <span class="top">Contact Us</span> 
