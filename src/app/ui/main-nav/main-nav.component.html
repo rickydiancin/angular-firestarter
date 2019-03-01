@@ -16,8 +16,8 @@
                       </li>
                     <li class="has-sub dropdown-wrapper from-bottom">
                         <a href="#" routerLink="/solution/all"><span class="top">Solutions</span></a>
-                        <!-- <div class="dropdown-content sub-holder dropdown-left narrow">
-                            <div class="dropdown-inner">
+                        <div class="dropdown-content sub-holder dropdown-left narrow">
+                           
                                 <div class="clearfix">
                                     <div class="col-xs-12 col-sm-12 ">
                                         <div class="menu-item">
@@ -25,8 +25,8 @@
                                             <div class="categories">
                                                 <div class="clearfix">
                                                     <div class="col-sm-12 hover-menu text-uppercase">
-                                                        <ul *ngFor="let cat of solutions">
-                                                            <li> <a href="#" routerLink="/solution/{{cat?.solutionCode}}" class="d-block"><strong> {{cat.solutionName}} Solutions </strong></a></li>
+                                                        <ul id="solutions">
+                                                            <li *ngFor="let cat of solutions"> <a href="#" routerLink="/solution/{{cat?.solutionCode}}" class="d-block"><strong> {{cat.solutionName}} Solutions </strong></a></li>
                                                            
                                                         </ul>
                                                     </div>
@@ -36,8 +36,8 @@
                                     </div>
                                 </div>
                      
-                            </div>
-                        </div> -->
+                          
+                        </div>
                     </li>
                     <li class="has-sub dropdown-wrapper from-bottom">
                       <a href="#" routerLink="/category/all"><span class="top">Products</span></a>
