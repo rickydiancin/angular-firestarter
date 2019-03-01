@@ -35,64 +35,87 @@
                           <a href="#" routerLink="/"><span class="top">Home</span></a>
                   
                       </li>
-                    <li class="has-sub dropdown-wrapper from-bottom">
-                        <a href="#" routerLink="/solution/all"><span class="top">Solutions</span></a>
+                      <li class="has-sub dropdown-wrapper from-bottom">
+                        <a href="#" class="p-relative description " routerLink="/category">
+                        <span class="top">Company</span> 
+                        </a>
                         <div class="dropdown-content sub-holder dropdown-left narrow">
-                           
-                                <div class="clearfix">
-                                    <div class="col-xs-12 col-sm-12 ">
-                                        <div class="menu-item">
-                                      
-                                            <div class="categories">
-                                                <div class="clearfix">
-                                                    <div class="col-sm-12 hover-menu text-uppercase">
-                                                        <ul id="solutions">
-                                                            <li *ngFor="let cat of solutions"> <a href="#" routerLink="/solution/{{cat?.solutionCode}}" class="d-block"><strong> {{cat.solutionName}} Solutions </strong></a></li>
-                                                           
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                     
-                          
-                        </div>
-                    </li>
-                    <li class="has-sub dropdown-wrapper from-bottom">
-                      <a href="#" routerLink="/category/all"><span class="top">Products</span></a>
-              
-                  </li>
-               
-                  <li class="has-sub dropdown-wrapper from-bottom">
-                    <a href="#" class="p-relative description " routerLink="/category">
-                    <span class="top">Company</span> 
-                    </a>
-                    <div class="dropdown-content sub-holder dropdown-left narrow">
-                           
-                      <div class="clearfix">
-                          <div class="col-xs-12 col-sm-12 ">
-                              <div class="menu-item">
-                            
-                                  <div class="categories">
-                                      <div class="clearfix">
-                                          <div class="col-sm-12 hover-menu text-uppercase">
-                                              <ul id="solutions">
-                                                  <li> <a href="#" routerLink="/company" class="d-block"><strong> About Us</strong></a></li>
-                                                  <li> <a href="#" routerLink="/warranty" class="d-block"><strong> Warranty</strong></a></li>
-                                                  <li> <a href="#" routerLink="/distribution" class="d-block"><strong> Distribution</strong></a></li>
-                                              </ul>
+                               
+                          <div class="clearfix">
+                              <div class="col-xs-12 col-sm-12 ">
+                                  <div class="menu-item">
+                                
+                                      <div class="categories">
+                                          <div class="clearfix">
+                                              <div class="col-sm-12 hover-menu text-uppercase">
+                                                  <ul id="solutions">
+                                                      <li> <a href="#" routerLink="/company" class="d-block"><strong> About Us</strong></a></li>
+                                                      <li> <a href="#" routerLink="/warranty" class="d-block"><strong> Warranty</strong></a></li>
+                                                      <li> <a href="#" routerLink="/distribution" class="d-block"><strong> Distribution</strong></a></li>
+                                                  </ul>
+                                              </div>
                                           </div>
                                       </div>
                                   </div>
                               </div>
                           </div>
-                      </div>
-           
-                
-              </div>
+               
+                    
+                  </div>
+                      </li>
+                 
+                    <li class="has-sub dropdown-wrapper from-bottom">
+                      <a href="#" routerLink="/category/all"><span class="top">Products</span></a>
+                      <div class="dropdown-content sub-holder dropdown-left narrow">
+                           
+                        <div class="clearfix">
+                            <div class="col-xs-12 col-sm-12 ">
+                                <div class="menu-item">
+                              
+                                    <div class="categories">
+                                        <div class="clearfix">
+                                            <div class="col-sm-12 hover-menu text-uppercase">
+                                                <ul id="solutions">
+                                                    <li *ngFor="let cat of menuparent" > <a href="#" routerLink="{{cat?.url}}" class="d-block"><strong> {{cat.title}} </strong></a></li>
+                                                   
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+             
+                  
+                </div>
                   </li>
+
+                  <li class="has-sub dropdown-wrapper from-bottom">
+                    <a href="#" routerLink="/solution/all"><span class="top">Solutions</span></a>
+                    <div class="dropdown-content sub-holder dropdown-left narrow">
+                       
+                            <div class="clearfix">
+                                <div class="col-xs-12 col-sm-12 ">
+                                    <div class="menu-item">
+                                  
+                                        <div class="categories">
+                                            <div class="clearfix">
+                                                <div class="col-sm-12 hover-menu text-uppercase">
+                                                    <ul id="solutions">
+                                                        <li *ngFor="let cat of solutions"> <a href="#" routerLink="/solution/{{cat?.solutionCode}}" class="d-block"><strong> {{cat.solutionName}} Solutions </strong></a></li>
+                                                       
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                 
+                      
+                    </div>
+                </li>
+                  
                   <li *ngIf="auth?.user">
                     <a href="#" class="p-relative description " routerLink="/projects">
                     <span class="top">Specifications</span> 

@@ -19,6 +19,7 @@ export class MainNavComponent implements OnInit {
   menus:any;
   menus2:any;
   menus3:any;
+  menuparent:any;
   finalMenu1:any;
   finalMenu2:any;
   finalMenu3:any;
@@ -52,6 +53,8 @@ export class MainNavComponent implements OnInit {
     this.menus = this.vs.allMenus();
     this.menus2 = this.vs.allMenus2();
     this.menus3 = this.vs.allMenus3();
+    this.menuparent = this.vs.allParent();
+    console.log(this.menuparent);
     this.finalMenu1 = this.vs.finalMenu1();
     this.finalMenu2 = this.vs.finalMenu2();
     this.finalMenu3 = this.vs.finalMenu3();
