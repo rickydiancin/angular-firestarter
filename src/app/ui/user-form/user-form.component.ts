@@ -14,7 +14,11 @@ type FormErrors = { [u in UserFields]: string };
 })
 export class UserFormComponent implements OnInit {
 
-  userForm: FormGroup;
+  isLogin: Boolean = true;
+  sentRecovery: Boolean = false;
+  email;
+
+  userForm;
   regform: FormGroup;
   data: any;
   newUser = true; // to toggle login or signup form
@@ -69,8 +73,10 @@ export class UserFormComponent implements OnInit {
   }
 
   resetPassword() {
-    this.auth.resetPassword(this.userForm.value['email'])
-      .then(() => this.passReset = true);
+    this.auth.resetPassword(this.email)
+      .then((success) => {
+        this.sentRecovery = true;
+      });
   }
 
   buildForm() {

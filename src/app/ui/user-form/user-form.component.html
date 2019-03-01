@@ -3,7 +3,30 @@
     <div class="container b-my_account">
       <div class="row">
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12"> 
-          <div class="b-auth_section b-auth_login">
+          <div class="b-auth_section b-auth_login" *ngIf="!isLogin && sentRecovery">
+            <h2><i class="icon-login icons"></i> Can't log in?</h2>
+            <p>We sent a recovery link to your email address '<b>{{email}}</b>'</p>
+                <div class="form-group clearfix">
+                  <a href="javascript:void()" class="pull-right b-lost_password" (click)="isLogin = true; sentRecovery = false"><i class="icon-support icons"></i> Return to log in</a>
+                </div>
+                <p *ngIf="userForm.valid" class="text-success">Form is valid</p>
+                <button (click)="resetPassword()" style="font-family: 'Montserrat', sans-serif;" type="submit" class="btn" >Resend recovery link</button>
+          </div>
+          <div class="b-auth_section b-auth_login" *ngIf="!isLogin && !sentRecovery">
+            <h2><i class="icon-login icons"></i> Can't log in?</h2>
+            <p>We'll send a recovery link to</p>
+                <div class="form-group">
+                  <input style="font-family: 'Montserrat', sans-serif;" type="email" placeholder="Enter email" id="email" name="email2" class="input" [(ngModel)]="email" required>
+                  <div *ngIf="formErrors.email" class="help is-danger">
+                    {{ formErrors.email }}
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                  <a href="javascript:void()" class="pull-right b-lost_password" (click)="isLogin = true"><i class="icon-support icons"></i> Return to log in</a>
+                </div>
+                <button [disabled]="!email" (click)="resetPassword()" style="font-family: 'Montserrat', sans-serif;" type="submit" class="btn" >Send recovery link</button>
+          </div>
+          <div class="b-auth_section b-auth_login" *ngIf="isLogin">
             <h2><i class="icon-login icons"></i> Login</h2>
             <form [formGroup]="userForm" (ngSubmit)="login()">
                 <div class="form-group">
@@ -22,7 +45,7 @@
                 </div>
                 <div class="form-group clearfix">
                   <label class="pull-left"><input name="" type="checkbox"  value=""> Remember me</label>
-                  <a href="#" class="pull-right b-lost_password" (click)="resetPassword()"><i class="icon-support icons"></i>  Lost your password?</a>
+                  <a href="javascript:void()" class="pull-right b-lost_password" (click)="isLogin = false; userForm.reset(); email=''"><i class="icon-support icons"></i>  Lost your password?</a>
                 </div>
                 <p *ngIf="userForm.valid" class="text-success">Form is valid</p>
                 <button type="submit" class="btn"  [disabled]="!userForm.valid" >Login</button>  
