@@ -72,6 +72,50 @@ export class VariablesService {
   allParent(){
     let menuparent = [
       {
+        title: 'Tapware',
+        url: 'category/TPWR',
+        isparent: true
+      },
+      {
+        title: 'Thermostatic Valves',
+        url: 'category/TMV',
+        isparent: true
+      },
+      {
+        title: 'Sanitary Ware',
+        url: 'category/SANH',
+        isparent: true
+      },
+      {
+        title: 'antiligature systems',
+        url: 'category/ANTIV'
+      },
+      {
+        title: 'pre-rinse units',
+        url: 'category/JETFLO',
+      },
+      {
+        title: 'safety showers & equipement',
+        url: 'category/ESHOW',
+      },
+      {
+        title: 'time flow tapware',
+        url: 'category/TFT'
+      },
+      {
+        title: 'electronic tapware',
+        url: 'category/ELEC'
+      },
+      {
+        title: 'showers',
+        url: 'category/SHOWR'
+      },
+      {
+        title: 'laboratory tapware',
+        url: 'category/DURA',
+   
+      },
+      {
         title: 'Rails & Accessible Equipment',
         url: 'category/COMC',
         isparent: true
@@ -86,16 +130,7 @@ export class VariablesService {
         url: 'category/GRTS',
         isparent: true
       },
-      {
-        title: 'Thermostatic Valves',
-        url: 'category/TMV',
-        isparent: true
-      },
-      {
-        title: 'Sanitary Ware',
-        url: 'category/SANH',
-        isparent: true
-      }
+  
     ]
     return menuparent;
   }

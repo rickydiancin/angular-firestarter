@@ -3,13 +3,14 @@ import { ScriptsService } from 'src/app/core/scripts.service';
 import { ProductsService } from 'src/app/core/products.service';
 import { Observable } from 'rxjs';
 import { PaginationInstance } from 'ngx-pagination';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddToProjectComponent } from '../product/add-to-project/add-to-project.component';
 import { VariablesService } from 'src/app/core/variables.service';
 import * as _ from 'lodash';
 import { Title, DomSanitizer } from '@angular/platform-browser';
 import { canvasToBlob } from 'blob-util';
+import { AuthService } from 'src/app/core/auth.service';
 
 @Component({
   selector: 'category',
@@ -19,7 +20,7 @@ import { canvasToBlob } from 'blob-util';
 export class CategoryComponent implements OnInit {
   // products: Observable<any[]>;
   products:any = [];
-  productsTemp:any;
+  productsTemp:any = [];
   categories:any;
   solutions:any;
   routeParamsName: any;
@@ -35,6 +36,9 @@ export class CategoryComponent implements OnInit {
   finalMenu2:any;
   finalMenu3:any;
   input:any;
+  addToProject: boolean = false;
+  isLoggin: Boolean;
+  sortValue: any = 'productTitle';
 
   @Input('data') meals: string[] = [];
 
@@ -59,7 +63,9 @@ export class CategoryComponent implements OnInit {
     private modalService: NgbModal,
     public vs: VariablesService,
     public titleService: Title,
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
+    public authService: AuthService,
+    private router: Router
   ) { }
 
   // makeTrustedImage(item) {
@@ -69,6 +75,8 @@ export class CategoryComponent implements OnInit {
   // }
 
   ngOnInit() {
+
+    console.log(this.sortValue)
 
     this.finalMenu1 = this.vs.finalMenu1();
     this.finalMenu2 = this.vs.finalMenu2();
@@ -83,7 +91,6 @@ export class CategoryComponent implements OnInit {
     })
 
     this.categories = this.vs.allCategories();
-    console.log(this.route.snapshot.params.id)
 
     this.route.params.subscribe(params => {
       if(params) {
@@ -98,17 +105,19 @@ export class CategoryComponent implements OnInit {
             this.paramsCategory = params.id
             this.productsService.getCategory(params.id, res => {
               this.category = res;
-              console.log("category",this.category );
+              // console.log("category",this.category );
             });
             this.vs.localstorage('products').subscribe((products: any) => {
               if (products.length) {
                 products.forEach(a => {
-                  console.log(a.categories, a.productCode)
+                  // console.log(a.categories, a.productCode)
                 });
-                this.products = _(products).filter((value) => {
-                    value.categories = value.categories.split(';').join(',').match(/(?=\S)[^,]+?(?=\s*(,|$))/g);
+                let productList = _(products).filter((value) => {
+                    value.categories = value.categories.split(';');
                     return value.categories.includes(params.id)
                   }).value();
+                this.products = _(productList).sortBy(this.sortValue).value();
+                this.productsTemp = productList;
                 this.productsLoaded = true;
                 // console.log(this.products)
               }
@@ -168,14 +177,16 @@ export class CategoryComponent implements OnInit {
             this.vs.localstorage('products').subscribe((products: any) => {
               if (products.length) {
                 products.forEach(a => {
-                  console.log(a.solutions, a.productCode)
+                  // console.log(a.solutions, a.productCode)
                 });
-                this.products = _(products).filter((value) => {
+                let productList = _(products).filter((value) => {
                   value.solutions = value.solutions.split(';').join(',').match(/(?=\S)[^,]+?(?=\s*(,|$))/g);
                   if (value.solutions) {
                     return value.solutions.includes(params.solutionid)
                   }
                 }).value();
+                this.products = _(productList).sortBy(this.sortValue).value();
+                this.productsTemp = productList;
                 this.productsLoaded = true;
               }
             })
@@ -233,11 +244,12 @@ export class CategoryComponent implements OnInit {
   // }
 
   getAllProducts(value?) {
+    this.scriptsService.prepareJquery();
     let result = [];
       this.vs.localstorage('products').subscribe((products: any) => {
         if (products.length) {
           if (!value) {
-            this.products = products;
+            this.products = _(products).sortBy(this.sortValue).value();
             this.productsTemp = products;
             this.productsLoaded = true;
           } else {
@@ -245,14 +257,13 @@ export class CategoryComponent implements OnInit {
               if(cb) {
                 setTimeout(() => {
                   result = _.filter(cb, row => row);
-                  // console.log(result)
                   cb.forEach((cv) => {
                     console.log(cv.categoryName)
                   })
                   console.log(cb)
                   result = _.filter(cb, row => row.productTitle.toString().toLowerCase().indexOf(value) > -1 || row.productCode.toString().toLowerCase().indexOf(value) > -1 || row.categories.toString().toLowerCase().indexOf(value) > -1 || row.categoryName.toString().toLowerCase().indexOf(value) > -1);
                   if (result.length > 0) {
-                    this.products = result;
+                    this.products = _(result).sortBy(this.sortValue).value();
                     this.productsTemp = result;
                     this.productsLoaded = true;
                   } else {
@@ -336,12 +347,20 @@ export class CategoryComponent implements OnInit {
   }
 
   addToProduct(product) {
-    // $('#b-promo_popup').modal('show');
-    const activeModal = this.modalService.open(AddToProjectComponent, { size: 'lg', backdrop: 'static' });
-    activeModal.componentInstance.product = product
-    activeModal.result.then((result) => {
-      this.vs.showAddProjectModal = result.value
-    })
+    if (this.authService.user) {
+      const activeModal = this.modalService.open(AddToProjectComponent, { size: 'lg', backdrop: 'static' });
+      activeModal.componentInstance.product = product
+      activeModal.result.then((result) => {
+        this.vs.showAddProjectModal = result.value
+      })
+    } else {
+      this.router.navigate(['/login'])
+    }
+    // const activeModal = this.modalService.open(AddToProjectComponent, { size: 'lg', backdrop: 'static' });
+    // activeModal.componentInstance.product = product
+    // activeModal.result.then((result) => {
+    //   this.vs.showAddProjectModal = result.value
+    // })
   }
 
   getAllCategoryProducts(id) {

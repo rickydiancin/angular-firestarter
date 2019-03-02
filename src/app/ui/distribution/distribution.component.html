@@ -7,18 +7,14 @@
       Unit 6, 20- 28 Ricketty Street, <br>
       Mascot, NSW 2020, Australia
     </p>
-    <a href="#">Contact Us</a>
+    <a href="#" [routerLink]="['/']" fragment="contactUs">Contact Us</a>
   </div>
 </div>
 <section id="distribution" class="pb-5">
-    <div class="b-section_title">
-              <h4 class="text-center text-uppercase">
-                {{post?.title}}
-          
-              </h4>
-          </div>
-          <div class="container" [innerHTML]="post?.content">
-
-            
-              </div>
-          </section>
+  <div class="b-section_title">
+    <h4 class="text-center text-uppercase">
+      {{post?.title}}
+    </h4>
+</div>
+<div class="container" [innerHTML]="post?.content"></div>
+</section>
