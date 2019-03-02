@@ -1,5 +1,7 @@
 
-<p *ngIf="!user">Loading user data...</p>
+<div class="spinner text-center p-5" *ngIf="!user">
+  <img src="./assets//svg/oval.svg" class="img-fluid" alt="">
+</div>
 
 <div class="container-fluid" *ngIf="user">
 
@@ -31,7 +33,7 @@
                         </small>
                     </p>
                     <a href="#" class="btn btn-primary btn-round">Change Password</a>
-<br><br><br>
+                    <br><br><br>
                     <form [formGroup]="passwordForm" class="mt-4">
                       
                             <div class="form-group bmd-form-group">
