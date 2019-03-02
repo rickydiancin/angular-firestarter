@@ -139,3 +139,37 @@ form input[type=text] {
 /deep/.b-contact {
     margin-top: 7rem;
 }
+
+.b-banner {
+    .spinner {
+        height: 100%;
+        position: relative;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border: 1px solid #dfdfdf;
+    }
+
+    .img-spinner {
+        position: absolute;
+        top: 45%;
+        left: 45%;
+    }
+}
+
+.b-our_story {
+    .spinner {
+        height: 100%;
+        width: 100%;
+        position: relative;
+        background: #FBF6F6;
+        padding: 3rem;
+    }
+
+    // .img-spinner {
+    //     position: absolute;
+    //     top: 45%;
+    //     left: 45%;
+    // }
+}
