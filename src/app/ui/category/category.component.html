@@ -365,15 +365,15 @@
             </div>
             <div class="col-sm-4">
               <div class="sortBy">
-                <form>
+                <!-- <form> -->
                   <div class="form-group" *ngIf="products?.length > 0">
                     <label for="">Sort by</label>
-                    <select name="" id="" (change)="sortBy($event)" class="form-control-sm">
+                    <select name="" id="" (change)="sortBy($event)" [(ngModel)]="sortValue" class="form-control-sm">
                       <option value="productTitle">Name</option>
                       <option value="dateCreated">Latest</option>
                     </select>
                   </div>
-                </form>
+                <!-- </form> -->
               </div>
             </div>
               <ng-container *ngIf="!productsLoaded">
@@ -425,7 +425,7 @@
                       <div class="clearfix">
                         <div class="b-product_grid_toggle float-left">
                           <!-- <span class="b-price">Add To Project</span> -->
-                          <span class="b-add_cart" (click)="addToProduct(product)">
+                          <span class="b-add_cart" [tooltip]="authService.user?'':'Please login to use Project Manager'" (click)="addToProduct(product)">
                             <i class="icon-plus icons"></i>
                             <a href="javascript:void();">Add To Project</a>
                           </span>

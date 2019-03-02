@@ -8,6 +8,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { PostService } from 'src/app/core/post.service';
 import { Title } from '@angular/platform-browser';
 import * as _ from 'lodash';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AddToProjectComponent } from '../product/add-to-project/add-to-project.component';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { take, map } from 'rxjs/operators';
 
 @Component({
   selector: 'home-page',
@@ -29,6 +33,8 @@ export class HomePageComponent implements OnInit {
   solutions:any;
   form: any;
   fragment: string;
+  addToProject: boolean = true;
+  isLoggin: Boolean;
 
   constructor(
     private scriptsService: ScriptsService,
@@ -38,7 +44,9 @@ export class HomePageComponent implements OnInit {
     public formBuilder: FormBuilder,
     public postService: PostService,
     private titleService: Title,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private modalService: NgbModal,
+    private afAuth: AngularFireAuth
   ) {
     this.createForm();
     this.titleService.setTitle(`Leading Provider and Supplier of Tapware in Australia | Gentec Australia`)
@@ -66,7 +74,20 @@ export class HomePageComponent implements OnInit {
     });
   }
 
+  checkAuth() {
+    // console.log('wow',this.afAuth.authState)
+    return this.afAuth.authState.pipe(
+      take(1),
+      map(user => !!user)
+    );
+  }
+
   ngOnInit() {
+
+    this.checkAuth().subscribe((res) => {
+      this.addToProject = res;
+      this.isLoggin = res
+    });
 
       setTimeout(() => {
         this.scriptsService.prepareJquery();
@@ -176,6 +197,14 @@ export class HomePageComponent implements OnInit {
     } else {
       this.router.navigate(['/products'], { queryParams: { s: this.filterQuery } })
     }
+  }
+
+  addToProduct(product) {
+    const activeModal = this.modalService.open(AddToProjectComponent, { size: 'lg', backdrop: 'static' });
+    activeModal.componentInstance.product = product
+    activeModal.result.then((result) => {
+      this.vs.showAddProjectModal = result.value
+    })
   }
 
 }

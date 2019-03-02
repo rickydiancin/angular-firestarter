@@ -127,13 +127,17 @@
                                <a href="#" routerLink="/product/{{product?.productTitle}}.{{product?.id}}">{{ product?.productTitle}}</a>
                            </h3> -->
                            <!-- <h3>{{ product?.categoryName | titlecase}}</h3> -->
-                           <p>{{ product?.productCode | trim:'�'}}</p>
+                           <p>{{ product?.productCode}}</p>
                            <div class="clearfix">
                              <div class="b-product_grid_toggle float-left">
                                  <!-- <span class="b-price">Add To Project</span> -->
-                                 <span class="b-add_cart" (click)="addToProduct(product)">
+                                 <span class="b-add_cart" *ngIf="!addToProject" tooltip="Please login to use Project Manager">
                                      <i class="icon-plus icons"></i>
-                                     <a href="javascript:void();">Add To Project</a>
+                                     <a href="javascript:void();" routerLink="/login">Add To Project</a>
+                                 </span>
+                                 <span class="b-add_cart" *ngIf="addToProject" (click)="addToProduct(product)">
+                                     <i class="icon-plus icons"></i>
+                                     <a href="javascript:void();" >Add To Project</a>
                                  </span>
                              </div>
                              <!-- <div class="b-product_options float-right">
