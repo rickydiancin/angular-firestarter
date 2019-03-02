@@ -29,7 +29,8 @@
             ],
             "styles": [
               "src/assets/scss/main.scss",
-              "src/assets/scss/colors/green.scss"
+              "src/assets/scss/colors/green.scss",
+              "src/styles.scss"
             ],
             "scripts": [
               "./node_modules/jspdf/dist/jspdf.min.js",

@@ -1,13 +1,7 @@
-<ngx-spinner
-  bdOpacity=1
-  bdColor="#E9E9E9"
-  size="medium"
-  color="#ffffff"
-  type="square-spin"
-  fullScreen="false">
-  <p style="color: white"> Loading... </p>
-</ngx-spinner>
-<ng-container *ngIf="theproduct && theproduct?.categoryName">
+<div class="spinner text-center mt-5 mb-5" *ngIf="!theproduct">
+  <img src="./assets//svg/oval.svg" class="img-fluid" alt="">
+</div>
+<ng-container *ngIf="theproduct">
   <div class="b-product_single_breadcrumbs pt-3 pb-3 hide">
     <div class="container">
       <div class="row clearfix">
