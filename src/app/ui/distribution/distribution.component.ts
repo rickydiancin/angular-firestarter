@@ -18,14 +18,28 @@ export class DistributionComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    var locations = [
+      ['Australia', -25.734968, 134.489563, 9],
+      ['Singapore', 1.3, 78.9629, 8],
+      ['India', 20.5937, 32.78604, 7],
+      ['Middle East', 39.896446, 32.78604, 6],
+      ['North Queensland', -26.934031, 152.953894, 5],
+      ['Fiji', -18, 178, 4],
+      ['Papua New Guinea', -6.36667, 146.1, 3],
+      ['Hong Kong', 22.27833, 114.15861, 2],
+      ['Macau', 22.16667, 113.55, 1],
+    ];
+
               // Basic options for a simple Google Map
                 // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
                 var mapOptions = {
                   // How zoomed in you want the map to start at (always required)
-                  zoom: 11,
+                  zoom: 1,
 
                   // The latitude and longitude to center the map (always required)
-                  center: new google.maps.LatLng(-33.921240, 151.181170), // New York
+                  center: new google.maps.LatLng(-25.734968, 134.489563), // New York
+                  mapTypeId: google.maps.MapTypeId.ROADMAP,
 
                   // How you would like to style the map. 
                   // This is where you would paste any style found on Snazzy Maps.
@@ -40,11 +54,14 @@ export class DistributionComponent implements OnInit {
               var map = new google.maps.Map(mapElement, mapOptions);
 
               // Let's also add a marker while we're at it
-              var marker = new google.maps.Marker({
-                  position: new google.maps.LatLng(-33.921240, 151.181170),
-                  map: map,
-                  title: 'Snazzy!'
-              });
+              var marker, i
+              for (i = 0; i < locations.length; i++) {
+                 marker = new google.maps.Marker({
+                   position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                    map: map,
+                    title: 'Snazzy!'
+                  });
+                  }
 
     setTimeout(() => {
       this.scriptsService.prepareJquery();
