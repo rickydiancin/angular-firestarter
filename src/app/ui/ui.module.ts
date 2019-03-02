@@ -28,12 +28,11 @@ import { Angular2CsvModule } from 'angular2-csv';
 import { SingleCategoryComponent } from './category/single-category/single-category.component';
 import { NewsComponent } from './news/news.component';
 import { InvoiceComponent } from './invoice/invoice.component';
-import { TypeaheadModule } from 'ngx-bootstrap';
+import { TypeaheadModule, PopoverModule, TooltipModule  } from 'ngx-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { NewssingleComponent } from './newssingle/newssingle.component';
 import { ProductFilterPipe } from './home-page/productPipe';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { SearchFilterPipe } from './category/searchPipe';
 import { WarrantyComponent } from './warranty/warranty.component';
 import { DistributionComponent } from './distribution/distribution.component';
@@ -53,7 +52,8 @@ import { SafePipe } from './product/safePipe';
     TypeaheadModule.forRoot(),
     HttpClientModule,
     NgxSpinnerModule,
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
+    PopoverModule.forRoot()
   ],
   declarations: [
     UserLoginComponent,

@@ -36,6 +36,7 @@ export class ProductComponent implements OnInit, AfterViewInit {
   prevProduct:any;
   isLoggin:Boolean;
   private fragment: string;
+  productLoaded: Boolean = false;
 
   options = {
     fieldSeparator: ',',
@@ -213,6 +214,7 @@ export class ProductComponent implements OnInit, AfterViewInit {
     });
     this.pid = this.route.snapshot.params.id;
     this.route.params.subscribe((params) => {
+      this.productLoaded = false;
       // if(params) {
         // setTimeout(() => {
         //   this.scriptsService.prepareJquery();
@@ -235,7 +237,7 @@ export class ProductComponent implements OnInit, AfterViewInit {
           res.features = res.features.trim().split('•');
           // res.features.shift();
           this.theproduct = await res;
-          console.log(res)
+          this.productLoaded = true;
           // $(document).ready(function ($) {
           //   $('[data-toggle="tooltip"]').tooltip();
           //   console.log($(".gallery").length)
