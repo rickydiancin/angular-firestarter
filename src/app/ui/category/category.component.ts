@@ -244,6 +244,7 @@ export class CategoryComponent implements OnInit {
   // }
 
   getAllProducts(value?) {
+    this.scriptsService.prepareJquery();
     let result = [];
       this.vs.localstorage('products').subscribe((products: any) => {
         if (products.length) {
