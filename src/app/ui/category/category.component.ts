@@ -93,6 +93,7 @@ export class CategoryComponent implements OnInit {
     this.categories = this.vs.allCategories();
 
     this.route.params.subscribe(params => {
+      this.productsLoaded = false;
       if(params) {
         setTimeout(() => {
           this.scriptsService.prepareJquery();

@@ -378,7 +378,9 @@
             </div>
               <ng-container *ngIf="!productsLoaded">
                 <div class="col-sm-12">
-                  <h6>Loading please wait</h6>
+                  <div class="spinner text-center p-3">
+                    <img src="./assets/svg/oval.svg" class="img-fluid img-spinner" alt="">
+                  </div>
                 </div>
               </ng-container>
               <ng-container *ngIf="productsLoaded && !products?.length">
@@ -467,7 +469,7 @@
           </div> -->
           <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
 
-          <pagination-template *ngIf="products?.length" #p="paginationApi" (pageChange)="config.currentPage = $event">
+          <pagination-template *ngIf="products?.length && productsLoaded" #p="paginationApi" (pageChange)="config.currentPage = $event">
 
             <div class="b-pagination pt-2 pb-4" *ngIf="p?.pages?.length">
               <ul class="pl-0 text-center list-unstyled mb-0">
