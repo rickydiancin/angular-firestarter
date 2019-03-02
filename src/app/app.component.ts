@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
     this.getAllProducts();
     this.getAllSolution();
     setTimeout(() => {
-      this.scriptsService.prepareJquery();
+     // this.scriptsService.prepareJquery();
     }, 1000)
   }
 

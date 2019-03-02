@@ -25,7 +25,7 @@ export class ScriptsService {
         
       
             /* Flip Product Image */
-            this.FlipProductImage();
+           // this.FlipProductImage();
       
             /* Add To Wish List */
             this.AddToWishList();
@@ -188,6 +188,11 @@ export class ScriptsService {
           },
       
           MobileNavToggle: function(){
+            $(".b-main_menu-wrapper .hover-menu a").on('click', function(event) {
+             // alert('test');
+              $("body").removeClass('mobile-menu-open');
+              return false;
+            });
             $("#b-nav_icon").on('click', function(event) {
               $("body").addClass('mobile-menu-open');
               return false;
@@ -224,8 +229,11 @@ export class ScriptsService {
       
           FilterToggle: function(){
             $(".b-open_filters").on("click", function(){
+            //  alert('test');
               $(this).toggleClass('b-btn_open');
-              // $(".b-filters_area").slideToggle('');
+             $(".b-filters_area").slideToggle('');
+             console.log('test');
+           
             });
           },
       
