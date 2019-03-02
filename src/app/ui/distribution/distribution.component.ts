@@ -20,7 +20,7 @@ export class DistributionComponent implements OnInit {
   ngOnInit() {
 
   var locations = [
-    ['Australia', -25.734968, 134.489563, 9],
+    ['Gentec Australia', -33.921240, 151.181170, 9],
     ['Singapore', 1.3, 78.9629, 8],
     ['India', 20.5937, 32.78604, 7],
     ['Middle East', 39.896446, 32.78604, 6],
