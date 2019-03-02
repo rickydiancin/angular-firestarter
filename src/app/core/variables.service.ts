@@ -69,6 +69,36 @@ export class VariablesService {
     // }
   }
 
+  allParent(){
+    let menuparent = [
+      {
+        title: 'Rails & Accessible Equipment',
+        url: 'category/COMC',
+        isparent: true
+      },
+      {
+        title: 'Bathroom Accessories',
+        url: 'category/ACCS',
+        isparent: true
+      },
+      {
+        title: 'Grate Seal',
+        url: 'category/GRTS',
+        isparent: true
+      },
+      {
+        title: 'Thermostatic Valves',
+        url: 'category/TMV',
+        isparent: true
+      },
+      {
+        title: 'Sanitary Ware',
+        url: 'category/SANH',
+        isparent: true
+      }
+    ]
+    return menuparent;
+  }
   allMenus3(){
     let menus3 = [
       {
@@ -95,7 +125,12 @@ export class VariablesService {
         title: 'Grate Seal',
         url: 'category/GRTS',
         isparent: true
-      }
+      },
+      {
+        title: 'Tapware',
+        url: 'category/TPWR',
+        isparent: true
+      },
       
     ]
 

@@ -66,7 +66,7 @@
     
           <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-12 col-xs-12">
             <div class="b-featured_cat_in">
-              <a href="#" routerLink="/news">
+              <a href="#">
                <img src="assets/images/sidebar.png" class="img-fluid d-block" alt="" >
               </a>
               <!-- <div class="b-cat_mask">
@@ -183,7 +183,7 @@
               <div class="b-blog_degault_single" *ngFor="let post of posts | slice:0:1">
                  <div class="b-blog_single_header">
                       <div class="b-blog_img_wrap">
-                          <a href="#" routerLink="/news">
+                          <a href="#" routerLink="/news/{{post?.id}}">
                               <img [src]="post?.imgURL"  class="img-fluid" alt="">
                           </a>
                       </div>
@@ -193,13 +193,13 @@
                       </div> -->
                       <div class="b-post_categories">
                          <div class="b-post_categorie_list">
-                            <a href="#" rel="category tag" routerLink="/news">Health</a>
+                            <a href="#" rel="category tag" routerLink="/news/{{post?.id}}">Health</a>
                          </div>
                       </div>
                   </div>  
                   <div class="b-blog_single_info">
                       <h5 class="b-entry_title">
-                          <a href="#" rel="bookmark" routerLink="/news">{{post?.title}}</a>
+                          <a href="#" rel="bookmark" routerLink="/news/{{post?.id}}">{{post?.title}}</a>
                       </h5>
                       <!-- <div class="b-author_info">
                           <span class="b-author_name">
@@ -213,7 +213,7 @@
                           <p [innerHTML]="post?.content | slice:0:200"></p> </div> 
                   </div>
                   <div class="b-read_more">
-                      <a href="#" routerLink="/news">Read More</a>
+                      <a href="#" routerLink="/news/{{post?.id}}">Read More</a>
                   </div>
               </div>
            
@@ -316,13 +316,13 @@
                     <a href="#" routerLink="/login" class="btn btn-bg text-white center-block start" >START HERE</a>
                 </p>
 </section>
-<section id="b-our_story">
+<!-- <section id="b-our_story">
   <div class="b-our_story pb-5 pt-5">
     <div class="container">
       <div class="b-section_title">
         <h4 class="text-center text-uppercase">
           About Our Company
-          <!-- <span class="b-title_separator"><span></span></span> -->
+        
         </h4>
       </div>
       <div class="row clearfix pt-5" *ngFor="let post of abouts | slice:0:3"> 
@@ -341,13 +341,13 @@
           <p class="mb-4" [innerHTML]="post?.content | slice:0:500">
              
           </p>
-          <!-- <a href="#" class="btn btn-bg text-uppercase">read our story</a> -->
+         
         </div>
       </div>
     
     </div>
   </div>
-</section>
+</section> -->
 <!-- <section id="distribution" class="pb-5">
     <div class="b-section_title">
               <h4 class="text-center text-uppercase">
