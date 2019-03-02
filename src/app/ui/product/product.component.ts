@@ -307,15 +307,15 @@ export class ProductComponent implements OnInit, AfterViewInit {
   }
 
   viewTechnicalDetails(link) {
-    window.location.href = link;
+    window.open(link, '_blank');
   }
 
   dwgFile(link) {
-    window.location.href = link;
+    window.open(link, '_blank');
   }
 
   revitFile(link) {
-    window.location.href = link;
+    window.open(link, '_blank');
   }
 
 }
