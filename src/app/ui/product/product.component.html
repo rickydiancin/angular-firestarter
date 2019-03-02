@@ -1,7 +1,7 @@
-<div class="spinner text-center mt-5 mb-5" *ngIf="!theproduct">
+<div class="spinner text-center mt-5 mb-5" *ngIf="!productLoaded">
   <img src="./assets//svg/oval.svg" class="img-fluid" alt="">
 </div>
-<ng-container *ngIf="theproduct">
+<ng-container *ngIf="productLoaded">
   <div class="b-product_single_breadcrumbs pt-3 pb-3 hide">
     <div class="container">
       <div class="row clearfix">
@@ -19,12 +19,13 @@
           <ul class="list-unstyled pl-0 float-right">
             <li style="cursor: pointer;" [ngClass]="prevProduct == 'undefined'?'':'d-none'" class="mr-2"><i
                 class="fa fa-long-arrow-left"></i></li>
-            <li style="cursor: pointer;" [ngClass]="prevProduct == 'undefined'?'d-none':''"
+            <li placement="left" [popoverTitle]="prevProduct?.productTitle" [popover]="prevProduct?.productDescription" triggers="mouseenter:mouseleave" style="cursor: pointer;" [ngClass]="prevProduct == 'undefined'?'d-none':''"
               [routerLink]="'../'+prevProduct?.productCode" class="mr-2"><i class="fa fa-long-arrow-left"></i></li>
   
             <li style="cursor: pointer;" [ngClass]="nextProduct == 'undefined'?'':'d-none'" class=""><i
                 class="fa fa-long-arrow-right"></i></li>
-            <li style="cursor: pointer;" [ngClass]="nextProduct == 'undefined'?'d-none':''"
+
+            <li placement="left" [popoverTitle]="nextProduct?.productTitle" [popover]="nextProduct?.productDescription" triggers="mouseenter:mouseleave" style="cursor: pointer;" [ngClass]="nextProduct == 'undefined'?'d-none':''"
               [routerLink]="'../'+nextProduct?.productCode" class=""><i class="fa fa-long-arrow-right"></i></li>
           </ul>
         </div>
