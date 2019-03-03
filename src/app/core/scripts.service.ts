@@ -188,7 +188,7 @@ export class ScriptsService {
           },
       
           MobileNavToggle: function(){
-            $(".b-main_menu-wrapper .hover-menu a").on('click', function(event) {
+            $(".b-main_menu-wrapper li a").on('click', function(event) {
              // alert('test');
               $("body").removeClass('mobile-menu-open');
               return false;
