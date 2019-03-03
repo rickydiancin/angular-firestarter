@@ -5,7 +5,7 @@
 
 <div class="container-fluid" *ngIf="user">
 
-    <div *ngIf="showMessage">
+    <div *ngIf="showMessage" (click)="showMessage == !showMessage">
         <div class="alert alert-{{type}}">
             <i class="fa fa-check-circle-o fa-fw"></i> {{message}}
             <button (click)="success = false;" type="button" class="close" aria-label="Close">
@@ -131,7 +131,7 @@
                   </div>
                   <div class="col-md-4">
                     <div class="form-group bmd-form-group">
-                      <label class="bmd-label-floating">Postal Code</label>
+                      <label class="bmd-label-floating">Zip Code</label>
                       <input type="text" class="form-control" formControlName="postalCode">
                     </div>
                   </div>
