@@ -12,8 +12,8 @@ export class ScriptsService {
   constructor() { }
 
   prepareJquery(){
-    $.noConflict();
-    jQuery(document).ready(($) => {
+    //$.noConflict();
+    $(document).ready(function(){
       var App = (function(window){
         "use strict";
         var _this = null;
@@ -835,7 +835,7 @@ export class ScriptsService {
               $("#b-search_toggle i").removeClass('icon-magnifier-remove');
               $(".b-search_popup").css('top', '');
               $(".b-search_popup").css('height', '');
-              $('body').removeClass('b-search_open');
+              $('body').toggleClass('b-search_open');
             });
           },
       

@@ -58,11 +58,11 @@ export class AppComponent implements OnInit {
       this.router.navigate(['/products'], { queryParams: { s: value.toLowerCase() } })
     } else {
       this.router.navigate(['/products'], { queryParams: { s: this.filterQuery } });
-      $("#b-search_toggle i").addClass('icon-magnifier');
-      $("#b-search_toggle i").removeClass('icon-magnifier-remove');
-      $(".b-search_popup").css('top', '');
-      $(".b-search_popup").css('height', '');
-      $('body').removeClass('b-search_open');
+      // $("#b-search_toggle i").addClass('icon-magnifier');
+      // $("#b-search_toggle i").removeClass('icon-magnifier-remove');
+      // $(".b-search_popup").css('top', '');
+      // $(".b-search_popup").css('height', '');
+      $('body').toogleClass('b-search_open');
     }
   }
 }

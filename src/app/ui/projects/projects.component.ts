@@ -41,7 +41,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.authService.user)
+    console.log('the user:',this.authService.user)
     this.getAllProjectsByUser();
     setTimeout(() => {
       this.scriptsService.prepareJquery();
@@ -83,8 +83,9 @@ export class ProjectsComponent implements OnInit {
 
   getAllProjectsByUser() {
     if (this.authService.user) {
+      console.log('user: ',this.authService.user.uid);
       this.productServices.getAllProjectsByUser(this.authService.user.uid).subscribe((projects) => {
-        console.log(projects)
+        console.log('Projects: ',projects)
         this.projects = projects;
       })
     }

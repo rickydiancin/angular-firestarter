@@ -27,10 +27,9 @@
               <div class="card-body">
                 <ng-container *ngIf="!isChangePassword">
                   <h6 class="card-category text-gray">{{user?.company}}</h6>
-                  <h4 class="card-title">{{user?.name}}</h4>
+                  <h4 class="card-title">{{user?.firstName}} {{user?.lastName}}</h4>
                   <p class="card-description">
-                    <small>Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye
-                      loves Kanye I love Rick Owens’ bed design but the back is...
+                    <small>{{user?.bio}}
                     </small>
                   </p>
                   <a href="javascript:void(0)" (click)="isChangePassword = true" class="btn btn-primary btn-round">Change Password</a>
@@ -68,8 +67,8 @@
         <div class="col-md-8">
           <div class="card">
             <div class="card-header card-header-primary">
-              <h4 class="card-title">Edit Profile</h4>
-              <p class="card-category">Complete your profile</p>
+              <h4 class="card-title">User Profile</h4>
+              <p class="card-category">Update your user info here</p>
             </div>
             <div class="card-body">
               <form _lpchecked="1" [formGroup]="form" novalidate>
