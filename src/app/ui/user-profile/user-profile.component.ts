@@ -16,6 +16,7 @@ export class UserProfileComponent implements OnInit {
   message;
   showMessage = false;
   passwordForm;
+  isChangePassword: Boolean = false;
 
   constructor(public auth: AuthService, private formBuilder: FormBuilder ) {
     this.createForm();
@@ -24,11 +25,16 @@ export class UserProfileComponent implements OnInit {
   createForm() {
     this.form = this.formBuilder.group({
       uid: [''],
-      name: [''],
+      firstName: [''],
+      lastName: [''],
       email: [''],
       state: [''],
       contact: [''],
       company: [''],
+      address: [''],
+      city: [''],
+      postalCode: [''],
+      bio: [''],
     });
 
     this.passwordForm = this.formBuilder.group({
@@ -66,7 +72,7 @@ export class UserProfileComponent implements OnInit {
     this.auth.getCurrentUser(this.auth.user).subscribe((user) => {
       this.user = user;
       this.form.patchValue(user)
-      // console.log('user: ',this.user);
+      console.log('user: ',this.user);
     })
   }
 

@@ -4,7 +4,7 @@ import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angula
 import { AuthService } from '../../core/auth.service';
 import { StorageService } from 'src/app/core/storage.service';
 
-type UserFields = 'email' | 'password' | 'state' | 'contact' | 'company';
+type UserFields = 'firstName' | 'lastName' | 'email' | 'password' | 'state' | 'contact' | 'company' | 'city' | 'postalCode' | 'address';
 type FormErrors = { [u in UserFields]: string };
 
 @Component({
@@ -28,15 +28,20 @@ export class UserFormComponent implements OnInit {
     'password': '',
     'state': '',
     'contact': '',
-    'company': ''
+    'company': '',
+    'firstName': '',
+    'lastName': '',
+    'postalCode': '',
+    'address': '',
+    'city': ''
   };
   validationMessages = {
+
+    'firstName': 'Firstname is required',
+    'lastName': 'Lastname is required',
     'email': {
       'required': 'Email is required.',
       'email': 'Email must be a valid email',
-      'state': 'State is required',
-      'contact': 'Contact Number is required',
-      'company': 'Company is required'
     },
     'password': {
       'required': 'Password is required.',
@@ -93,10 +98,14 @@ export class UserFormComponent implements OnInit {
     });
 
     this.regform = this.fb.group({
-      name: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       state: ['', Validators.required],
       contact: ['', Validators.required],
+      postalCode: ['', Validators.required],
       company: ['', Validators.required],
+      address: ['', Validators.required],
+      city: ['', Validators.required],
       'email2': ['', [
         Validators.required,
         Validators.email,
