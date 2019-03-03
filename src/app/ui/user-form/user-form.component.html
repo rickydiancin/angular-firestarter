@@ -57,10 +57,21 @@
             <div class="b-auth_section b-auth_login" >
                 <h2><i class="icon-user icons"></i> Register</h2>
                 <form [formGroup]="regform" (ngSubmit)="signup()">
-                    <div class="form-group">
-                        <label for="">Name <span class="b-required">*</span></label>
-                        <input type="text" id="fname" name="name" class="input" formControlName="name" required autocomplete="off">
-          
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                          <label for="">Firstname <span class="b-required">*</span></label>
+                          <input type="text" id="firstName" name="firstName" class="input" formControlName="firstName" required autocomplete="off">
+                          <div *ngIf="formErrors.firstName" class="help is-danger">
+                            {{ formErrors.firstName }}
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <label for="">Lastname <span class="b-required">*</span></label>
+                          <input type="text" id="lastName" name="lastName" class="input" formControlName="lastName" required autocomplete="off">
+                          <div *ngIf="formErrors.lastName" class="help is-danger">
+                            {{ formErrors.lastName }}
+                          </div>
+                        </div>
                       </div>
                       <!-- <div class="form-group">
                           <label for="">Last Name <span class="b-required">*</span></label>
@@ -70,30 +81,55 @@
                     <div class="form-group">
                       <label for="">Email <span class="b-required">*</span></label>
                       <input type="email" id="email2" name="email2" class="input" formControlName="email2" required autocomplete="off">
-                      <div *ngIf="formErrors.email" class="help is-danger">
-                        {{ formErrors.email }}
-                    </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="">State <span class="b-required">*</span></label>
-                      <input type="text" id="state" name="state" class="input" formControlName="state" required autocomplete="off">
-                      <div *ngIf="formErrors.state" class="help is-danger">
-                        {{ formErrors.state }}
-                    </div>
+                        <div *ngIf="formErrors.email" class="help is-danger">
+                          {{ formErrors.email }}
+                      </div>
                     </div>
                     <div class="form-group">
-                      <label for="">Contact Number <span class="b-required">*</span></label>
-                      <input type="text" id="contact" name="contact" class="input" formControlName="contact" required autocomplete="off">
-                      <div *ngIf="formErrors.contact" class="help is-danger">
-                        {{ formErrors.contact }}
+                      <label for="">Address</label>
+                      <input type="email" id="address" name="address" class="input" formControlName="address" required autocomplete="off">
+                        <!-- <div *ngIf="formErrors.email" class="help is-danger">
+                          {{ formErrors.email }}
+                      </div> -->
                     </div>
+                    <div class="form-group row">
+                      <div class="col-sm-6">
+                        <label for="">State</label>
+                        <input type="text" id="state" name="state" class="input" formControlName="state" required autocomplete="off">
+                        <!-- <div *ngIf="formErrors.state" class="help is-danger">
+                          {{ formErrors.state }}
+                        </div> -->
+                      </div>
+                      <div class="col-sm-6">
+                        <label for="">City </label>
+                        <input type="text" id="city" name="city" class="input" formControlName="city" required autocomplete="off">
+                        <!-- <div *ngIf="formErrors.state" class="help is-danger">
+                          {{ formErrors.state }}
+                        </div> -->
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-sm-6">
+                        <label for="">Contact Number</label>
+                        <input type="text" id="contact" name="contact" class="input" formControlName="contact" required autocomplete="off">
+                        <!-- <div *ngIf="formErrors.contact" class="help is-danger">
+                          {{ formErrors.contact }}
+                        </div> -->
+                      </div>
+                      <div class="col-sm-6">
+                        <label for="">Postal Code</label>
+                        <input type="text" id="postalCode" name="postalCode" class="input" formControlName="postalCode" required autocomplete="off">
+                        <!-- <div *ngIf="formErrors.contact" class="help is-danger">
+                          {{ formErrors.contact }}
+                        </div> -->
+                      </div>
                     </div>
                     <div class="form-group">
-                      <label for="">Company Name <span class="b-required">*</span></label>
+                      <label for="">Company Name </label>
                       <input type="text" id="company" name="company" class="input" formControlName="company" required autocomplete="off">
-                      <div *ngIf="formErrors.company" class="help is-danger">
+                      <!-- <div *ngIf="formErrors.company" class="help is-danger">
                         {{ formErrors.company }}
-                    </div>
+                    </div> -->
                     </div>
                     <div class="form-group">
                       <label for="">Password <span class="b-required">*</span></label>
