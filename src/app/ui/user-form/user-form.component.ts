@@ -111,7 +111,7 @@ export class UserFormComponent implements OnInit {
         Validators.email,
       ]],
       'password2': ['', [
-    
+        Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
         Validators.minLength(4),
         Validators.maxLength(25),
       ]],
