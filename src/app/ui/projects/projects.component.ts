@@ -36,7 +36,7 @@ export class ProjectsComponent implements OnInit {
       location: ['', Validators.required],
       dateCreated: [''],
       isActive: [''],
-      crearedBy: [this.authService.user.uid]
+      createdBy: [this.authService.user.uid]
     })
   }
 

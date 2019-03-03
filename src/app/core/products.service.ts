@@ -236,7 +236,7 @@ getCategoryByArray(id) {
   }
 
   getAllProjectsByUser(id) {
-    return this.afs.collection('projects', (ref) => ref.where('crearedBy','==',id)).snapshotChanges().pipe(
+    return this.afs.collection('projects', (ref) => ref.where('createdBy','==',id)).snapshotChanges().pipe(
       map((actions) => {
         return actions.map((a) => {
           const data = a.payload.doc.data();
