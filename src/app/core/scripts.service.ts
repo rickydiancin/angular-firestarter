@@ -12,8 +12,8 @@ export class ScriptsService {
   constructor() { }
 
   prepareJquery(){
-
-    $(document).ready(function(){
+    $.noConflict();
+    jQuery(document).ready(($) => {
       var App = (function(window){
         "use strict";
         var _this = null;
