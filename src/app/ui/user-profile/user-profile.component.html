@@ -17,49 +17,54 @@
 
    
 <div class="row">
-        <div class="col-md-4 pull-right">
-            
-                <div class="card card-profile">
-                  <div class="card-avatar">
-                    <a href="#">
-                      <img class="img" [src]="user.photoURL || 'https://gentec-web.firebaseapp.com/favicon.ico'" style="min-width: 130px;">
-                    </a>
-                  </div>
-                  <div class="card-body">
-                    <h6 class="card-category text-gray">{{user?.company}}</h6>
-                    <h4 class="card-title">{{user?.name}}</h4>
-                    <p class="card-description">
-                      <small>Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                        </small>
-                    </p>
-                    <a href="#" class="btn btn-primary btn-round">Change Password</a>
-                    <br><br><br>
-                    <form [formGroup]="passwordForm" class="mt-4">
-                      
-                            <div class="form-group bmd-form-group">
-                                    <label class="bmd-label-floating">Current Password</label>
-                                    <input type="password" class="form-control" formControlName="currentPassword">
-                                  </div>
-                                  <div class="form-group bmd-form-group">
-                                        <label class="bmd-label-floating">New Password</label>
-                                        <input type="password" class="form-control" formControlName="newPassword">
-                                      </div>
-                                      <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">Re-type Password</label>
-                                            <input type="password" class="form-control" formControlName="retypePassword">
-                                          </div>
-
-                            <button [disabled]="passwordForm.invalid" type="button" (click)="changePassword()" class="btn btn-primary btn-round">Submit</button>
-                 
-                </form>
-                  </div>
-
-           
-
-                </div>
-
-           
+    <div class="col-md-4 pull-right" *ngIf="!isChangePassword">
+            <div class="card card-profile">
+              <div class="card-avatar">
+                <a href="#">
+                  <img class="img" [src]="user.photoURL || 'https://gentec-web.firebaseapp.com/favicon.ico'" style="min-width: 130px;">
+                </a>
               </div>
+              <div class="card-body">
+                <ng-container *ngIf="!isChangePassword">
+                  <h6 class="card-category text-gray">{{user?.company}}</h6>
+                  <h4 class="card-title">{{user?.name}}</h4>
+                  <p class="card-description">
+                    <small>Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye
+                      loves Kanye I love Rick Owens’ bed design but the back is...
+                    </small>
+                  </p>
+                  <a href="javascript:void(0)" (click)="isChangePassword = true" class="btn btn-primary btn-round">Change Password</a>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        <div class="col-md-4 pull-right b-back" *ngIf="isChangePassword">
+          <div class="card card-profile">
+            <div class="card-avatar">
+              <a href="#">
+                <img class="img" [src]="user.photoURL || 'https://gentec-web.firebaseapp.com/favicon.ico'" style="min-width: 130px;">
+              </a>
+            </div>
+            <div class="card-body">
+              <form [formGroup]="passwordForm" class="mt-4">
+                
+              <div class="form-group bmd-form-group">
+                <label class="bmd-label-floating">Current Password</label>
+                <input type="password" class="form-control" formControlName="currentPassword">
+              </div>
+              <div class="form-group bmd-form-group">
+                    <label class="bmd-label-floating">New Password</label>
+                    <input type="password" class="form-control" formControlName="newPassword">
+                  </div>
+                  <div class="form-group bmd-form-group">
+                        <label class="bmd-label-floating">Re-type Password</label>
+                        <input type="password" class="form-control" formControlName="retypePassword">
+                      </div>
+              <button [disabled]="passwordForm.invalid" type="button" (click)="changePassword()" class="btn btn-primary btn-round">Submit</button>
+          </form>
+            </div>
+          </div>
+        </div>
         <div class="col-md-8">
           <div class="card">
             <div class="card-header card-header-primary">
@@ -73,18 +78,18 @@
                   <div class="col-md-6">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">Fist Name</label>
-                      <input type="text" class="form-control" formControlName="name">
+                      <input type="text" class="form-control" formControlName="firstName">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">Last Name</label>
-                      <input type="text" class="form-control">
+                      <input type="text" class="form-control" formControlName="lastName">
                     </div>
                   </div>
                 </div>
                 <div class="row">
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                           <div class="form-group bmd-form-group">
                             <label class="bmd-label-floating">Company </label>
                             <input type="text" class="form-control" formControlName="company">
@@ -96,7 +101,7 @@
                             <input type="text" class="form-control" formControlName="contact">
                           </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                           <div class="form-group bmd-form-group">
                             <label class="bmd-label-floating">Email address</label>
                             <input type="email" class="form-control" formControlName="email">
@@ -107,7 +112,7 @@
                   <div class="col-md-12">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">Adress</label>
-                      <input type="text" class="form-control">
+                      <input type="text" class="form-control" formControlName="address">
                     </div>
                   </div>
                 </div>
@@ -115,7 +120,7 @@
                   <div class="col-md-4">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">City</label>
-                      <input type="text" class="form-control">
+                      <input type="text" class="form-control" formControlName="city">
                     </div>
                   </div>
                   <div class="col-md-4">
@@ -127,7 +132,7 @@
                   <div class="col-md-4">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">Postal Code</label>
-                      <input type="text" class="form-control">
+                      <input type="text" class="form-control" formControlName="postalCode">
                     </div>
                   </div>
                 </div>
@@ -137,7 +142,7 @@
                       <label>About Me</label>
                       <div class="form-group bmd-form-group">
                         <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
-                        <textarea class="form-control" rows="5"></textarea>
+                        <textarea class="form-control" rows="5" formControlName="bio"></textarea>
                       </div>
                     </div>
                   </div>
