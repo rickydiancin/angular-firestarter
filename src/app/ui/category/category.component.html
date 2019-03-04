@@ -69,19 +69,19 @@
             </div> -->
              
           </div>
-          <!-- <div class="b-sidebar_widget" *ngIf="solutions">
+          <div class="b-sidebar_widget" *ngIf="solutions">
             <h5 class="b-filter_title">FILTER BY SOLUTION</h5>
-            <form action="#" [formGroup]="">
+            <!-- <form action="#" [formGroup]=""> -->
               <ul class="b-color_filter">
                 <li *ngFor="let solution of solutions">
-                  <a href="javascript:void(0)" (click)="solutionFilter(solution?.solutionCode)">
+                  <a href="#" (click)="solutionFilter(solution?.solutionCode)" routerLink="/solution/{{solution?.solutionCode}}">
                     {{solution?.solutionName | titlecase}}
                   </a>
-                  <span class="b-count float-right">(7)</span>
+                  <!-- <span class="b-count float-right">(7)</span> -->
                 </li>
               </ul> 
-            </form>
-          </div>  -->
+            <!-- </form> -->
+          </div> 
           <!-- <div class="b-sidebar_widget">
             <h5 class="b-filter_title">SET FILTER RANGE</h5>
             <div class="gentec-filter-group">
