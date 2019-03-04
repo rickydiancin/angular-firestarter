@@ -44,36 +44,33 @@
         <div class="panel panel-default">
           <div class="panel-heading" style="font-size:13px;">
             Please Specify the Project you'd like to add to:
-            <a (click)="createNewProject()" class="pull-right" href="javascript:void(0)"><i class="fa fa-plus fa-fw"></i> create a new project</a>
+            <!-- <a (click)="createNewProject()" class="pull-right hidden-sm-down" href="javascript:void(0)"><i class="fa fa-plus fa-fw"></i> create a new project</a> -->
           </div>
           <div class="panel-body">
-            <table class="table table-condensed">
-              <!-- <thead>
-                        <tr>
-                          <th>Projects</th>
-                          <th></th>
-                        </tr>
-                      </thead> -->
+            <ng-container *ngIf="!projects">
+                <div class="spinner text-center p-3">
+                  <img src="./assets/svg/oval.svg" class="img-fluid img-spinner" alt="">
+                </div>
+            </ng-container>
+            <table class="table table-condensed" *ngIf="projects">
               <tbody>
                 <ng-container *ngIf="projects">
                   <tr *ngFor="let project of projects">
-                    <td *ngIf="project?.added" class="align-middle">Product is in '<a href="#" routerLink="projects/{{project?.projectName}}.{{project?.code}}"
+                    <td width="90%" *ngIf="project?.added" class="align-middle">Product is in '<a href="#" routerLink="projects/{{project?.projectName}}.{{project?.code}}"
                         style="color:#5B5C5D">{{project?.projectName | titlecase}}</a>' Project.</td>
-                    <td *ngIf="!project?.added" class="align-middle">{{project?.projectName | titlecase}}</td>
-                    <td class="actions">
-                      <button *ngIf="project?.added" (click)="removeToProject(project)" class="btn btn-danger btn-sm pull-right row">Remove</button>
-                      <button *ngIf="!project?.added" (click)="addProductToProject(project)" class="btn btn-primary btn-sm pull-right row">Add
+                    <td width="90%" *ngIf="!project?.added" class="align-middle">{{project?.projectName | titlecase}}</td>
+                    <td width="10%">
+                      <button *ngIf="project?.added" (click)="removeToProject(project)" class="btn btn-danger btn-sm">Remove</button>
+                      <button *ngIf="!project?.added" (click)="addProductToProject(project)" class="btn btn-primary btn-sm">Add
                         To Project</button>
                     </td>
                   </tr>
                 </ng-container>
               </tbody>
-              <!-- <tfoot>
-                        <tr>
-                          <td colspan="10"></td>
-                        </tr>
-                      </tfoot> -->
             </table>
+              <div class="mt-5" style="font-size: 12px;">
+                Alternatively you can<a (click)="createNewProject()" class="" href="javascript:void(0)"> Create a new Project</a>
+              </div>
           </div>
         </div>
       </div>
