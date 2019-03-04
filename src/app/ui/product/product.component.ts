@@ -154,6 +154,7 @@ export class ProductComponent implements OnInit, AfterViewInit {
       'imageURL'
     ]
   };
+  slick: any = 0;
 
   constructor(
     private scriptsService: ScriptsService,
@@ -208,6 +209,8 @@ export class ProductComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
 
+    
+
     this.checkAuth().subscribe((res) => {
       this.addToProject = res;
       this.isLoggin = res
@@ -237,6 +240,12 @@ export class ProductComponent implements OnInit, AfterViewInit {
           res.features = res.features.trim().split('•');
           // res.features.shift();
           this.theproduct = await res;
+          setTimeout(() => {
+            $(document).ready(() => {
+              this.slick = $('.slick-count > .owl-thumb-item').length;
+              console.log(this.slick)
+            })
+          }, 1000);
           this.productLoaded = true;
           // $(document).ready(function ($) {
           //   $('[data-toggle="tooltip"]').tooltip();

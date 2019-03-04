@@ -1116,7 +1116,6 @@ export class ScriptsService {
       
         /* ToolTip */
         $('[data-toggle="tooltip"]').tooltip();
-        console.log($(".gallery").length > 0)
         if($(".gallery").length > 0){
           var $gallery = $('.gallery a').simpleLightbox();
         }

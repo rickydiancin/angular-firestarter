@@ -95,7 +95,7 @@
             </div>
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
               <div class="b-display-list-wrapper">
-                <div class="owl-thumbs b-display-item-list" id="bSingleProductBottom"
+                <div class="owl-thumbs b-display-item-list slick-count" id="bSingleProductBottom"
                   data-slider-id="bSingleProductCarousel">
                   <div class="owl-thumb-item b-display-item">
                     <img [src]="theproduct?.primaryURL || './assets/images/not_available.jpg'" alt="" class="img-fluid">
@@ -105,6 +105,12 @@
                       <img [src]="secondURL" alt="" class="img-fluid">
                     </div>
                   </ng-container>
+                  <div class="owl-thumb-item b-display-item">
+                    <img [src]="theproduct?.lineDrawing || './assets/images/not_available.jpg'" alt="" class="img-fluid">
+                  </div>
+                  <div class="owl-thumb-item b-display-item">
+                    <img [src]="theproduct?.lineDrawing || './assets/images/not_available.jpg'" alt="" class="img-fluid">
+                  </div>
                   <div class="owl-thumb-item b-display-item">
                     <img [src]="theproduct?.lineDrawing || './assets/images/not_available.jpg'" alt="" class="img-fluid">
                   </div>
@@ -125,7 +131,7 @@
                   </div> -->
                 </div>
   
-                <div class="b-slider-action">
+                <div class="b-slider-action" *ngIf="slick > 4">
                   <button class="slick-prev"><i class="icon-arrow-left icons"></i></button>
                   <button class="slick-next"><i class="icon-arrow-right icons"></i></button>
                 </div>
