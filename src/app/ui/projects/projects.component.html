@@ -76,14 +76,14 @@
               <tr>
                 <th style="width:40%">Name</th>
                 <th style="width:10%">Date</th>
-                <th style="width:8%">Code</th>
-                <th style="width:22%" class="text-center">Location</th>
+                <th style="width:10%">Code</th>
+                <th style="width:20%">Location</th>
                 <th style="width:20%">Action</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let project of projects">
-                <td data-th="Product">
+                <td data-th="">
                   <div class="row">
                     <!-- <div class="col-sm-2 hidden-xs"><img src="assets/images/products/home/product_grid_03_01.jpg" alt="..." class="img-fluid"/></div> -->
                     <div class="col-sm-12">
@@ -93,11 +93,11 @@
                     </div>
                   </div>
                 </td>
-                <td data-th="Price">{{project?.dateCreated | date:'MM/d/yy'}}</td>
-                <td data-th="Quantity">
+                <td data-th="Date">{{project?.dateCreated | date:'MM/dd/yy'}}</td>
+                <td data-th="Code">
                   <input type="text" class="form-control text-center" value="{{project?.code}}">
                 </td>
-                <td data-th="Subtotal" class="text-center">{{project?.location}}</td>
+                <td data-th="Location">{{project?.location}}</td>
                 <td class="actions" data-th="">
                   <!-- <div class="col-sm-1"> -->
                     <button (click)="editProject(project)" class="btn btn-info btn-sm mr-1"><i class="fa fa-refresh"></i></button>
