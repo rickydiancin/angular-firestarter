@@ -1,10 +1,10 @@
 
       
                 <div class="b-main_menu-wrapper hidden-lg-up">
-                  <ul class="mobile-top"> 
+                  <!-- <ul class="mobile-top"> 
                       <li class="search">
                           <div class="search-holder-mobile">
-                              <!-- <input type="text" name="search-mobile" value="" placeholder="Search" class="form-control"> -->
+                             
                               <input
                               class="form-control"
                           autocomplete="off"
@@ -29,7 +29,7 @@
                             </ng-container>
                           </div>
                       </li>
-                  </ul>
+                  </ul> -->
                   <ul class="categories"> 
                       <li class="has-sub dropdown-wrapper from-bottom">
                           <a href="#" class="p-relative description " routerLink="/"><span class="top">Home</span></a>
@@ -395,7 +395,12 @@
                   </div>
                 </div>
               </div>
-              <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
+              <div class="col-sm-12" *ngIf="!products">
+                <div class="spinner text-center p-5" *ngIf="!solutions">
+                  <img src="./assets/svg/oval.svg" class="img-fluid img-spinner" alt="">
+                </div>
+              </div>
+              <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12" *ngIf="products"> 
                 <div class="b-search_bar">
                   <form (submit)="search()">
                     <ng-template #customItemTemplate let-model="item" let-index="index">
