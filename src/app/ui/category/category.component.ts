@@ -259,9 +259,9 @@ export class CategoryComponent implements OnInit {
                 setTimeout(() => {
                   result = _.filter(cb, row => row);
                   cb.forEach((cv) => {
-                    console.log(cv.categoryName)
+                   // console.log(cv.categoryName)
                   })
-                  console.log(cb)
+                //  console.log(cb)
                   result = _.filter(cb, row => row.productTitle.toString().toLowerCase().indexOf(value) > -1 || row.productCode.toString().toLowerCase().indexOf(value) > -1 || row.categories.toString().toLowerCase().indexOf(value) > -1 || row.categoryName.toString().toLowerCase().indexOf(value) > -1);
                   if (result.length > 0) {
                     this.products = _(result).sortBy(this.sortValue).value();
