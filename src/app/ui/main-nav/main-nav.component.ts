@@ -5,6 +5,7 @@ import { ProductsService } from 'src/app/core/products.service';
 import * as _ from 'lodash';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { VariablesService } from 'src/app/core/variables.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'main-nav',
@@ -32,7 +33,8 @@ export class MainNavComponent implements OnInit {
     public auth: AuthService,
     private productsService: ProductsService,
     public af: AngularFireAuth,
-    public vs: VariablesService
+    public vs: VariablesService,
+    private router: Router,
   ) {
     // this.af.authState.subscribe((auth) => {
       
@@ -54,7 +56,6 @@ export class MainNavComponent implements OnInit {
     this.menus2 = this.vs.allMenus2();
     this.menus3 = this.vs.allMenus3();
     this.menuparent = this.vs.allParent();
-    console.log(this.menuparent);
     this.finalMenu1 = this.vs.finalMenu1();
     this.finalMenu2 = this.vs.finalMenu2();
     this.finalMenu3 = this.vs.finalMenu3();
@@ -159,6 +160,18 @@ export class MainNavComponent implements OnInit {
 
   toggleCollapse() {
     this.show = !this.show;
+  }
+
+  search(value?) {
+    if (value) {
+      this.router.navigate(['/products'], { queryParams: { s: value.toLowerCase() } }).then(() => {
+        this.filterQuery = '';
+      })
+    } else {
+      this.router.navigate(['/products'], { queryParams: { s: this.filterQuery } }).then(() => {
+        this.filterQuery = '';
+      })
+    }
   }
 
 }
