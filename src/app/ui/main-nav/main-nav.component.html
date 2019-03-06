@@ -395,12 +395,8 @@
                   </div>
                 </div>
               </div>
-              <div class="col-sm-12" *ngIf="!products">
-                <div class="spinner text-center p-5" *ngIf="!solutions">
-                  <img src="./assets/svg/oval.svg" class="img-fluid img-spinner" alt="">
-                </div>
-              </div>
-              <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12" *ngIf="products"> 
+            
+              <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12"> 
                 <div class="b-search_bar">
                   <form (submit)="search()">
                     <ng-template #customItemTemplate let-model="item" let-index="index">
