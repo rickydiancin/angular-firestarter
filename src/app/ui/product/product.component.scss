@@ -139,12 +139,12 @@ h5 {
     display: block;
 }
 
-// .features li::before {
-//     content: "\f111";
-//     font-family: FontAwesome;
-//     font-size: 8px;
-//     color: #000;
-//     position: absolute;
-//     left: -25px;
-//     top: 0;
-// }
+.features li::before {
+    content: "\f111";
+    font-family: FontAwesome;
+    font-size: 8px;
+    color: #000;
+    position: absolute;
+    left: -25px;
+    top: 0;
+}
