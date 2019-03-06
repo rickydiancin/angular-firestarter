@@ -171,7 +171,6 @@ export class CategoryComponent implements OnInit {
           } else if (params.solutionid) {
             this.paramsSolution = params.solutionid;
             this.filterQuery = params.solutionid;
-            console.log(this.filterQuery)
               this.productsService.getSolution(params.solutionid).subscribe((data) => {
                 this.solution = data
                 this.productsLoaded = true;
@@ -229,8 +228,6 @@ export class CategoryComponent implements OnInit {
             //     }
             //   });
             // }
-          } else {
-            this.getAllProducts();
           }
       }
       // this.initialiseState(); // reset and set based on new parameter this time
@@ -295,7 +292,8 @@ export class CategoryComponent implements OnInit {
           }
           
         })
-        this.products = cb;
+        this.products = _(cb).sortBy(this.sortValue).value();
+        this.productsTemp = _(cb).sortBy(this.sortValue).value();
         this.productsLoaded = true;
         console.log(cb)
       }
