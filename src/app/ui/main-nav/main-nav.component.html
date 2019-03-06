@@ -410,30 +410,31 @@
               
                     </ng-template>
                     <div class="form-group">
-                      <input autocomplete="off" [disabled]="!products" [(ngModel)]="filterQuery" type="text"
+                      <input autocomplete="off" [(ngModel)]="filterQuery" type="text"
                         placeholder="Search Products" [ngModelOptions]="{standalone: true}">
                       <button class="btn"><i class="icons icon-magnifier"></i></button>
                     </div>
                   </form>
-                  <!-- name="model"
-                                    (typeaheadOnSelect)="onSelect($event)"
-                                    [(ngModel)]="model"
-                                    [typeahead]="products"
-                                    typeaheadOptionField="productTitle"
-                                    [typeaheadItemTemplate]="customItemTemplate"
-                                    [typeaheadMinLength]="2" -->
                   <div class="productList dropdown-menu" *ngIf="filterQuery">
-                    <ng-container *ngFor="let product of products | productFilter : filterQuery; let i = index;">
-                      <button class="dropdown-item" *ngIf="product !== -1" (click)="search(product?.productCode)">
+                    <ng-container *ngIf="products?.length">
+                      <button
+                        *ngFor="let product of products | filterBy: ['productTitle', 'productCode', 'categoryName']: filterQuery; let i = index;"
+                        class="dropdown-item" (click)="search(product?.productCode)">
                         <img src="{{product?.primaryURL || './assets/images/not_available.jpg'}}" alt="" height="50px" width="50px">
                         {{product?.productTitle | titlecase}} ({{product?.productCode}})
                         <br>
                         <small><b>Category Code: </b>{{product?.categories}}</small>
                       </button>
-                      <button class="dropdown-item" *ngIf="product === -1">
-                        No Result(s) Found
+                    </ng-container>
+                    <ng-container *ngIf="!products?.length">
+                      <button class="dropdown-item">
+                        <img src="./assets/svg/oval.svg" class="mr-1" height="30px" alt=""> Please wait
                       </button>
                     </ng-container>
+                        <button class="dropdown-item"
+                          *ngIf="(products | filterBy:['productTitle', 'productCode', 'categoryName']: filterQuery).length === 0">
+                          No Result(s) Found
+                        </button>
                   </div>
                 </div>
               </div>
