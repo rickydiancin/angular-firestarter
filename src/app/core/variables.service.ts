@@ -223,7 +223,7 @@ export class VariablesService {
       {
        
         title: 'Toilets',
-        url: 'category/TOIL',
+        url: 'category/toilets',
       }
       
     ]
@@ -467,15 +467,15 @@ export class VariablesService {
     let finalMenu2 = [
       {
         categoryName: 'sanitary ware',
-        url: 'category/SANH',
+        url: 'category/sanitary_ware',
         sub: [
           {
             subName: 'basins',
-            url:'category/BASI'
+            url:'category/basins'
           },
           {
             subName: 'toilets',
-            url: 'category/TOIL'
+            url: 'category/toilets'
           }
         ]
       },
@@ -605,7 +605,7 @@ export class VariablesService {
         menu2: [
           {
             categoryName: 'antiligature systems',
-            url: 'category/SANH'
+            url: 'category/sanitary_ware'
           },
           {
             categoryName: 'electronic tapware',
@@ -617,15 +617,15 @@ export class VariablesService {
           },
           {
             categoryName: 'sanitary ware',
-            url: 'category/SANH'
+            url: 'category/sanitary_ware'
           },
           {
             categoryName: 'basins',
-            url: 'category/BASI'
+            url: 'category/basins'
           },
           {
             categoryName: 'toilets',
-            url: 'category/TOIL'
+            url: 'category/toilets'
           },
           {
             categoryName: 'rails & accessible',
