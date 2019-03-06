@@ -271,13 +271,17 @@
                   </div>
                 </div>
               </ng-container>
-              <ng-container *ngIf="productsLoaded && !products?.length">
-                <div class="col-sm-12">
+              <ng-container *ngIf="products?.length">
+                <!-- <button class="dropdown-item"
+                  *ngIf="products?.length && (products | filterBy:['productTitle', 'productCode', 'categoryName']: filterQuery).length === 0">
+                  No Result(s) Found
+                </button> -->
+                <div class="col-sm-12" *ngIf="products?.length && (products | filterBy:['productTitle', 'productCode', 'categoryName', 'categories', 'solutions', 'solutionName']: filterQuery).length === 0">
                   <h6>No products were found matching your selection.</h6>
                 </div>
               </ng-container>
               <ng-container *ngIf="products?.length && productsLoaded">
-                <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-6" *ngFor="let product of products | filterBy:['productTitle', 'productCode', 'categoryName', 'solutionName']: filterQuery | paginate: config">
+                <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-6" *ngFor="let product of products | filterBy:['productTitle', 'productCode', 'categoryName', 'categories', 'solutionName', 'solutions']: filterQuery | paginate: config">
                   <div class="b-product_grid_single" style="min-height: 23rem;">
                     <div class="b-product_grid_header">
                       <a href="#" routerLink="/product/{{product?.productCode}}" (click)="titleService.setTitle(product?.productTitle)">
