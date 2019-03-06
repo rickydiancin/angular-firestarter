@@ -6,6 +6,7 @@ import * as _ from 'lodash';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { VariablesService } from 'src/app/core/variables.service';
 import { Router } from '@angular/router';
+declare var $:any;
 
 @Component({
   selector: 'main-nav',
@@ -24,7 +25,7 @@ export class MainNavComponent implements OnInit {
   finalMenu1:any;
   finalMenu2:any;
   finalMenu3:any;
-  products:any;
+  products:any = [];
   solutions:any;
   user: any;
   
@@ -49,6 +50,17 @@ export class MainNavComponent implements OnInit {
   }
   
   ngOnInit() {
+
+    $('.b-dropdown_wrapper').click(function () {
+      $(this).find('.b-dropdown_content').css('visibility', 'hidden');
+      $(this).find('.b-dropdown_content').css('opacity', '0');
+      setTimeout(() => {
+        $(this).find('.b-dropdown_content').css('visibility', '');
+        $(this).find('.b-dropdown_content, .p-relative').css('opacity', '');
+      }, 1000);
+    });
+
+
     this.getAllProducts();
     
     console.log(this.auth.user);
