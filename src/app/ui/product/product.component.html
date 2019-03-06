@@ -51,9 +51,9 @@
                     <img [src]="secondURL" alt="" class="img-fluid">
                   </div>
                 </ng-container>
-                <div class="b-produt-item">
-                  <a href="{{theproduct?.lineDrawing || './assets/images/not_available.jpg'}}">
-                    <img [src]="theproduct?.lineDrawing || './assets/images/not_available.jpg'" alt="" class="img-fluid">
+                <div class="b-produt-item" *ngIf="theproduct?.lineDrawing">
+                  <a href="{{theproduct?.lineDrawing}}">
+                    <img [src]="theproduct?.lineDrawing" alt="" class="img-fluid">
                   </a>
                 </div>
                 <!-- <div class="b-produt-item">
@@ -105,14 +105,8 @@
                       <img [src]="secondURL" alt="" class="img-fluid">
                     </div>
                   </ng-container>
-                  <div class="owl-thumb-item b-display-item">
-                    <img [src]="theproduct?.lineDrawing || './assets/images/not_available.jpg'" alt="" class="img-fluid">
-                  </div>
-                  <div class="owl-thumb-item b-display-item">
-                    <img [src]="theproduct?.lineDrawing || './assets/images/not_available.jpg'" alt="" class="img-fluid">
-                  </div>
-                  <div class="owl-thumb-item b-display-item">
-                    <img [src]="theproduct?.lineDrawing || './assets/images/not_available.jpg'" alt="" class="img-fluid">
+                  <div *ngIf="theproduct?.lineDrawing" class="owl-thumb-item b-display-item">
+                    <img [src]="theproduct?.lineDrawing" alt="" class="img-fluid">
                   </div>
                   <!-- <div class="owl-thumb-item b-display-item">
                     <img src="assets/images/products/product-single/woman-4.jpg" alt="" class="img-fluid">
@@ -208,19 +202,17 @@
           <!-- Tab panes -->
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade in active show" id="tab-01">
-              <div class="row clearfix">
-                <div class="col-xl-6 offset-xl-3 col-lg-6  offset-lg-3 col-md-6 col-sm-12 col-xs-12">
-                  <ul class="features">
+                <div [innerHTML]="theproduct?.features" style="max-width: 700px;margin: 0 auto;width: 100%;font-family: 'Montserrat', sans-serif;font-size: 16px;"></div>
+                  <!-- <ul class="features">
                     <li *ngFor="let f of theproduct?.features">{{f}}</li>
-                  </ul>
+                    <li [innerHTML]="theproduct?.features"></li>
+                  </ul> -->
                   <!-- <ng-container *ngFor="let f of theproduct?.features">
                     <span>•</span>
                   <p>
                     {{f}}
                   </p>
                   </ng-container> -->
-                </div>
-              </div>
             </div>
             <div role="tabpanel" class="tab-pane fade" id="tab-02">
               <table class="b-shop_attributes">
