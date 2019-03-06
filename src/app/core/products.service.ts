@@ -292,25 +292,8 @@ getCategoryByArray(id) {
   //   })
   // }
 
-  getProductsWithCategory(callback) {
-    return this.http.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/products.json?alt=media&token=27e8bc46-0a87-4631-b73d-eb4b1b80a626')
-    .subscribe(async (res:any) => {
-      await res.forEach(products => {
-        let c = []
-        products.categories = products.categories.split(';').join(',').match(/(?=\S)[^,]+?(?=\s*(,|$))/g);
-        products.categories.map(async (category) => {
-          await this.getCategoryByArrayProduct(category, cb => {
-            if (cb) {
-              c.push(cb.categoryName.toLowerCase());
-              products['categoryName'] = c;
-            } else {
-              products['categoryName'] = [];
-            }
-          })
-        })
-      });
-      return callback(res);
-    },err => console.log(err))
+  getProductsWithCategory() {
+    return this.http.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/products.json?alt=media&token=27e8bc46-0a87-4631-b73d-eb4b1b80a626');
   }
 
   getCategoryByArrayProduct(id, cb) {

@@ -74,7 +74,7 @@
             <!-- <form action="#" [formGroup]=""> -->
               <ul class="b-color_filter">
                 <li *ngFor="let solution of solutions">
-                  <a href="#" (click)="solutionFilter(solution?.solutionCode)" routerLink="/solution/{{solution?.solutionCode}}">
+                  <a href="#" routerLink="/solution/{{solution?.solutionCode}}">
                     {{solution?.solutionName | titlecase}}
                   </a>
                   <!-- <span class="b-count float-right">(7)</span> -->
@@ -277,8 +277,7 @@
                 </div>
               </ng-container>
               <ng-container *ngIf="products?.length && productsLoaded">
-                <!-- <input type="text" [(ngModel)]="input"> -->
-                <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-6" *ngFor="let product of products | paginate: config">
+                <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-6" *ngFor="let product of products | filterBy:['productTitle', 'productCode', 'categoryName', 'solutionName']: filterQuery | paginate: config">
                   <div class="b-product_grid_single" style="min-height: 23rem;">
                     <div class="b-product_grid_header">
                       <a href="#" routerLink="/product/{{product?.productCode}}" (click)="titleService.setTitle(product?.productTitle)">

@@ -134,23 +134,18 @@ export class MainNavComponent implements OnInit {
      // console.log(products);
       if(products.length) {
         _(products).each(async (a: any, b) => {
-          a.categories = await a.categories.split(';').join(',').match(/(?=\S)[^,]+?(?=\s*(,|$))/g);
+          a.categories = await a.categories.split(';');
           let c = [];
           await _(a.categories).each(async (j: any, k) => {
             if (j) {
-              await this.productsService.getCategoryByArray(j).subscribe(async (data: any) => {
-                if (data) {
-                  await c.push(data.categoryName.toLowerCase())
+                if (j) {
+                  await c.push(j.split('_').join(' ').toLowerCase())
                   if (c.length) {
                     products[b].categoryName = await c;
-                    this.products = await products
-                //   console.log(this.products);
+                    this.products = await products;
                   }
-                } else {
-                  this.products = await products;
-                  this.products[b].categoryName = await [null];
                 }
-              })
+              // })
             }
           })
         })

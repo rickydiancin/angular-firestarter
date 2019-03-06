@@ -39,6 +39,7 @@ export class CategoryComponent implements OnInit {
   addToProject: boolean = false;
   isLoggin: Boolean;
   sortValue: any = 'productTitle';
+  filterQuery:any;
 
   @Input('data') meals: string[] = [];
 
@@ -86,7 +87,8 @@ export class CategoryComponent implements OnInit {
       if (Object.entries(queryParams).length !== 0) {
         this.titleService.setTitle(`You searched for ${queryParams.s} - Gentec Australia`)
         this.queryParams = queryParams.s;
-        this.getAllProducts(queryParams.s);
+        this.filterQuery = queryParams.s;
+        // this.getAllProducts(queryParams.s);
       }
     })
 
@@ -103,26 +105,40 @@ export class CategoryComponent implements OnInit {
       if (Object.entries(params).length !== 0) {
         this.titleService.setTitle(`Gentec Product Range Archives - Gentec Australia`)
           if(params.id) {
-            this.paramsCategory = params.id
+            this.paramsCategory = params.id;
+            this.filterQuery = params.id;
             this.productsService.getCategory(params.id, res => {
               this.category = res;
+              this.productsLoaded = true;
               // console.log("category",this.category );
             });
-            this.vs.localstorage('products').subscribe((products: any) => {
-              if (products.length) {
-                products.forEach(a => {
-                  // console.log(a.categories, a.productCode)
-                });
-                let productList = _(products).filter((value) => {
-                    value.categories = value.categories.split(';');
-                    return value.categories.includes(params.id)
-                  }).value();
-                this.products = _(productList).sortBy(this.sortValue).value();
-                this.productsTemp = productList;
-                this.productsLoaded = true;
-                // console.log(this.products)
-              }
-            })
+            // this.vs.localstorage('products').subscribe((products: any) => {
+            //   if (products.length) {
+            //     _(products).each((a: any, b) => {
+            //       a.categories = a.categories.split(';').join(',').match(/(?=\S)[^,]+?(?=\s*(,|$))/g);;
+            //       let c = [];
+            //       _(a.categories).each((j: any, k) => {
+            //         if (j) {
+            //           c.push(j.split('_').join(' '))
+            //           if (c.length) {
+            //             a.categoryName = c;
+            //           }
+            //         }
+            //       })
+            //     })
+            //     // products.forEach(a => {
+            //     //   // console.log(a.categories, a.productCode)
+            //     // });
+            //     // let productList = _(products).filter((value) => {
+            //     //     value.categories = value.categories.split(';');
+            //     //     return value.categories.includes(params.id)
+            //     //   }).value();
+            //     this.products = _(products).sortBy(this.sortValue).value();
+            //     this.productsTemp = products;
+            //     this.productsLoaded = true;
+            //     console.log(this.products)
+            //   }
+            // })
 
             // if (this.vs.localstorage('products')) {
             //   // this.products = localStorage.getItem('products');
@@ -154,8 +170,11 @@ export class CategoryComponent implements OnInit {
             // }
           } else if (params.solutionid) {
             this.paramsSolution = params.solutionid;
+            this.filterQuery = params.solutionid;
+            console.log(this.filterQuery)
               this.productsService.getSolution(params.solutionid).subscribe((data) => {
                 this.solution = data
+                this.productsLoaded = true;
               })
             // this.vs.localstorage('solutions').subscribe(res => {
             //   this.solution = _(res).filter((value:any) => {
@@ -175,22 +194,22 @@ export class CategoryComponent implements OnInit {
             //     }).value();
             //   })
             // }
-            this.vs.localstorage('products').subscribe((products: any) => {
-              if (products.length) {
-                products.forEach(a => {
-                  // console.log(a.solutions, a.productCode)
-                });
-                let productList = _(products).filter((value) => {
-                  value.solutions = value.solutions.split(';').join(',').match(/(?=\S)[^,]+?(?=\s*(,|$))/g);
-                  if (value.solutions) {
-                    return value.solutions.includes(params.solutionid)
-                  }
-                }).value();
-                this.products = _(productList).sortBy(this.sortValue).value();
-                this.productsTemp = productList;
-                this.productsLoaded = true;
-              }
-            })
+            // this.vs.localstorage('products').subscribe((products: any) => {
+            //   if (products.length) {
+            //     products.forEach(a => {
+            //       // console.log(a.solutions, a.productCode)
+            //     });
+            //     let productList = _(products).filter((value) => {
+            //       value.solutions = value.solutions.split(';');
+            //       if (value.solutions) {
+            //         return value.solutions.includes(params.solutionid)
+            //       }
+            //     }).value();
+            //     this.products = _(productList).sortBy(this.sortValue).value();
+            //     this.productsTemp = productList;
+            //     this.productsLoaded = true;
+            //   }
+            // })
             // if(this.vs.localstorage('products')) {
             //   this.products = _(JSON.parse(localStorage.getItem('products'))).filter((value) => {
             //     return value.solutions.includes(params.solutionid)
@@ -231,6 +250,7 @@ export class CategoryComponent implements OnInit {
       // });
     // this.getAllCategories();
     this.getAllSolutions();
+    this.getAllProducts();
 
     // setTimeout(() => {
     //   this.scriptsService.prepareJquery();
@@ -244,41 +264,76 @@ export class CategoryComponent implements OnInit {
   //   }
   // }
 
-  getAllProducts(value?) {
-    this.scriptsService.prepareJquery();
-    let result = [];
-      this.vs.localstorage('products').subscribe((products: any) => {
-        if (products.length) {
-          if (!value) {
-            this.products = _(products).sortBy(this.sortValue).value();
-            this.productsTemp = products;
-            this.productsLoaded = true;
-          } else {
-            this.productsService.getProductsWithCategory(cb => {
-              if(cb) {
-                setTimeout(() => {
-                  result = _.filter(cb, row => row);
-                  cb.forEach((cv) => {
-                    console.log(cv.categoryName)
-                  })
-                  console.log(cb)
-                  result = _.filter(cb, row => row.productTitle.toString().toLowerCase().indexOf(value) > -1 || row.productCode.toString().toLowerCase().indexOf(value) > -1 || row.categories.toString().toLowerCase().indexOf(value) > -1 || row.categoryName.toString().toLowerCase().indexOf(value) > -1);
-                  if (result.length > 0) {
-                    this.products = _(result).sortBy(this.sortValue).value();
-                    this.productsTemp = result;
-                    this.productsLoaded = true;
-                  } else {
-                    this.products = [];
-                    this.productsTemp = [];
-                    this.productsLoaded = true;
-                  }
-                }, 3000);
+  getAllProducts() {
+    this.productsService.getProductsWithCategory().subscribe((cb: any) => {
+      if (cb) {
+        _(cb).each((a: any, b) => {
+          let c = [];
+          let s = [];
+          if (a.categories) {
+            a.categories = a.categories.split(';').join(',').match(/(?=\S)[^,]+?(?=\s*(,|$))/g);
+
+            _(a.categories).each((j: any, k) => {
+              if (j) {
+                c.push(j.split('_').join(' '));
+                if (c.length) {
+                  a.categoryName = c;
+                }
               }
-            });
+            })
           }
-        }
-    })
+          if (a.solutions) {
+            a.solutions = a.solutions.split(';').join(',').match(/(?=\S)[^,]+?(?=\s*(,|$))/g);
+            _(a.solutions).each((j: any, k) => {
+              if (j) {
+                s.push(j.split('_').join(' '));
+                if (c.length) {
+                  a.solutionName = s;
+                }
+              }
+            })
+          }
+          
+        })
+        this.products = cb;
+        this.productsLoaded = true;
+        console.log(cb)
+      }
+    });
   }
+  // getAllProducts(value?) {
+  //   this.scriptsService.prepareJquery();
+  //   let result = [];
+  //     this.vs.localstorage('products').subscribe((products: any) => {
+  //       if (products.length) {
+  //         if (!value) {
+  //           this.products = _(products).sortBy(this.sortValue).value();
+  //           this.productsTemp = products;
+  //           this.productsLoaded = true;
+  //         } else {
+  //           this.productsService.getProductsWithCategory().subscribe((cb: any) => {
+  //             if (cb) {
+  //               _(cb).each((a: any, b) => {
+  //                 a.categories = a.categories.split(';').join(',').match(/(?=\S)[^,]+?(?=\s*(,|$))/g);;
+  //                 let c = [];
+  //                 _(a.categories).each((j: any, k) => {
+  //                   if (j) {
+  //                     c.push(j.split('_').join(' '))
+  //                     if (c.length) {
+  //                       a.categoryName = c;
+  //                     }
+  //                   }
+  //                 })
+  //               })
+  //               this.products = cb;
+  //               this.productsLoaded = true;
+  //             }
+  //           });
+
+  //         }
+  //       }
+  //   })
+  // }
 
   // getAllCategories() {
   //   this.productsService.getAllCategories(res => {
