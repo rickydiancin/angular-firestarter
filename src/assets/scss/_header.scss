@@ -134,7 +134,7 @@
 .b-header_fixed {
     padding-top: 70px;
     .b-header_main{
-        position: fixed; width: 100%; top: 0; left: 0; z-index: 999; background-color: #FFF; height: 68px;
+        position: fixed; width: 100%; top: 0; left: 0; z-index: 999; background-color: #FFF; height: auto;
         .b-menu_top_bar_container .b-main_menu{padding-top: 0}
         .b-header_right{height: 65px; line-height: 65px;}
         .b-logo{padding: 5px 0 0;}
