@@ -234,11 +234,8 @@ export class ProjectProductsComponent implements OnInit {
     let headerImgData = this.vs.pdfHeader();
     var canvas = <HTMLCanvasElement>document.querySelector("#content");
     let date = new Date();
-    html2canvas(canvas, { useCORS: true, logger: false }).then(canvas => {
-      var doc = new jsPDF('p');
-      var imgData = canvas.toDataURL('image/png');
-      var width = 200;
-      var height = 35;
+    html2canvas(canvas, { useCORS: true, logging: false }).then(canvas => {
+      var doc = new jsPDF('p', 'mm');
 
       doc.addImage(headerImgData, 'JPEG', 5, 5, 200, 140);
 
@@ -264,6 +261,12 @@ export class ProjectProductsComponent implements OnInit {
       doc.text(188, 230, (`${('0' + date.getDate().toString()).slice(-2)}/${('0' + (date.getMonth() + 1).toString()).slice(-2)}/${date.getFullYear()}`));
 
       doc.addPage();
+
+      var imgData = canvas.toDataURL('image/png');
+      var ratio = canvas.height / canvas.width;
+      var width = 200;
+      var height = ratio * doc.internal.pageSize.getWidth();
+
 
       doc.addImage(imgData, 'PNG', 5, 5, width, height);
       doc.setProperties({

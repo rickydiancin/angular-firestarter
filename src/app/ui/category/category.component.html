@@ -287,7 +287,7 @@
                       <a href="#" routerLink="/product/{{product?.productCode}}" (click)="titleService.setTitle(product?.productTitle)">
                         <div class="b-product_grid_info" style="min-height: 2.75rem;">
                           <h1 class="product-title">
-                            <a href="#" routerLink="/product/{{product?.productCode}}"><b>{{ product?.productTitle | truncate: 40 }}</b></a>
+                            <a href="#" routerLink="/product/{{product?.productCode}}"><b>{{ product?.productTitle | truncate: 30 }}</b></a>
                            </h1>
                         </div>
                         <img [src]="product?.primaryURL || './assets/images/not_available.jpg'" width="100%" height="auto"
