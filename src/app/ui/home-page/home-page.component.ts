@@ -120,7 +120,7 @@ export class HomePageComponent implements OnInit {
     //   console.log('latest products: ',res);
     //   this.products2 = res;
     //  });
-    this.getAllProducts();
+    // this.getAllProducts();
     this.getAllSolutions();
   }
 
@@ -141,28 +141,28 @@ export class HomePageComponent implements OnInit {
 
   getAllProducts() {
     this.vs.localstorage('products').subscribe((products:any) => {
-     // console.log(products);
       if(products.length) {
-        _(products).each(async (a: any, b) => {
-          a.categories = await a.categories.split(';').join(',').match(/(?=\S)[^,]+?(?=\s*(,|$))/g);
-          let c = [];
-          await _(a.categories).each(async (j: any, k) => {
-            if (j) {
-              await this.productsService.getCategoryByArray(j).subscribe(async (data: any) => {
-                if (data) {
-                  await c.push(data.categoryName.toLowerCase())
-                  if (c.length) {
-                    products[b].categoryName = await c;
-                    this.products = await products
-                  }
-                } else {
-                  this.products = await products;
-                  this.products[b].categoryName = await [null];
-                }
-              })
-            }
-          })
-        })
+        this.products = products;
+        // _(products).each(async (a: any, b) => {
+        //   a.categories = await a.categories.split(';').join(',').match(/(?=\S)[^,]+?(?=\s*(,|$))/g);
+        //   let c = [];
+        //   await _(a.categories).each(async (j: any, k) => {
+        //     if (j) {
+        //       await this.productsService.getCategoryByArray(j).subscribe(async (data: any) => {
+        //         if (data) {
+        //           await c.push(data.categoryName.toLowerCase())
+        //           if (c.length) {
+        //             products[b].categoryName = await c;
+        //             this.products = await products
+        //           }
+        //         } else {
+        //           this.products = await products;
+        //           this.products[b].categoryName = await [null];
+        //         }
+        //       })
+        //     }
+        //   })
+        // })
       }
     });
     // if (this.vs.localstorage('products')) {
