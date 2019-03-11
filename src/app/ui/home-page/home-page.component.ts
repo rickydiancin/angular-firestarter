@@ -120,7 +120,7 @@ export class HomePageComponent implements OnInit {
     //   console.log('latest products: ',res);
     //   this.products2 = res;
     //  });
-    // this.getAllProducts();
+    this.getAllProducts();
     this.getAllSolutions();
   }
 
