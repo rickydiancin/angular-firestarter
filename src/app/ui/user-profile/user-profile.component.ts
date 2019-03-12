@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from '../../core/auth.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'user-profile',
@@ -9,6 +11,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class UserProfileComponent implements OnInit {
 
+  @ViewChild('upload') upload: ElementRef;
+
+  task;
   user;
   form;
   type;
@@ -17,7 +22,11 @@ export class UserProfileComponent implements OnInit {
   passwordForm;
   isChangePassword: Boolean = false;
 
-  constructor(public auth: AuthService, private formBuilder: FormBuilder ) {
+  constructor(
+    public auth: AuthService,
+    private formBuilder: FormBuilder,
+    private storage: AngularFireStorage,
+    ) {
     this.createForm();
   }
 
@@ -83,6 +92,27 @@ export class UserProfileComponent implements OnInit {
       this.type = 'success';
       this.message = 'Profile successfully updated';
     })
+  }
+
+  updateProfileImage(url) {
+    this.auth.updateProfile({ uid: this.user.uid, photoURL: url }).then(() => {
+      console.log('Updated Successfully!');
+    })
+  }
+
+  saveChanges() {
+    var file = this.upload.nativeElement.files[0];
+
+    const path = `images/${this.user.uid}`;
+
+    this.task = this.storage.upload(path, file);
+    this.task.snapshotChanges().pipe(
+      finalize(() => {
+        this.storage.ref(path).getDownloadURL().subscribe((url) => {
+          this.updateProfileImage(url)
+        })
+      })
+    ).subscribe();
   }
 
 }
