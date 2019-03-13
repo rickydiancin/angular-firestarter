@@ -19,11 +19,23 @@
 <div class="row">
     <div class="col-md-4 pull-right" *ngIf="!isChangePassword">
             <div class="card card-profile">
-              <div class="card-avatar">
-                <a href="#">
-                  <img class="img" [src]="user.photoURL || 'https://gentec-web.firebaseapp.com/favicon.ico'" style="min-width: 130px;">
-                </a>
+              <div class="container">
+                <div class="avatar-upload">
+                  <div class="avatar-edit">
+                    <input type='file' (change)="saveChanges(upload)" #upload id="imageUpload" accept=".png, .jpg, .jpeg" />
+                    <label title="Upload Image" for="imageUpload"></label>
+                  </div>
+                  <div class="avatar-preview">
+                    <div id="imagePreview" [ngStyle]="{ 'background-image': 'url(' + user?.photoURL + ')'}">
+                    </div>
+                  </div>
+                </div>
               </div>
+              <!-- <div class="card-avatar">
+                <a href="#">
+                  <img class="img" [src]="user.photoURL || 'https://gentec-web.firebaseapp.com/favicon.ico'" style="min-width: 130px;background-color: #fff">
+                </a>
+              </div> -->
               <div class="card-body">
                 <ng-container *ngIf="!isChangePassword">
                   <h6 class="card-category text-gray">{{user?.company}}</h6>
