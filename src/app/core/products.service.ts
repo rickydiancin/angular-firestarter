@@ -27,6 +27,10 @@ export class ProductsService {
     this.productsCollection = this.afs.collection('products', (ref) => ref.orderBy('dateCreated', 'desc').limit(15));
   }
 
+  GetNewReleases(id) {
+    return this.afs.doc('products/' + id).valueChanges();
+  }
+
   getFile(): Observable<any> {
     return this.http.get('../../assets/datafiles/categories.json');
   }

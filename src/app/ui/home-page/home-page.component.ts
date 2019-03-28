@@ -25,7 +25,7 @@ export class HomePageComponent implements OnInit {
   filterQuery = '';
 
   categories: any;
-  products:any;
+  products:any = [];
   posts:any;
   abouts:any;
   products2:any;
@@ -140,39 +140,18 @@ export class HomePageComponent implements OnInit {
   }
 
   getAllProducts() {
-    this.vs.localstorage('products').subscribe((products:any) => {
-      if(products.length) {
-        this.products = products;
-        // _(products).each(async (a: any, b) => {
-        //   a.categories = await a.categories.split(';').join(',').match(/(?=\S)[^,]+?(?=\s*(,|$))/g);
-        //   let c = [];
-        //   await _(a.categories).each(async (j: any, k) => {
-        //     if (j) {
-        //       await this.productsService.getCategoryByArray(j).subscribe(async (data: any) => {
-        //         if (data) {
-        //           await c.push(data.categoryName.toLowerCase())
-        //           if (c.length) {
-        //             products[b].categoryName = await c;
-        //             this.products = await products
-        //           }
-        //         } else {
-        //           this.products = await products;
-        //           this.products[b].categoryName = await [null];
-        //         }
-        //       })
-        //     }
-        //   })
-        // })
-      }
+    let ids = ['PLUS1000BM', 'SANH710BR'];
+    _(ids).each((id) => {
+      this.productsService.GetNewReleases(id).subscribe((res:any) => {
+        this.products.push(res)
+        console.log(this.products)
+      })
     });
-    // if (this.vs.localstorage('products')) {
-    //   this.products = JSON.parse(localStorage.getItem('products'));
-    // } else {
-    //   this.productsService.getAllProducts().subscribe((data) => {
-    //     this.products = data;
-    //     localStorage.setItem('products', JSON.stringify(data));
-    //   })
-    // }
+    // this.vs.localstorage('products').subscribe((products:any) => {
+    //   if(products.length) {
+    //     this.products = products;
+    //   }
+    // });
   }
 
   onSelect(event: TypeaheadMatch): void {
