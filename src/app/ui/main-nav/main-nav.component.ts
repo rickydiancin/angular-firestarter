@@ -61,7 +61,7 @@ export class MainNavComponent implements OnInit {
     });
 
 
-    this.getAllProducts();
+    // this.getAllProducts();
     
     console.log(this.auth.user);
     this.menus = this.vs.allMenus();
@@ -130,14 +130,15 @@ export class MainNavComponent implements OnInit {
   }
 
   getAllProducts() {
-    this.vs.localstorage('products').subscribe((products:any) => {
-     // console.log(products);
-      if(products.length) {
-        _(products).each(async (a: any, b) => {
-          a.categories = await a.categories.split(';');
-          let c = [];
-          await _(a.categories).each(async (j: any, k) => {
-            if (j) {
+    if (!this.products.length) {
+      this.vs.localstorage('products').subscribe((products: any) => {
+        // console.log(products);
+        if (products.length) {
+          _(products).each(async (a: any, b) => {
+            a.categories = await a.categories.split(';');
+            let c = [];
+            await _(a.categories).each(async (j: any, k) => {
+              if (j) {
                 if (j) {
                   await c.push(j.split('_').join(' ').toLowerCase())
                   if (c.length) {
@@ -145,20 +146,13 @@ export class MainNavComponent implements OnInit {
                     this.products = await products;
                   }
                 }
-              // })
-            }
+                // })
+              }
+            })
           })
-        })
-      }
-    });
-    // if (this.vs.localstorage('products')) {
-    //   this.products = JSON.parse(localStorage.getItem('products'));
-    // } else {
-    //   this.productsService.getAllProducts().subscribe((data) => {
-    //     this.products = data;
-    //     localStorage.setItem('products', JSON.stringify(data));
-    //   })
-    // }
+        }
+      });
+    }
   }
   logout() {
     console.log('logout...');

@@ -378,7 +378,7 @@
                     </ng-template>
                     <div class="form-group">
                       <input autocomplete="off" [(ngModel)]="filterQuery" type="text"
-                        placeholder="Search Products" [ngModelOptions]="{standalone: true}">
+                        placeholder="Search Products" [ngModelOptions]="{standalone: true}" (click)="getAllProducts()">
                       <button class="btn"><i class="icons icon-magnifier"></i></button>
                     </div>
                   </form>
