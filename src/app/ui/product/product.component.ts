@@ -178,7 +178,6 @@ export class ProductComponent implements OnInit, AfterViewInit {
     //   $(this).find('a').click();
     // }
     $('.gallery').each(function (index) {
-      console.log(index)
       $(this).find('.active a').click();
     });
   }
@@ -226,7 +225,7 @@ export class ProductComponent implements OnInit, AfterViewInit {
       this.productsService.getProduct(params.id).valueChanges()
         .subscribe(async res => {
           let c = [];
-          res.categories = res.categories.split(';').join(',').match(/(?=\S)[^,]+?(?=\s*(,|$))/g);
+          res.categories = res.categories.split(';');
             res.categories.forEach(async (categoryID) => {
               await this.productsService.getCategoryByArray(categoryID).subscribe((category:any) => {
                 if(category) {
@@ -243,7 +242,6 @@ export class ProductComponent implements OnInit, AfterViewInit {
           setTimeout(() => {
             $(document).ready(() => {
               this.slick = $('.slick-count > .owl-thumb-item').length;
-              console.log(this.slick)
             })
           }, 1000);
           this.productLoaded = true;
@@ -262,14 +260,24 @@ export class ProductComponent implements OnInit, AfterViewInit {
           // }
 
             await this.vs.localstorage('products').subscribe((products: any) => {
-            var lookup = _.keyBy(res.categories, (o) => {
-              return o.toString()
+            // var lookup = _.keyBy(res.categories, (o) => {
+            //   return o.toString()
+            // });
+            //   var relateds = _.filter(products, function (u: any) {
+            //   return lookup[u.categories.toString()] !== undefined;
+            // });
+              let relateds = [];
+            res.categories.forEach(element => {
+              let result = _.filter(products, row => row.categories.split(';').indexOf(element) > -1);
+              result.forEach((el) => {
+                relateds.push(el)
+              })
             });
-              var relateds = _.filter(products, function (u: any) {
-              return lookup[u.categories.toString()] !== undefined;
-            });
+              this.relateds = relateds;
+              
 
-            this.relateds = relateds;
+            // this.relateds = relateds;
+              // console.log(lookup, relateds)
 
               let index = products.findIndex(x => x.productCode == params.id);
               this.nextProduct = products[index + 1];

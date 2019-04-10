@@ -77,7 +77,6 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log(this.sortValue)
 
     this.finalMenu1 = this.vs.finalMenu1();
     this.finalMenu2 = this.vs.finalMenu2();
@@ -295,7 +294,6 @@ export class CategoryComponent implements OnInit {
         this.products = _(cb).sortBy(this.sortValue).value();
         this.productsTemp = _(cb).sortBy(this.sortValue).value();
         this.productsLoaded = true;
-        console.log(cb)
       }
     });
   }
