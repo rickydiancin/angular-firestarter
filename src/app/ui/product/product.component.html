@@ -231,15 +231,15 @@
               <div role="tabpanel" class="tab-pane fade" id="tab-02">
                 <table class="b-shop_attributes">
                   <tbody>
-                    <tr>
-                      <th *ngIf="theproduct?.productCode">Product Code(s)</th>
+                    <tr *ngIf="theproduct?.productCode">
+                      <th >Product Code(s)</th>
                       <td>
                         <p>{{theproduct?.productCode}}</p>
                       </td>
                     </tr>
-                    <tr>
+                    <tr *ngIf="theproduct?.colourFinish">
                       <th>Colours/Finish</th>
-                      <td *ngIf="theproduct?.colourFinish">
+                      <td>
                         <p>{{theproduct?.colourFinish}}</p>
                       </td>
                     </tr>
