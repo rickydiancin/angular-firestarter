@@ -148,3 +148,18 @@ h5 {
     left: -25px;
     top: 0;
 }
+
+.product-description {
+    display: inline-block;
+    margin-right: 10px;
+    .img {
+        border: 3px solid #000;
+    }
+}
+
+.title-header {
+    display: inline-block;
+    width: 5rem;
+    vertical-align: middle;
+    text-align: center;
+}

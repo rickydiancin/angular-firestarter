@@ -224,6 +224,12 @@ export class ProductComponent implements OnInit, AfterViewInit {
       // }
       this.productsService.getProduct(params.id).valueChanges()
         .subscribe(async res => {
+          this.productsService.getAllProducts(res.parentProduct).subscribe((color:any) => {
+            if(color.length) {
+              res.variants = color;
+            }
+          })
+          console.log(res)
           let c = [];
           res.categories = res.categories.split(';');
             res.categories.forEach(async (categoryID) => {

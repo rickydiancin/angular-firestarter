@@ -153,10 +153,20 @@
                   {{theproduct?.welsRating?theproduct?.welsRating:'' | titlecase }}{{theproduct?.litresPerMinute && theproduct?.welsRating?', ':''}}{{theproduct?.litresPerMinute !== ''?theproduct?.litresPerMinute:''}}
                 </h4>
                 <h5 class="sub-header">Product Description</h5>
-                <p>{{theproduct?.productDescription}}.</p>
+                <p style="padding: 0;">{{theproduct?.productDescription}}.</p>
   
                 <h6 *ngIf="theproduct?.welsRegistrationNumber">Wels Registration : {{theproduct?.welsRegistrationNumber}}
                 </h6>
+                <div>
+                  <div class="title-header">Available Colours</div>
+                  <div class="product-description border-product" *ngFor="let product of theproduct?.variants">
+                    <div class="img"
+                      routerLink="/product/{{product?.productCode}}">
+                      <img tooltip="{{product?.colourFinish?.split('/')?.pop()?.split('.')[0]}}" src="{{product?.colourFinish}}"
+                        alt="s" class="img-fluid" height="40" width="40">
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="b-product_single_option">
                 <ul class="pl-0 list-unstyled">
