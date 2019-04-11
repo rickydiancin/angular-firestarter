@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angula
 import { AuthService } from '../../core/auth.service';
 import { StorageService } from 'src/app/core/storage.service';
 import { NotifyService } from 'src/app/core/notify.service';
+import { VariablesService } from 'src/app/core/variables.service';
 
 @Component({
   selector: 'user-form',
@@ -29,7 +30,8 @@ export class UserFormComponent implements OnInit {
     private fb: FormBuilder,
     private auth: AuthService,
     public storage: StorageService,
-    public notifyService: NotifyService
+    public notifyService: NotifyService,
+    private vs: VariablesService
     ) {
     this.buildForm();
     notifyService.msg.subscribe((message) => {
@@ -49,7 +51,9 @@ export class UserFormComponent implements OnInit {
 
   signup() {
     this.auth.emailSignUp(this.regform.value).then((success) => {
-      console.log(success)
+      this.vs.SendEmail(this.regform.value).subscribe((res:any) => {
+        console.log(res)
+      })
     })
   }
 

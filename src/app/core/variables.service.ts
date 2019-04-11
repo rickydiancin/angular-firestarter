@@ -23,6 +23,10 @@ export class VariablesService {
     this.productsCollection = this.afs.collection('products', (ref) => ref.orderBy('dateCreated', 'desc'));
   }
 
+  SendEmail(body) {
+    return this.httpClient.post("https://us-central1-gentec-admin.cloudfunctions.net/httpEmail", body);
+  }
+
   localstorage(collection) {
     if (collection == 'products') {
       return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/products.json?alt=media&token=9da7b0d7-b50c-4c44-a980-bc5840ab576c');
