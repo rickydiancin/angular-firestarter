@@ -78,9 +78,11 @@ export class UserProfileComponent implements OnInit {
     // console.log(this.auth.changePassword(123));
     // console.log(this.auth.user.uid)
     this.auth.getCurrentUser(this.auth.user).subscribe((user) => {
-      this.user = user;
-      this.form.patchValue(user)
-      console.log('user: ',this.user);
+      if(user) {
+        this.user = user;
+        this.form.patchValue(user)
+        console.log('user: ', this.user);
+      }
     })
   }
 

@@ -117,7 +117,6 @@ export class AuthService {
   //// Email/Password Auth ////
 
   emailSignUp(data:any) {
-    console.log('passed data: ',data)
     return this.afAuth.auth
       .createUserWithEmailAndPassword(data.email2, data.password2)
       .then(credential => {
@@ -189,14 +188,15 @@ export class AuthService {
   }
 
   // Sets user data to firestore after succesful login
-  private updateUserData(user: User, userdata: any) {
+  private updateUserData(user: any, userdata: any) {
+    console.log(user)
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(
       `users/${user.uid}`
     );
 
-    const data: User = {
+    const data: any = {
       uid: user.uid,
-      email: user.email || null,
+      email: userdata.email2 || null,
       firstName: userdata.firstName || 'Gentec User',
       lastName: userdata.lastName || 'Gentec User',
       photoURL: user.photoURL || 'https://goo.gl/Fz9nrQ',
@@ -204,8 +204,6 @@ export class AuthService {
       contact: userdata.contact,
       company: userdata.company,
       city: userdata.city,
-      postalCode: userdata.postalCode,
-      address: userdata.address,
       isActive: true,
       role: 'user'
     };

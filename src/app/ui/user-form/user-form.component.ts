@@ -48,15 +48,13 @@ export class UserFormComponent implements OnInit {
   }
 
   signup() {
-    //this.data = this.userForm.value;
-    console.log('form data: ',this.regform.value);
-    this.auth.emailSignUp(this.regform.value);
-    // .then(credential => {
-    //   console.log('credentials: ',credential);
-    // });
+    this.auth.emailSignUp(this.regform.value).then((success) => {
+      console.log(success)
+    })
   }
 
   login() {
+    this.message = '';
     this.auth.emailLogin(this.userForm.value['email'], this.userForm.value['password']);
   }
 
