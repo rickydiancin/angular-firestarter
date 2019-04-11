@@ -20,12 +20,14 @@ import { InvoiceComponent } from './ui/invoice/invoice.component';
 import { NewssingleComponent } from './ui/newssingle/newssingle.component';
 import { WarrantyComponent } from './ui/warranty/warranty.component';
 import { DistributionComponent } from './ui/distribution/distribution.component';
+import { ProjcatComponent } from './ui/projcat/projcat.component';
 
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'login', component: UserLoginComponent },
   { path: 'products', component: CategoryComponent },
+  { path: 'projects-category', component: ProjcatComponent },
   { path: 'news', component: NewsComponent },
   { path: 'news/:id', component: NewssingleComponent },
   { path: ':catName/all', component: CategoryComponent },

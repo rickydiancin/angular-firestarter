@@ -92,11 +92,11 @@
                     <span class="top">Specifications</span> 
                     </a>
                   </li>
-                  <li>
+                  <!-- <li>
                     <a href="#" class="p-relative description " routerLink="/news">
                     <span class="top">News</span> 
                     </a>
-                  </li>
+                  </li> -->
                   <li *ngIf="auth?.user">
                     <a href="#" class="p-relative description " (click)="logout()">
                     <span class="top">Logout</span> 
@@ -318,11 +318,11 @@
                                 <span class="top">Specifications</span> 
                                 </a>
                               </li> -->
-                              <!-- <li>
+                              <li>
                                 <a href="#" routerLink="/news" class="p-relative description ">
                                 <span class="top">Projects</span> 
                                 </a>
-                              </li> -->
+                              </li>
                               <li>
                                 <a href="#" [routerLink]="['/']" fragment="contactUs" class="p-relative description ">
                                 <span class="top">Contact Us</span> 

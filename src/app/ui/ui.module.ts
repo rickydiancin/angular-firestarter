@@ -37,6 +37,7 @@ import { SearchFilterPipe } from './category/searchPipe';
 import { WarrantyComponent } from './warranty/warranty.component';
 import { DistributionComponent } from './distribution/distribution.component';
 import { SafePipe } from './product/safePipe';
+import { ProjcatComponent } from './projcat/projcat.component';
 
 @NgModule({
   imports: [
@@ -80,7 +81,8 @@ import { SafePipe } from './product/safePipe';
     SearchFilterPipe,
     WarrantyComponent,
     DistributionComponent,
-    SafePipe
+    SafePipe,
+    ProjcatComponent
   ],
   entryComponents:[
     AddProjectComponent,

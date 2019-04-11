@@ -1,0 +1,72 @@
+<div class="b-page_title b-page_title_default text-center">
+  <h1 class="b-entry_title"><span>Project List</span></h1>  
+  <div class="b-breadcrumbs">
+    <a href="#">Home</a>
+    <span>Project List</span>
+  </div>
+</div>
+<!-- <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner> -->
+<div class="spinner text-center p-5" *ngIf="!posts">
+  <img src="./assets//svg/oval.svg" class="img-fluid" alt="">
+</div>
+<!-- <section id="distribution" class="pb-5" *ngIf="post"> -->
+<section id="b-blog_fullwidth" *ngIf="posts">
+  <div class="container">
+    <div class="row clearfix">
+      <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
+        <div class="b-blog_default b-blog_grid b-blog_default_list b-blog_full">
+          <div class="b-blog_degault_single" *ngFor="let post of posts">
+             <div class="b-blog_single_header">
+                  <div class="b-blog_img_wrap">
+                      <a href="#" routerLink="/projects-category/{{post?.id}}">
+                          <img [src]="post?.imgURL"  class="img-fluid img-block" alt="" style="width: 100%;">
+                      </a>
+                  </div>
+                  <div class="b-post_time text-center">
+                      <span class="b-post_day">{{post?.dateCreated | date:'dd'}}</span>
+                      <span class="b-post_month">{{post?.dateCreated | date:'MMM'}}</span>
+                  </div>
+                  <div class="b-post_categories">
+                     <div class="b-post_categorie_list">
+                        <a href="#" rel="category tag">{{post?.category}}</a>
+                     </div>
+                  </div>
+              </div>  
+              <div class="b-blog_single_info">
+                  <h3 class="b-entry_title">
+                      <a href="#" routerLink="/projects-category/{{post?.id}}" rel="bookmark">{{post?.title}}</a>
+                  </h3>
+                  <!-- <div class="b-author_info">
+                      <span class="b-author_name">
+                          By <a href="#" routerLink="/projects-category/{{post?.id}}" rel="author">Gentec Editor</a>
+                      </span>
+                      <span class="b-reply">
+                          <a href="#" routerLink="/projects-category/{{post?.id}}">Leave a comment</a>
+                      </span>
+                  </div> -->
+                  <div class="b-blog_single_content">
+                      <div class="b-blog_single_content text-center pt-3">
+                      <p [innerHTML]="post?.content | slice:0:300"></p> </div> </div>
+              </div>
+              <div class="b-read_more text-center">
+                  <a href="#" routerLink="/projects-category/{{post?.id}}">Read More</a>
+              </div>
+              <div class="b-blog_social">
+                <ul class="list-unstyled clearfix mb-0">
+                  <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                  <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                  <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                  <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+                  <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                </ul>
+              </div>
+          </div>
+       
+        </div>
+      </div>  
+    
+    </div>
+  </div>
+</section> 
