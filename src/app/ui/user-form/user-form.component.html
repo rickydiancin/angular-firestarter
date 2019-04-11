@@ -2,6 +2,11 @@
   <section id="b-my_account">
     <div class="container b-my_account">
       <div class="row">
+        <div class="col-sm-12" *ngIf="message">
+          <div class="alert alert-{{style}} alert-dismissible fade show" role="alert">
+            {{message}}
+          </div>
+        </div>
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12"> 
           <div class="b-auth_section b-auth_login" *ngIf="!isLogin && sentRecovery">
             <h2><i class="icon-login icons"></i> Can't log in?</h2>
@@ -17,133 +22,107 @@
             <p>We'll send a recovery link to</p>
                 <div class="form-group">
                   <input style="font-family: 'Montserrat', sans-serif;" type="email" placeholder="Enter email" id="email" name="email2" class="input" [(ngModel)]="email" required>
-                  <div *ngIf="formErrors.email" class="help is-danger">
-                    {{ formErrors.email }}
-                    </div>
                 </div>
                 <div class="form-group clearfix">
                   <a href="javascript:void()" class="pull-right b-lost_password" (click)="isLogin = true"><i class="icon-support icons"></i> Return to log in</a>
                 </div>
                 <button [disabled]="!email" (click)="resetPassword()" style="font-family: 'Montserrat', sans-serif;" type="submit" class="btn" >Send recovery link</button>
           </div>
-          <div class="b-auth_section b-auth_login" *ngIf="isLogin">
+          <div class="b-auth_section b-auth_login br" *ngIf="isLogin">
             <h2><i class="icon-login icons"></i> Login</h2>
             <form [formGroup]="userForm" (ngSubmit)="login()">
                 <div class="form-group">
                   <label for="">Username or email address <span class="b-required">*</span></label>
-                  <input type="email" id="email" name="email2" class="input" formControlName="email" required autocomplete="new-password">
-                  <div *ngIf="formErrors.email" class="help is-danger">
-                    {{ formErrors.email }}
-                </div>
+                  <input type="email" id="email" name="email2" class="input" formControlName="email" required autocomplete="off">
                 </div>
                 <div class="form-group">
                   <label for="">Password <span class="b-required">*</span></label>
-                  <input type="password" id="password" name="password2" class="input" formControlName="password" required autocomplete="new-password">
-                  <div *ngIf="formErrors.password" class="help is-danger">
-                    {{ formErrors.password }}
-                </div>
+                  <input type="password" id="password" name="password2" class="input" formControlName="password" required autocomplete="off">
                 </div>
                 <div class="form-group clearfix">
-                  <label class="pull-left"><input name="" type="checkbox"  value=""> Remember me</label>
+                  <!-- <label class="pull-left"><input name="" type="checkbox"  value=""> Remember me</label> -->
                   <a href="javascript:void()" class="pull-right b-lost_password" (click)="isLogin = false; userForm.reset(); email=''"><i class="icon-support icons"></i>  Lost your password?</a>
                 </div>
-                <p *ngIf="userForm.valid" class="text-success">Form is valid</p>
+                <!-- <p *ngIf="userForm.valid" class="text-success">Form is valid</p> -->
                 <button type="submit" class="btn"  [disabled]="!userForm.valid" >Login</button>  
               </form>
           </div>
   
         </div>  
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12" style="border: none;"> 
-            <div class="b-auth_section b-auth_login" >
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12"> 
+            <div class="b-auth_section b-auth_login">
                 <h2><i class="icon-user icons"></i> Register</h2>
                 <form [formGroup]="regform" (ngSubmit)="signup()">
-                    <div class="form-group row">
-                        <div class="col-sm-6">
-                          <label for="">Firstname <span class="b-required">*</span></label>
-                          <input type="text" id="firstName" name="firstName" class="input" formControlName="firstName" required autocomplete="off">
-                          <div *ngIf="formErrors.firstName" class="help is-danger">
-                            {{ formErrors.firstName }}
-                          </div>
-                        </div>
-                        <div class="col-sm-6">
-                          <label for="">Lastname <span class="b-required">*</span></label>
-                          <input type="text" id="lastName" name="lastName" class="input" formControlName="lastName" required autocomplete="off">
-                          <div *ngIf="formErrors.lastName" class="help is-danger">
-                            {{ formErrors.lastName }}
-                          </div>
-                        </div>
-                      </div>
-                      <!-- <div class="form-group">
-                          <label for="">Last Name <span class="b-required">*</span></label>
-                          <input type="text" id="lname" name="lname" class="input" formControlName="lname" required autocomplete="new-password">
-                        
-                        </div> -->
-                    <div class="form-group">
-                      <label for="">Email <span class="b-required">*</span></label>
-                      <input type="email" id="email2" name="email2" class="input" formControlName="email2" required autocomplete="off">
-                        <div *ngIf="formErrors.email" class="help is-danger">
-                          {{ formErrors.email }}
-                      </div>
+                  <div class="form-group">
+                    <label for="">First name <span class="b-required">*</span></label>
+                    <div [ngClass]="{'is-danger': (regform.controls.firstName?.errors && regform.controls.firstName?.dirty)}">
+                      <input type="text" id="firstName" name="firstName" class="input" formControlName="firstName" autocomplete="off">
+                      <ul class="is-danger-feedback">
+                        <li *ngIf="regform.controls.firstName.errors?.required">This field is required</li>
+                      </ul>
                     </div>
-                    <div class="form-group">
-                      <label for="">Address</label>
-                      <input type="email" id="address" name="address" class="input" formControlName="address" required autocomplete="off">
-                        <!-- <div *ngIf="formErrors.email" class="help is-danger">
-                          {{ formErrors.email }}
-                      </div> -->
+                  </div>
+                  <div class="form-group">
+                    <label for="">Last name <span class="b-required">*</span></label>
+                    <div [ngClass]="{'is-danger': (regform.controls.lastName?.errors && regform.controls.lastName?.dirty)}">
+                      <input type="text" id="lastName" name="lastName" class="input" formControlName="lastName" autocomplete="off">
+                      <ul class="is-danger-feedback">
+                        <li *ngIf="regform.controls.lastName.errors?.required">This field is required</li>
+                      </ul>
                     </div>
-                    <div class="form-group row">
-                      <div class="col-sm-6">
-                        <label for="">State</label>
-                        <input type="text" id="state" name="state" class="input" formControlName="state" required autocomplete="off">
-                        <!-- <div *ngIf="formErrors.state" class="help is-danger">
-                          {{ formErrors.state }}
-                        </div> -->
-                      </div>
-                      <div class="col-sm-6">
-                        <label for="">City </label>
-                        <input type="text" id="city" name="city" class="input" formControlName="city" required autocomplete="off">
-                        <!-- <div *ngIf="formErrors.state" class="help is-danger">
-                          {{ formErrors.state }}
-                        </div> -->
+                  </div>
+                  <div class="form-group">
+                    <label for="">Email <span class="b-required">*</span></label>
+                    <div [ngClass]="{'is-danger': (regform.controls.email2?.errors && regform.controls.email2?.dirty)}">
+                      <input type="email" id="email2" name="email2" class="input" formControlName="email2" autocomplete="off">
+                      <ul class="is-danger-feedback">
+                        <li *ngIf="regform.controls.email2.errors?.required">This field is required</li>
+                        <li *ngIf="regform.controls.email2.errors?.email">Email must be a valid email</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-12">
+                      <label for="">State <span class="b-required">*</span></label>
+                      <div [ngClass]="{'is-danger': (regform.controls.state?.errors && regform.controls.state?.dirty)}">
+                        <input type="text" id="state" name="state" class="input" formControlName="state" autocomplete="off">
+                        <ul class="is-danger-feedback">
+                          <li *ngIf="regform.controls.state.errors?.required">This field is required</li>
+                        </ul>
                       </div>
                     </div>
-                    <div class="form-group row">
-                      <div class="col-sm-6">
-                        <label for="">Contact Number</label>
-                        <input type="text" id="contact" name="contact" class="input" formControlName="contact" required autocomplete="off">
-                        <!-- <div *ngIf="formErrors.contact" class="help is-danger">
-                          {{ formErrors.contact }}
-                        </div> -->
-                      </div>
-                      <div class="col-sm-6">
-                        <label for="">Zip Code</label>
-                        <input type="text" id="postalCode" name="postalCode" class="input" formControlName="postalCode" required autocomplete="off">
-                        <!-- <div *ngIf="formErrors.contact" class="help is-danger">
-                          {{ formErrors.contact }}
-                        </div> -->
-                      </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-6">
+                      <label for="">Phone</label>
+                      <input type="text" id="contact" name="contact" class="input" formControlName="contact" autocomplete="off">
                     </div>
-                    <div class="form-group">
-                      <label for="">Company Name </label>
-                      <input type="text" id="company" name="company" class="input" formControlName="company" required autocomplete="off">
-                      <!-- <div *ngIf="formErrors.company" class="help is-danger">
-                        {{ formErrors.company }}
-                    </div> -->
+                    <div class="col-sm-6">
+                      <label for="">City </label>
+                      <input type="text" id="city" name="city" class="input" formControlName="city" autocomplete="off">
                     </div>
-                    <div class="form-group">
-                      <label for="">Password <span class="b-required">*</span></label>
-                      <input type="password" id="password2" name="password2" class="input" formControlName="password2" required autocomplete="off">
-                      <div *ngIf="formErrors.password" class="help is-danger">
-                        {{ formErrors.password }}
+                  </div>
+                  <div class="form-group">
+                    <label for="">Company/Project</label>
+                    <input type="text" id="company" name="company" class="input" formControlName="company" autocomplete="off">
+                  </div>
+                  <div class="form-group has-success">
+                    <label for="">Password <span class="b-required">*</span></label>
+                    <div [ngClass]="{'is-danger': (regform?.controls?.password2?.errors && regform?.controls?.password2?.dirty)}">
+                      <input type="password" id="password2" name="password2" class="input" formControlName="password2" autocomplete="off">
+                      <ul class="is-danger-feedback">
+                        <li *ngIf="regform.controls.password2.errors?.required">This field is required</li>
+                        <li *ngIf="regform.controls.password2.errors?.pattern">Password must be include at one letter and one number</li>
+                        <li *ngIf="regform.controls.password2.errors?.minlength">Password must be at least 4 chareacter long</li>
+                      </ul>
                     </div>
-                    </div>
+                  </div>
                     <!-- <div class="form-group clearfix">
                       <label class="pull-left"><input name="" type="checkbox"  value=""> Remember me</label>
                       <a href="#" class="pull-right b-lost_password"><i class="icon-support icons"></i>  Lost your password?</a>
                     </div> -->
-                    <p *ngIf="regform.valid" class="text-success">Form is valid</p>
-                    <button type="submit" class="btn"  [disabled]="!regform.valid" >Register</button>  
+                    <!-- <p *ngIf="regform.valid" class="text-success">Form is valid</p> -->
+                    <button type="submit" class="btn"  [disabled]="regform.invalid" >Register</button>  
                   </form>
               </div>
    
