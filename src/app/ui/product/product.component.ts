@@ -229,7 +229,7 @@ export class ProductComponent implements OnInit, AfterViewInit {
               res.variants = color;
             }
           })
-          console.log(res)
+          // console.log(res)
           let c = [];
           res.categories = res.categories.split(';');
             res.categories.forEach(async (categoryID) => {

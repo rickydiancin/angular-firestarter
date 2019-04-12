@@ -11483,8 +11483,8 @@ body.b-header_fixed .b-header04 .b-header_nav_center {
 .b-product_single_breadcrumbs {
   background: #F9F9F9;
   margin-bottom: 40px; }
-  .b-product_single_breadcrumbs .container {
-    width: 95%; }
+  /* .b-product_single_breadcrumbs .container {
+    width: 95%; } */
   .b-product_single_breadcrumbs .b-breadcrumbs a, .b-product_single_breadcrumbs .b-breadcrumbs span {
     color: #1B1919; }
   .b-product_single_breadcrumbs .b-breadcrumbs span {
