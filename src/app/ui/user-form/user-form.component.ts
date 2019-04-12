@@ -50,10 +50,13 @@ export class UserFormComponent implements OnInit {
   }
 
   signup() {
-    this.auth.emailSignUp(this.regform.value).then((success) => {
-      this.vs.SendEmail(this.regform.value).subscribe((res:any) => {
-        console.log(res)
-      })
+    this.auth.emailSignUp(this.regform.value).then((success:any) => {
+      if(success) {
+        this.regform.value['type'] = 'new user';
+        this.vs.SendEmail(this.regform.value).subscribe((res: any) => {
+          // console.log(res)
+        })
+      }
     })
   }
 
