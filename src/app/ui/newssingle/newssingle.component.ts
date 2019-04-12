@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { PostService } from 'src/app/core/post.service';
 import { ActivatedRoute } from '@angular/router';
 
+import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
+import { faTwitterSquare } from '@fortawesome/free-brands-svg-icons/faTwitterSquare';
+import { faPinterest } from '@fortawesome/free-brands-svg-icons/faPinterest';
+
 @Component({
   selector: 'newssingle',
   templateUrl: './newssingle.component.html',
@@ -12,6 +16,10 @@ export class NewssingleComponent implements OnInit {
   singleNews:any;
   params: any;
 
+  fbIcon = faFacebookSquare;
+  pinIcon = faPinterest;
+  tweetIcon = faTwitterSquare;
+  
   constructor(
     private postService: PostService,
     private route: ActivatedRoute

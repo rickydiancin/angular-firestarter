@@ -37,6 +37,8 @@ import { SearchFilterPipe } from './category/searchPipe';
 import { WarrantyComponent } from './warranty/warranty.component';
 import { DistributionComponent } from './distribution/distribution.component';
 import { SafePipe } from './product/safePipe';
+import { ShareButtonModule } from '@ngx-share/button';
+import '../../icons';
 
 @NgModule({
   imports: [
@@ -53,7 +55,8 @@ import { SafePipe } from './product/safePipe';
     HttpClientModule,
     NgxSpinnerModule,
     TooltipModule.forRoot(),
-    PopoverModule.forRoot()
+    PopoverModule.forRoot(),
+    ShareButtonModule
   ],
   declarations: [
     UserLoginComponent,
