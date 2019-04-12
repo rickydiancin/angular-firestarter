@@ -10,11 +10,17 @@ import { ActivatedRoute } from '@angular/router';
 export class NewssingleComponent implements OnInit {
 
   singleNews:any;
+  params: any;
 
   constructor(
     private postService: PostService,
     private route: ActivatedRoute
-  ) { }
+  ) {
+    this.params = {
+      category: route.snapshot.params.cat,
+      id: route.snapshot.params.id
+    }
+  }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {

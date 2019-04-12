@@ -1,15 +1,15 @@
 <div class="b-page_title b-page_title_default text-center">
-  <h1 class="b-entry_title"><span>News</span></h1>  
+  <h1 class="b-entry_title"><span>{{params | titlecase}}</span></h1>  
   <div class="b-breadcrumbs">
     <a href="#">Home</a>
-    <span>News</span>
+    <span>{{params | titlecase}}</span>
   </div>
 </div>
 <!-- <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
   <p style="font-size: 20px; color: white">Loading...</p>
 </ngx-spinner> -->
 <div class="spinner text-center p-5" *ngIf="!posts">
-  <img src="./assets//svg/oval.svg" class="img-fluid" alt="">
+  <img src="./assets/svg/oval.svg" class="img-fluid" alt="">
 </div>
 <!-- <section id="distribution" class="pb-5" *ngIf="post"> -->
 <section id="b-blog_fullwidth" *ngIf="posts">
@@ -20,7 +20,7 @@
           <div class="b-blog_degault_single" *ngFor="let post of posts">
              <div class="b-blog_single_header">
                   <div class="b-blog_img_wrap">
-                      <a href="#" routerLink="/news/{{post?.id}}">
+                      <a href="#" routerLink="/postcategory/{{params}}/{{post?.id}}">
                           <img [src]="post?.imgURL"  class="img-fluid img-block" alt="" style="width: 100%;">
                       </a>
                   </div>
@@ -36,7 +36,7 @@
               </div>  
               <div class="b-blog_single_info">
                   <h3 class="b-entry_title">
-                      <a href="#" routerLink="/news/{{post?.id}}" rel="bookmark">{{post?.title}}</a>
+                      <a href="#" routerLink="/postcategory/{{params}}/{{post?.id}}" rel="bookmark">{{post?.title}}</a>
                   </h3>
                   <!-- <div class="b-author_info">
                       <span class="b-author_name">
@@ -51,7 +51,7 @@
                       <p [innerHTML]="post?.content | slice:0:300"></p> </div> </div>
               </div>
               <div class="b-read_more text-center">
-                  <a href="#" routerLink="/news/{{post?.id}}">Read More</a>
+                  <a href="#" routerLink="/postcategory/{{params}}/{{post?.id}}">Read More</a>
               </div>
               <div class="b-blog_social">
                 <ul class="list-unstyled clearfix mb-0">
