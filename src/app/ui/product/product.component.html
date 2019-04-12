@@ -247,10 +247,10 @@
                         <p>{{theproduct?.productCode}}</p>
                       </td>
                     </tr>
-                    <tr *ngIf="theproduct?.colourFinish">
+                    <tr *ngIf="theproduct?.colourFinish !== ''">
                       <th>Colours/Finish</th>
                       <td>
-                        <p>{{theproduct?.colourFinish}}</p>
+                        <p>{{theproduct?.colourFinish?.split('/')?.pop()?.split('.')[0] | titlecase}}</p>
                       </td>
                     </tr>
                     <tr *ngIf="theproduct?.reach">
