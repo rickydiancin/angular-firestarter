@@ -84,7 +84,7 @@ export class CategoryComponent implements OnInit {
 
     this.route.queryParams.subscribe((queryParams) => {
       if (Object.entries(queryParams).length !== 0) {
-        this.titleService.setTitle(`You searched for ${queryParams.s} - Gentec Australia`)
+        this.titleService.setTitle(`You searched for ${queryParams.s} - Gentec Australia`);
         this.queryParams = queryParams.s;
         this.filterQuery = queryParams.s;
         // this.getAllProducts(queryParams.s);

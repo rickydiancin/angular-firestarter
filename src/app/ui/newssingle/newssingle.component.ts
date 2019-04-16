@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
 import { faTwitterSquare } from '@fortawesome/free-brands-svg-icons/faTwitterSquare';
 import { faPinterest } from '@fortawesome/free-brands-svg-icons/faPinterest';
+import { Meta } from '@angular/platform-browser';
+import { SeoService } from 'src/app/core/seo.service';
 
 @Component({
   selector: 'newssingle',
@@ -22,7 +24,9 @@ export class NewssingleComponent implements OnInit {
   
   constructor(
     private postService: PostService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private meta: Meta,
+    private seo: SeoService
   ) {
     this.params = {
       category: route.snapshot.params.cat,
@@ -37,9 +41,14 @@ export class NewssingleComponent implements OnInit {
   }
 
   getSinglePost(id) {
-    this.postService.getSinglePost(id).subscribe((res) => {
+    this.postService.getSinglePost(id).subscribe((res:any) => {
       this.singleNews = res;
-      console.log(res)
+      this.seo.generateTags({
+        title: res.seoTitle,
+        description: res.seoDescription,
+        image: res.imgURL,
+        slug: res.category
+      });
     })
   }
 

@@ -712,7 +712,7 @@ export class VariablesService {
           },
           {
             categoryName: 'news',
-            url: 'news/'
+            url: 'postcategory/news/'
           },
           {
             categoryName: 'distribution',

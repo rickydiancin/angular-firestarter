@@ -11,7 +11,8 @@ import * as _ from 'lodash';
 import { take, map } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, Meta } from '@angular/platform-browser';
+import { SeoService } from 'src/app/core/seo.service';
 
 declare var $: any;
 
@@ -165,7 +166,8 @@ export class ProductComponent implements OnInit, AfterViewInit {
     private router: Router,
     private afAuth: AngularFireAuth,
     private spinner: NgxSpinnerService,
-    public sanitizer: DomSanitizer
+    public sanitizer: DomSanitizer,
+    private seo: SeoService
   ) {
   }
 
@@ -229,7 +231,14 @@ export class ProductComponent implements OnInit, AfterViewInit {
               if (product.length) {
                 res.product = product;
               }
-            })
+            });
+
+            this.seo.generateTags({
+              title: res.seoTitle,
+              description: res.seoDescription,
+              image: res.primaryURL,
+              slug: res.productTitle
+            });
           }
           // console.log(res)
           let c = [];
