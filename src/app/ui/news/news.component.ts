@@ -46,7 +46,7 @@ export class NewsComponent implements OnInit {
   }
 
   getRecentNews() {
-    this.postService.getAllPostsByCategory('news', 3).subscribe((res) => {
+    this.postService.getAllPostsByCategory(this.params, 5).subscribe((res) => {
       this.recents = res;
     })
   }

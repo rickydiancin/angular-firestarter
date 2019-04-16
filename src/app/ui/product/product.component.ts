@@ -224,23 +224,27 @@ export class ProductComponent implements OnInit, AfterViewInit {
       // }
       this.productsService.getProduct(params.id).valueChanges()
         .subscribe(async res => {
-          this.productsService.getAllProducts(res.parentProduct).subscribe((color:any) => {
-            if(color.length) {
-              res.variants = color;
-            }
-          })
+          if (res.parentProduct) {
+            this.productsService.getAllProducts(res.parentProduct).subscribe((product: any) => {
+              if (product.length) {
+                res.product = product;
+              }
+            })
+          }
           // console.log(res)
           let c = [];
           res.categories = res.categories.split(';');
-            res.categories.forEach(async (categoryID) => {
-              await this.productsService.getCategoryByArray(categoryID).subscribe((category:any) => {
-                if(category) {
-                  c.push({ code: category.categoryCode, name: category.categoryName.toLowerCase() });
-                  if (c) res.categoryName = c;
-                } else {
-                  res.categoryName = [];
-                }
-              })
+          res.categories.forEach(async (categoryID) => {
+            if (categoryID) {
+                await this.productsService.getCategoryByArray(categoryID).subscribe((category: any) => {
+                  if (category) {
+                    c.push({ code: category.categoryCode, name: category.categoryName.toLowerCase() });
+                    if (c) res.categoryName = c;
+                  } else {
+                    res.categoryName = [];
+                  }
+                })
+              }
             })
           res.features = res.features.trim().split('•');
           // res.features.shift();
@@ -272,13 +276,27 @@ export class ProductComponent implements OnInit, AfterViewInit {
             //   var relateds = _.filter(products, function (u: any) {
             //   return lookup[u.categories.toString()] !== undefined;
             // });
-              let relateds = [];
-            res.categories.forEach(element => {
-              let result = _.filter(products, row => row.categories.split(';').indexOf(element) > -1);
-              result.forEach((el) => {
-                relateds.push(el)
-              })
-            });
+            let relateds = [];
+              if (products.related) {
+                products.related = products.related.split(';');
+                products.related.forEach(element => {
+                  if (element) {
+                    let result = _.filter(products, row => row.productTitle.indexOf(element) > -1);
+                    result.forEach((el) => {
+                      relateds.push(el)
+                    })
+                  }
+                });
+              } else {
+                res.categories.forEach(element => {
+                  if (element) {
+                    let result = _.filter(products, row => row.categories.split(';').indexOf(element) > -1);
+                    result.forEach((el) => {
+                      relateds.push(el)
+                    })
+                  }
+                });
+              }
               this.relateds = relateds;
               
 
