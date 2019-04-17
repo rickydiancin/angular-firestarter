@@ -37,7 +37,8 @@ import { SearchFilterPipe } from './category/searchPipe';
 import { WarrantyComponent } from './warranty/warranty.component';
 import { DistributionComponent } from './distribution/distribution.component';
 import { SafePipe } from './product/safePipe';
-import { ProjcatComponent } from './projcat/projcat.component';
+import { ShareButtonModule } from '@ngx-share/button';
+import '../../icons';
 
 @NgModule({
   imports: [
@@ -54,7 +55,8 @@ import { ProjcatComponent } from './projcat/projcat.component';
     HttpClientModule,
     NgxSpinnerModule,
     TooltipModule.forRoot(),
-    PopoverModule.forRoot()
+    PopoverModule.forRoot(),
+    ShareButtonModule
   ],
   declarations: [
     UserLoginComponent,
@@ -82,7 +84,7 @@ import { ProjcatComponent } from './projcat/projcat.component';
     WarrantyComponent,
     DistributionComponent,
     SafePipe,
-    ProjcatComponent
+  
   ],
   entryComponents:[
     AddProjectComponent,

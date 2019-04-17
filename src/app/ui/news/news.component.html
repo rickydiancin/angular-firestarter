@@ -1,26 +1,26 @@
 <div class="b-page_title b-page_title_default text-center">
-  <h1 class="b-entry_title"><span>News</span></h1>  
+  <h1 class="b-entry_title"><span>{{params | titlecase}}</span></h1>  
   <div class="b-breadcrumbs">
     <a href="#">Home</a>
-    <span>News</span>
+    <span>{{params | titlecase}}</span>
   </div>
 </div>
 <!-- <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
   <p style="font-size: 20px; color: white">Loading...</p>
 </ngx-spinner> -->
 <div class="spinner text-center p-5" *ngIf="!posts">
-  <img src="./assets//svg/oval.svg" class="img-fluid" alt="">
+  <img src="./assets/svg/oval.svg" class="img-fluid" alt="">
 </div>
 <!-- <section id="distribution" class="pb-5" *ngIf="post"> -->
 <section id="b-blog_fullwidth" *ngIf="posts">
   <div class="container">
     <div class="row clearfix">
-      <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
+      <div class="col-xl-9 col-lg-9 col-mb-9 col-sm-9 col-xs-9">
         <div class="b-blog_default b-blog_grid b-blog_default_list b-blog_full">
           <div class="b-blog_degault_single" *ngFor="let post of posts">
              <div class="b-blog_single_header">
                   <div class="b-blog_img_wrap">
-                      <a href="#" routerLink="/news/{{post?.id}}">
+                      <a href="#" routerLink="/postcategory/{{params}}/{{post?.id}}">
                           <img [src]="post?.imgURL"  class="img-fluid img-block" alt="" style="width: 100%;">
                       </a>
                   </div>
@@ -36,7 +36,7 @@
               </div>  
               <div class="b-blog_single_info">
                   <h3 class="b-entry_title">
-                      <a href="#" routerLink="/news/{{post?.id}}" rel="bookmark">{{post?.title}}</a>
+                      <a href="#" routerLink="/postcategory/{{params}}/{{post?.id}}" rel="bookmark">{{post?.title}}</a>
                   </h3>
                   <!-- <div class="b-author_info">
                       <span class="b-author_name">
@@ -51,9 +51,9 @@
                       <p [innerHTML]="post?.content | slice:0:300"></p> </div> </div>
               </div>
               <div class="b-read_more text-center">
-                  <a href="#" routerLink="/news/{{post?.id}}">Read More</a>
+                  <a href="#" routerLink="/postcategory/{{params}}/{{post?.id}}">Read More</a>
               </div>
-              <div class="b-blog_social">
+              <!-- <div class="b-blog_social">
                 <ul class="list-unstyled clearfix mb-0">
                   <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                   <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -61,11 +61,46 @@
                   <li><a href="#"><i class="fa fa-envelope"></i></a></li>
                   <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
                 </ul>
-              </div>
+              </div> -->
           </div>
        
         </div>
-      </div>  
+      </div>
+
+      <div class="col-xl-3 col-lg-3 col-mb-4 col-sm-12 col-xs-12">
+        <div class="b-sidebar">
+          <div class="b-sidebar_widget">
+            <h5 class="b-widget_title">RECENT POST</h5>
+            <div class="b-sidenav">
+              <nav>
+                <ul class="pl-0 mb-0 list-unstyled b-recent_post">
+                  <li *ngFor="let recent of recents">
+                    <a href="#" class="b-recent_blog_img d-inline-block">
+                      <img style="object-fit: cover;" src="{{recent?.imgURL}}" height="70" width="70" class="d-block" alt="">
+                    </a>
+                    <h3><a href="#" routerLink="/postcategory/{{params}}/{{recent?.id}}">{{recent?.title | titlecase}}</a></h3>
+                    <span>{{recent?.dateCreated | date: 'MMMM dd, y'}}</span>
+                  </li>
+                  <!-- <li>
+                    <a href="#" class="b-recent_blog_img d-inline-block">
+                      <img src="assets/images/blog/home/blog_recent_02.jpg" class="img-fluid d-block" alt="">
+                    </a>
+                    <h3><a href="#">HAC FAMES TEMPOR</a></h3>
+                    <span>August 8, 2015</span>
+                  </li>
+                  <li>
+                    <a href="#" class="b-recent_blog_img d-inline-block">
+                      <img src="assets/images/blog/home/blog_recent_03.jpg" class="img-fluid d-block" alt="">
+                    </a>
+                    <h3><a href="#">URNA LIGULA INCEPTOS</a></h3>
+                    <span>August 8, 2015</span>
+                  </li> -->
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
     
     </div>
   </div>

@@ -12,6 +12,7 @@ import { NotifyService } from './notify.service';
 
 import { Observable, of } from 'rxjs';
 import { switchMap, startWith, tap, filter } from 'rxjs/operators';
+import { VariablesService } from './variables.service';
 
 interface User {
   uid: string;
@@ -37,7 +38,8 @@ export class AuthService {
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
     private router: Router,
-    private notify: NotifyService
+    private notify: NotifyService,
+    private vs: VariablesService
   ) {
 
     this.afAuth.authState.subscribe((auth) => {
@@ -120,8 +122,7 @@ export class AuthService {
     return this.afAuth.auth
       .createUserWithEmailAndPassword(data.email2, data.password2)
       .then(credential => {
-        //this.notify.update('Welcome new user!', 'success');
-        return this.updateUserData(credential.user, data); // if using firestore
+        return this.updateUserData(credential.user, data);
       })
       .catch(error => this.handleError(error));
   }
@@ -189,7 +190,6 @@ export class AuthService {
 
   // Sets user data to firestore after succesful login
   private updateUserData(user: any, userdata: any) {
-    console.log(user)
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(
       `users/${user.uid}`
     );

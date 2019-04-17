@@ -108,7 +108,7 @@
                     <div class="owl-thumb-item b-display-item">
                       <img [src]="theproduct?.primaryURL || './assets/images/not_available.jpg'" alt="" class="img-fluid">
                     </div>
-                    <ng-container *ngIf="theproduct?.secondaryURL">
+                    <ng-container *ngIf="theproduct?.secondaryURL !== 'undefined'">
                       <div *ngFor="let secondURL of theproduct?.secondaryURL.split(';')"
                         class="owl-thumb-item b-display-item">
                         <img [src]="secondURL" alt="" class="img-fluid">
@@ -157,13 +157,23 @@
   
                 <h6 *ngIf="theproduct?.welsRegistrationNumber">Wels Registration : {{theproduct?.welsRegistrationNumber}}
                 </h6>
-                <div>
-                  <div class="title-header">Available Colours</div>
-                  <div class="product-description border-product" *ngFor="let product of theproduct?.variants">
+                <div *ngIf="theproduct?.product?.length" class="mb-3 mt-3">
+                  <div class="title-header">Variants: </div>
+                  <div class="product-description border-product">
+                    <ul class="pl-0 list-unstyled clearfix">
+                      <li *ngFor="let product of theproduct?.product">
+                        <a *ngIf="product?.variants" href="#"><span class="b-size_attr">{{product?.variant || 'N/A' | titlecase}}</span></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div *ngIf="theproduct?.product?.length">
+                  <div class="title-header">Available Colours:</div>
+                  <div class="product-description border-product" *ngFor="let product of theproduct?.product">
                     <div class="img"
                       routerLink="/product/{{product?.productCode}}">
-                      <img tooltip="{{product?.colourFinish?.split('/')?.pop()?.split('.')[0]}}" src="{{product?.colourFinish}}"
-                        alt="s" class="img-fluid" height="40" width="40">
+                      <img tooltip="{{product?.colourFinish?.split('/')?.pop()?.split('.')[0] | titlecase}}" src="{{product?.colourFinish}}"
+                        alt="{{product?.colourFinish?.split('/')?.pop()?.split('.')[0] | titlecase}}" class="img-fluid" height="40" width="40">
                     </div>
                   </div>
                 </div>
@@ -247,10 +257,10 @@
                         <p>{{theproduct?.productCode}}</p>
                       </td>
                     </tr>
-                    <tr *ngIf="theproduct?.colourFinish">
+                    <tr *ngIf="theproduct?.colourFinish !== ''">
                       <th>Colours/Finish</th>
                       <td>
-                        <p>{{theproduct?.colourFinish}}</p>
+                        <p>{{theproduct?.colourFinish?.split('/')?.pop()?.split('.')[0] | titlecase}}</p>
                       </td>
                     </tr>
                     <tr *ngIf="theproduct?.reach">

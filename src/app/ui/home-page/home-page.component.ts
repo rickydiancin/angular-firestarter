@@ -164,7 +164,10 @@ export class HomePageComponent implements OnInit {
     this.form.value.dateCreated = Date.now();
     this.productsService.createInquires(this.form.value).then((success) => {
       if(success) {
-        this.form.reset();
+        this.form.value['type'] = 'inquiry';
+        this.vs.SendEmail(this.form.value).subscribe((res:any) => {
+          this.form.reset();
+        })
       }
     })
   }

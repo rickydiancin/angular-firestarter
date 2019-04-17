@@ -4,7 +4,8 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from './auth.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { RequestOptions } from '@angular/http';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,12 @@ export class VariablesService {
     private httpClient: HttpClient
   ) {
     this.productsCollection = this.afs.collection('products', (ref) => ref.orderBy('dateCreated', 'desc'));
+  }
+
+  SendEmail(body) {
+    let headers = new HttpHeaders();
+    headers.append('Accept', 'application/json')
+    return this.httpClient.post("https://us-central1-gentec-admin.cloudfunctions.net/httpEmail", body, { headers: headers });
   }
 
   localstorage(collection) {
@@ -705,7 +712,7 @@ export class VariablesService {
           },
           {
             categoryName: 'news',
-            url: 'news/'
+            url: 'postcategory/news/'
           },
           {
             categoryName: 'distribution',

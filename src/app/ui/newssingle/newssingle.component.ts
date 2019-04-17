@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { PostService } from 'src/app/core/post.service';
 import { ActivatedRoute } from '@angular/router';
 
+import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
+import { faTwitterSquare } from '@fortawesome/free-brands-svg-icons/faTwitterSquare';
+import { faPinterest } from '@fortawesome/free-brands-svg-icons/faPinterest';
+import { Meta } from '@angular/platform-browser';
+import { SeoService } from 'src/app/core/seo.service';
+
 @Component({
   selector: 'newssingle',
   templateUrl: './newssingle.component.html',
@@ -10,11 +16,23 @@ import { ActivatedRoute } from '@angular/router';
 export class NewssingleComponent implements OnInit {
 
   singleNews:any;
+  params: any;
 
+  fbIcon = faFacebookSquare;
+  pinIcon = faPinterest;
+  tweetIcon = faTwitterSquare;
+  
   constructor(
     private postService: PostService,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+    private meta: Meta,
+    private seo: SeoService
+  ) {
+    this.params = {
+      category: route.snapshot.params.cat,
+      id: route.snapshot.params.id
+    }
+  }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
@@ -23,9 +41,14 @@ export class NewssingleComponent implements OnInit {
   }
 
   getSinglePost(id) {
-    this.postService.getSinglePost(id).subscribe((res) => {
+    this.postService.getSinglePost(id).subscribe((res:any) => {
       this.singleNews = res;
-      console.log(res)
+      this.seo.generateTags({
+        title: res.seoTitle,
+        description: res.seoDescription,
+        image: res.imgURL,
+        slug: res.category
+      });
     })
   }
 

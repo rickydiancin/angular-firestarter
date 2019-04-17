@@ -1,8 +1,9 @@
 <div class="b-page_title b-page_title_default text-center">
-  <h1 class="b-entry_title"><span>Lifestyle</span></h1>  
+  <h1 class="b-entry_title"><span>{{params?.category | titlecase}}</span></h1>  
   <div class="b-breadcrumbs">
     <a href="#" routerLink="/">Home</a>
-    <span><a href="#" routerLink="/news">News</a></span>
+    <a href="#" routerLink="/postcategory/{{params?.category}}">{{params?.category | titlecase}}</a>
+    <span>{{singleNews?.title | titlecase}}</span>
   </div>
 </div> 
 <section id="b-blog_fullwidth" *ngIf="singleNews">
@@ -15,7 +16,7 @@
                     <div class="b-blog_single_header">
                       <div class="b-post_categories mb-2 d-relative">
                          <div class="b-post_categorie_list">
-                            <a href="#" rel="category tag" routerLink="/news">{{singleNews?.category}}</a>
+                            <a href="#" rel="category tag" routerLink="/news">{{singleNews?.category | titlecase}}</a>
                          </div>
                       </div>   
                     </div>
@@ -56,15 +57,15 @@
                         </blockquote> -->
                         <div class="b-footer_socail b-socail_large b-socail_color mt-5">
                           <ul class="list-unstyled clearfix mb-0">
-                            <li><a href="#" data-toggle="tooltip" title="" data-original-title="Facebook" class="fa fa-facebook"></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="" data-original-title="Twitter" class="fa fa-twitter"></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="" data-original-title="Google Plus" class="fa fa-google-plus"></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="" data-original-title="Email" class="fa fa-envelope"></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="" data-original-title="Pinterest" class="fa fa-pinterest"></a></li>
+                            <li><share-button button="facebook" theme="circles-dark" [url]="'https://gentecaustralia.com.au/news/' + params?.id"></share-button></li>
+                            <li><share-button button="twitter" theme="circles-dark" [url]="'https://gentecaustralia.com.au/news/' + params?.id"></share-button></li>
+                            <li><share-button button="google" theme="circles-dark" [url]="'https://gentecaustralia.com.au/news/' + params?.id"></share-button></li>
+                            <li><share-button button="email" theme="circles-dark" [url]="'https://gentecaustralia.com.au/news/' + params?.id"></share-button></li>
+                            <li><share-button button="pinterest" theme="circles-dark" [url]="'https://gentecaustralia.com.au/news/' + params?.id"></share-button></li>
                           </ul>
                         </div>
                         <div class="b-blog_navigation clearfix">
-                          <a href="#" routerLink="/news" class="float-left"><i class="fa fa-angle-left"></i> &nbsp;&nbsp;Back</a>
+                          <a href="#" routerLink="/postcategory/{{params.category}}" class="float-left"><i class="fa fa-angle-left"></i> &nbsp;&nbsp;Back</a>
                           <!-- <a href="#" class="float-right">NEXT POST &nbsp;&nbsp;<i class="fa fa-angle-right"></i> </a> -->
                         </div>
                     </div> 
