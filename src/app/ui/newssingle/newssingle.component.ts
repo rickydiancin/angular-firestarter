@@ -21,6 +21,8 @@ export class NewssingleComponent implements OnInit {
   fbIcon = faFacebookSquare;
   pinIcon = faPinterest;
   tweetIcon = faTwitterSquare;
+
+  postsLoaded: boolean = false;
   
   constructor(
     private postService: PostService,
@@ -41,8 +43,10 @@ export class NewssingleComponent implements OnInit {
   }
 
   getSinglePost(id) {
+    this.postsLoaded = false;
     this.postService.getSinglePost(id).subscribe((res:any) => {
       this.singleNews = res;
+      this.postsLoaded = true;
       this.seo.generateTags({
         title: res.seoTitle,
         description: res.seoDescription,
