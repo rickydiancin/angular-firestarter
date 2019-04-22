@@ -55,7 +55,7 @@
      
            <!-- CSS:: LIGHTCASE -->
            <link rel="stylesheet" type="text/css" href="assets/css/plugins/lightcase/lightcase.css">
-     
+           <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
            <!-- CSS:: MAIN -->
      <!-- CSS:: MAIN -->
      <!-- <link rel="stylesheet" type="text/css" href="assets/css/main.css"> -->
@@ -134,7 +134,11 @@
         
           <script type="text/javascript">
             function googleTranslateElementInit() {
-              new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+              new google.translate.TranslateElement({
+                pageLanguage: 'en',
+              layout: google.translate.TranslateElement.InlineLayout.SIMPLE, 
+              autoDisplay: false
+            }, 'google_translate_element');
             }
             </script>
         

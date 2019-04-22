@@ -11,15 +11,64 @@ $green_color: #95C448;
         border: 1px solid $green_color;
         border-left: none;
     }
-#google_translate_element  {
-    background: rgba(238, 238, 238, 0.8);
-    position: fixed;
-    bottom: 2%;
-    padding: 10px;
-    left: 1%;
-    z-index: 10000000;
-
-} 
+    #google_translate_element {
+        position: fixed;
+        bottom: calc(53px + 12px);
+        left: 16px!important;
+        // z-index: 99999;
+      }
+      .goog-te-gadget {
+        font-family: Roboto, 'Open Sans', sans-serif!important;
+        text-transform: uppercase;
+      }
+      /deep/.goog-te-gadget-simple  {
+        background-color: rgba(0,0,0,0.30)!important;
+        border: 1px solid rgba(0,0,0,0.50) !important;
+        padding: 8px!important;
+        border-radius: 4px!important;
+        font-size: 1rem!important;
+        line-height:2rem!important;
+        display: inline-block;
+        cursor: pointer;
+        zoom: 1;
+      }
+      /deep/.goog-te-menu2 {
+        max-width: 100%;
+      }
+      /deep/.goog-te-menu-value {
+        color: #fff !important;
+          &:before {
+          font-family: 'Material Icons';
+          content: "\E927";
+          margin-right: 16px;
+          font-size: 2rem;
+          vertical-align: -10px;
+          // width:32px!important;
+        } 
+      }
+      /deep/.goog-te-menu-value span:nth-child(5) {
+        display:none;
+      }
+      /deep/.goog-te-menu-value span:nth-child(3) {
+        border:none!important;
+        font-family: 'Material Icons';
+        &:after {
+          font-family: 'Material Icons';
+          content: "\E5C5";
+          font-size: 1.5rem;
+          vertical-align: -6px;
+        }  
+      }
+      
+      /deep/.goog-te-gadget-icon {
+          background-image: url(https://placehold.it/32)!important;
+          background-position: 0px 0px;
+          height: 32px!important;
+          width: 32px!important;
+          margin-right: 8px!important;
+          //     OR
+          display: none;
+      }
 
 .widget-title, .widgettitle {
     font-size: 12px;
