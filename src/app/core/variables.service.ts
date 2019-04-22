@@ -412,62 +412,63 @@ export class VariablesService {
     return categories;
   }
 
-  finalMenu1() {
-    let finalMenu1 = [
-      {
-        categoryName: 'tapware',
-        url: 'category/tapware',
-        sub: [
-          {
-            subName: 'single lever mixer',
-            url:'category/single_lever_mixers'
-          },
-          {
-            subName: 'lever action tapware',
-            url:'category/lever_action_tapware'
-          }
-        ]
-      },
-      {
-        categoryName: 'antiligature systems',
-        url: 'category/anti_ligature',
-        sub: []
-      },
-      {
-        categoryName: 'time flow tapware',
-        url: 'category/time_flow_taps',
-        sub: [
-          {
-            subName: 'bubblers',
-            url: 'category/bubblers'
-          },
-          {
-            subName: 'timed flow taps',
-            url:'category/time_flow_taps'
-          },
-          {
-            subName: 'timed flow shower',
-            url: 'category/time_flow_shower'
-          },
-          {
-            subName: 'timed flow valves',
-            url: 'category/time_flow_valves'
-          }
-        ]
-      },
-      {
-        categoryName: 'electronic tapware',
-        url: 'category/electronic_tapware',
-        sub: [
-          {
-            subName: 'laboratory tapware',
-            url: 'category/laboratory_taps',
-            isBold: true
-          }
-        ]
-      }
-    ];
-    return finalMenu1;
+  finalMenu1(id) {
+    return this.afs.doc(`menus/${id}`).valueChanges()
+    // let finalMenu1 = [
+    //   {
+    //     categoryName: 'tapware',
+    //     url: 'category/tapware',
+    //     sub: [
+    //       {
+    //         subName: 'single lever mixer',
+    //         url:'category/single_lever_mixers'
+    //       },
+    //       {
+    //         subName: 'lever action tapware',
+    //         url:'category/lever_action_tapware'
+    //       }
+    //     ]
+    //   },
+    //   {
+    //     categoryName: 'antiligature systems',
+    //     url: 'category/anti_ligature',
+    //     sub: []
+    //   },
+    //   {
+    //     categoryName: 'time flow tapware',
+    //     url: 'category/time_flow_taps',
+    //     sub: [
+    //       {
+    //         subName: 'bubblers',
+    //         url: 'category/bubblers'
+    //       },
+    //       {
+    //         subName: 'timed flow taps',
+    //         url:'category/time_flow_taps'
+    //       },
+    //       {
+    //         subName: 'timed flow shower',
+    //         url: 'category/time_flow_shower'
+    //       },
+    //       {
+    //         subName: 'timed flow valves',
+    //         url: 'category/time_flow_valves'
+    //       }
+    //     ]
+    //   },
+    //   {
+    //     categoryName: 'electronic tapware',
+    //     url: 'category/electronic_tapware',
+    //     sub: [
+    //       {
+    //         subName: 'laboratory tapware',
+    //         url: 'category/laboratory_taps',
+    //         isBold: true
+    //       }
+    //     ]
+    //   }
+    // ];
+    // return finalMenu1;
   }
 
   finalMenu2() {
