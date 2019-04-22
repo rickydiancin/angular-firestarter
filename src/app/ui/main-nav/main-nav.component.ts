@@ -23,11 +23,14 @@ export class MainNavComponent implements OnInit {
   menus3:any;
   menuparent:any;
   finalMenu1:any = [];
-  finalMenu2:any;
-  finalMenu3:any;
+  finalMenu2:any = [];
+  finalMenu3:any = [];
   products:any = [];
   solutions:any;
   user: any;
+  finalMenu1Loader: boolean;
+  finalMenu3Loader: boolean;
+  finalMenu2Loader: boolean;
   
   constructor(
     private scriptsService: ScriptsService,
@@ -65,8 +68,8 @@ export class MainNavComponent implements OnInit {
     
     // console.log(this.auth.user);
     this.menus = this.vs.allMenus();
-    this.menus2 = this.vs.allMenus2();
-    this.menus3 = this.vs.allMenus3();
+    // this.menus2 = this.vs.allMenus2();
+    // this.menus3 = this.vs.allMenus3();
     this.menuparent = this.vs.allParent();
     // this.finalMenu1 = this.vs.finalMenu1('menu1');
     this.finalMenu2 = this.vs.finalMenu2();
@@ -76,6 +79,17 @@ export class MainNavComponent implements OnInit {
 
     this.vs.finalMenu1('B4iC2Z0RuYrw0Ou5kPQt').subscribe((res:any) => {
       this.finalMenu1 = res.value;
+      this.finalMenu1Loader = true;
+      console.log(res)
+    })
+    this.vs.finalMenu1('NZO8GjZHIJkgCPfJodK1').subscribe((res:any) => {
+      this.finalMenu2 = res.value;
+      this.finalMenu2Loader = true;
+      console.log(res)
+    })
+    this.vs.finalMenu1('z1VRPA9NlRemMi5pAJ2o').subscribe((res:any) => {
+      this.finalMenu3 = res.value;
+      this.finalMenu3Loader = true;
       console.log(res)
     })
     // this.auth.user.subscribe((data) => {
