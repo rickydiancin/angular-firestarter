@@ -5,8 +5,13 @@
     <a href="#" routerLink="/postcategory/{{params?.category}}">{{params?.category | titlecase}}</a>
     <span>{{singleNews?.title | titlecase}}</span>
   </div>
-</div> 
-<section id="b-blog_fullwidth" *ngIf="singleNews">
+</div>
+
+<div class="spinner text-center p-5" *ngIf="!postsLoaded">
+  <img src="./assets/svg/oval.svg" class="img-fluid" alt="">
+</div>
+
+<section id="b-blog_fullwidth" *ngIf="singleNews && postsLoaded">
     <div class="container">
       <div class="row clearfix">
           <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">

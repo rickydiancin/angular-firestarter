@@ -8,11 +8,11 @@
 <!-- <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
   <p style="font-size: 20px; color: white">Loading...</p>
 </ngx-spinner> -->
-<div class="spinner text-center p-5" *ngIf="!posts">
+<div class="spinner text-center p-5" *ngIf="!postsLoaded">
   <img src="./assets/svg/oval.svg" class="img-fluid" alt="">
 </div>
 <!-- <section id="distribution" class="pb-5" *ngIf="post"> -->
-<section id="b-blog_fullwidth" *ngIf="posts">
+<section id="b-blog_fullwidth" *ngIf="posts && postsLoaded">
   <div class="container">
     <div class="row clearfix">
       <div class="col-xl-9 col-lg-9 col-mb-9 col-sm-9 col-xs-9">
