@@ -78,7 +78,7 @@ export class CategoryComponent implements OnInit {
   ngOnInit() {
 
 
-    this.finalMenu1 = this.vs.finalMenu1();
+    this.finalMenu1 = this.vs.finalMenu1('menu1');
     this.finalMenu2 = this.vs.finalMenu2();
     this.finalMenu3 = this.vs.finalMenu3();
 

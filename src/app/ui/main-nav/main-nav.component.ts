@@ -22,7 +22,7 @@ export class MainNavComponent implements OnInit {
   menus2:any;
   menus3:any;
   menuparent:any;
-  finalMenu1:any;
+  finalMenu1:any = [];
   finalMenu2:any;
   finalMenu3:any;
   products:any = [];
@@ -63,15 +63,21 @@ export class MainNavComponent implements OnInit {
 
     // this.getAllProducts();
     
-    console.log(this.auth.user);
+    // console.log(this.auth.user);
     this.menus = this.vs.allMenus();
     this.menus2 = this.vs.allMenus2();
     this.menus3 = this.vs.allMenus3();
     this.menuparent = this.vs.allParent();
-    this.finalMenu1 = this.vs.finalMenu1();
+    // this.finalMenu1 = this.vs.finalMenu1('menu1');
     this.finalMenu2 = this.vs.finalMenu2();
     this.finalMenu3 = this.vs.finalMenu3();
     this.categories = this.vs.allCategories();
+    
+
+    this.vs.finalMenu1('B4iC2Z0RuYrw0Ou5kPQt').subscribe((res:any) => {
+      this.finalMenu1 = res.value;
+      console.log(res)
+    })
     // this.auth.user.subscribe((data) => {
     //   // console.log(data)
     //   if (data === null) {

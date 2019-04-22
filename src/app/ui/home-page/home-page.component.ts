@@ -35,6 +35,7 @@ export class HomePageComponent implements OnInit {
   fragment: string;
   addToProject: boolean = true;
   isLoggin: Boolean;
+  sidebanner: any;
 
   constructor(
     private scriptsService: ScriptsService,
@@ -109,6 +110,11 @@ export class HomePageComponent implements OnInit {
       // console.log('banners: ',res);
       this.banners = res;
      });
+
+    this.postService.getAllPostsByCategory('sidebanner').subscribe(res => {
+      // console.log(res);
+      this.sidebanner = res[0];
+    });
     //  this.productsService.getAllBanners().subscribe(res => {
     //   console.log('banners: ',res);
     //   this.banners = res;

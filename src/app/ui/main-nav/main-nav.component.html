@@ -206,22 +206,17 @@
                                               <div class="col-xs-12 col-sm-4">
                                                   <div class="menu-item">
                                                     <!-- <h5 class="b-filter_title">PRODUCT CATEGORIES</h5> -->
-                                                    <ul>
-                                                      <li *ngFor="let menu of finalMenu1" class="third-level">
-                                                        <a href="#" routerLink="{{menu?.url}}" class="isparent"> <h5 class="text-uppercase">{{menu?.categoryName}}</h5></a>
-                                                        <!-- <a href="#" routerLink="{{menu?.url}}" class="issub">{{menu?.title}}</a> -->
-                                                        <!-- <a href="#" routerLink="{{menu?.url}}">{{menu?.title}}</a> -->
-                                                        <ul *ngIf="menu?.sub">
-                                                          <li *ngFor="let sub of menu?.sub">
-                                                            <a href="#" [routerLink]="sub?.url" [ngClass]="sub?.isBold?'parentSub text-uppercase':''">{{sub?.subName | titlecase}}</a>
-                                                          </li>
-                                                        </ul>
+                                                    <ul class="menu-list">
+                                                      <ng-container *ngFor="let menu of finalMenu1" >
+                                                      <li class="third-level" *ngIf="menu?.split('|').length > 1">
+                                                        <a href="#" routerLink="/category/{{menu?.split('|')[0]?.split(' ').join('_') | lowercase}}" *ngIf="menu?.split('|').length > 1" class="isparent"> <h5 class="text-uppercase">{{menu?.split('|')[0]}}</h5></a>
                                                       </li>
-                                                      <!-- <li *ngFor="let menu of menus" class="third-level">
-                                                        <a href="#" *ngIf="menu?.isparent" routerLink="{{menu?.url}}" class="isparent"> <h5 class="text-uppercase">{{menu?.title}}</h5></a>
-                                                        <a href="#" *ngIf="menu?.issub" routerLink="{{menu?.url}}" class="issub">{{menu?.title}}</a>
-                                                        <a href="#" *ngIf="!menu?.isparent && !menu?.issub" routerLink="{{menu?.url}}">{{menu?.title}}</a>
-                                                      </li> -->
+                                                      <!-- <ul> -->
+                                                      <li *ngIf="menu?.split('|').length == 1" class="sub">
+                                                        <a href="#" routerLink="/category/{{menu?.split(' ').join('_') | lowercase}}">{{menu | titlecase}}</a>
+                                                      </li>
+                                                      <!-- </ul> -->
+                                                      </ng-container>
                                                     </ul>
                                                   </div>
                                               </div> 

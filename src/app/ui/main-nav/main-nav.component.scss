@@ -138,3 +138,13 @@ nav {
     font-size: 20px;
     font-weight: 700;
 }
+
+/deep/.third-level:not(:first-child) {
+    margin-top: 1rem;
+}
+
+/deep/.third-level:last-child {
+    .isparent {
+        border-color: transparent !important;
+    }
+}
