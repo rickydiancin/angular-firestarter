@@ -20,8 +20,8 @@ export class SeoService {
 
     this.meta.updateTag({ name: 'description', content: config.description });
 
-    this.meta.updateTag({ name: 'twitter:card', content: 'summary' });
-    this.meta.updateTag({ name: 'twitter:site', content: '@angularfirebase' });
+    this.meta.updateTag({ name: 'twitter:card', content: 'website' });
+    this.meta.updateTag({ name: 'twitter:site', content: 'https://twitter.com/GentecAustralia' });
     this.meta.updateTag({ name: 'twitter:title', content: config.title });
     this.meta.updateTag({ name: 'twitter:description', content: config.description });
     this.meta.updateTag({ name: 'twitter:image', content: config.image });
@@ -30,7 +30,7 @@ export class SeoService {
     this.meta.updateTag({ property: 'og:site_name', content: 'Gentec Australia' });
     this.meta.updateTag({ property: 'og:title', content: config.title });
     this.meta.updateTag({ property: 'og:description', content: config.description });
-    this.meta.updateTag({ property: 'og:image', content: config.image });
+    this.meta.addTag({ property: 'og:image', content: config.image });
 
   }
 

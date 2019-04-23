@@ -48,8 +48,8 @@ export class NewssingleComponent implements OnInit {
       this.singleNews = res;
       this.postsLoaded = true;
       this.seo.generateTags({
-        title: res.seoTitle,
-        description: res.seoDescription,
+        title: res.seoTitle || res.title,
+        description: res.seoDescription || res.content,
         image: res.imgURL,
         slug: res.category
       });
