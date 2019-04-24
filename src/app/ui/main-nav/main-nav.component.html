@@ -70,8 +70,13 @@
                                     <div class="menu-item">
                                   
                                         <div class="categories">
-                                            <div class="clearfix">
-                                                <div class="col-sm-12 hover-menu text-uppercase">
+                                            <div class="clearfix row">
+                                              <div class="col-sm-12" *ngIf="!solutionLoader">
+                                                <div class="spinner text-center p-5">
+                                                  <img src="./assets/svg/oval.svg" class="img-fluid img-spinner" alt="">
+                                                </div>
+                                              </div>
+                                                <div class="col-sm-12 hover-menu text-uppercase" *ngIf="!solutionLoader">
                                                     <ul id="solutions">
                                                         <li *ngFor="let cat of solutions"> <a href="#" routerLink="/solution/{{cat?.solutionCode}}" class="d-block"><strong> {{cat.solutionName}} Solutions </strong></a></li>
                                                        
@@ -172,7 +177,7 @@
                                       <div class="dropdown-inner">
                                           <div class="row">
                                             <div class="col-sm-12">
-                                              <div class="spinner text-center p-5" *ngIf="!solutions">
+                                              <div class="spinner text-center p-5" *ngIf="!solutions?.length">
                                                 <img src="./assets/svg/oval.svg" class="img-fluid img-spinner" alt="">
                                               </div>
                                             </div>
