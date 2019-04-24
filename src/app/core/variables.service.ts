@@ -24,6 +24,14 @@ export class VariablesService {
     this.productsCollection = this.afs.collection('products', (ref) => ref.orderBy('dateCreated', 'desc'));
   }
 
+  solutionsMenu(id) {
+    return this.afs.doc(`menus/${id}`).valueChanges()
+  }
+
+  solutions(id) {
+    return this.afs.doc(`solutions/${id.toLowerCase()}`).valueChanges()
+  }
+
   SendEmail(body) {
     let headers = new HttpHeaders();
     headers.append('Accept', 'application/json')

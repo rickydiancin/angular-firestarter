@@ -26,11 +26,13 @@ export class MainNavComponent implements OnInit {
   finalMenu2:any = [];
   finalMenu3:any = [];
   products:any = [];
-  solutions:any;
+  solutions:any = [];
   user: any;
   finalMenu1Loader: boolean;
   finalMenu3Loader: boolean;
   finalMenu2Loader: boolean;
+  solutionLoader: boolean = false;
+  companies: any;
   
   constructor(
     private scriptsService: ScriptsService,
@@ -92,6 +94,24 @@ export class MainNavComponent implements OnInit {
       this.finalMenu3Loader = true;
       console.log(res)
     })
+
+    this.vs.solutionsMenu('Uw15tgHZg4O2SKUGhnwu').subscribe((menu:any) => {
+      menu.value.forEach(element => {
+        this.vs.solutions(element).subscribe((res:any) => {
+          if(res) {
+            this.solutions.push(res)
+          }
+          // console.log(res)
+        })
+      });
+      if(menu) {
+        this.solutionLoader = true
+      }
+    })
+
+    this.vs.solutionsMenu('62Mosco2VKymPlLSyfRM').subscribe((res:any) => {
+      this.companies = res.value
+    })
     // this.auth.user.subscribe((data) => {
     //   // console.log(data)
     //   if (data === null) {
@@ -117,12 +137,12 @@ export class MainNavComponent implements OnInit {
     // });
     // console.log(this.categories);
 
-    this.vs.localstorage('solutions').subscribe((solutions) => {
-      this.solutions = _.orderBy(solutions, ['order'], ['asc']);
-      // this.solutions = solutions;
-      // console.log(solutions)
+    // this.vs.localstorage('solutions').subscribe((solutions) => {
+    //   this.solutions = _.orderBy(solutions, ['order'], ['asc']);
+    //   // this.solutions = solutions;
+    //   // console.log(solutions)
 
-    })
+    // })
     // if(this.vs.localstorage('solutions')) {
     //   this.solutions = JSON.parse(localStorage.getItem('solutions'));
     // } else {

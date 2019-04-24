@@ -227,9 +227,21 @@ export class ProductComponent implements OnInit, AfterViewInit {
       this.productsService.getProduct(params.id).valueChanges()
         .subscribe(async res => {
           if (res.parentProduct) {
+            let variant = [];
+            let colourFinish = [];
             this.productsService.getAllProducts(res.parentProduct).subscribe((product: any) => {
               if (product.length) {
-                res.product = product;
+                product.forEach(element => {
+                  if(element.variant) {
+                    variant.push(element);
+                  }
+                  if (element.colourFinish) {
+                    colourFinish.push(element);
+                  }
+                });
+                res.productVariant = variant;
+                res.productColourFinish = colourFinish;
+                console.log(res)
               }
             });
 

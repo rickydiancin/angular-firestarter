@@ -157,19 +157,19 @@
   
                 <h6 *ngIf="theproduct?.welsRegistrationNumber">Wels Registration : {{theproduct?.welsRegistrationNumber}}
                 </h6>
-                <div *ngIf="theproduct?.product?.length" class="mb-3 mt-3">
-                  <div class="title-header">Variants: </div>
+                <div *ngIf="theproduct?.productVariant?.length" class="mb-3 mt-3">
+                  <div class="title-header">Variants</div>
                   <div class="product-description border-product">
                     <ul class="pl-0 list-unstyled clearfix">
-                      <li *ngFor="let product of theproduct?.product">
+                      <li *ngFor="let product of theproduct?.productVariant">
                         <a *ngIf="product?.variants" href="#"><span class="b-size_attr">{{product?.variant || 'N/A' | titlecase}}</span></a>
                       </li>
                     </ul>
                   </div>
                 </div>
-                <div *ngIf="theproduct?.product?.length">
-                  <div class="title-header">Available Colours:</div>
-                  <div class="product-description border-product" *ngFor="let product of theproduct?.product">
+                <div *ngIf="theproduct?.productColourFinish?.length">
+                  <div class="title-header">Available Colours</div>
+                  <div class="product-description border-product" *ngFor="let product of theproduct?.productColourFinish">
                     <div class="img"
                       routerLink="/product/{{product?.productCode}}">
                       <img tooltip="{{product?.colourFinish?.split('/')?.pop()?.split('.')[0] | titlecase}}" src="{{product?.colourFinish}}"

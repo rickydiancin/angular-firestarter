@@ -74,8 +74,13 @@
                                     <div class="menu-item">
                                   
                                         <div class="categories">
-                                            <div class="clearfix">
-                                                <div class="col-sm-12 hover-menu text-uppercase">
+                                            <div class="clearfix row">
+                                              <div class="col-sm-12" *ngIf="!solutionLoader">
+                                                <div class="spinner text-center p-5">
+                                                  <img src="./assets/svg/oval.svg" class="img-fluid img-spinner" alt="">
+                                                </div>
+                                              </div>
+                                                <div class="col-sm-12 hover-menu text-uppercase" *ngIf="!solutionLoader">
                                                     <ul id="solutions">
                                                         <li *ngFor="let cat of solutions"> <a href="#" routerLink="/solution/{{cat?.solutionCode}}" class="d-block"><strong> {{cat.solutionName}} Solutions </strong></a></li>
                                                        
@@ -176,7 +181,7 @@
                                       <div class="dropdown-inner">
                                           <div class="row">
                                             <div class="col-sm-12">
-                                              <div class="spinner text-center p-5" *ngIf="!solutions">
+                                              <div class="spinner text-center p-5" *ngIf="!solutions?.length">
                                                 <img src="./assets/svg/oval.svg" class="img-fluid img-spinner" alt="">
                                               </div>
                                             </div>
@@ -185,7 +190,7 @@
                                                   <div class="b-menu_content_in mb-4">
                                                     <a href="#" routerLink="/solution/{{cat?.solutionCode}}" class="d-block"><strong> {{cat.solutionName}} Solutions
                                                       </strong></a>
-                                                    <a href="#" routerLink="/solution/{{cat?.solutionCode}}"><img [src]="cat?.imgURL" class="img-fluid d-block m-auto"
+                                                   <a href="#" routerLink="/solution/{{cat?.solutionCode}}"><img [src]="cat?.imgURL" class="img-fluid d-block m-auto"
                                                         alt=""></a>
                                                   </div>
                                                 </div>
@@ -325,14 +330,18 @@
                                       <div class="clearfix">
                                           <div class="col-xs-12 col-sm-12 ">
                                               <div class="menu-item"> 
-                                                
                                                   <div class="categories">
                                                       <div class="row">
-                                                          <div class="col-sm-12 hover-menu">
+                                                        <div class="col-sm-12" *ngIf="!companies?.length">
+                                                          <div class="spinner text-center p-5" *ngIf="!solutions?.length">
+                                                            <img src="./assets/svg/oval.svg" class="img-fluid img-spinner" alt="">
+                                                          </div>
+                                                        </div>
+                                                          <div class="col-sm-12 hover-menu" *ngIf="companies">
                                                               <ul>
-                                                                  <li><a href="#" routerLink="/company">About Us</a></li>
-                                                                  <li><a href="#" routerLink="/warranty">Warranty</a></li>
-                                                                  <li><a href="#" routerLink="/distribution">Distribution</a></li>
+                                                                  <li *ngFor="let company of companies"><a href="#" routerLink="/{{company.split(' ').join('_') | lowercase}}">{{company | titlecase}}</a></li>
+                                                                  <!-- <li><a href="#" routerLink="/warranty">Warranty</a></li> -->
+                                                                  <!-- <li><a href="#" routerLink="/distribution">Distribution</a></li> -->
                                                               </ul>
                                                           </div>
                                                       </div>
