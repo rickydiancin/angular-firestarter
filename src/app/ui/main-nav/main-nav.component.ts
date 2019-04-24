@@ -32,6 +32,7 @@ export class MainNavComponent implements OnInit {
   finalMenu3Loader: boolean;
   finalMenu2Loader: boolean;
   solutionLoader: boolean = false;
+  companies: any;
   
   constructor(
     private scriptsService: ScriptsService,
@@ -106,6 +107,10 @@ export class MainNavComponent implements OnInit {
       if(menu) {
         this.solutionLoader = true
       }
+    })
+
+    this.vs.solutionsMenu('62Mosco2VKymPlLSyfRM').subscribe((res:any) => {
+      this.companies = res.value
     })
     // this.auth.user.subscribe((data) => {
     //   // console.log(data)
