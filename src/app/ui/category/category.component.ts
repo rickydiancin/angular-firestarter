@@ -56,6 +56,7 @@ export class CategoryComponent implements OnInit {
     minDepth: '',
     maxDepth: '',
   }
+  loader: boolean;
 
   constructor(
     private scriptsService: ScriptsService,
@@ -75,12 +76,33 @@ export class CategoryComponent implements OnInit {
   //   return this.domSanitizer.bypassSecurityTrustStyle(style);
   // }
 
+  GetAllCategories() {
+    this.vs.finalMenu1('NZO8GjZHIJkgCPfJodK1').subscribe((finalMenu2: any) => {
+      if (finalMenu2) {
+        this.finalMenu2 = finalMenu2.value;
+        this.vs.finalMenu1('z1VRPA9NlRemMi5pAJ2o').subscribe((finalMenu3: any) => {
+          if (finalMenu3) {
+            this.finalMenu3 = finalMenu3.value;
+            this.vs.finalMenu1('B4iC2Z0RuYrw0Ou5kPQt').subscribe((finalMenu1: any) => {
+              if (finalMenu1) {
+                this.finalMenu1 = finalMenu1.value;
+                this.loader = true;
+                console.log(finalMenu1)
+              }
+            })
+          }
+        })
+      }
+    })
+  }
+
   ngOnInit() {
 
+    this.GetAllCategories();
 
-    this.finalMenu1 = this.vs.finalMenu1('menu1');
-    this.finalMenu2 = this.vs.finalMenu2();
-    this.finalMenu3 = this.vs.finalMenu3();
+    // this.finalMenu1 = this.vs.finalMenu1('menu1');
+    // this.finalMenu2 = this.vs.finalMenu2();
+    // this.finalMenu3 = this.vs.finalMenu3();
 
     this.route.queryParams.subscribe((queryParams) => {
       if (Object.entries(queryParams).length !== 0) {

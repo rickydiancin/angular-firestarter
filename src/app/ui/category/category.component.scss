@@ -139,3 +139,7 @@ p {
 .b-filters_inner_area ul.b-color_filter li {
     padding-left: 0;
 }
+
+/deep/.third-level:not(:first-child) {
+    margin-top: 1rem;
+}

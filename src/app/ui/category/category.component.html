@@ -5,8 +5,13 @@
         <div class="b-filters_inner_area p-0">
           <div class="b-sidebar_widget categories">
             <h5 class="b-filter_title">PRODUCT CATEGORIES</h5>
-            <ul>
-              <li *ngFor="let menu of finalMenu1" class="third-level">
+            <div class="col-sm-12" *ngIf="!loader">
+              <div class="spinner text-center p-5" *ngIf="!solutions?.length">
+                <img src="./assets/svg/oval.svg" class="img-fluid img-spinner" alt="">
+              </div>
+            </div>
+            <ul *ngIf="loader">
+              <!-- <li *ngFor="let menu of finalMenu1" class="third-level">
                 <a href="#" routerLink="/{{menu?.url}}" class="isparent">
                   <h5 class="text-uppercase">{{menu?.categoryName}}</h5>
                 </a>
@@ -15,8 +20,52 @@
                     <a href="#" routerLink="/{{sub?.url}}" [ngClass]="sub?.isBold?'parentSub text-uppercase':''">{{sub?.subName | titlecase}}</a>
                   </li>
                 </ul>
+              </li> -->
+              <ng-container *ngFor="let menu of finalMenu2">
+              <li class="third-level" *ngIf="menu?.split('|').length > 1">
+                <a href="#" routerLink="/category/{{menu?.split('|')[0]?.split(' ').join('_') | lowercase}}" class="isparent">
+                  <h5 class="text-uppercase">{{menu?.split('|')[0]}}</h5>
+                </a>
+                <!-- <ul style="margin-bottom: 1rem;" *ngIf="menu?.sub?.length">
+                  <li *ngFor="let sub of menu?.sub">
+                    <a href="#" routerLink="/{{sub?.url}}" [ngClass]="sub?.isBold?'parentSub text-uppercase':''">{{sub?.subName | titlecase}}</a>
+                  </li>
+                </ul> -->
               </li>
-              <li *ngFor="let menu of finalMenu2" class="third-level">
+              <li *ngIf="menu?.split('|').length == 1" class="sub">
+                <a href="#" routerLink="/category/{{menu?.split(' ').join('_') | lowercase}}">{{menu | titlecase}}</a>
+              </li>
+              </ng-container>
+
+              <ng-container *ngFor="let menu of finalMenu1">
+                <li class="third-level" *ngIf="menu?.split('|').length > 1">
+                  <a href="#" routerLink="/category/{{menu?.split('|')[0]?.split(' ').join('_') | lowercase}}"
+                    *ngIf="menu?.split('|').length > 1" class="isparent">
+                    <h5 class="text-uppercase">{{menu?.split('|')[0]}}</h5>
+                  </a>
+                </li>
+                <!-- <ul> -->
+                <li *ngIf="menu?.split('|').length == 1" class="sub">
+                  <a href="#" routerLink="/category/{{menu?.split(' ').join('_') | lowercase}}">{{menu | titlecase}}</a>
+                </li>
+                <!-- </ul> -->
+              </ng-container>
+
+              <ng-container *ngFor="let menu of finalMenu3">
+                <li class="third-level" *ngIf="menu?.split('|').length > 1">
+                  <a href="#" routerLink="/category/{{menu?.split('|')[0]?.split(' ').join('_') | lowercase}}"
+                    *ngIf="menu?.split('|').length > 1" class="isparent">
+                    <h5 class="text-uppercase">{{menu?.split('|')[0]}}</h5>
+                  </a>
+                </li>
+                <!-- <ul> -->
+                <li *ngIf="menu?.split('|').length == 1" class="sub">
+                  <a href="#" routerLink="/category/{{menu?.split(' ').join('_') | lowercase}}">{{menu | titlecase}}</a>
+                </li>
+                <!-- </ul> -->
+              </ng-container>
+
+              <!-- <li *ngFor="let menu of finalMenu3" class="third-level">
                 <a href="#" routerLink="/{{menu?.url}}" class="isparent">
                   <h5 class="text-uppercase">{{menu?.categoryName}}</h5>
                 </a>
@@ -25,17 +74,7 @@
                     <a href="#" routerLink="/{{sub?.url}}" [ngClass]="sub?.isBold?'parentSub text-uppercase':''">{{sub?.subName | titlecase}}</a>
                   </li>
                 </ul>
-              </li>
-              <li *ngFor="let menu of finalMenu3" class="third-level">
-                <a href="#" routerLink="/{{menu?.url}}" class="isparent">
-                  <h5 class="text-uppercase">{{menu?.categoryName}}</h5>
-                </a>
-                <ul style="margin-bottom: 1rem;" *ngIf="menu?.sub?.length">
-                  <li *ngFor="let sub of menu?.sub">
-                    <a href="#" routerLink="/{{sub?.url}}" [ngClass]="sub?.isBold?'parentSub text-uppercase':''">{{sub?.subName | titlecase}}</a>
-                  </li>
-                </ul>
-              </li>
+              </li> -->
             </ul>
             <!-- <ul *ngFor="let category of categories">
               <li>
