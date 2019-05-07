@@ -80,37 +80,44 @@ export class MainNavComponent implements OnInit {
     
 
     this.vs.finalMenu1('B4iC2Z0RuYrw0Ou5kPQt').subscribe((res:any) => {
-      this.finalMenu1 = res.value;
-      this.finalMenu1Loader = true;
-      console.log(res)
+      if(res) {
+        this.finalMenu1 = res.value;
+        this.finalMenu1Loader = true;
+        console.log(res)
+      }
     })
     this.vs.finalMenu1('NZO8GjZHIJkgCPfJodK1').subscribe((res:any) => {
-      this.finalMenu2 = res.value;
-      this.finalMenu2Loader = true;
-      console.log(res)
+      if (res) {
+        this.finalMenu2 = res.value;
+        this.finalMenu2Loader = true;
+        console.log(res)
+      }
     })
     this.vs.finalMenu1('z1VRPA9NlRemMi5pAJ2o').subscribe((res:any) => {
-      this.finalMenu3 = res.value;
-      this.finalMenu3Loader = true;
-      console.log(res)
+      if(res) {
+        this.finalMenu3 = res.value;
+        this.finalMenu3Loader = true;
+        console.log(res)
+      }
     })
 
     this.vs.solutionsMenu('Uw15tgHZg4O2SKUGhnwu').subscribe((menu:any) => {
-      menu.value.forEach(element => {
-        this.vs.solutions(element).subscribe((res:any) => {
-          if(res) {
-            this.solutions.push(res)
-          }
-          // console.log(res)
-        })
-      });
       if(menu) {
+        menu.value.forEach(element => {
+          this.vs.solutions(element).subscribe((res:any) => {
+            if(res) {
+              this.solutions.push(res)
+            }
+          })
+        });
         this.solutionLoader = true
       }
     })
 
     this.vs.solutionsMenu('62Mosco2VKymPlLSyfRM').subscribe((res:any) => {
-      this.companies = res.value
+      if(res) {
+        this.companies = res.value
+      }
     })
     // this.auth.user.subscribe((data) => {
     //   // console.log(data)
