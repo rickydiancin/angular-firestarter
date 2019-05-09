@@ -36,6 +36,7 @@ export class HomePageComponent implements OnInit {
   addToProject: boolean = true;
   isLoggin: Boolean;
   sidebanner: any;
+  releases: any;
 
   constructor(
     private scriptsService: ScriptsService,
@@ -126,7 +127,7 @@ export class HomePageComponent implements OnInit {
     //   console.log('latest products: ',res);
     //   this.products2 = res;
     //  });
-    this.getAllProducts();
+    this.GetNewReleases();
     this.getAllSolutions();
   }
 
@@ -145,20 +146,27 @@ export class HomePageComponent implements OnInit {
     // }
   }
 
-  getAllProducts() {
-    let ids = ['PLUS1000BM', 'SANH710BR'];
-    _(ids).each((id) => {
-      this.productsService.GetNewReleases(id).subscribe((res:any) => {
-        this.products.push(res)
-        console.log(this.products)
-      })
-    });
-    // this.vs.localstorage('products').subscribe((products:any) => {
-    //   if(products.length) {
-    //     this.products = products;
-    //   }
-    // });
+  GetNewReleases() {
+    this.productsService.GetNewReleases().subscribe((releses:any) => {
+      console.log(releses);
+      this.releases = releses;
+    })
   }
+
+  // getAllProducts() {
+  //   let ids = ['PLUS1000BM', 'SANH710BR'];
+  //   _(ids).each((id) => {
+  //     this.productsService.GetNewReleases(id).subscribe((res:any) => {
+  //       this.products.push(res)
+  //       console.log(this.products)
+  //     })
+  //   });
+  //   // this.vs.localstorage('products').subscribe((products:any) => {
+  //   //   if(products.length) {
+  //   //     this.products = products;
+  //   //   }
+  //   // });
+  // }
 
   onSelect(event: TypeaheadMatch): void {
     console.log(event)
