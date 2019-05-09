@@ -44,7 +44,15 @@ export class VariablesService {
     } else if (collection == 'solutions') {
       return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/solutions.json?alt=media&token=4918ad6f-670a-454e-bec6-287a1eec008a');
     } else if(collection == 'banners') {
-      return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/banners.json?alt=media&token=a5ac86cd-925e-48fc-9ae9-a365c6466a04');
+      // return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/banners.json?alt=media&token=a5ac86cd-925e-48fc-9ae9-a365c6466a04');
+      return this.afs.collection('banners', (ref) => ref).snapshotChanges().pipe(
+        map((actions) => {
+          return actions.map((a) => {
+            const data = a.payload.doc.data();
+            return { id: a.payload.doc.id, ...data };
+          });
+        })
+      )
     }
     // switch (collection) {
     //   case 'products':
