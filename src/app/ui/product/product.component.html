@@ -47,12 +47,12 @@
               <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 b-display-single">
                 <div class="b-product-carousel owl-carousel gallery" id="bSingleProductCarousel"
                   data-slider-id="bSingleProductCarousel">
-                  <div class="b-produt-item">
+                  <div class="b-produt-item" *ngIf="theproduct?.primaryURL">
                     <a href="{{theproduct?.primaryURL || './assets/images/not_available.jpg'}}">
                       <img [src]="theproduct?.primaryURL || './assets/images/not_available.jpg'" alt="" class="img-fluid">
                     </a>
                   </div>
-                  <ng-container *ngIf="theproduct?.secondaryURL">
+                  <ng-container *ngIf="theproduct?.secondaryURL !== 'undefined'">
                     <div *ngFor="let secondURL of theproduct?.secondaryURL.split(';')"
                       class="owl-thumb-item b-display-item">
                       <img [src]="secondURL" alt="" class="img-fluid">
@@ -60,7 +60,7 @@
                   </ng-container>
                   <div class="b-produt-item" *ngIf="theproduct?.lineDrawing">
                     <a href="{{theproduct?.lineDrawing}}">
-                      <img [src]="theproduct?.lineDrawing" alt="" class="img-fluid">
+                      <img [src]="theproduct?.lineDrawing" alt="{{theproduct?.lineDrawing}}" class="img-fluid">
                     </a>
                   </div>
                   <!-- <div class="b-produt-item">
@@ -105,7 +105,7 @@
                 <div class="b-display-list-wrapper">
                   <div class="owl-thumbs b-display-item-list slick-count" id="bSingleProductBottom"
                     data-slider-id="bSingleProductCarousel">
-                    <div class="owl-thumb-item b-display-item">
+                    <div class="owl-thumb-item b-display-item" *ngIf="theproduct?.primaryURL">
                       <img [src]="theproduct?.primaryURL || './assets/images/not_available.jpg'" alt="" class="img-fluid">
                     </div>
                     <ng-container *ngIf="theproduct?.secondaryURL !== 'undefined'">
@@ -115,7 +115,7 @@
                       </div>
                     </ng-container>
                     <div *ngIf="theproduct?.lineDrawing" class="owl-thumb-item b-display-item">
-                      <img [src]="theproduct?.lineDrawing" alt="" class="img-fluid">
+                      <img [src]="theproduct?.lineDrawing" alt="{{theproduct?.lineDrawing}}" class="img-fluid">
                     </div>
                     <!-- <div class="owl-thumb-item b-display-item">
                       <img src="assets/images/products/product-single/woman-4.jpg" alt="" class="img-fluid">
