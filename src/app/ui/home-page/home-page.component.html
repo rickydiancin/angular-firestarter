@@ -78,10 +78,10 @@
 </section>  
 <section id="b-our_story">
   <div class="b-our_story mt-1 pb-5">
-    <div class="spinner text-center mt-5" *ngIf="!products?.length && !posts?.length">
+    <div class="spinner text-center mt-5" *ngIf="!releases?.length && !posts?.length">
       <img src="./assets/svg/oval.svg" class="img-fluid img-spinner" alt="">
     </div>
-    <div class="container" *ngIf="products?.length && posts?.length">
+    <div class="container" *ngIf="releases?.length && posts?.length">
       <div class="row clearfix">
 
         <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12 text-center">
@@ -95,7 +95,7 @@
             <div class="b-products b-product_grid b-product_grid_two mb-2">
 
               <div class="row clearfix" >
-                <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12"  *ngFor="let product of products"  [style.display]="(product?.productCode == 'PLUS1000BM'  || product?.productCode == 'SANH710BR') ? '' : 'none'">
+                <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12"  *ngFor="let product of releases">
                     <div class="b-product_grid_single">
                     <!-- <div class="b-product_grid_single" *ngIf="product.productCode=='PLUS1000BM' || product.productCode=='SANH710BR'" > -->
                         <div class="b-product_grid_header">

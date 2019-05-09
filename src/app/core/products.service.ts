@@ -27,8 +27,16 @@ export class ProductsService {
     this.productsCollection = this.afs.collection('products', (ref) => ref.orderBy('dateCreated', 'desc').limit(15));
   }
 
-  GetNewReleases(id) {
-    return this.afs.doc('products/' + id).valueChanges();
+  GetNewReleases() {
+    // return this.afs.doc('products/' + id).valueChanges();
+    return this.afs.collection('products', (ref) => ref.where('newRelease','==',true) ).snapshotChanges().pipe(
+      map((actions) => {
+        return actions.map((a) => {
+          const data = a.payload.doc.data();
+          return { id: a.payload.doc.id, ...data };
+        });
+      })
+    );
   }
 
   getFile(): Observable<any> {
