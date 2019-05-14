@@ -113,8 +113,9 @@ export class HomePageComponent implements OnInit {
      });
 
     this.postService.getAllPostsByCategory('sidebanner').subscribe(res => {
-      // console.log(res);
+
       this.sidebanner = res[0];
+      console.log('sidebar',this.sidebanner);
     });
     //  this.productsService.getAllBanners().subscribe(res => {
     //   console.log('banners: ',res);
