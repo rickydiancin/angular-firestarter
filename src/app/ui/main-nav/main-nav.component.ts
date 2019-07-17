@@ -52,9 +52,16 @@ export class MainNavComponent implements OnInit {
     //     this.user = '';
     //   }
     // })
+    // this.vs.sampleApi().subscribe((res) => {
+    //   console.log(res)
+    // })
   }
   
   ngOnInit() {
+
+    this.vs.sampleApi().subscribe((res) => {
+      console.log(res)
+    })
 
     $('.b-dropdown_wrapper').click(function () {
       $(this).find('.b-dropdown_content').css('visibility', 'hidden');

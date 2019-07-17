@@ -24,6 +24,10 @@ export class VariablesService {
     this.productsCollection = this.afs.collection('products', (ref) => ref.orderBy('dateCreated', 'desc'));
   }
 
+  sampleApi() {
+    return this.httpClient.get('https://swapi.co/api/films');
+  }
+
   solutionsMenu(id) {
     return this.afs.doc(`menus/${id}`).valueChanges()
   }
