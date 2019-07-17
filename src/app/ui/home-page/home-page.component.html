@@ -180,11 +180,11 @@
               <!-- <span class="b-title_separator"><span></span></span> -->
             </h4>
           </div>
-          <div class="clearfix m-0 row">
+          <div class="clearfix m-0">
             <div class="b-blog_default b-blog_grid b-blog_default_list">
               <div class="b-blog_degault_single" *ngFor="let post of posts | slice:0:1">
                  <div class="b-blog_single_header">
-                      <div class="b-blog_img_wrap">
+                      <div class="">
                           <a href="#" routerLink="/postcategory/news/{{post?.id}}">
                               <img [src]="post?.imgURL"  class="img-fluid" alt="">
                           </a>
@@ -211,8 +211,7 @@
                               <a href="#">Leave a comment</a>
                           </span>
                       </div> -->
-                      <div class="b-blog_single_content">
-                          <p [innerHTML]="post?.content | slice:0:200"></p> </div> 
+                      <div class="b-blog_single_content" [innerHTML]="post?.content | slice:0:200"></div> 
                   </div>
                   <div class="b-read_more">
                       <a href="#" routerLink="/news/{{post?.id}}">Read More</a>
