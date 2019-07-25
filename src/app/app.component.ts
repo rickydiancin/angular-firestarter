@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './core/auth.service';
-import { ProductsService } from './core/products.service';
+import { ProductService } from './core/products.service';
 import { TypeaheadMatch } from 'ngx-bootstrap';
 import { Router } from '@angular/router';
 import { ScriptsService } from './core/scripts.service';
@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
   footerMenus:any;
   filterQuery:any;
 
-  constructor(private auth: AuthService, public productsService: ProductsService, private router: Router, public scriptsService: ScriptsService, private vs: VariablesService) {}
+  constructor(private auth: AuthService, public productsService: ProductService, private router: Router, public scriptsService: ScriptsService, private vs: VariablesService) {}
 
   getAllProducts() {
     this.vs.localstorage('products').subscribe((products) => {

@@ -40,4 +40,11 @@ export class MenuService {
     })
   }
 
+  GetSingleMenuCategory(id): Observable<any> {
+    return this.httpClient.get(`${BASEURL}/menus/single/category`, {
+      params: new HttpParams()
+        .set('_id', id)
+    })
+  }
+
 }

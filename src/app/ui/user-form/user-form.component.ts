@@ -5,6 +5,9 @@ import { AuthService } from '../../core/auth.service';
 import { StorageService } from 'src/app/core/storage.service';
 import { NotifyService } from 'src/app/core/notify.service';
 import { VariablesService } from 'src/app/core/variables.service';
+import { Router } from '@angular/router';
+import { TokenService } from 'src/app/core/token.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'user-form',
@@ -31,7 +34,9 @@ export class UserFormComponent implements OnInit {
     private auth: AuthService,
     public storage: StorageService,
     public notifyService: NotifyService,
-    private vs: VariablesService
+    private vs: VariablesService,
+    public location: Location,
+    private tokenService: TokenService
     ) {
     this.buildForm();
     notifyService.msg.subscribe((message) => {
@@ -50,26 +55,31 @@ export class UserFormComponent implements OnInit {
   }
 
   signup() {
-    this.auth.emailSignUp(this.regform.value).then((success:any) => {
-      if(success) {
-        this.regform.value['type'] = 'new user';
-        this.vs.SendEmail(this.regform.value).subscribe((res: any) => {
-          // console.log(res)
-        })
-      }
-    })
+    // this.auth.emailSignUp(this.regform.value).then((success:any) => {
+    //   if(success) {
+    //     this.regform.value['type'] = 'new user';
+    //     this.vs.SendEmail(this.regform.value).subscribe((res: any) => {
+    //       // console.log(res)
+    //     })
+    //   }
+    // })
   }
 
   login() {
-    this.message = '';
-    this.auth.emailLogin(this.userForm.value['email'], this.userForm.value['password']);
+    this.auth.login(this.userForm.value).subscribe((res: any) => {
+      // console.log(res);
+      this.location.back();
+      this.tokenService.setToken(res.token);
+    })
+    // this.message = '';
+    // this.auth.emailLogin(this.userForm.value['email'], this.userForm.value['password']);
   }
 
   resetPassword() {
-    this.auth.resetPassword(this.email)
-      .then((success) => {
-        this.sentRecovery = true;
-      });
+    // this.auth.resetPassword(this.email)
+    //   .then((success) => {
+    //     this.sentRecovery = true;
+    //   });
   }
 
   buildForm() {

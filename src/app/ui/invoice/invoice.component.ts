@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { ProductsService } from 'src/app/core/products.service';
+import { ProductService } from 'src/app/core/products.service';
 import { ActivatedRoute } from '@angular/router';
 // import * as jsPDF from 'jspdf';
 // import 'jspdf-autotable';
@@ -19,7 +19,7 @@ export class InvoiceComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private productsService: ProductsService
+    private productsService: ProductService
   ) { }
 
   ngOnInit() {
@@ -29,13 +29,13 @@ export class InvoiceComponent implements OnInit {
   }
 
   getAllProjects() {
-    this.productsService.getSelectedProjectProducts(this.id.split('.')[1]).subscribe((productProject) => {
-      this.productProject = productProject;
-      console.log(this.productProject)
-      if(this.productProject.length) {
-        // this.downloadPDF();
-      }
-    });
+    // this.productsService.getSelectedProjectProducts(this.id.split('.')[1]).subscribe((productProject) => {
+    //   this.productProject = productProject;
+    //   console.log(this.productProject)
+    //   if(this.productProject.length) {
+    //     // this.downloadPDF();
+    //   }
+    // });
   }
 
   downloadPDF() {

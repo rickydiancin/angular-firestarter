@@ -1,317 +1,55 @@
-import { Injectable, Output, EventEmitter } from '@angular/core';
-
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
-
-import { Observable, Subject } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
-import { AuthService } from './auth.service';
-import { HttpClient } from '@angular/common/http';
-import { VariablesService } from './variables.service';
+
+const BASEURL = environment.BASEURL;
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductsService {
+export class ProductService {
 
-  @Output() event = new EventEmitter;
+  constructor(
+    private httpClient: HttpClient
+  ) { }
 
-  productsCollection: AngularFirestoreCollection<any>;
-  productDocument:   AngularFirestoreDocument<any>;
-
-  constructor(private afs: AngularFirestore,
-    private auth: AuthService,
-    public http: HttpClient,
-    private vs: VariablesService
-    ) {
-    // Add collections here..
-    this.productsCollection = this.afs.collection('products', (ref) => ref.orderBy('dateCreated', 'desc').limit(15));
+  GetAllProductByCategory(id): Observable<any> {
+    return this.httpClient.get(`${BASEURL}/product/category/all`, {
+      params: new HttpParams()
+        .set('id', id)
+    });
   }
 
-  GetNewReleases() {
-    // return this.afs.doc('products/' + id).valueChanges();
-    return this.afs.collection('products', (ref) => ref.where('newRelease','==',true) ).snapshotChanges().pipe(
-      map((actions) => {
-        return actions.map((a) => {
-          const data = a.payload.doc.data();
-          return { id: a.payload.doc.id, ...data };
-        });
-      })
-    );
+  GetAllProducts(): Observable<any> {
+    return this.httpClient.get(`${BASEURL}/product/all`);
   }
 
-  getFile(): Observable<any> {
-    return this.http.get('../../assets/datafiles/categories.json');
+  ImportNewProduct(body): Observable<any> {
+    return this.httpClient.post(`${BASEURL}/product/new/import`, body);
   }
 
-  getData(): Observable<any[]> {
-    // ['added', 'modified', 'removed']
-    return this.productsCollection.snapshotChanges().pipe(
-      map((actions) => {
-        return actions.map((a) => {
-          const data = a.payload.doc.data();
-          return { id: a.payload.doc.id, ...data };
-        });
-      })
-    );
+  NewProduct(body): Observable<any> {
+    return this.httpClient.post(`${BASEURL}/product/new`, body);
   }
 
-  getAllPosts(){
-    //return this.afs.collection('categories', (ref) => ref.where('parent', "==", id).orderBy('categoryName')).snapshotChanges().pipe(
-    return this.afs.collection('posts',  (ref) => ref.where('category', "==", 'news').orderBy('dateCreated')).snapshotChanges().pipe(
-        map((actions) => {
-            return actions.map((a) => {
-            const data = a.payload.doc.data();
-            return { id: a.payload.doc.id, ...data };
-            });
-        }));
-}
-getAllAbout(){
-  //return this.afs.collection('categories', (ref) => ref.where('parent', "==", id).orderBy('categoryName')).snapshotChanges().pipe(
-  return this.afs.collection('posts',  (ref) => ref.where('category', "==", 'about').orderBy('dateCreated')).snapshotChanges().pipe(
-      map((actions) => {
-          return actions.map((a) => {
-          const data = a.payload.doc.data();
-          return { id: a.payload.doc.id, ...data };
-          });
-      }));
-}
-  getAllProducts(id){
-    return this.afs.collection('products', (ref) => ref.where('parentProduct','==', id)).snapshotChanges().pipe(
-        map((actions) => {
-            return actions.map((a) => {
-            const data = a.payload.doc.data();
-            return { id: a.payload.doc.id, ...data };
-            });
-        }));
-}
-
-  getAllProductsByCategory(){
-    return this.afs.collection('products', (ref) => ref.limit(15)).snapshotChanges().pipe(
-        map((actions) => {
-            return actions.map((a) => {
-            const data = a.payload.doc.data();
-            return { id: a.payload.doc.id, ...data };
-            });
-        }));
-}
-
-  getAllCategoryProducts(id){
-    return this.afs.collection('products', (ref) => ref.where('categories', "array-contains", id).limit(2) ).snapshotChanges().pipe(
-        map((actions) => {
-            return actions.map((a) => {
-            const data = a.payload.doc.data();
-            return { id: a.payload.doc.id, ...data };
-            });
-        }));
-}
-
-getAllCategories(callback){
-  return this.afs.collection('categories', (ref) => ref.orderBy('categoryName')).snapshotChanges().pipe(
-      map((actions) => {
-          return actions.map((a) => {
-          const data = a.payload.doc.data();
-          return { id: a.payload.doc.id, ...data };
-          });
-      })).subscribe(res => {
-          // console.log(res);
-          res.forEach((c:any) => {
-            this.getSubCategory(c['categoryCode'], callback => {
-                      if(callback.length) {
-                        c.sub = callback;
-                      } else {
-                        c.sub = null;
-                      }
-                  })
-            // c['categoryCode']
-              // if(c['parent'] != ''){
-              //     this.getCategory(c['parent'], callback => {
-              //         c['parentData'] = callback;
-              //     })
-              // }
-          })
-          return callback(res);
-      })
-}
-getSubCategory(id, callback){
-  // console.log(id)
-  return this.afs.collection('categories', (ref) => ref.where('parent', "==", id).orderBy('categoryName')).snapshotChanges().pipe(
-    map((actions) => {
-      return actions.map((a) => {
-        const data = a.payload.doc.data();
-        return { id: a.payload.doc.id, ...data };
-      });
-    })
-  ).subscribe(res => {
-      return callback(res);
-  })
-}
-
-getCategory(id, callback){
-  // console.log(id)
-  return this.afs.doc('categories/'+ id).valueChanges().subscribe(res => {
-      return callback(res);
-  })
-}
-
-getCategoryByArray(id) {
-  return this.afs.doc('categories/' + id).valueChanges();
-}
-
-  getProduct(id) {
-    return this.afs.doc<any>(`products/${id}`);
+  UpdateProduct(body): Observable<any> {
+    return this.httpClient.put(`${BASEURL}/product/update`, body);
   }
 
-  getProductByArray(id: string) {
-    // return this.afs.doc<any>(`products/${id}`, ref => ref);
-    // return this.afs.collection('products', (ref) => ref.where('categories', "array-contains", id).limit(2)).snapshotChanges();
-    return this.afs.collection('products', (ref) => ref.where('categories', "array-contains", id).limit(2)).snapshotChanges().pipe(
-      map((actions) => {
-        return actions.map((a) => {
-          const data = a.payload.doc.data();
-          return { id: a.payload.doc.id, ...data };
-        });
-      })
-    );
+  GetSingleProduct(index): Observable<any> {
+    return this.httpClient.get(`${BASEURL}/product/single`, {
+      params: new HttpParams()
+              .set('index', index)
+    }).pipe()
   }
 
-  getSolutionProductByArray(id: string) {
-    // return this.afs.doc<any>(`products/${id}`, ref => ref);
-    // return this.afs.collection('products', (ref) => ref.where('categories', "array-contains", id).limit(2)).snapshotChanges();
-    return this.afs.collection('products', (ref) => ref.where('solutions', "array-contains", id)).snapshotChanges().pipe(
-      map((actions) => {
-        return actions.map((a) => {
-          const data = a.payload.doc.data();
-          return { id: a.payload.doc.id, ...data };
-        });
-      })
-    );
-  }
-
-  createProduct(content: string) {
-    const product = {
-      content,
-      hearts: 0,
-      time: new Date().getTime(),
-    };
-    return this.productsCollection.add(product);
-  }
-
-  updateProduct(id: string, data: any) {
-    return this.getProduct(id).update(data);
-  }
-
-  deleteProduct(id: string) {
-    return this.getProduct(id).delete();
-  }
-
-  // solutions ========================
-
-  getAllSolutions() {
-    return this.afs.collection('solutions').snapshotChanges().pipe(
-      map((actions) => {
-        return actions.map((a) => {
-          const data = a.payload.doc.data();
-          return { id: a.payload.doc.id, ...data };
-        });
-      }));
-  }
-  getAllBanners() {
-    return this.afs.collection('banners').snapshotChanges().pipe(
-      map((actions) => {
-        return actions.map((a) => {
-          const data = a.payload.doc.data();
-          return { id: a.payload.doc.id, ...data };
-        });
-      }));
-  }
-
-  getSolution(id) {
-    return this.afs.doc('solutions/' + id).valueChanges();
-  }
-
-  newProjects(data) {
-    return this.afs.doc('projects/' + data.code).set(data);
-  }
-
-  deleteProject(id) {
-    return this.afs.doc<any>('projects/' + id).delete();
-  }
-
-  getAllProjects() {
-    return this.afs.collection('projects').snapshotChanges().pipe(
-      map((actions) => {
-        return actions.map((a) => {
-          const data = a.payload.doc.data();
-          return { id: a.payload.doc.id, ...data };
-        });
-      }));
-  }
-
-  getAllProjectsByUser(id) {
-    return this.afs.collection('projects', (ref) => ref.where('createdBy','==',id)).snapshotChanges().pipe(
-      map((actions) => {
-        return actions.map((a) => {
-          const data = a.payload.doc.data();
-          return { id: a.payload.doc.id, ...data };
-        });
-      }));
-  }
-
-  getSelectedProjectProducts(id) {
-    return this.afs.collection('projectproducts', (ref) => ref.where('projects', "==", id)).snapshotChanges().pipe(
-      map((actions) => {
-        return actions.map((a) => {
-          const data = a.payload.doc.data();
-          return { id: a.payload.doc.id, ...data };
-        });
-      }));
-  }
-
-  getProjects(id) {
-    return this.afs.doc('projects/' + id).valueChanges();
-  }
-
-  addProductToProject(product) {
-    return this.afs.collection(`projectproducts`).add(product);
-  }
-
-  getAllProjectProducts(product) {
-    console.log(this.auth.user)
-    return this.afs.collection('projectproducts', (ref) => ref.where('userID', "==", this.auth.user.uid).where('productCode', '==', product.productCode)).snapshotChanges().pipe(
-      map((actions) => {
-        return actions.map((a) => {
-          const data = a.payload.doc.data();
-          return { id: a.payload.doc.id, ...data };
-        });
-      }));
-  }
-
-  getProjectProduct(id) {
-    return this.afs.doc('projectproducts/' + id).valueChanges();
-  }
-
-  deleteToProject(id) {
-    return this.afs.doc<any>('projectproducts/' + id).delete();
-  }
-
-  createInquires(data) {
-    return this.afs.collection('inquiries').add(data);
-  }
-
-  // getfile() {
-  //   this.http.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/categories.json?alt=media&token=e5da0331-7c06-4221-9c21-4b4483618f0f').subscribe((data) => {
-  //     console.log(data)
-  //   })
-  // }
-
-  getProductsWithCategory() {
-    return this.http.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/products.json?alt=media&token=27e8bc46-0a87-4631-b73d-eb4b1b80a626');
-  }
-
-  getCategoryByArrayProduct(id, cb) {
-    return this.afs.doc('categories/' + id).valueChanges().subscribe(async (res) => {
-      return await cb(res)
-    })
+  DeleteSingleProduct(_id): Observable<any> {
+    return this.httpClient.delete(`${BASEURL}/product/single/delete`, {
+      params: new HttpParams()
+              .set('_id', _id)
+    }).pipe()
   }
 
 }

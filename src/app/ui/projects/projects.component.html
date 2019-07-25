@@ -19,7 +19,7 @@
                     <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
                         <div class="form-group">
                           <label>Project Name</label>
-                          <input  type="text" name="name" id="name" formControlName="projectName">
+                          <input  type="text" name="name" id="name" formControlName="name">
                         </div>
                       </div>  
                       <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
@@ -88,8 +88,8 @@
                     <!-- <div class="col-sm-2 hidden-xs"><img src="assets/images/products/home/product_grid_03_01.jpg" alt="..." class="img-fluid"/></div> -->
                     <div class="col-sm-12">
                       <h4 class="nomargin">
-                        <a href="#" routerLink="/projects/{{project?.projectName}}.{{project?.code}}">{{project?.projectName}}</a></h4>
-                      <p style="padding:0">{{project?.description}}</p>
+                        <a href="#" routerLink="/projects/{{project?.projectName}}.{{project?.code}}">{{project?.name | titlecase}}</a></h4>
+                      <p style="padding:0">{{project?.description | titlecase}}</p>
                     </div>
                   </div>
                 </td>
@@ -97,7 +97,7 @@
                 <td data-th="Code">
                   <input type="text" class="form-control text-center" value="{{project?.code}}">
                 </td>
-                <td data-th="Location">{{project?.location}}</td>
+                <td data-th="Location">{{project?.location | titlecase}}</td>
                 <td class="actions" data-th="">
                   <!-- <div class="col-sm-1"> -->
                     <button (click)="editProject(project)" class="btn btn-info btn-sm mr-1"><i class="fa fa-refresh"></i></button>

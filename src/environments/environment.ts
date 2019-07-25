@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  BASEURL: `http://localhost:8000/api/v1`
+  BASEURL: `http://localhost:8000/api/v1`,
 
   // ===================== gentec-admin-development2 =============================
   // firebase: {

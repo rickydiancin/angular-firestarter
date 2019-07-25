@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { ScriptsService } from 'src/app/core/scripts.service';
-import { ProductsService } from 'src/app/core/products.service';
+import { ProductService } from 'src/app/core/products.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -156,10 +156,11 @@ export class ProductComponent implements OnInit, AfterViewInit {
     ]
   };
   slick: any = 0;
+  params: any;
 
   constructor(
     private scriptsService: ScriptsService,
-    private productsService: ProductsService,
+    private productService: ProductService,
     private route: ActivatedRoute,
     private modalService: NgbModal,
     public vs: VariablesService,
@@ -206,10 +207,14 @@ export class ProductComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    
   }
 
   ngOnInit() {
 
+    setTimeout(() => {
+      this.scriptsService.prepareJquery();
+    }, 0);
     
 
     this.checkAuth().subscribe((res) => {
@@ -218,120 +223,127 @@ export class ProductComponent implements OnInit, AfterViewInit {
     });
     this.pid = this.route.snapshot.params.id;
     this.route.params.subscribe((params) => {
-      this.productLoaded = false;
+      if(params.id) {
+        this.params = params;
+        this.productLoaded = false;
+        this.productService.GetSingleProduct(params.id.split('_')[1]).subscribe((res: any) => {
+          this.theproduct = res[0];
+          console.log(res);
+          this.productLoaded = true;
+        })
+      }
       // if(params) {
         // setTimeout(() => {
         //   this.scriptsService.prepareJquery();
         // }, 1000);
       // }
-      this.productsService.getProduct(params.id).valueChanges()
-        .subscribe(async res => {
-          if (res.parentProduct) {
-            let variant = [];
-            let colourFinish = [];
-            this.productsService.getAllProducts(res.parentProduct).subscribe((product: any) => {
-              if (product.length) {
-                product.forEach(element => {
-                  if(element.variant) {
-                    variant.push(element);
-                  }
-                  if (element.colourFinish) {
-                    colourFinish.push(element);
-                  }
-                });
-                res.productVariant = variant;
-                res.productColourFinish = colourFinish;
-                console.log(res)
-              }
-            });
+      // this.productsService.getProduct(params.id).valueChanges().subscribe(async res => {
+      //     if (res.parentProduct) {
+      //       let variant = [];
+      //       let colourFinish = [];
+      //       this.productsService.getAllProducts(res.parentProduct).subscribe((product: any) => {
+      //         if (product.length) {
+      //           product.forEach(element => {
+      //             if(element.variant) {
+      //               variant.push(element);
+      //             }
+      //             if (element.colourFinish) {
+      //               colourFinish.push(element);
+      //             }
+      //           });
+      //           res.productVariant = variant;
+      //           res.productColourFinish = colourFinish;
+      //           console.log(res)
+      //         }
+      //       });
 
-            this.seo.generateTags({
-              title: res.seoTitle,
-              description: res.seoDescription,
-              image: res.primaryURL,
-              slug: res.productTitle
-            });
-          }
-          // console.log(res)
-          let c = [];
-          res.categories = res.categories.split(';');
-          res.categories.forEach(async (categoryID) => {
-            if (categoryID) {
-                await this.productsService.getCategoryByArray(categoryID).subscribe((category: any) => {
-                  if (category) {
-                    c.push({ code: category.categoryCode, name: category.categoryName.toLowerCase() });
-                    if (c) res.categoryName = c;
-                  } else {
-                    res.categoryName = [];
-                  }
-                })
-              }
-            })
-          res.features = res.features.trim().split('•');
-          // res.features.shift();
-          this.theproduct = await res;
-          setTimeout(() => {
-            $(document).ready(() => {
-              this.slick = $('.slick-count > .owl-thumb-item').length;
-            })
-          }, 1000);
-          this.productLoaded = true;
-          // $(document).ready(function ($) {
-          //   $('[data-toggle="tooltip"]').tooltip();
-          //   console.log($(".gallery").length)
-          //   if ($(".gallery").length > 0) {
-          //     console.log($(".gallery").length > 0)
-          //   }
-          // })
+      //       this.seo.generateTags({
+      //         title: res.seoTitle,
+      //         description: res.seoDescription,
+      //         image: res.primaryURL,
+      //         slug: res.productTitle
+      //       });
+      //     }
+      //     // console.log(res)
+      //     let c = [];
+      //     res.categories = res.categories.split(';');
+      //     res.categories.forEach(async (categoryID) => {
+      //       if (categoryID) {
+      //           await this.productsService.getCategoryByArray(categoryID).subscribe((category: any) => {
+      //             if (category) {
+      //               c.push({ code: category.categoryCode, name: category.categoryName.toLowerCase() });
+      //               if (c) res.categoryName = c;
+      //             } else {
+      //               res.categoryName = [];
+      //             }
+      //           })
+      //         }
+      //       })
+      //     res.features = res.features.trim().split('•');
+      //     // res.features.shift();
+      //     this.theproduct = await res;
+      //     setTimeout(() => {
+      //       $(document).ready(() => {
+      //         this.slick = $('.slick-count > .owl-thumb-item').length;
+      //       })
+      //     }, 1000);
+      //     this.productLoaded = true;
+      //     // $(document).ready(function ($) {
+      //     //   $('[data-toggle="tooltip"]').tooltip();
+      //     //   console.log($(".gallery").length)
+      //     //   if ($(".gallery").length > 0) {
+      //     //     console.log($(".gallery").length > 0)
+      //     //   }
+      //     // })
 
-          // if(res) {
-            setTimeout(() => {
-              this.scriptsService.prepareJquery();
-            }, 1000);
-          // }
+      //     // if(res) {
+      //       setTimeout(() => {
+      //         this.scriptsService.prepareJquery();
+      //       }, 1000);
+      //     // }
 
-            await this.vs.localstorage('products').subscribe((products: any) => {
-            // var lookup = _.keyBy(res.categories, (o) => {
-            //   return o.toString()
-            // });
-            //   var relateds = _.filter(products, function (u: any) {
-            //   return lookup[u.categories.toString()] !== undefined;
-            // });
-            let relateds = [];
-              if (products.related) {
-                products.related = products.related.split(';');
-                products.related.forEach(element => {
-                  if (element) {
-                    let result = _.filter(products, row => row.productTitle.indexOf(element) > -1);
-                    result.forEach((el) => {
-                      relateds.push(el)
-                    })
-                  }
-                });
-              } else {
-                res.categories.forEach(element => {
-                  if (element) {
-                    let result = _.filter(products, row => row.categories.split(';').indexOf(element) > -1);
-                    result.forEach((el) => {
-                      relateds.push(el)
-                    })
-                  }
-                });
-              }
-              this.relateds = relateds;
+      //       await this.vs.localstorage('products').subscribe((products: any) => {
+      //       // var lookup = _.keyBy(res.categories, (o) => {
+      //       //   return o.toString()
+      //       // });
+      //       //   var relateds = _.filter(products, function (u: any) {
+      //       //   return lookup[u.categories.toString()] !== undefined;
+      //       // });
+      //       let relateds = [];
+      //         if (products.related) {
+      //           products.related = products.related.split(';');
+      //           products.related.forEach(element => {
+      //             if (element) {
+      //               let result = _.filter(products, row => row.productTitle.indexOf(element) > -1);
+      //               result.forEach((el) => {
+      //                 relateds.push(el)
+      //               })
+      //             }
+      //           });
+      //         } else {
+      //           res.categories.forEach(element => {
+      //             if (element) {
+      //               let result = _.filter(products, row => row.categories.split(';').indexOf(element) > -1);
+      //               result.forEach((el) => {
+      //                 relateds.push(el)
+      //               })
+      //             }
+      //           });
+      //         }
+      //         this.relateds = relateds;
               
 
-            // this.relateds = relateds;
-              // console.log(lookup, relateds)
+      //       // this.relateds = relateds;
+      //         // console.log(lookup, relateds)
 
-              let index = products.findIndex(x => x.productCode == params.id);
-              this.nextProduct = products[index + 1];
-              this.prevProduct = products[index - 1];
+      //         let index = products.findIndex(x => x.productCode == params.id);
+      //         this.nextProduct = products[index + 1];
+      //         this.prevProduct = products[index - 1];
 
-            this.productExport = [];
-            this.productExport.push(res);
-          })
-        });
+      //       this.productExport = [];
+      //       this.productExport.push(res);
+      //     })
+      //   });
     });
   }
 

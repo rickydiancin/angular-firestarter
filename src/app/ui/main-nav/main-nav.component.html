@@ -186,7 +186,7 @@
                                                   <div class="b-menu_content_in mb-4">
                                                     <a href="#" routerLink="/solution/{{cat?.solutionCode}}" class="d-block"><strong> {{cat?.value?.name | titlecase}} Solutions
                                                       </strong></a>
-                                                   <a href="#" routerLink="/solution/{{cat?.solutionCode}}"><img [src]="cat?.imgURL" class="img-fluid d-block m-auto"
+                                                   <a href="#" routerLink="/solution/{{cat?.solutionCode}}"><img [src]="cat?.value?.imageFile1?'http://localhost:8000/uploads/'+cat?.value?.imageFile1:''" class="img-fluid d-block m-auto"
                                                         alt=""></a>
                                                   </div>
                                                 </div>
@@ -207,24 +207,29 @@
                                   <div class="b-dropdown_content sub-holder dropdown-left" style="width: 1500px;">
                                       <div class="dropdown-inner">
                                           <div class="row">
-                                          <div class="col-sm-12" *ngIf="!finalMenu1Loader && !finalMenu2Loader && !finalMenu3Loader">
+                                          <div class="col-sm-12" *ngIf="!menu1?.length && !menu2?.length && !menu3?.length">
                                             <div class="spinner text-center p-5" >
                                               <img src="./assets/svg/oval.svg" class="img-fluid img-spinner" alt="">
                                             </div>
                                           </div>
-                                          <ng-container *ngIf="finalMenu1Loader && finalMenu2Loader && finalMenu3Loader">
+                                          <ng-container *ngIf="menu1?.length && menu2?.length && menu3?.length">
                                               <div class="col-xs-12 col-sm-4">
                                                   <div class="menu-item">
                                                     <!-- <h5 class="b-filter_title">PRODUCT CATEGORIES</h5> -->
                                                     <ul class="menu-list">
-                                                      <ng-container *ngFor="let menu of finalMenu1" >
-                                                      <li class="third-level" *ngIf="menu?.split('|').length > 1">
-                                                        <a href="#" routerLink="/category/{{menu?.split('|')[0]?.split(' ').join('_') | lowercase}}" *ngIf="menu?.split('|').length > 1" class="isparent"> <h5 class="text-uppercase">{{menu?.split('|')[0]}}</h5></a>
+                                                      <ng-container *ngFor="let cat of menu1" >
+                                                      <li class="third-level">
+                                                        <a href="#" routerLink="/catalogue/category/{{cat?.value?.slug}}_{{cat?.value?.index}}" class="isparent"> <h5 class="text-uppercase">{{cat?.value?.label | titlecase}}</h5></a>
                                                       </li>
+                                                      <ng-container *ngFor="let child of cat?.value?.children" >
+                                                        <li class="sub">
+                                                          <a href="#" routerLink="/catalogue/category/{{child?.slug}}_{{child?.index}}">{{child?.label | titlecase}}</a>
+                                                        </li>
+                                                      </ng-container>
                                                       <!-- <ul> -->
-                                                      <li *ngIf="menu?.split('|').length == 1" class="sub">
+                                                      <!-- <li *ngIf="menu?.split('|').length == 1" class="sub">
                                                         <a href="#" routerLink="/category/{{menu?.split(' ').join('_') | lowercase}}">{{menu | titlecase}}</a>
-                                                      </li>
+                                                      </li> -->
                                                       <!-- </ul> -->
                                                       </ng-container>
                                                     </ul>
@@ -250,19 +255,21 @@
                                                 <div class="menu-item">
                                                   <!-- <h5 class="b-filter_title">PRODUCT CATEGORIES</h5> -->
                                                   <ul class="menu-list">
-                                                    <ng-container *ngFor="let menu of finalMenu2">
-                                                      <li class="third-level" *ngIf="menu?.split('|').length > 1">
-                                                        <a href="#" routerLink="/category/{{menu?.split('|')[0]?.split(' ').join('_') | lowercase}}"
-                                                          *ngIf="menu?.split('|').length > 1" class="isparent">
-                                                          <h5 class="text-uppercase">{{menu?.split('|')[0]}}</h5>
-                                                        </a>
+                                                    <ng-container *ngFor="let cat of menu2" >
+                                                      <li class="third-level">
+                                                        <a href="#" routerLink="/catalogue/category/{{cat?.value?.slug}}_{{cat?.value?.index}}" class="isparent"> <h5 class="text-uppercase">{{cat?.value?.label | titlecase}}</h5></a>
                                                       </li>
+                                                      <ng-container *ngFor="let child of cat?.value?.children" >
+                                                        <li class="sub">
+                                                          <a href="#" routerLink="/catalogue/category/{{child?.slug}}_{{child?.index}}">{{child?.label | titlecase}}</a>
+                                                        </li>
+                                                      </ng-container>
                                                       <!-- <ul> -->
-                                                      <li *ngIf="menu?.split('|').length == 1" class="sub">
+                                                      <!-- <li *ngIf="menu?.split('|').length == 1" class="sub">
                                                         <a href="#" routerLink="/category/{{menu?.split(' ').join('_') | lowercase}}">{{menu | titlecase}}</a>
-                                                      </li>
+                                                      </li> -->
                                                       <!-- </ul> -->
-                                                    </ng-container>
+                                                      </ng-container>
                                                   </ul>
                                                 </div>
                                               </div>
@@ -289,23 +296,25 @@
                                                 <div class="menu-item">
                                                   <!-- <h5 class="b-filter_title">PRODUCT CATEGORIES</h5> -->
                                                   <ul class="menu-list">
-                                                    <ng-container *ngFor="let menu of finalMenu3">
-                                                      <li class="third-level" *ngIf="menu?.split('|').length > 1">
-                                                        <a href="#" routerLink="/category/{{menu?.split('|')[0]?.split(' ').join('_') | lowercase}}"
-                                                          *ngIf="menu?.split('|').length > 1" class="isparent">
-                                                          <h5 class="text-uppercase">{{menu?.split('|')[0]}}</h5>
-                                                        </a>
+                                                    <ng-container *ngFor="let cat of menu3" >
+                                                      <li class="third-level">
+                                                        <a href="#" routerLink="/catalogue/category/{{cat?.value?.slug}}_{{cat?.value?.index}}" class="isparent"> <h5 class="text-uppercase">{{cat?.value?.label | titlecase}}</h5></a>
                                                       </li>
+                                                      <ng-container *ngFor="let child of cat?.value?.children" >
+                                                        <li class="sub">
+                                                          <a href="#" routerLink="/catalogue/category/{{child?.slug}}_{{child?.index}}">{{child?.label | titlecase}}</a>
+                                                        </li>
+                                                      </ng-container>
                                                       <!-- <ul> -->
-                                                      <li *ngIf="menu?.split('|').length == 1" class="sub">
+                                                      <!-- <li *ngIf="menu?.split('|').length == 1" class="sub">
                                                         <a href="#" routerLink="/category/{{menu?.split(' ').join('_') | lowercase}}">{{menu | titlecase}}</a>
-                                                      </li>
+                                                      </li> -->
                                                       <!-- </ul> -->
-                                                    </ng-container>
+                                                      </ng-container>
                                                   </ul>
                                                   <ul>
                                                     <li>
-                                                      <a href="#" class="explore" routerLink="/category/all">Explore Entire Catalogue ></a>
+                                                      <a href="#" class="explore" routerLink="/catalogue/all">Explore Entire Catalogue ></a>
                                                     </li>
                                                   </ul>
                                                 </div>
@@ -419,7 +428,7 @@
                     </ng-template>
                     <div class="form-group">
                       <input autocomplete="off" [(ngModel)]="filterQuery" type="text"
-                        placeholder="Search Products" [ngModelOptions]="{standalone: true}" (click)="getAllProducts()">
+                        placeholder="Search Products" [ngModelOptions]="{standalone: true}">
                       <button class="btn"><i class="icons icon-magnifier"></i></button>
                     </div>
                   </form>

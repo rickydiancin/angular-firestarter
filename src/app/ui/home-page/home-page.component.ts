@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ScriptsService } from 'src/app/core/scripts.service';
-import { ProductsService } from 'src/app/core/products.service';
+import { ProductService } from 'src/app/core/products.service';
 import { TypeaheadMatch } from 'ngx-bootstrap';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { VariablesService } from 'src/app/core/variables.service';
@@ -40,7 +40,7 @@ export class HomePageComponent implements OnInit {
 
   constructor(
     private scriptsService: ScriptsService,
-    private productsService: ProductsService,
+    private productsService: ProductService,
     private router: Router,
     public vs: VariablesService,
     public formBuilder: FormBuilder,
@@ -94,10 +94,10 @@ export class HomePageComponent implements OnInit {
       setTimeout(() => {
         this.scriptsService.prepareJquery();
       }, 1000)
-    this.productsService.getAllCategories(res => {
-      // console.log(res);
-      this.categories = res;
-    });
+    // this.productsService.getAllCategories(res => {
+    //   // console.log(res);
+    //   this.categories = res;
+    // });
     
     this.postService.getAllPostsByCategory('news').subscribe(res => {
       // console.log(res);
@@ -147,10 +147,10 @@ export class HomePageComponent implements OnInit {
   }
 
   GetNewReleases() {
-    this.productsService.GetNewReleases().subscribe((releses:any) => {
-      console.log(releses);
-      this.releases = releses;
-    })
+    // this.productsService.GetNewReleases().subscribe((releses:any) => {
+    //   console.log(releses);
+    //   this.releases = releses;
+    // })
   }
 
   // getAllProducts() {
@@ -174,16 +174,16 @@ export class HomePageComponent implements OnInit {
   }
 
   sendContact() {
-    this.form.value.isActive = true;
-    this.form.value.dateCreated = Date.now();
-    this.productsService.createInquires(this.form.value).then((success) => {
-      if(success) {
-        this.form.value['type'] = 'inquiry';
-        this.vs.SendEmail(this.form.value).subscribe((res:any) => {
-          this.form.reset();
-        })
-      }
-    })
+    // this.form.value.isActive = true;
+    // this.form.value.dateCreated = Date.now();
+    // this.productsService.createInquires(this.form.value).then((success) => {
+    //   if(success) {
+    //     this.form.value['type'] = 'inquiry';
+    //     this.vs.SendEmail(this.form.value).subscribe((res:any) => {
+    //       this.form.reset();
+    //     })
+    //   }
+    // })
   }
 
   search(value?) {

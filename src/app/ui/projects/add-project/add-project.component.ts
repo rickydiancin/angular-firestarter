@@ -2,9 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ScriptsService } from 'src/app/core/scripts.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { ProductsService } from 'src/app/core/products.service';
+import { ProductService } from 'src/app/core/products.service';
 import { VariablesService } from 'src/app/core/variables.service';
 import { AuthService } from 'src/app/core/auth.service';
+import { ProjectService } from 'src/app/core/project.service';
 
 declare var $: any;
 
@@ -22,31 +23,29 @@ export class AddProjectComponent implements OnInit {
     public scriptsService: ScriptsService,
     public formBuilder: FormBuilder,
     private activeModal: NgbActiveModal,
-    public productServices: ProductsService,
+    public productServices: ProductService,
     public vs: VariablesService,
-    public authService: AuthService
+    public authService: AuthService,
+    public projectService: ProjectService
   ) {
     this.createForm();
   }
 
   ngOnInit() {
-    console.log(this.authService.user)
-    setTimeout(() => {
-      this.scriptsService.prepareJquery();
-    }, 1000)
+    // console.log(this.authService.user)
+    // setTimeout(() => {
+    //   this.scriptsService.prepareJquery();
+    // }, 1000)
 
-    console.log(this.authService.user);
+    // console.log(this.authService.user);
   }
 
   createForm() {
     this.form = this.formBuilder.group({
-      projectName: ['', Validators.required],
+      name: ['', Validators.required],
       description: ['', Validators.required],
       code: ['', Validators.required],
-      location: ['', Validators.required],
-      dateCreated: [''],
-      isActive: [''],
-      crearedBy: [this.authService.user.uid]
+      location: ['', Validators.required]
     })
   }
 
@@ -56,18 +55,21 @@ export class AddProjectComponent implements OnInit {
   }
 
   createProject() {
-    this.form.controls['dateCreated'].setValue(Date.now())
-    this.form.controls['isActive'].setValue(true)
-    this.productServices.newProjects(this.form.value).then(() => {
-      console.log('New Project successfully added');
+    this.projectService.NewProject(this.form.value).subscribe((res: any) => {
       this.form.reset();
     })
+    // this.form.controls['dateCreated'].setValue(Date.now())
+    // this.form.controls['isActive'].setValue(true)
+    // this.productServices.newProjects(this.form.value).then(() => {
+    //   console.log('New Project successfully added');
+    //   this.form.reset();
+    // })
   }
 
   deleteProject(id) {
-    this.productServices.deleteProject(id).then(() => {
-      console.log('Project successfully deleted');
-    })
+    // this.productServices.deleteProject(id).then(() => {
+    //   console.log('Project successfully deleted');
+    // })
   }
 
   editProject(data) {
@@ -76,11 +78,11 @@ export class AddProjectComponent implements OnInit {
   }
 
   updateProject() {
-    this.productServices.newProjects(this.form.value).then(() => {
-      console.log('Project successfully updated');
-      this.form.reset();
-      this.isUpdate = false;
-    })
+    // this.productServices.newProjects(this.form.value).then(() => {
+    //   console.log('Project successfully updated');
+    //   this.form.reset();
+    //   this.isUpdate = false;
+    // })
   }
 
   updateCancel() {

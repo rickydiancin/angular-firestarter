@@ -53,53 +53,53 @@ export class UserProfileComponent implements OnInit {
   }
 
   changePassword() {
-    this.auth.changePassword(this.passwordForm.value).then((ret:any) => {
-      console.log(ret)
-      if(!ret.success) {
-        this.type = 'danger';
-        this.showMessage = true;
-        this.message = ret.message;
-      } else {
-        this.type = 'success';
-        this.showMessage = true;
-        this.message = ret.message;
-        this.passwordForm.reset();
-      }
-    })
+    // this.auth.changePassword(this.passwordForm.value).then((ret:any) => {
+    //   console.log(ret)
+    //   if(!ret.success) {
+    //     this.type = 'danger';
+    //     this.showMessage = true;
+    //     this.message = ret.message;
+    //   } else {
+    //     this.type = 'success';
+    //     this.showMessage = true;
+    //     this.message = ret.message;
+    //     this.passwordForm.reset();
+    //   }
+    // })
   }
 
 
   logout() {
-    this.auth.signOut();
+    // this.auth.signOut();
   }
 
   ngOnInit() {
 
     // console.log(this.auth.changePassword(123));
     // console.log(this.auth.user.uid)
-    this.auth.getCurrentUser(this.auth.user).subscribe((user) => {
-      if(user) {
-        this.user = user;
-        this.form.patchValue(user)
-        console.log('user: ', this.user);
-      }
-    })
+    // this.auth.getCurrentUser(this.auth.user).subscribe((user) => {
+    //   if(user) {
+    //     this.user = user;
+    //     this.form.patchValue(user)
+    //     console.log('user: ', this.user);
+    //   }
+    // })
   }
 
   updateProfile() {
-    console.log(this.form.value)
+    // console.log(this.form.value)
 
-    this.auth.updateProfile(this.form.value).then(() => {
-      this.showMessage = true;
-      this.type = 'success';
-      this.message = 'Profile successfully updated';
-    })
+    // this.auth.updateProfile(this.form.value).then(() => {
+    //   this.showMessage = true;
+    //   this.type = 'success';
+    //   this.message = 'Profile successfully updated';
+    // })
   }
 
   updateProfileImage(url) {
-    this.auth.updateProfile({ uid: this.user.uid, photoURL: url }).then(() => {
-      console.log('Updated Successfully!');
-    })
+    // this.auth.updateProfile({ uid: this.user.uid, photoURL: url }).then(() => {
+    //   console.log('Updated Successfully!');
+    // })
   }
 
   saveChanges() {

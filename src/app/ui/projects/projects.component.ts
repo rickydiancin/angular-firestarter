@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ProductsService } from 'src/app/core/products.service';
+import { ProductService } from 'src/app/core/products.service';
 import { ScriptsService } from 'src/app/core/scripts.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddProjectComponent } from './add-project/add-project.component';
 import { AuthService } from 'src/app/core/auth.service';
+import { ProjectService } from 'src/app/core/project.service';
 declare var $: any;
 
 @Component({
@@ -20,61 +21,57 @@ export class ProjectsComponent implements OnInit {
 
   constructor(
     public formBuilder: FormBuilder,
-    public productServices: ProductsService,
+    public productServices: ProductService,
     public scriptsService: ScriptsService,
     private modalService: NgbModal,
-    public authService: AuthService
+    public authService: AuthService,
+    public projectService: ProjectService
   ) {
     this.createForm();
   }
 
   createForm() {
     this.form = this.formBuilder.group({
-      projectName: ['', Validators.required],
+      name: ['', Validators.required],
       description: ['', Validators.required],
       code: ['', Validators.required],
-      location: ['', Validators.required],
-      dateCreated: [''],
-      isActive: [''],
-      createdBy: [this.authService.user.uid]
+      location: ['', Validators.required]
     })
   }
 
   ngOnInit() {
-    console.log('the user:',this.authService.user)
+    // console.log('the user:',this.authService.user)
     this.getAllProjectsByUser();
-    setTimeout(() => {
-      this.scriptsService.prepareJquery();
-    }, 1000)
+    // setTimeout(() => {
+    //   this.scriptsService.prepareJquery();
+    // }, 1000)
   }
 
   createProject() {
-    this.form.controls['dateCreated'].setValue(Date.now())
-    this.form.controls['isActive'].setValue(true)
-    this.productServices.newProjects(this.form.value).then(() => {
-      console.log('New Project successfully added');
+    this.projectService.NewProject(this.form.value).subscribe((res: any) => {
       this.form.reset();
+      this.getAllProjectsByUser();
     })
   }
 
-  deleteProject(id) {
-    this.productServices.deleteProject(id).then(() => {
-      console.log('Project successfully deleted');
-    })
-  }
+  // deleteProject(id) {
+  //   this.productServices.deleteProject(id).then(() => {
+  //     console.log('Project successfully deleted');
+  //   })
+  // }
 
-  editProject(data) {
-    this.form.patchValue(data);
-    this.isUpdate = true;
-  }
+  // editProject(data) {
+  //   this.form.patchValue(data);
+  //   this.isUpdate = true;
+  // }
 
-  updateProject() {
-    this.productServices.newProjects(this.form.value).then(() => {
-      console.log('Project successfully updated');
-      this.form.reset();
-      this.isUpdate = false;
-    })
-  }
+  // updateProject() {
+  //   this.productServices.newProjects(this.form.value).then(() => {
+  //     console.log('Project successfully updated');
+  //     this.form.reset();
+  //     this.isUpdate = false;
+  //   })
+  // }
 
   updateCancel() {
     this.form.reset();
@@ -82,13 +79,9 @@ export class ProjectsComponent implements OnInit {
   }
 
   getAllProjectsByUser() {
-    if (this.authService.user) {
-      console.log('user: ',this.authService.user.uid);
-      this.productServices.getAllProjectsByUser(this.authService.user.uid).subscribe((projects) => {
-        console.log('Projects: ',projects)
-        this.projects = projects;
-      })
-    }
+    this.projectService.GetAllProjects().subscribe((res: any) => {
+      this.projects = res;
+    })
   }
 
   addProject() {

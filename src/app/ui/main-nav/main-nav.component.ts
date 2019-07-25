@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ScriptsService } from 'src/app/core/scripts.service';
 import { AuthService } from 'src/app/core/auth.service';
-import { ProductsService } from 'src/app/core/products.service';
+import { ProductService } from 'src/app/core/products.service';
 import * as _ from 'lodash';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { VariablesService } from 'src/app/core/variables.service';
@@ -35,11 +35,14 @@ export class MainNavComponent implements OnInit {
   finalMenu2Loader: boolean;
   solutionLoader: boolean = false;
   companies: any;
+  menu1: any;
+  menu2: any;
+  menu3: any;
   
   constructor(
     private scriptsService: ScriptsService,
     public auth: AuthService,
-    private productsService: ProductsService,
+    private productService: ProductService,
     public af: AngularFireAuth,
     public vs: VariablesService,
     private router: Router,
@@ -68,10 +71,26 @@ export class MainNavComponent implements OnInit {
       this.solutionLoader = false;
     })
   }
+
+  GetAllCategory() {
+    // this. = true;
+    this.menuService.GetSingleMenuCategory('5d39535f446a1905344c5aaf').subscribe((res: any) => {
+      this.menu1 = res;
+    });
+
+    this.menuService.GetSingleMenuCategory('5d398fc8292f0d2b98c8810f').subscribe((res: any) => {
+      this.menu2 = res;
+    });
+
+    this.menuService.GetSingleMenuCategory('5d398fcf292f0d2b98c88113').subscribe((res: any) => {
+      this.menu3 = res;
+    });
+  }
   
   ngOnInit() {
 
     this.GetAllSolutions();
+    this.GetAllCategory();
 
     // this.vs.sampleApi().subscribe((res) => {
     //   console.log(res)
@@ -183,10 +202,10 @@ export class MainNavComponent implements OnInit {
     // }
 
     // console.log(this.auth.user);
-       this.vs.localstorage('products').subscribe(res => {
-        // console.log(res);
-        this.vs.products = res;
-       });
+      //  this.vs.localstorage('products').subscribe(res => {
+      //   // console.log(res);
+      //   this.vs.products = res;
+      //  });
     // if (this.vs.localstorage('products')) {
     //   this.vs.products = JSON.parse(localStorage.getItem('products'));
     // } else {
@@ -223,21 +242,17 @@ export class MainNavComponent implements OnInit {
     }
   }
   logout() {
-    console.log('logout...');
-    this.auth.signOut();
+    // console.log('logout...');
+    // this.auth.signOut();
   }
 
   toggleCollapse() {
     this.show = !this.show;
   }
 
-  search(value?) {
-    if (value) {
-      this.router.navigate(['/products'], { queryParams: { s: value.toLowerCase() } }).then(() => {
-        this.filterQuery = '';
-      })
-    } else {
-      this.router.navigate(['/products'], { queryParams: { s: this.filterQuery } }).then(() => {
+  search() {
+    if (this.filterQuery.length) {
+      this.router.navigate(['/catalogue/search'], { queryParams: { s: this.filterQuery.toLowerCase() } }).then(() => {
         this.filterQuery = '';
       })
     }

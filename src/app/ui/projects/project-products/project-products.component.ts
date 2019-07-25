@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProductsService } from 'src/app/core/products.service';
+import { ProductService } from 'src/app/core/products.service';
 import * as html2canvas from 'html2canvas';
 import { VariablesService } from 'src/app/core/variables.service';
 
@@ -140,7 +140,7 @@ export class ProjectProductsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private productsService: ProductsService,
+    private productsService: ProductService,
     private vs : VariablesService
   ) { }
 
@@ -152,26 +152,26 @@ export class ProjectProductsComponent implements OnInit {
   }
 
   getAllProjects() {
-    this.productsService.getSelectedProjectProducts(this.id.split('.')[1]).subscribe((productProject) => {
-      this.productProject = productProject;
-      console.log(this.productProject)
-    });
+    // this.productsService.getSelectedProjectProducts(this.id.split('.')[1]).subscribe((productProject) => {
+    //   this.productProject = productProject;
+    //   console.log(this.productProject)
+    // });
   }
 
   getProject() {
-    this.productsService.getProjects(this.id.split('.')[1]).subscribe((project) => {
-      console.log(project);
-      this.project = project;
-    })
+    // this.productsService.getProjects(this.id.split('.')[1]).subscribe((project) => {
+    //   console.log(project);
+    //   this.project = project;
+    // })
   }
 
   removeToProject(product) {
-    if (confirm(`Are you sure you want to delete '${product.productTitle}'?`)) {
-    this.productsService.deleteToProject(product.id).then(() => {
-      this.success = true;
-      this.message = `'${product.productTitle}' was removed from your '${this.id.split('.')[0]}' project`;
-    })
-    }
+    // if (confirm(`Are you sure you want to delete '${product.productTitle}'?`)) {
+    // this.productsService.deleteToProject(product.id).then(() => {
+    //   this.success = true;
+    //   this.message = `'${product.productTitle}' was removed from your '${this.id.split('.')[0]}' project`;
+    // })
+    // }
   }
 
   downloadFile() {

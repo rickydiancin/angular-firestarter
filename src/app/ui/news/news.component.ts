@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductsService } from 'src/app/core/products.service';
+import { ProductService } from 'src/app/core/products.service';
 import { ScriptsService } from 'src/app/core/scripts.service';
 import { PostService } from 'src/app/core/post.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -19,7 +19,7 @@ export class NewsComponent implements OnInit {
   postsLoaded: boolean = false;
 
   constructor(
-    public productServices: ProductsService,
+    public productServices: ProductService,
     public scriptsService: ScriptsService,
     public postService: PostService,
     private spinner: NgxSpinnerService,

@@ -26,6 +26,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TypeaheadModule } from 'ngx-bootstrap';
 
 import * as firebase from 'firebase/app';
+import { TokenInterceptorService } from './core/token-interceptor.service';
+import { TokenService } from './core/token.service';
+import { CookieService } from 'ngx-cookie-service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 firebase.initializeApp(environment.firebase);
 
@@ -54,6 +58,16 @@ firebase.initializeApp(environment.firebase);
       enabled: environment.production
     })
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [
+    TokenInterceptorService,
+    TokenService,
+    CookieService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
+  ]
 })
 export class AppModule {}

@@ -6,38 +6,25 @@ import {
   Router
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map, take, tap } from 'rxjs/operators';
-
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AuthService } from './auth.service';
-import { NotifyService } from './notify.service';
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
   constructor(
-    private auth: AuthService,
-    private router: Router,
-    private notify: NotifyService,
-    private afAuth: AngularFireAuth
+    private tokenService: TokenService,
+    private router: Router
   ) {}
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ) {
-    return this.afAuth.authState.pipe(
-      take(1),
-      map(user => {
-        if(!user) {
-          console.log('not')
-          this.router.navigate(['/login']);
-          return false
-        } else {
-          console.log('ok')
-          return true
-        }
-      })
-    );
+    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+      const token = this.tokenService.getToken();
+      if(token) {
+        return true;
+      } else {
+        this.router.navigate(['login']);
+        return false;
+      }
   }
 }

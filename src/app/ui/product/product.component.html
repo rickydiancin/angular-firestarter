@@ -52,12 +52,17 @@
                       <img [src]="theproduct?.primaryURL || './assets/images/not_available.jpg'" alt="" class="img-fluid">
                     </a>
                   </div>
-                  <ng-container *ngIf="theproduct?.secondaryURL !== 'undefined'">
+                  <ng-container *ngIf="theproduct?.secondaryURL">
+                    <div class="owl-thumb-item b-display-item">
+                      <img [src]="theproduct?.secondaryURL" alt="" class="img-fluid">
+                    </div>
+                  </ng-container>
+                  <!-- <ng-container *ngIf="theproduct?.secondaryURL !== 'undefined'">
                     <div *ngFor="let secondURL of theproduct?.secondaryURL.split(';')"
                       class="owl-thumb-item b-display-item">
                       <img [src]="secondURL" alt="" class="img-fluid">
                     </div>
-                  </ng-container>
+                  </ng-container> -->
                   <div class="b-produt-item" *ngIf="theproduct?.lineDrawing">
                     <a href="{{theproduct?.lineDrawing}}">
                       <img [src]="theproduct?.lineDrawing" alt="{{theproduct?.lineDrawing}}" class="img-fluid">
@@ -108,12 +113,17 @@
                     <div class="owl-thumb-item b-display-item" *ngIf="theproduct?.primaryURL">
                       <img [src]="theproduct?.primaryURL || './assets/images/not_available.jpg'" alt="" class="img-fluid">
                     </div>
-                    <ng-container *ngIf="theproduct?.secondaryURL !== 'undefined'">
+                    <ng-container *ngIf="theproduct?.secondaryURL">
+                      <div class="owl-thumb-item b-display-item">
+                        <img [src]="theproduct?.secondaryURL" alt="" class="img-fluid">
+                      </div>
+                    </ng-container>
+                    <!-- <ng-container *ngIf="theproduct?.secondaryURL !== 'undefined'">
                       <div *ngFor="let secondURL of theproduct?.secondaryURL.split(';')"
                         class="owl-thumb-item b-display-item">
                         <img [src]="secondURL" alt="" class="img-fluid">
                       </div>
-                    </ng-container>
+                    </ng-container> -->
                     <div *ngIf="theproduct?.lineDrawing" class="owl-thumb-item b-display-item">
                       <img [src]="theproduct?.lineDrawing" alt="{{theproduct?.lineDrawing}}" class="img-fluid">
                     </div>
@@ -157,22 +167,24 @@
   
                 <h6 *ngIf="theproduct?.welsRegistrationNumber">Wels Registration : {{theproduct?.welsRegistrationNumber}}
                 </h6>
-                <div *ngIf="theproduct?.productVariant?.length" class="mb-3 mt-3">
+                <div *ngIf="theproduct?.childProduct.length > 1" class="mb-3 mt-3">
                   <div class="title-header">Variants</div>
                   <div class="product-description border-product">
                     <ul class="pl-0 list-unstyled clearfix">
-                      <li *ngFor="let product of theproduct?.productVariant">
-                        <a *ngIf="product?.variants" href="#"><span class="b-size_attr">{{product?.variant || 'N/A' | titlecase}}</span></a>
-                      </li>
+                      <ng-container *ngFor="let product of theproduct?.childProduct">
+                        <li *ngIf="product?.index !== params?.id.split('_')[1]">
+                          <a href="#" routerLink="/catalogue/{{product?.productTitle.split(' ').join('-')}}_{{product?.index}}"><span class="b-size_attr">{{(product?.variants | titlecase) || product?.productCode}}</span></a>
+                        </li>
+                      </ng-container>
                     </ul>
                   </div>
                 </div>
-                <div *ngIf="theproduct?.productColourFinish?.length">
+                <div *ngIf="theproduct?.childProduct?.length">
                   <div class="title-header">Available Colours</div>
-                  <div class="product-description border-product" *ngFor="let product of theproduct?.productColourFinish">
+                  <div class="product-description border-product" *ngFor="let product of theproduct?.childProduct">
                     <div class="img"
-                      routerLink="/product/{{product?.productCode}}">
-                      <img tooltip="{{product?.colourFinish?.split('/')?.pop()?.split('.')[0] | titlecase}}" src="{{product?.colourFinish}}"
+                      routerLink="/catalogue/{{product?.productTitle.split(' ').join('-')}}_{{product?.index}}">
+                      <img tooltip="{{product?.colourFinish?.split('/')?.pop()?.split('.')[0].split('_').join(' ') | titlecase}}" src="{{product?.colourFinish}}"
                         alt="{{product?.colourFinish?.split('/')?.pop()?.split('.')[0] | titlecase}}" class="img-fluid" height="40" width="40">
                     </div>
                   </div>
@@ -238,7 +250,7 @@
                 <div
                   style="max-width: 700px;margin: 0 auto;width: 100%;font-family: 'Montserrat', sans-serif;font-size: 16px;">
                   <ul class="features">
-                    <li *ngFor="let f of theproduct?.features">{{f}}</li>
+                    <li *ngFor="let f of theproduct?.features?.trim()?.split('•')">{{f}}</li>
                   </ul>
                 </div>
                 <!-- <ng-container *ngFor="let f of theproduct?.features">
@@ -260,7 +272,7 @@
                     <tr *ngIf="theproduct?.colourFinish !== ''">
                       <th>Colours/Finish</th>
                       <td>
-                        <p>{{theproduct?.colourFinish?.split('/')?.pop()?.split('.')[0] | titlecase}}</p>
+                        <p>{{theproduct?.colourFinish?.split('/')?.pop()?.split('.')[0].split('_').join(' ') | titlecase}}</p>
                       </td>
                     </tr>
                     <tr *ngIf="theproduct?.reach">
@@ -316,6 +328,12 @@
                       <th>Warranty</th>
                       <td>
                         <p>{{theproduct?.warranty}}</p>
+                      </td>
+                    </tr>
+                    <tr *ngIf="theproduct?.variants">
+                      <th>Warranty</th>
+                      <td>
+                        <p>{{theproduct?.variants | titlecase}}</p>
                       </td>
                     </tr>
                   </tbody>

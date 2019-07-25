@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductsService } from 'src/app/core/products.service';
+import { ProductService } from 'src/app/core/products.service';
 import { ActivatedRoute } from '@angular/router';
 import { PaginationInstance } from 'ngx-pagination';
 import * as _ from 'lodash';
@@ -35,7 +35,7 @@ export class SingleCategoryComponent implements OnInit {
   }
 
   constructor(
-    private productsService: ProductsService,
+    private productsService: ProductService,
     private route: ActivatedRoute
   ) { }
 
@@ -53,10 +53,10 @@ export class SingleCategoryComponent implements OnInit {
   }
 
   getCategory(id) {
-    this.productsService.getCategory(id, res => {
-      console.log(res);
-      this.category = res;
-    });
+    // this.productsService.getCategory(id, res => {
+    //   console.log(res);
+    //   this.category = res;
+    // });
   }
   sortBy(data:any){
 
@@ -68,42 +68,42 @@ export class SingleCategoryComponent implements OnInit {
     
   }
   getAllCategoryProducts(id) {
-    this.productsService.getAllCategoryProducts(id).subscribe(async (res: any) => {
-      console.log(res)
-      // await this.getAllCategories();
-      // console.log(res);
-      this.productsTemp = res;
-      this.products = res;
-      // this.productsService.getAllCategories(resCategory => {
-      //   this.categories = _(resCategory).filter({'sub': null || undefined});
-      //   // _(resCategory).each((value, index) => {
-      //   //   let products = [];
-      //   //   this.productsService.getProductByArray(value.categoryCode).subscribe((product) => {
-      //   //     products.push(product);
-      //   //     this.categories[index].products = products[0];
-      //   //   });
-      //   // });
-      //   // _(res).each((value: any, index) => {
-      //   //   let cat = [];
-      //   //   value.categories.map((category, index2) => {
-      //   //     // console.log(_(this.categories).filter({ categoryCode: category }).value()[0].categoryName)
-      //   //     cat.push(_(resCategory).filter({ categoryCode: category }).value()[0]['categoryName']);
-      //   //     this.products[index].categoryName = cat;
-      //   //     if (cat) {
-      //   //       this.productsTemp[index].categoryName = cat.join(', ');
-      //   //     }
-      //   //   })
-      //   // })
-      // })
-      console.log(res);
-    });
+    // this.productsService.getAllCategoryProducts(id).subscribe(async (res: any) => {
+    //   console.log(res)
+    //   // await this.getAllCategories();
+    //   // console.log(res);
+    //   this.productsTemp = res;
+    //   this.products = res;
+    //   // this.productsService.getAllCategories(resCategory => {
+    //   //   this.categories = _(resCategory).filter({'sub': null || undefined});
+    //   //   // _(resCategory).each((value, index) => {
+    //   //   //   let products = [];
+    //   //   //   this.productsService.getProductByArray(value.categoryCode).subscribe((product) => {
+    //   //   //     products.push(product);
+    //   //   //     this.categories[index].products = products[0];
+    //   //   //   });
+    //   //   // });
+    //   //   // _(res).each((value: any, index) => {
+    //   //   //   let cat = [];
+    //   //   //   value.categories.map((category, index2) => {
+    //   //   //     // console.log(_(this.categories).filter({ categoryCode: category }).value()[0].categoryName)
+    //   //   //     cat.push(_(resCategory).filter({ categoryCode: category }).value()[0]['categoryName']);
+    //   //   //     this.products[index].categoryName = cat;
+    //   //   //     if (cat) {
+    //   //   //       this.productsTemp[index].categoryName = cat.join(', ');
+    //   //   //     }
+    //   //   //   })
+    //   //   // })
+    //   // })
+    //   console.log(res);
+    // });
   }
 
   getAllCategories() {
-    this.productsService.getAllCategories(resCategory => {
-      this.categories = _(resCategory).filter({ 'parent': '' }).value();
-      console.log('categories', this.categories)
-    })
+    // this.productsService.getAllCategories(resCategory => {
+    //   this.categories = _(resCategory).filter({ 'parent': '' }).value();
+    //   console.log('categories', this.categories)
+    // })
   }
 
 }
