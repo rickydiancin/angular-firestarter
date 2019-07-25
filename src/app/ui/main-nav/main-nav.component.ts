@@ -6,6 +6,8 @@ import * as _ from 'lodash';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { VariablesService } from 'src/app/core/variables.service';
 import { Router } from '@angular/router';
+import { SolutionService } from 'src/app/core/solution.service';
+import { MenuService } from 'src/app/core/menu.service';
 declare var $:any;
 
 @Component({
@@ -41,6 +43,8 @@ export class MainNavComponent implements OnInit {
     public af: AngularFireAuth,
     public vs: VariablesService,
     private router: Router,
+    private solutionService: SolutionService,
+    private menuService: MenuService
   ) {
     // this.af.authState.subscribe((auth) => {
       
@@ -56,12 +60,22 @@ export class MainNavComponent implements OnInit {
     //   console.log(res)
     // })
   }
+
+  GetAllSolutions() {
+    this.solutionLoader = true;
+    this.menuService.GetSingleMenu('5d3981e331876d2aa4a48eef').subscribe((res: any) => {
+      this.solutions = res;
+      this.solutionLoader = false;
+    })
+  }
   
   ngOnInit() {
 
-    this.vs.sampleApi().subscribe((res) => {
-      console.log(res)
-    })
+    this.GetAllSolutions();
+
+    // this.vs.sampleApi().subscribe((res) => {
+    //   console.log(res)
+    // })
 
     $('.b-dropdown_wrapper').click(function () {
       $(this).find('.b-dropdown_content').css('visibility', 'hidden');
@@ -76,56 +90,56 @@ export class MainNavComponent implements OnInit {
     // this.getAllProducts();
     
     // console.log(this.auth.user);
-    this.menus = this.vs.allMenus();
+    // this.menus = this.vs.allMenus();
     // this.menus2 = this.vs.allMenus2();
     // this.menus3 = this.vs.allMenus3();
-    this.menuparent = this.vs.allParent();
+    // this.menuparent = this.vs.allParent();
     // this.finalMenu1 = this.vs.finalMenu1('menu1');
-    this.finalMenu2 = this.vs.finalMenu2();
-    this.finalMenu3 = this.vs.finalMenu3();
-    this.categories = this.vs.allCategories();
+    // this.finalMenu2 = this.vs.finalMenu2();
+    // this.finalMenu3 = this.vs.finalMenu3();
+    // this.categories = this.vs.allCategories();
     
 
-    this.vs.finalMenu1('B4iC2Z0RuYrw0Ou5kPQt').subscribe((res:any) => {
-      if(res) {
-        this.finalMenu1 = res.value;
-        this.finalMenu1Loader = true;
-        console.log(res)
-      }
-    })
-    this.vs.finalMenu1('NZO8GjZHIJkgCPfJodK1').subscribe((res:any) => {
-      if (res) {
-        this.finalMenu2 = res.value;
-        this.finalMenu2Loader = true;
-        console.log(res)
-      }
-    })
-    this.vs.finalMenu1('z1VRPA9NlRemMi5pAJ2o').subscribe((res:any) => {
-      if(res) {
-        this.finalMenu3 = res.value;
-        this.finalMenu3Loader = true;
-        console.log(res)
-      }
-    })
+    // this.vs.finalMenu1('B4iC2Z0RuYrw0Ou5kPQt').subscribe((res:any) => {
+    //   if(res) {
+    //     this.finalMenu1 = res.value;
+    //     this.finalMenu1Loader = true;
+    //     console.log(res)
+    //   }
+    // })
 
-    this.vs.solutionsMenu('Uw15tgHZg4O2SKUGhnwu').subscribe((menu:any) => {
-      if(menu) {
-        menu.value.forEach(element => {
-          this.vs.solutions(element).subscribe((res:any) => {
-            if(res) {
-              this.solutions.push(res)
-            }
-          })
-        });
-        this.solutionLoader = true
-      }
-    })
+    // this.vs.finalMenu1('NZO8GjZHIJkgCPfJodK1').subscribe((res:any) => {
+    //   if (res) {
+    //     this.finalMenu2 = res.value;
+    //     this.finalMenu2Loader = true;
+    //     console.log(res)
+    //   }
+    // })
+    
+    // this.vs.finalMenu1('z1VRPA9NlRemMi5pAJ2o').subscribe((res:any) => {
+    //   if(res) {
+    //     this.finalMenu3 = res.value;
+    //     this.finalMenu3Loader = true;
+    //     console.log(res)
+    //   }
+    // })
 
-    this.vs.solutionsMenu('62Mosco2VKymPlLSyfRM').subscribe((res:any) => {
-      if(res) {
-        this.companies = res.value
-      }
-    })
+    // this.vs.solutionsMenu('Uw15tgHZg4O2SKUGhnwu').subscribe((menu:any) => {
+    //   if(menu) {
+    //     menu.value.forEach(element => {
+    //       this.vs.solutions(element).subscribe((res:any) => {
+    //         if(res) {
+    //           this.solutions.push(res)
+    //         }
+    //       })
+    //     });
+    //     this.solutionLoader = true
+    //   }
+    // })
+
+    // this.solutionService.GetAllSolutions().subscribe((res: any) => {
+    //   this.solutions = res;
+    // })
     // this.auth.user.subscribe((data) => {
     //   // console.log(data)
     //   if (data === null) {
