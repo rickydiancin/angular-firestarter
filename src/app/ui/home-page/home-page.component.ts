@@ -14,6 +14,7 @@ import { take, map } from 'rxjs/operators';
 import { BannerService } from 'src/app/core/banner.service';
 import { PostService } from 'src/app/core/post.service';
 import { MenuService } from 'src/app/core/menu.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'home-page',
@@ -39,6 +40,8 @@ export class HomePageComponent implements OnInit {
   isLoggin: Boolean;
   sidebanner: any;
   releases: any;
+
+  ImageURL = environment.ImageURL;
 
   constructor(
     private scriptsService: ScriptsService,

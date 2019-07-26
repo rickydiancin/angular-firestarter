@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/core/products.service';
 import * as html2canvas from 'html2canvas';
 import { VariablesService } from 'src/app/core/variables.service';
+import { ProjectService } from 'src/app/core/project.service';
 
 declare var $: any;
 declare let jsPDF;
@@ -141,13 +142,13 @@ export class ProjectProductsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private productsService: ProductService,
-    private vs : VariablesService
+    private vs : VariablesService,
+    private projectService : ProjectService
   ) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params.id;
-    console.log(this.id)
-    this.getAllProjects();
+    // this.getAllProjects();
     this.getProject();
   }
 
@@ -159,10 +160,10 @@ export class ProjectProductsComponent implements OnInit {
   }
 
   getProject() {
-    // this.productsService.getProjects(this.id.split('.')[1]).subscribe((project) => {
-    //   console.log(project);
-    //   this.project = project;
-    // })
+    this.projectService.GetSingleProject(this.route.snapshot.params.id).subscribe((res: any) => {
+      console.log(res);
+      this.project = res;
+    })
   }
 
   removeToProject(product) {

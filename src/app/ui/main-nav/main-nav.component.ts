@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { SolutionService } from 'src/app/core/solution.service';
 import { MenuService } from 'src/app/core/menu.service';
 import { TokenService } from 'src/app/core/token.service';
+import { environment } from 'src/environments/environment';
 declare var $:any;
 
 @Component({
@@ -41,6 +42,8 @@ export class MainNavComponent implements OnInit {
   menu3: any;
   
   cookieExists: boolean;
+
+  ImageURL = environment.ImageURL;
   
   constructor(
     private scriptsService: ScriptsService,
@@ -82,6 +85,7 @@ export class MainNavComponent implements OnInit {
     // this. = true;
     this.menuService.GetSingleMenuCategory('5d39535f446a1905344c5aaf').subscribe((res: any) => {
       this.menu1 = res;
+      console.log(res)
     });
 
     this.menuService.GetSingleMenuCategory('5d398fc8292f0d2b98c8810f').subscribe((res: any) => {

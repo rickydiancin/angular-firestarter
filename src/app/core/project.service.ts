@@ -22,6 +22,13 @@ export class ProjectService {
     return this.httpClient.get(`${BASEURL}/project/all`)
   }
 
+  GetSingleProject(slug): Observable<any> {
+    return this.httpClient.get(`${BASEURL}/project/single`, {
+      params: new HttpParams()
+        .set('slug', slug)
+    })
+  }
+
   // UpdateMenu(body): Observable<any> {
   //   return this.httpClient.put(`${BASEURL}/menus/update`, body)
   // }

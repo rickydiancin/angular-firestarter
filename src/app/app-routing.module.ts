@@ -11,7 +11,7 @@ import { SsrPageComponent } from './ui/ssr-page/ssr-page.component';
 import { CategoryComponent } from './ui/category/category.component';
 import { ProductComponent } from './ui/product/product.component';
 import { CompanyComponent } from './ui/company/company.component';
-import { WishlistComponent } from './ui/wishlist/wishlist.component';
+// import { WishlistComponent } from './ui/wishlist/wishlist.component';
 import { ProjectsComponent } from './ui/projects/projects.component';
 import { ProjectProductsComponent } from './ui/projects/project-products/project-products.component';
 import { SingleCategoryComponent } from './ui/category/single-category/single-category.component';
@@ -34,7 +34,7 @@ const routes: Routes = [
   // { path: ':solutionsName', component: CategoryComponent },
   { path: 'solution/:solutionid', component: CategoryComponent },
   { path: 'search', component: CategoryComponent },
-  { path: 'wishlist', component: WishlistComponent },
+  // { path: 'wishlist', component: WishlistComponent },
   { path: 'projects', component: ProjectsComponent, canActivate: [AuthGuard] },
   { path: 'projects/:id', component: ProjectProductsComponent },
   { path: 'projects/:id/invoice', component: InvoiceComponent },
