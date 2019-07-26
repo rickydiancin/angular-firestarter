@@ -15,10 +15,10 @@ export class CompanyComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.postService.getSinglePost('QuqOqE2JjhIDJLlnpitN').subscribe(res => {
-      console.log(res);
-      this.post= res;
-     });
+    // this.postService.getSinglePost('QuqOqE2JjhIDJLlnpitN').subscribe(res => {
+    //   console.log(res);
+    //   this.post= res;
+    //  });
   }
 
 }

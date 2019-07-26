@@ -8,6 +8,7 @@ import { VariablesService } from 'src/app/core/variables.service';
 import { Router } from '@angular/router';
 import { SolutionService } from 'src/app/core/solution.service';
 import { MenuService } from 'src/app/core/menu.service';
+import { TokenService } from 'src/app/core/token.service';
 declare var $:any;
 
 @Component({
@@ -39,6 +40,8 @@ export class MainNavComponent implements OnInit {
   menu2: any;
   menu3: any;
   
+  cookieExists: boolean;
+  
   constructor(
     private scriptsService: ScriptsService,
     public auth: AuthService,
@@ -47,8 +50,11 @@ export class MainNavComponent implements OnInit {
     public vs: VariablesService,
     private router: Router,
     private solutionService: SolutionService,
-    private menuService: MenuService
+    private menuService: MenuService,
+    private tokenService: TokenService
   ) {
+
+    this.cookieExists = tokenService.checkToken();
     // this.af.authState.subscribe((auth) => {
       
     //   if(auth) {

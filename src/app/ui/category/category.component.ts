@@ -135,12 +135,12 @@ export class CategoryComponent implements OnInit {
       if(params.id) {
         this.params = params;
         
-        this.categoryService.GetSingleCategory(params.id.split('_')[1]).subscribe((res: any) => {
+        this.categoryService.GetSingleCategory(params.id).subscribe((res: any) => {
           this.category = res;
         });
 
         this.productsLoaded = false;
-        this.productService.GetAllProductByCategory(params.id.split('_')[0]).subscribe((res: any) => {
+        this.productService.GetAllProductByCategory(params.id).subscribe((res: any) => {
           this.products = res;
           this.productsLoaded = true;
         });

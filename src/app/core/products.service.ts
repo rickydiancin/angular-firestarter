@@ -15,10 +15,10 @@ export class ProductService {
     private httpClient: HttpClient
   ) { }
 
-  GetAllProductByCategory(id): Observable<any> {
+  GetAllProductByCategory(slug): Observable<any> {
     return this.httpClient.get(`${BASEURL}/product/category/all`, {
       params: new HttpParams()
-        .set('id', id)
+        .set('slug', slug)
     });
   }
 

@@ -14,10 +14,10 @@ export class WarrantyComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.postService.getSinglePost('xxWtGg1hZR1XwFvoeUgG').subscribe(res => {
-      console.log(res);
-      this.post= res;
-     });
+    // this.postService.getSinglePost('xxWtGg1hZR1XwFvoeUgG').subscribe(res => {
+    //   console.log(res);
+    //   this.post= res;
+    //  });
   }
 
 }

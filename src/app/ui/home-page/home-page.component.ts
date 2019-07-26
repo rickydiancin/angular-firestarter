@@ -5,13 +5,15 @@ import { TypeaheadMatch } from 'ngx-bootstrap';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { VariablesService } from 'src/app/core/variables.service';
 import { FormBuilder, Validators } from '@angular/forms';
-import { PostService } from 'src/app/core/post.service';
 import { Title } from '@angular/platform-browser';
 import * as _ from 'lodash';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddToProjectComponent } from '../product/add-to-project/add-to-project.component';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { take, map } from 'rxjs/operators';
+import { BannerService } from 'src/app/core/banner.service';
+import { PostService } from 'src/app/core/post.service';
+import { MenuService } from 'src/app/core/menu.service';
 
 @Component({
   selector: 'home-page',
@@ -44,11 +46,14 @@ export class HomePageComponent implements OnInit {
     private router: Router,
     public vs: VariablesService,
     public formBuilder: FormBuilder,
-    public postService: PostService,
+    // public postService: PostService,
     private titleService: Title,
     private route: ActivatedRoute,
     private modalService: NgbModal,
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    private bannerService: BannerService,
+    private postService: PostService,
+    private menuService: MenuService
   ) {
     this.createForm();
     this.titleService.setTitle(`Leading Provider and Supplier of Tapware in Australia | Gentec Australia`)
@@ -76,20 +81,20 @@ export class HomePageComponent implements OnInit {
     });
   }
 
-  checkAuth() {
-    // console.log('wow',this.afAuth.authState)
-    return this.afAuth.authState.pipe(
-      take(1),
-      map(user => !!user)
-    );
-  }
+  // checkAuth() {
+  //   // console.log('wow',this.afAuth.authState)
+  //   return this.afAuth.authState.pipe(
+  //     take(1),
+  //     map(user => !!user)
+  //   );
+  // }
 
   ngOnInit() {
 
-    this.checkAuth().subscribe((res) => {
-      this.addToProject = res;
-      this.isLoggin = res
-    });
+    // this.checkAuth().subscribe((res) => {
+    //   this.addToProject = res;
+    //   this.isLoggin = res
+    // });
 
       setTimeout(() => {
         this.scriptsService.prepareJquery();
@@ -99,22 +104,24 @@ export class HomePageComponent implements OnInit {
     //   this.categories = res;
     // });
     
-    this.postService.getAllPostsByCategory('news').subscribe(res => {
-      // console.log(res);
-      this.posts= res;
-     });
-    this.postService.getAllPostsByCategory('about').subscribe(res => {
-      // console.log(res);
-      this.abouts= res;
-     });
-     this.vs.localstorage('banners').subscribe(res => {
+    // this.postService.getAllPostsByCategory('news').subscribe(res => {
+    //   // console.log(res);
+    //   this.posts= res;
+    //  });
+
+    // this.postService.getAllPostsByCategory('about').subscribe(res => {
+    //   // console.log(res);
+    //   this.abouts= res;
+    //  });
+
+     this.bannerService.GetAllBanner().subscribe((res: any) => {
       // console.log('banners: ',res);
       this.banners = res;
      });
 
-    this.postService.getAllPostsByCategory('sidebanner').subscribe(res => {
-      // console.log(res);
-      this.sidebanner = res[0];
+    this.postService.GetSinglePost('5d3a53f413976a217c744cd5').subscribe(res => {
+      console.log(res);
+      this.sidebanner = res;
     });
     //  this.productsService.getAllBanners().subscribe(res => {
     //   console.log('banners: ',res);
@@ -132,10 +139,13 @@ export class HomePageComponent implements OnInit {
   }
 
   getAllSolutions() {
-    this.vs.localstorage('solutions').subscribe((solutions) => {
-      this.solutions = solutions;
-      // console.log(solutions)
-    });
+    this.menuService.GetSingleMenu('5d3981e331876d2aa4a48eef').subscribe((res: any) => {
+      this.solutions = res;
+    })
+    // this.vs.localstorage('solutions').subscribe((solutions) => {
+    //   this.solutions = solutions;
+    //   // console.log(solutions)
+    // });
     // if(this.vs.localstorage('solutions')) {
     //   this.solutions = JSON.parse(localStorage.getItem('solutions'));
     // } else {

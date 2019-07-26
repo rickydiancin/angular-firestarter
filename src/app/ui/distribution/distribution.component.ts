@@ -79,9 +79,9 @@ export class DistributionComponent implements OnInit {
       this.scriptsService.prepareJquery();
     }, 1000)
 
-    this.postService.getSinglePost('sCgQFxJxCU9RpFQY9WcX').subscribe(res => {
-      this.post= res;
-     });
+    // this.postService.getSinglePost('sCgQFxJxCU9RpFQY9WcX').subscribe(res => {
+    //   this.post= res;
+    //  });
   }
   
 

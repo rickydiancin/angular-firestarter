@@ -92,7 +92,7 @@
                     </div>
                 </li>
                   
-                  <li *ngIf="auth?.user">
+                  <li *ngIf="cookieExists">
                     <a href="#" class="p-relative description " routerLink="/projects">
                     <span class="top">Specifications</span> 
                     </a>
@@ -102,12 +102,12 @@
                     <span class="top">News</span> 
                     </a>
                   </li>
-                  <li *ngIf="auth?.user">
+                  <li *ngIf="cookieExists">
                     <a href="#" class="p-relative description " (click)="logout()">
                     <span class="top">Logout</span> 
                     </a>
                   </li>
-                  <li *ngIf="!auth?.user">
+                  <li *ngIf="!cookieExists">
                     <a href="#" class="p-relative description " routerLink="/login">
                     <span class="top">Login / Register</span> 
                     </a>
@@ -139,11 +139,11 @@
                                     <div class="b-topbar_menu float-md-right text-center">
                                         <div class="b-menu_top_bar_container">
                                             <ul id="b-menu_top_bar" class="b-menu">
-                                                <li *ngIf="auth.user"><a href="javascript:void(0)" (click)="logout()">Logout</a></li>
-                                                <li *ngIf="auth.user "><a href="#" routerLink="/login"><i class="fa fa-user mr-1"></i>My Account</a></li>
+                                                <li *ngIf="cookieExists"><a href="javascript:void(0)" (click)="logout()">Logout</a></li>
+                                                <li *ngIf="cookieExists "><a href="#" routerLink="/login"><i class="fa fa-user mr-1"></i>My Account</a></li>
                                                 <!-- <li *ngIf="auth.user "><a href="#" routerLink="/projects"> <i class="fa fa-star-o icons"></i> Specifications</a></li> -->
-                                                <li *ngIf="!(auth.user )"><a href="#" routerLink="/login">Login</a></li>
-                                                <li *ngIf="!(auth.user)"><a href="#" routerLink="/login">Register</a></li>
+                                                <li *ngIf="!cookieExists"><a href="#" routerLink="/login">Login</a></li>
+                                                <li *ngIf="!cookieExists"><a href="#" routerLink="/login">Register</a></li>
                                                
                                             </ul>
                                         </div>   
@@ -186,7 +186,7 @@
                                                   <div class="b-menu_content_in mb-4">
                                                     <a href="#" routerLink="/solution/{{cat?.solutionCode}}" class="d-block"><strong> {{cat?.value?.name | titlecase}} Solutions
                                                       </strong></a>
-                                                   <a href="#" routerLink="/solution/{{cat?.solutionCode}}"><img [src]="cat?.value?.imageFile1?'http://localhost:8000/uploads/'+cat?.value?.imageFile1:''" class="img-fluid d-block m-auto"
+                                                   <a href="#" routerLink="/solution/{{cat?.solutionCode}}"><img [src]="cat?.value?.imageFile1?cat?.value?.imageFile1:''" class="img-fluid d-block m-auto"
                                                         alt=""></a>
                                                   </div>
                                                 </div>
@@ -219,11 +219,11 @@
                                                     <ul class="menu-list">
                                                       <ng-container *ngFor="let cat of menu1" >
                                                       <li class="third-level">
-                                                        <a href="#" routerLink="/catalogue/category/{{cat?.value?.slug}}_{{cat?.value?.index}}" class="isparent"> <h5 class="text-uppercase">{{cat?.value?.label | titlecase}}</h5></a>
+                                                        <a href="#" routerLink="/catalogue/category/{{cat?.value?.slug}}" class="isparent"> <h5 class="text-uppercase">{{cat?.value?.label | titlecase}}</h5></a>
                                                       </li>
                                                       <ng-container *ngFor="let child of cat?.value?.children" >
                                                         <li class="sub">
-                                                          <a href="#" routerLink="/catalogue/category/{{child?.slug}}_{{child?.index}}">{{child?.label | titlecase}}</a>
+                                                          <a href="#" routerLink="/catalogue/category/{{child?.slug}}">{{child?.label | titlecase}}</a>
                                                         </li>
                                                       </ng-container>
                                                       <!-- <ul> -->
@@ -257,11 +257,11 @@
                                                   <ul class="menu-list">
                                                     <ng-container *ngFor="let cat of menu2" >
                                                       <li class="third-level">
-                                                        <a href="#" routerLink="/catalogue/category/{{cat?.value?.slug}}_{{cat?.value?.index}}" class="isparent"> <h5 class="text-uppercase">{{cat?.value?.label | titlecase}}</h5></a>
+                                                        <a href="#" routerLink="/catalogue/category/{{cat?.value?.slug}}" class="isparent"> <h5 class="text-uppercase">{{cat?.value?.label | titlecase}}</h5></a>
                                                       </li>
                                                       <ng-container *ngFor="let child of cat?.value?.children" >
                                                         <li class="sub">
-                                                          <a href="#" routerLink="/catalogue/category/{{child?.slug}}_{{child?.index}}">{{child?.label | titlecase}}</a>
+                                                          <a href="#" routerLink="/catalogue/category/{{child?.slug}}">{{child?.label | titlecase}}</a>
                                                         </li>
                                                       </ng-container>
                                                       <!-- <ul> -->
@@ -298,11 +298,11 @@
                                                   <ul class="menu-list">
                                                     <ng-container *ngFor="let cat of menu3" >
                                                       <li class="third-level">
-                                                        <a href="#" routerLink="/catalogue/category/{{cat?.value?.slug}}_{{cat?.value?.index}}" class="isparent"> <h5 class="text-uppercase">{{cat?.value?.label | titlecase}}</h5></a>
+                                                        <a href="#" routerLink="/catalogue/category/{{cat?.value?.slug}}" class="isparent"> <h5 class="text-uppercase">{{cat?.value?.label | titlecase}}</h5></a>
                                                       </li>
                                                       <ng-container *ngFor="let child of cat?.value?.children" >
                                                         <li class="sub">
-                                                          <a href="#" routerLink="/catalogue/category/{{child?.slug}}_{{child?.index}}">{{child?.label | titlecase}}</a>
+                                                          <a href="#" routerLink="/catalogue/category/{{child?.slug}}">{{child?.label | titlecase}}</a>
                                                         </li>
                                                       </ng-container>
                                                       <!-- <ul> -->

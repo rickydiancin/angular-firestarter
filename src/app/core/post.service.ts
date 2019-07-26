@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { AuthService } from './auth.service';
-import { HttpClient } from '@angular/common/http';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
+const BASEURL = environment.BASEURL;
 
 @Injectable({
   providedIn: 'root'
@@ -11,52 +11,69 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class PostService {
 
   constructor(
-    private afs: AngularFirestore,
+    private httpClient: HttpClient
   ) { }
 
-  getAllPostsByCategory(category, limit?:number) {
-    if(limit) {
-      return this.afs.collection('posts', (ref) => ref.where('category', '==', category).orderBy('dateCreated', 'desc').limit(limit)).snapshotChanges().pipe(
-        map((actions) => {
-          return actions.map((a) => {
-            const data = a.payload.doc.data();
-            return { id: a.payload.doc.id, ...data };
-          });
-        }));
-    } else {
-      return this.afs.collection('posts', (ref) => ref.where('category', '==', category).orderBy('dateCreated', 'desc')).snapshotChanges().pipe(
-        map((actions) => {
-          return actions.map((a) => {
-            const data = a.payload.doc.data();
-            return { id: a.payload.doc.id, ...data };
-          });
-        }));
-    }
+  // post category
+
+  NewPostCategory(body): Observable<any> {
+    return this.httpClient.post(`${BASEURL}/post/category/create`, body);
   }
 
-  getSinglePost(id) {
-      return this.afs.doc('posts/' + id).valueChanges();
+  UpdatePostCategory(body): Observable<any> {
+    return this.httpClient.put(`${BASEURL}/post/category/update`, body);
   }
 
-  // getAllPosts() {
-  //   //return this.afs.collection('categories', (ref) => ref.where('parent', "==", id).orderBy('categoryName')).snapshotChanges().pipe(
-  //   return this.afs.collection('posts', (ref) => ref.where('category', "==", 'news').orderBy('dateCreated')).snapshotChanges().pipe(
-  //     map((actions) => {
-  //       return actions.map((a) => {
-  //         const data = a.payload.doc.data();
-  //         return { id: a.payload.doc.id, ...data };
-  //       });
-  //     }));
-  // }
-  // getAllAbout() {
-  //   //return this.afs.collection('categories', (ref) => ref.where('parent', "==", id).orderBy('categoryName')).snapshotChanges().pipe(
-  //   return this.afs.collection('posts', (ref) => ref.where('category', "==", 'about').orderBy('dateCreated')).snapshotChanges().pipe(
-  //     map((actions) => {
-  //       return actions.map((a) => {
-  //         const data = a.payload.doc.data();
-  //         return { id: a.payload.doc.id, ...data };
-  //       });
-  //     }));
-  // }
+  GetAllPostCategory(): Observable<any> {
+    return this.httpClient.get(`${BASEURL}/post/category/all`);
+  }
 
+  GetSinglePostCategory(index): Observable<any> {
+    return this.httpClient.get(`${BASEURL}/post/category/single`, {
+      params: new HttpParams()
+        .set('index', index)
+    });
+  }
+
+  DeletePostCategory(index): Observable<any> {
+    return this.httpClient.delete(`${BASEURL}/post/category/delete`, {
+      params: new HttpParams()
+        .set('index', index)
+    });
+  }
+
+  // post
+
+  NewPost(body, imageFile): Observable<any> {
+    return this.httpClient.post(`${BASEURL}/post/create`, imageFile, {
+      params: new HttpParams()
+        .set('body', JSON.stringify(body))
+    });
+  }
+
+  UpdatePost(body, imageFile): Observable<any> {
+    return this.httpClient.put(`${BASEURL}/post/update`, imageFile, {
+      params: new HttpParams()
+        .set('body', JSON.stringify(body))
+    });
+  }
+
+  GetAllPost(): Observable<any> {
+    return this.httpClient.get(`${BASEURL}/post/all`);
+  }
+
+  GetSinglePost(id): Observable<any> {
+    return this.httpClient.get(`${BASEURL}/post/single`, {
+      params: new HttpParams()
+        .set('id', id)
+    });
+  }
+
+  DeletePost(index): Observable<any> {
+    return this.httpClient.delete(`${BASEURL}/post/delete`, {
+      params: new HttpParams()
+        .set('index', index)
+    });
+  }
+  
 }

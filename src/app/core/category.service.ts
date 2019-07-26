@@ -36,10 +36,10 @@ export class CategoryService {
     });
   }
 
-  GetSingleCategory(index): Observable<any> {
+  GetSingleCategory(slug): Observable<any> {
     return this.httpClient.get(`${BASEURL}/category/single`, {
       params: new HttpParams()
-              .set('index', index)
+              .set('slug', slug)
     }).pipe()
   }
 

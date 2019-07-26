@@ -217,18 +217,17 @@ export class ProductComponent implements OnInit, AfterViewInit {
     }, 0);
     
 
-    this.checkAuth().subscribe((res) => {
-      this.addToProject = res;
-      this.isLoggin = res
-    });
+    // this.checkAuth().subscribe((res) => {
+    //   this.addToProject = res;
+    //   this.isLoggin = res
+    // });
     this.pid = this.route.snapshot.params.id;
     this.route.params.subscribe((params) => {
       if(params.id) {
         this.params = params;
         this.productLoaded = false;
-        this.productService.GetSingleProduct(params.id.split('_')[1]).subscribe((res: any) => {
+        this.productService.GetSingleProduct(params.id).subscribe((res: any) => {
           this.theproduct = res[0];
-          console.log(res);
           this.productLoaded = true;
         })
       }

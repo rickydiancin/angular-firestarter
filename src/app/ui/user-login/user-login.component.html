@@ -6,12 +6,12 @@
     </div>
   </div> 
 
-  <div *ngIf="!auth?.user">
+  <div *ngIf="!cookieExists">
   <user-form></user-form>
   </div>
 
   <!-- <ng-template #alreadyLoggedIn> -->
-  <div class="container" *ngIf="auth?.user">
+  <div class="container" *ngIf="cookieExists">
           <div class="row clearfix">
 
     <!-- <user-form></user-form> -->
