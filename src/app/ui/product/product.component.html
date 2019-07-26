@@ -172,7 +172,7 @@
                   <div class="product-description border-product" *ngFor="let product of theproduct?.productColourFinish">
                     <div class="img"
                       routerLink="/product/{{product?.productCode}}">
-                      <img tooltip="{{product?.colourFinish?.split('/')?.pop()?.split('.')[0] | titlecase}}" src="{{product?.colourFinish}}"
+                      <img tooltip="{{product?.productCode}} - {{product?.colourFinish?.split('/')?.pop()?.split('.')[0] | titlecase}}" src="{{product?.colourFinish}}"
                         alt="{{product?.colourFinish?.split('/')?.pop()?.split('.')[0] | titlecase}}" class="img-fluid" height="40" width="40">
                     </div>
                   </div>
