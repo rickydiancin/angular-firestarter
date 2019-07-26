@@ -212,9 +212,9 @@ export class ProductComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
 
-    setTimeout(() => {
-      this.scriptsService.prepareJquery();
-    }, 0);
+    // setTimeout(() => {
+    //   this.scriptsService.prepareJquery();
+    // }, 100);
     
 
     // this.checkAuth().subscribe((res) => {
@@ -229,6 +229,7 @@ export class ProductComponent implements OnInit, AfterViewInit {
         this.productService.GetSingleProduct(params.id).subscribe((res: any) => {
           this.theproduct = res[0];
           this.productLoaded = true;
+          this.scriptsService.prepareJquery();
         })
       }
       // if(params) {

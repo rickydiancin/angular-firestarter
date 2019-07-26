@@ -25,9 +25,9 @@ export class AppComponent implements OnInit {
   constructor(private auth: AuthService, public productsService: ProductService, private router: Router, public scriptsService: ScriptsService, private vs: VariablesService) {}
 
   getAllProducts() {
-    this.vs.localstorage('products').subscribe((products) => {
-      this.products = products;
-    });
+    // this.vs.localstorage('products').subscribe((products) => {
+    //   this.products = products;
+    // });
   }
 
   onSelect(event: TypeaheadMatch): void {
@@ -48,9 +48,9 @@ export class AppComponent implements OnInit {
   }
 
   getAllSolution() {
-    this.vs.localstorage('solutions').subscribe((solutions) => {
-      this.solutions = solutions;
-    })
+    // this.vs.localstorage('solutions').subscribe((solutions) => {
+    //   this.solutions = solutions;
+    // })
   }
 
   search(value?) {

@@ -25,15 +25,15 @@ export class VariablesService {
   }
 
   sampleApi() {
-    return this.httpClient.get('https://swapi.co/api/films');
+    // return this.httpClient.get('https://swapi.co/api/films');
   }
 
   solutionsMenu(id) {
-    return this.afs.doc(`menus/${id}`).valueChanges()
+    // return this.afs.doc(`menus/${id}`).valueChanges()
   }
 
   solutions(id) {
-    return this.afs.doc(`solutions/${id.toLowerCase()}`).valueChanges()
+    // return this.afs.doc(`solutions/${id.toLowerCase()}`).valueChanges()
   }
 
   SendEmail(body) {
@@ -43,21 +43,21 @@ export class VariablesService {
   }
 
   localstorage(collection) {
-    if (collection == 'products') {
-      return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/products.json?alt=media&token=9da7b0d7-b50c-4c44-a980-bc5840ab576c');
-    } else if (collection == 'solutions') {
-      return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/solutions.json?alt=media&token=4918ad6f-670a-454e-bec6-287a1eec008a');
-    } else if(collection == 'banners') {
-      // return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/banners.json?alt=media&token=a5ac86cd-925e-48fc-9ae9-a365c6466a04');
-      return this.afs.collection('banners', (ref) => ref).snapshotChanges().pipe(
-        map((actions) => {
-          return actions.map((a) => {
-            const data = a.payload.doc.data();
-            return { id: a.payload.doc.id, ...data };
-          });
-        })
-      )
-    }
+    // if (collection == 'products') {
+    //   return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/products.json?alt=media&token=9da7b0d7-b50c-4c44-a980-bc5840ab576c');
+    // } else if (collection == 'solutions') {
+    //   return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/solutions.json?alt=media&token=4918ad6f-670a-454e-bec6-287a1eec008a');
+    // } else if(collection == 'banners') {
+    //   // return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/banners.json?alt=media&token=a5ac86cd-925e-48fc-9ae9-a365c6466a04');
+    //   return this.afs.collection('banners', (ref) => ref).snapshotChanges().pipe(
+    //     map((actions) => {
+    //       return actions.map((a) => {
+    //         const data = a.payload.doc.data();
+    //         return { id: a.payload.doc.id, ...data };
+    //       });
+    //     })
+    //   )
+    // }
     // switch (collection) {
     //   case 'products':
     //     // return this.httpClient.get('https://firebasestorage.googleapis.com/v0/b/gentec-admin.appspot.com/o/products.json?alt=media&token=27e8bc46-0a87-4631-b73d-eb4b1b80a626');

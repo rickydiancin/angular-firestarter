@@ -227,29 +227,29 @@ export class MainNavComponent implements OnInit {
   }
 
   getAllProducts() {
-    if (!this.products.length) {
-      this.vs.localstorage('products').subscribe((products: any) => {
-        // console.log(products);
-        if (products.length) {
-          _(products).each(async (a: any, b) => {
-            a.categories = await a.categories.split(';');
-            let c = [];
-            await _(a.categories).each(async (j: any, k) => {
-              if (j) {
-                if (j) {
-                  await c.push(j.split('_').join(' ').toLowerCase())
-                  if (c.length) {
-                    products[b].categoryName = await c;
-                    this.products = await products;
-                  }
-                }
-                // })
-              }
-            })
-          })
-        }
-      });
-    }
+    // if (!this.products.length) {
+    //   this.vs.localstorage('products').subscribe((products: any) => {
+    //     // console.log(products);
+    //     if (products.length) {
+    //       _(products).each(async (a: any, b) => {
+    //         a.categories = await a.categories.split(';');
+    //         let c = [];
+    //         await _(a.categories).each(async (j: any, k) => {
+    //           if (j) {
+    //             if (j) {
+    //               await c.push(j.split('_').join(' ').toLowerCase())
+    //               if (c.length) {
+    //                 products[b].categoryName = await c;
+    //                 this.products = await products;
+    //               }
+    //             }
+    //             // })
+    //           }
+    //         })
+    //       })
+    //     }
+    //   });
+    // }
   }
   logout() {
     // console.log('logout...');

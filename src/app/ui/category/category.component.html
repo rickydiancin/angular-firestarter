@@ -225,8 +225,8 @@
         <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12"> 
           <nav class="b-shop_breadcrumb">
             <a href="/">Home</a>
-            <!-- <span *ngIf="params?.catName == 'category'">All Category</span>
-            <span *ngIf="params?.catName == 'solution'">All Solution</span> -->
+            <span *ngIf="!params && !queryParams">All Catalogue</span>
+            <!-- <span *ngIf="params?.catName == 'solution'">All Solution</span> -->
 
             <!-- <a *ngIf="category" href="#" routerLink="/category/all">Category</a> -->
             <span *ngIf="category">{{category?.name | titlecase}}</span>
@@ -327,10 +327,10 @@
                 <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-6" *ngFor="let product of products | filterBy:['productTitle', 'productCode', 'categories', 'solutions']: filterQuery | orderBy: sortValue | paginate: config">
                   <div class="b-product_grid_single" style="min-height: 23rem;">
                     <div class="b-product_grid_header">
-                      <a href="#" routerLink="/catalogue/{{product?.productTitle.split(' ').join('-')}}_{{product?.index}}" (click)="titleService.setTitle(product?.productTitle)">
+                      <a href="#" routerLink="/catalogue/{{product?.productCode}}" (click)="titleService.setTitle(product?.productTitle)">
                         <div class="b-product_grid_info" style="min-height: 2.75rem;">
                           <h1 class="product-title">
-                            <a href="#" routerLink="/catalogue/{{product?.productTitle.split(' ').join('-')}}_{{product?.index}}"><b>{{ product?.productTitle | truncate: 30 }}</b></a>
+                            <a href="#" routerLink="/catalogue/{{product?.productCode}}"><b>{{ product?.productTitle | truncate: 30 }}</b></a>
                            </h1>
                         </div>
                         <img [src]="product?.primaryURL || './assets/images/not_available.jpg'" width="100%" height="auto"
