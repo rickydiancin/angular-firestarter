@@ -75,5 +75,9 @@ export class PostService {
         .set('index', index)
     });
   }
+
+  GetLatestPost() {
+    return this.httpClient.get(`${BASEURL}/post/latest`);
+  }
   
 }

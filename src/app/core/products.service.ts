@@ -52,4 +52,8 @@ export class ProductService {
     }).pipe()
   }
 
+  GetNewReleases() {
+    return this.httpClient.get(`${BASEURL}/product/releases`).pipe();
+  }
+
 }
