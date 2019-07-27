@@ -230,7 +230,13 @@ export class ProductComponent implements OnInit, AfterViewInit {
           this.theproduct = res[0];
           this.productLoaded = true;
           this.scriptsService.prepareJquery();
-        })
+        });
+
+        this.productService.GetAllProducts().subscribe((res: any) => {
+          let index = res.findIndex(x => x.productCode == params.id);
+          this.nextProduct = res[index + 1];
+          this.prevProduct = res[index - 1];
+        });
       }
       // if(params) {
         // setTimeout(() => {
