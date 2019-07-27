@@ -314,12 +314,12 @@
                   </div>
                 </div>
               </ng-container>
-              <ng-container *ngIf="products?.length">
+              <ng-container *ngIf="productsLoaded">
                 <!-- <button class="dropdown-item"
                   *ngIf="products?.length && (products | filterBy:['productTitle', 'productCode', 'categoryName']: filterQuery).length === 0">
                   No Result(s) Found
                 </button> -->
-                <div class="col-sm-12" *ngIf="products?.length && (products | filterBy:['productTitle', 'productCode', 'categories', 'solutions']: filterQuery).length === 0">
+                <div class="col-sm-12" *ngIf="(products | filterBy:['productTitle', 'productCode', 'categories', 'solutions']: filterQuery).length === 0 || products.length === 0">
                   <h6>No products were found matching your selection.</h6>
                 </div>
               </ng-container>

@@ -266,7 +266,7 @@ export class MainNavComponent implements OnInit {
 
   search() {
     if (this.filterQuery.length) {
-      this.router.navigate(['/catalogue/search'], { queryParams: { s: this.filterQuery.toLowerCase() } }).then(() => {
+      this.router.navigate(['/products/search'], { queryParams: { s: this.filterQuery.toLowerCase() } }).then(() => {
         this.filterQuery = '';
       })
     }

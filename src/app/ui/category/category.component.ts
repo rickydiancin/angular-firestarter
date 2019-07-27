@@ -141,6 +141,7 @@ export class CategoryComponent implements OnInit {
 
         this.productsLoaded = false;
         this.productService.GetAllProductByCategory(params.id).subscribe((res: any) => {
+          console.log(res);
           this.products = res;
           this.productsLoaded = true;
         });
