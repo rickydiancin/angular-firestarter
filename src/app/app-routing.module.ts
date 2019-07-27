@@ -41,7 +41,7 @@ const routes: Routes = [
   { path: 'about_us', component: CompanyComponent },
   { path: 'warranty', component: WarrantyComponent },
   { path: 'distribution', component: DistributionComponent },
-  { path: 'catalogue/:id', component: ProductComponent },
+  { path: 'product/:id', component: ProductComponent },
   { path: 'notes', component: NotesListComponent,  canActivate: [AuthGuard] },
   { path: 'uploads',  component: UploadPageComponent,  canActivate: [AuthGuard] },
   { path: 'ssr', component: SsrPageComponent },

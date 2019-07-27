@@ -22,6 +22,13 @@ export class ProductService {
     });
   }
 
+  GetAllProductBySolution(slug): Observable<any> {
+    return this.httpClient.get(`${BASEURL}/product/solution/all`, {
+      params: new HttpParams()
+        .set('slug', slug)
+    });
+  }
+
   GetAllProducts(): Observable<any> {
     return this.httpClient.get(`${BASEURL}/product/all`);
   }

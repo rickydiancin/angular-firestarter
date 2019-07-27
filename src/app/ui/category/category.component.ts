@@ -13,6 +13,7 @@ import { canvasToBlob } from 'blob-util';
 import { AuthService } from 'src/app/core/auth.service';
 import { CategoryService } from 'src/app/core/category.service';
 import { MenuService } from 'src/app/core/menu.service';
+import { SolutionService } from 'src/app/core/solution.service';
 
 @Component({
   selector: 'category',
@@ -75,7 +76,8 @@ export class CategoryComponent implements OnInit {
     public authService: AuthService,
     private router: Router,
     private categoryService: CategoryService,
-    private menuService: MenuService
+    private menuService: MenuService,
+    private solutionService: SolutionService
   ) { }
 
   // makeTrustedImage(item) {
@@ -140,12 +142,31 @@ export class CategoryComponent implements OnInit {
 
         this.productsLoaded = false;
         this.productService.GetAllProductByCategory(params.id).subscribe((res: any) => {
-          console.log(res);
           this.products = res;
           this.productsLoaded = true;
         });
         // this.titleService.setTitle(`You searched for ${params.id} - Gentec Australia`);
         // this.filterQuery = queryParams.s;
+      } else if(params.solutionid && params.solutionid !== 'all') {
+        this.params = params;
+        this.solutionService.GetOneSolution(params.solutionid).subscribe((res: any) => {
+          this.solution = res;
+        });
+
+        this.productsLoaded = false;
+        this.productService.GetAllProductBySolution(params.solutionid).subscribe((res: any) => {
+          this.products = res;
+          this.productsLoaded = true;
+        });
+
+      } else {
+        this.params = params;
+        this.productsLoaded = false;
+        this.productService.GetAllProducts().subscribe((res: any) => {
+          // console.log(res)
+          this.productsLoaded = true;
+          this.products = res;
+        })
       }
       // if (Object.entries(queryParams).length !== 0) {
       //   this.titleService.setTitle(`You searched for ${queryParams.s} - Gentec Australia`);

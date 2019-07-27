@@ -77,6 +77,7 @@ export class MainNavComponent implements OnInit {
     this.solutionLoader = true;
     this.menuService.GetSingleMenu('5d3981e331876d2aa4a48eef').subscribe((res: any) => {
       this.solutions = res;
+      console.log(res)
       this.solutionLoader = false;
     })
   }

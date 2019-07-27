@@ -63,10 +63,10 @@ export class SolutionService {
     return this.httpClient.get(`${BASEURL}/solution/all`);
   }
 
-  GetOneSolution(index): Observable<any> {
+  GetOneSolution(slug): Observable<any> {
     return this.httpClient.get(`${BASEURL}/solution/single`, {
       params: new HttpParams()
-              .set('index', index)
+              .set('slug', slug)
     }).pipe()
   }
 
