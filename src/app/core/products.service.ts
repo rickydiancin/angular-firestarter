@@ -38,10 +38,10 @@ export class ProductService {
     return this.httpClient.put(`${BASEURL}/product/update`, body);
   }
 
-  GetSingleProduct(index): Observable<any> {
+  GetSingleProduct(code): Observable<any> {
     return this.httpClient.get(`${BASEURL}/product/single`, {
       params: new HttpParams()
-              .set('index', index)
+              .set('code', code)
     }).pipe()
   }
 
@@ -50,6 +50,10 @@ export class ProductService {
       params: new HttpParams()
               .set('_id', _id)
     }).pipe()
+  }
+
+  GetNewReleases() {
+    return this.httpClient.get(`${BASEURL}/product/releases`).pipe();
   }
 
 }

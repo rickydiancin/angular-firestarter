@@ -15,6 +15,7 @@ import { BannerService } from 'src/app/core/banner.service';
 import { PostService } from 'src/app/core/post.service';
 import { MenuService } from 'src/app/core/menu.service';
 import { environment } from 'src/environments/environment';
+import { TokenService } from 'src/app/core/token.service';
 
 @Component({
   selector: 'home-page',
@@ -42,10 +43,14 @@ export class HomePageComponent implements OnInit {
   releases: any;
 
   ImageURL = environment.ImageURL;
+  post: any;
+  loadPost: boolean;
+  loadRelease: boolean;
+  cookieExists: boolean;
 
   constructor(
     private scriptsService: ScriptsService,
-    private productsService: ProductService,
+    private productService: ProductService,
     private router: Router,
     public vs: VariablesService,
     public formBuilder: FormBuilder,
@@ -56,10 +61,12 @@ export class HomePageComponent implements OnInit {
     private afAuth: AngularFireAuth,
     private bannerService: BannerService,
     private postService: PostService,
-    private menuService: MenuService
+    private menuService: MenuService,
+    private tokenService: TokenService
   ) {
     this.createForm();
-    this.titleService.setTitle(`Leading Provider and Supplier of Tapware in Australia | Gentec Australia`)
+    this.titleService.setTitle(`Leading Provider and Supplier of Tapware in Australia | Gentec Australia`);
+    this.cookieExists = tokenService.checkToken();
   }
 
   createForm() {
@@ -123,9 +130,22 @@ export class HomePageComponent implements OnInit {
      });
 
     this.postService.GetSinglePost('5d3a53f413976a217c744cd5').subscribe(res => {
-      console.log(res);
       this.sidebanner = res;
     });
+
+    this.loadPost = false;
+    this.loadRelease = false;
+    this.postService.GetLatestPost().subscribe((res: any) => {
+      this.post = res;
+      console.log('latest post: ', this.post);
+      this.loadPost = true;
+      this.loadRelease = true;
+    });
+
+    this.productService.GetNewReleases().subscribe((res: any) => {
+      this.releases = res;
+      console.log('Releases: ',this.releases);
+    })
     //  this.productsService.getAllBanners().subscribe(res => {
     //   console.log('banners: ',res);
     //   this.banners = res;

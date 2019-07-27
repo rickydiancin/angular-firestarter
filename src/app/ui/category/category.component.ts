@@ -187,6 +187,14 @@ export class CategoryComponent implements OnInit {
       // }
     })
 
+    if(!this.params && !this.queryParams) {
+      this.productsLoaded = false;
+      this.productService.GetAllProducts().subscribe((res: any) => {
+        this.products = res;
+        this.productsLoaded = true;
+      });
+    }
+
     // this.GetAllCategories();
 
     // // this.finalMenu1 = this.vs.finalMenu1('menu1');

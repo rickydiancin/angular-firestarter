@@ -143,13 +143,20 @@ form input[type=text] {
 .b-banner {
     .spinner {
         height: 100%;
+        width: 100%;
         position: relative;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        border: 1px solid #dfdfdf;
+        background: #FBF6F6;
+        padding: 3rem;
     }
+    // .spinner {
+    //     height: 100%;
+    //     position: relative;
+    //     top: 0;
+    //     bottom: 0;
+    //     left: 0;
+    //     right: 0;
+    //     border: 1px solid #dfdfdf;
+    // }
 
     .img-spinner {
         position: absolute;

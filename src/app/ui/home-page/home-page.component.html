@@ -56,8 +56,8 @@
       
             </ngb-carousel>
 
-            <div class="spinner" *ngIf="!banners">
-              <img src="./assets/svg/oval.svg" class="img-fluid img-spinner" alt="">
+            <div class="spinner text-center" *ngIf="!banners">
+              <img src="./assets/svg/oval.svg" class="img-fluid" alt="">
             </div>
           </div>
     
@@ -78,13 +78,13 @@
 </section>  
 <section id="b-our_story">
   <div class="b-our_story mt-1 pb-5">
-    <div class="spinner text-center mt-5" *ngIf="!releases?.length && !posts?.length">
+    <div class="spinner text-center mt-5" *ngIf="!loadRelease && !loadPost">
       <img src="./assets/svg/oval.svg" class="img-fluid img-spinner" alt="">
     </div>
-    <div class="container" *ngIf="releases?.length && posts?.length">
+    <div class="container">
       <div class="row clearfix">
 
-        <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12 text-center">
+        <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12 text-center" *ngIf="loadRelease">
           <div class="b-section_title">
             <!-- <span class="b-section_title_over d-block text-center">Accessories store</span> -->
             <h4 class="text-center text-uppercase">
@@ -133,11 +133,11 @@
                            <div class="clearfix">
                              <div class="b-product_grid_toggle float-left">
                                  <!-- <span class="b-price">Add To Project</span> -->
-                                 <span class="b-add_cart" *ngIf="!addToProject" tooltip="Please login to use Project Manager">
+                                 <span class="b-add_cart" *ngIf="!cookieExists" tooltip="Please login to use Project Manager">
                                      <i class="icon-plus icons"></i>
                                      <a href="javascript:void();" routerLink="/login">Add To Project</a>
                                  </span>
-                                 <span class="b-add_cart" *ngIf="addToProject" (click)="addToProduct(product)">
+                                 <span class="b-add_cart" *ngIf="cookieExists" (click)="addToProduct(product)">
                                      <i class="icon-plus icons"></i>
                                      <a href="javascript:void();" >Add To Project</a>
                                  </span>
@@ -172,7 +172,7 @@
                     <a href="#" class="btn btn-bg text-uppercase">read our story</a> -->
    
         </div>
-        <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12">
+        <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12" *ngIf="loadPost">
           <div class="b-section_title">
             <!-- <span class="b-section_title_over d-block text-center">Latest Articles</span> -->
             <h4 class="text-center text-uppercase">
@@ -182,12 +182,14 @@
           </div>
           <div class="clearfix m-0">
             <div class="b-blog_default b-blog_grid b-blog_default_list">
-              <div class="b-blog_degault_single" *ngFor="let post of posts | slice:0:1">
+              <div class="b-blog_degault_single">
                  <div class="b-blog_single_header">
                       <div class="">
-                          <a href="#" routerLink="/postcategory/news/{{post?.id}}">
-                              <img [src]="post?.imgURL"  class="img-fluid" alt="">
-                          </a>
+                          <a href="#" routerLink="/postcategory/news/{{post?.index}}">
+                              <img [src]="'http://128.199.226.183:8000/uploads/'+post?.imgURL || '/assets/images/blog/home/blog_default_01.jpg'"  class="img-fluid" alt="">
+                          
+                          
+                            </a>
                       </div>
                       <!-- <div class="b-post_time text-center">
                           <span class="b-post_day">08</span>
@@ -195,13 +197,13 @@
                       </div> -->
                       <div class="b-post_categories">
                          <div class="b-post_categorie_list">
-                            <a href="#" rel="category tag" routerLink="/postcategory/news/{{post?.id}}">Health</a>
+                            <a href="#" rel="category tag" routerLink="/postcategory/news/{{post?.index}}">Health</a>
                          </div>
                       </div>
                   </div>  
                   <div class="b-blog_single_info">
                       <h5 class="b-entry_title">
-                          <a href="#" rel="bookmark" routerLink="/postcategory/news/{{post?.id}}">{{post?.title}}</a>
+                          <a href="#" rel="bookmark" routerLink="/postcategory/news/{{post?.index}}">{{post?.title | titlecase}}</a>
                       </h5>
                       <!-- <div class="b-author_info">
                           <span class="b-author_name">
@@ -214,7 +216,7 @@
                       <div class="b-blog_single_content" [innerHTML]="post?.content | slice:0:200"></div> 
                   </div>
                   <div class="b-read_more">
-                      <a href="#" routerLink="/news/{{post?.id}}">Read More</a>
+                      <a href="#" routerLink="/news/{{post?.index}}">Read More</a>
                   </div>
               </div>
            
