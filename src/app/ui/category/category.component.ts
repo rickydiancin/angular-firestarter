@@ -85,30 +85,29 @@ export class CategoryComponent implements OnInit {
   // }
 
   GetAllCategories() {
-    this.vs.finalMenu1('NZO8GjZHIJkgCPfJodK1').subscribe((finalMenu2: any) => {
-      if (finalMenu2) {
-        this.finalMenu2 = finalMenu2.value;
-        this.vs.finalMenu1('z1VRPA9NlRemMi5pAJ2o').subscribe((finalMenu3: any) => {
-          if (finalMenu3) {
-            this.finalMenu3 = finalMenu3.value;
-            this.vs.finalMenu1('B4iC2Z0RuYrw0Ou5kPQt').subscribe((finalMenu1: any) => {
-              if (finalMenu1) {
-                this.finalMenu1 = finalMenu1.value;
-                this.loader = true;
-                console.log(finalMenu1)
-              }
-            })
-          }
-        })
-      }
-    })
+    // this.vs.finalMenu1('NZO8GjZHIJkgCPfJodK1').subscribe((finalMenu2: any) => {
+    //   if (finalMenu2) {
+    //     this.finalMenu2 = finalMenu2.value;
+    //     this.vs.finalMenu1('z1VRPA9NlRemMi5pAJ2o').subscribe((finalMenu3: any) => {
+    //       if (finalMenu3) {
+    //         this.finalMenu3 = finalMenu3.value;
+    //         this.vs.finalMenu1('B4iC2Z0RuYrw0Ou5kPQt').subscribe((finalMenu1: any) => {
+    //           if (finalMenu1) {
+    //             this.finalMenu1 = finalMenu1.value;
+    //             this.loader = true;
+    //             console.log(finalMenu1)
+    //           }
+    //         })
+    //       }
+    //     })
+    //   }
+    // })
   }
 
   GetAllSolutions() {
     this.solutionLoader = true;
     this.menuService.GetSingleMenu('5d3981e331876d2aa4a48eef').subscribe((res: any) => {
       this.solutions = res;
-      console.log(res)
     })
   }
 
@@ -132,7 +131,7 @@ export class CategoryComponent implements OnInit {
     this.GetAllSolutions();
 
     this.route.params.subscribe((params) => {
-      if(params.id) {
+      if(params.id && params.id !== 'all') {
         this.params = params;
         
         this.categoryService.GetSingleCategory(params.id).subscribe((res: any) => {

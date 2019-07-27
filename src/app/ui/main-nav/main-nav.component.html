@@ -219,11 +219,11 @@
                                                     <ul class="menu-list">
                                                       <ng-container *ngFor="let cat of menu1" >
                                                       <li class="third-level">
-                                                        <a href="#" routerLink="/catalogue/category/{{cat?.value?.slug}}" class="isparent"> <h5 class="text-uppercase">{{cat?.value?.label | titlecase}}</h5></a>
+                                                        <a href="#" routerLink="/category/{{cat?.value?.slug}}" class="isparent"> <h5 class="text-uppercase">{{cat?.value?.label | titlecase}}</h5></a>
                                                       </li>
                                                       <ng-container *ngFor="let child of cat?.value?.children" >
                                                         <li class="sub">
-                                                          <a href="#" routerLink="/catalogue/category/{{child?.slug}}">{{child?.label | titlecase}}</a>
+                                                          <a href="#" routerLink="/category/{{child?.slug}}">{{child?.label | titlecase}}</a>
                                                         </li>
                                                       </ng-container>
                                                       <!-- <ul> -->
@@ -257,11 +257,11 @@
                                                   <ul class="menu-list">
                                                     <ng-container *ngFor="let cat of menu2" >
                                                       <li class="third-level">
-                                                        <a href="#" routerLink="/catalogue/category/{{cat?.value?.slug}}" class="isparent"> <h5 class="text-uppercase">{{cat?.value?.label | titlecase}}</h5></a>
+                                                        <a href="#" routerLink="/category/{{cat?.value?.slug}}" class="isparent"> <h5 class="text-uppercase">{{cat?.value?.label | titlecase}}</h5></a>
                                                       </li>
                                                       <ng-container *ngFor="let child of cat?.value?.children" >
                                                         <li class="sub">
-                                                          <a href="#" routerLink="/catalogue/category/{{child?.slug}}">{{child?.label | titlecase}}</a>
+                                                          <a href="#" routerLink="/category/{{child?.slug}}">{{child?.label | titlecase}}</a>
                                                         </li>
                                                       </ng-container>
                                                       <!-- <ul> -->
@@ -298,11 +298,11 @@
                                                   <ul class="menu-list">
                                                     <ng-container *ngFor="let cat of menu3" >
                                                       <li class="third-level">
-                                                        <a href="#" routerLink="/catalogue/category/{{cat?.value?.slug}}" class="isparent"> <h5 class="text-uppercase">{{cat?.value?.label | titlecase}}</h5></a>
+                                                        <a href="#" routerLink="/category/{{cat?.value?.slug}}" class="isparent"> <h5 class="text-uppercase">{{cat?.value?.label | titlecase}}</h5></a>
                                                       </li>
                                                       <ng-container *ngFor="let child of cat?.value?.children" >
                                                         <li class="sub">
-                                                          <a href="#" routerLink="/catalogue/category/{{child?.slug}}">{{child?.label | titlecase}}</a>
+                                                          <a href="#" routerLink="/category/{{child?.slug}}">{{child?.label | titlecase}}</a>
                                                         </li>
                                                       </ng-container>
                                                       <!-- <ul> -->
