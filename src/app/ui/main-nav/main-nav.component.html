@@ -429,19 +429,23 @@
                     </ng-template>
                     <div class="form-group">
                       <input autocomplete="off" [(ngModel)]="filterQuery" type="text"
-                        placeholder="Search Products" [ngModelOptions]="{standalone: true}">
+                        placeholder="Search Products" [ngModelOptions]="{standalone: true}" (click)="GetAllProducts()">
                       <button class="btn"><i class="icons icon-magnifier"></i></button>
                     </div>
                   </form>
                   <div class="productList dropdown-menu" *ngIf="filterQuery">
                     <ng-container *ngIf="products?.length">
                       <button
-                        *ngFor="let product of products | filterBy: ['productTitle', 'productCode', 'categoryName']: filterQuery; let i = index;"
+                        *ngFor="let product of products | filterBy: ['productTitle', 'productCode', 'categories']: filterQuery; let i = index;"
                         class="dropdown-item" (click)="search(product?.productCode)">
                         <img src="{{product?.primaryURL || './assets/images/not_available.jpg'}}" alt="" height="50px" width="50px">
                         {{product?.productTitle | titlecase}} ({{product?.productCode}})
                         <br>
-                        <small><b>Category Code: </b>{{product?.categories}}</small>
+                        <small><b>Categories: </b>
+                          <span *ngFor="let cat of product?.categories.toString().split(','); let i = index">
+                            {{cat.split('_').join(' ') | titlecase}}{{product?.categories.toString().split(',').length === i+1?'':','}}
+                          </span>
+                        </small>
                       </button>
                     </ng-container>
                     <ng-container *ngIf="!products?.length">
@@ -450,7 +454,7 @@
                       </button>
                     </ng-container>
                         <button class="dropdown-item"
-                          *ngIf="products?.length && (products | filterBy:['productTitle', 'productCode', 'categoryName']: filterQuery).length === 0">
+                          *ngIf="products?.length && (products | filterBy:['productTitle', 'productCode', 'categories']: filterQuery).length === 0">
                           No Result(s) Found
                         </button>
                   </div>

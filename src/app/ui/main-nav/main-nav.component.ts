@@ -226,7 +226,10 @@ export class MainNavComponent implements OnInit {
     // }
   }
 
-  getAllProducts() {
+  GetAllProducts() {
+      this.productService.GetAllProducts().subscribe((res: any) => {
+        this.products = res
+      });
     // if (!this.products.length) {
     //   this.vs.localstorage('products').subscribe((products: any) => {
     //     // console.log(products);
@@ -251,6 +254,7 @@ export class MainNavComponent implements OnInit {
     //   });
     // }
   }
+
   logout() {
     // console.log('logout...');
     // this.auth.signOut();
