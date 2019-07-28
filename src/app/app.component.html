@@ -49,7 +49,7 @@
                   <div class="b-footer_block_in">
                     <ul class="b-footer_menu">
                       <li *ngFor="let solution of solutions"><a href="#"
-                          routerLink="/solution/{{solution?.solutionCode}}">{{solution?.solutionName | titlecase}} Solutions</a></li>
+                          routerLink="/solution/{{solution?.value?.slug}}">{{solution?.value?.name | titlecase}} Solutions</a></li>
                     </ul>
                   </div>
                 </div>

@@ -5,6 +5,7 @@ import { TypeaheadMatch } from 'ngx-bootstrap';
 import { Router } from '@angular/router';
 import { ScriptsService } from './core/scripts.service';
 import { VariablesService } from './core/variables.service';
+import { MenuService } from './core/menu.service';
 
 declare var $: any;
 declare var jQuery: any;
@@ -22,7 +23,12 @@ export class AppComponent implements OnInit {
   footerMenus:any;
   filterQuery:any;
 
-  constructor(private auth: AuthService, public productsService: ProductService, private router: Router, public scriptsService: ScriptsService, private vs: VariablesService) {}
+  constructor(
+    private auth: AuthService, 
+    public productsService: ProductService, 
+    private router: Router, public scriptsService: ScriptsService, private vs: VariablesService,
+    private menuService: MenuService
+    ) {}
 
   getAllProducts() {
     // this.vs.localstorage('products').subscribe((products) => {
@@ -48,10 +54,11 @@ export class AppComponent implements OnInit {
   }
 
   getAllSolution() {
-    // this.vs.localstorage('solutions').subscribe((solutions) => {
-    //   this.solutions = solutions;
-    // })
+    this.menuService.GetSingleMenu('5d3981e331876d2aa4a48eef').subscribe((res: any) => {
+      this.solutions = res;
+      console.log('App solutions: ', this.solutions);
   }
+}
 
   search(value?) {
     if (value) {

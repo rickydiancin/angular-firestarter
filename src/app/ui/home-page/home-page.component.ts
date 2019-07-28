@@ -164,6 +164,7 @@ export class HomePageComponent implements OnInit {
   getAllSolutions() {
     this.menuService.GetSingleMenu('5d3981e331876d2aa4a48eef').subscribe((res: any) => {
       this.solutions = res;
+      console.log('solutions: ', this.solutions);
     })
     // this.vs.localstorage('solutions').subscribe((solutions) => {
     //   this.solutions = solutions;
