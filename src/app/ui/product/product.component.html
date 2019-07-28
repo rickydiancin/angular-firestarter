@@ -172,8 +172,9 @@
                   <div class="product-description border-product">
                     <ul class="pl-0 list-unstyled clearfix">
                       <ng-container *ngFor="let product of theproduct?.childProduct">
-                        <li *ngIf="product?.index !== params?.id.split('_')[1]">
-                          <a href="#" routerLink="/catalogue/{{product?.productTitle.split(' ').join('-')}}_{{product?.index}}"><span class="b-size_attr">{{(product?.variants | titlecase) || product?.productCode}}</span></a>
+                        <!-- <li> -->
+                        <li *ngIf="product?.productCode !== params?.id">
+                          <a href="#" routerLink="/product/{{product?.productCode}}"><span class="b-size_attr">{{(product?.variants | titlecase) || product?.productCode}}</span></a>
                         </li>
                       </ng-container>
                     </ul>
@@ -183,7 +184,7 @@
                   <div class="title-header">Available Colours</div>
                   <div class="product-description border-product" *ngFor="let product of theproduct?.childProduct">
                     <div class="img"
-                      routerLink="/catalogue/{{product?.productTitle.split(' ').join('-')}}_{{product?.index}}">
+                      routerLink="/product/{{product?.productCode}}">
                       <img tooltip="{{product?.colourFinish?.split('/')?.pop()?.split('.')[0].split('_').join(' ') | titlecase}}" src="{{product?.colourFinish}}"
                         alt="{{product?.colourFinish?.split('/')?.pop()?.split('.')[0] | titlecase}}" class="img-fluid" height="40" width="40">
                     </div>
