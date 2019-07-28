@@ -85,7 +85,6 @@ export class MainNavComponent implements OnInit {
     // this. = true;
     this.menuService.GetSingleMenuCategory('5d39535f446a1905344c5aaf').subscribe((res: any) => {
       this.menu1 = res;
-      console.log(res)
     });
 
     this.menuService.GetSingleMenuCategory('5d398fc8292f0d2b98c8810f').subscribe((res: any) => {
@@ -266,7 +265,7 @@ export class MainNavComponent implements OnInit {
 
   search() {
     if (this.filterQuery.length) {
-      this.router.navigate(['/catalogue/search'], { queryParams: { s: this.filterQuery.toLowerCase() } }).then(() => {
+      this.router.navigate(['/products/search'], { queryParams: { s: this.filterQuery.toLowerCase() } }).then(() => {
         this.filterQuery = '';
       })
     }

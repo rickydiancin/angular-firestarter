@@ -245,14 +245,14 @@
             <div class="b-blog_grid_single">
               <div class="b-blog_single_header">
                 <div class="b-blog_img_wrap">
-                  <a href="#" routerLink="/solution/{{cat?.value?.solutionCode}}">
+                  <a href="#" routerLink="/solution/{{cat?.value?.slug}}">
                     <img [src]="ImageURL+cat?.value?.imageFile1" width="100%" height="auto" class="img-fluid img-switch d-block">
                   </a>
                 </div>
               </div>
               <div class="b-blog_single_info">
                 <h3 class="b-entry_title pt-2">
-                  <a href="#" rel="bookmark" routerLink="/solution/{{cat?.solutionCode}}">{{cat?.value?.name | titlecase}}</a>
+                  <a href="#" rel="bookmark" routerLink="/solution/{{cat?.value?.slug}}">{{cat?.value?.name | titlecase}}</a>
                 </h3>
                 <div class="b-blog_single_content">
                   <p>{{cat?.value?.description}}</p>

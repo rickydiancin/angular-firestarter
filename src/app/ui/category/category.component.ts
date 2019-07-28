@@ -13,6 +13,7 @@ import { canvasToBlob } from 'blob-util';
 import { AuthService } from 'src/app/core/auth.service';
 import { CategoryService } from 'src/app/core/category.service';
 import { MenuService } from 'src/app/core/menu.service';
+import { SolutionService } from 'src/app/core/solution.service';
 
 @Component({
   selector: 'category',
@@ -75,7 +76,8 @@ export class CategoryComponent implements OnInit {
     public authService: AuthService,
     private router: Router,
     private categoryService: CategoryService,
-    private menuService: MenuService
+    private menuService: MenuService,
+    private solutionService: SolutionService
   ) { }
 
   // makeTrustedImage(item) {
@@ -85,30 +87,29 @@ export class CategoryComponent implements OnInit {
   // }
 
   GetAllCategories() {
-    this.vs.finalMenu1('NZO8GjZHIJkgCPfJodK1').subscribe((finalMenu2: any) => {
-      if (finalMenu2) {
-        this.finalMenu2 = finalMenu2.value;
-        this.vs.finalMenu1('z1VRPA9NlRemMi5pAJ2o').subscribe((finalMenu3: any) => {
-          if (finalMenu3) {
-            this.finalMenu3 = finalMenu3.value;
-            this.vs.finalMenu1('B4iC2Z0RuYrw0Ou5kPQt').subscribe((finalMenu1: any) => {
-              if (finalMenu1) {
-                this.finalMenu1 = finalMenu1.value;
-                this.loader = true;
-                console.log(finalMenu1)
-              }
-            })
-          }
-        })
-      }
-    })
+    // this.vs.finalMenu1('NZO8GjZHIJkgCPfJodK1').subscribe((finalMenu2: any) => {
+    //   if (finalMenu2) {
+    //     this.finalMenu2 = finalMenu2.value;
+    //     this.vs.finalMenu1('z1VRPA9NlRemMi5pAJ2o').subscribe((finalMenu3: any) => {
+    //       if (finalMenu3) {
+    //         this.finalMenu3 = finalMenu3.value;
+    //         this.vs.finalMenu1('B4iC2Z0RuYrw0Ou5kPQt').subscribe((finalMenu1: any) => {
+    //           if (finalMenu1) {
+    //             this.finalMenu1 = finalMenu1.value;
+    //             this.loader = true;
+    //             console.log(finalMenu1)
+    //           }
+    //         })
+    //       }
+    //     })
+    //   }
+    // })
   }
 
   GetAllSolutions() {
     this.solutionLoader = true;
     this.menuService.GetSingleMenu('5d3981e331876d2aa4a48eef').subscribe((res: any) => {
       this.solutions = res;
-      console.log(res)
     })
   }
 
@@ -132,7 +133,7 @@ export class CategoryComponent implements OnInit {
     this.GetAllSolutions();
 
     this.route.params.subscribe((params) => {
-      if(params.id) {
+      if(params.id && params.id !== 'all') {
         this.params = params;
         
         this.categoryService.GetSingleCategory(params.id).subscribe((res: any) => {
@@ -146,6 +147,26 @@ export class CategoryComponent implements OnInit {
         });
         // this.titleService.setTitle(`You searched for ${params.id} - Gentec Australia`);
         // this.filterQuery = queryParams.s;
+      } else if(params.solutionid && params.solutionid !== 'all') {
+        this.params = params;
+        this.solutionService.GetOneSolution(params.solutionid).subscribe((res: any) => {
+          this.solution = res;
+        });
+
+        this.productsLoaded = false;
+        this.productService.GetAllProductBySolution(params.solutionid).subscribe((res: any) => {
+          this.products = res;
+          this.productsLoaded = true;
+        });
+
+      } else {
+        this.params = params;
+        this.productsLoaded = false;
+        this.productService.GetAllProducts().subscribe((res: any) => {
+          // console.log(res)
+          this.productsLoaded = true;
+          this.products = res;
+        })
       }
       // if (Object.entries(queryParams).length !== 0) {
       //   this.titleService.setTitle(`You searched for ${queryParams.s} - Gentec Australia`);

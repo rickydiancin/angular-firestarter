@@ -23,11 +23,11 @@
               </li> -->
               <ng-container *ngFor="let cat of menu2" >
                 <li class="third-level">
-                  <a href="#" routerLink="/catalogue/category/{{cat?.value?.slug}}" class="isparent"> <h5 class="text-uppercase">{{cat?.value?.label | titlecase}}</h5></a>
+                  <a href="#" routerLink="/category/{{cat?.value?.slug}}" class="isparent"> <h5 class="text-uppercase">{{cat?.value?.label | titlecase}}</h5></a>
                 </li>
                 <ng-container *ngFor="let child of cat?.value?.children" >
                   <li class="sub">
-                    <a href="#" routerLink="/catalogue/category/{{child?.slug}}">{{child?.label | titlecase}}</a>
+                    <a href="#" routerLink="/category/{{child?.slug}}">{{child?.label | titlecase}}</a>
                   </li>
                 </ng-container>
                 <!-- <ul> -->
@@ -39,11 +39,11 @@
 
                 <ng-container *ngFor="let cat of menu1" >
                   <li class="third-level">
-                    <a href="#" routerLink="/catalogue/category/{{cat?.value?.slug}}" class="isparent"> <h5 class="text-uppercase">{{cat?.value?.label | titlecase}}</h5></a>
+                    <a href="#" routerLink="/category/{{cat?.value?.slug}}" class="isparent"> <h5 class="text-uppercase">{{cat?.value?.label | titlecase}}</h5></a>
                   </li>
                   <ng-container *ngFor="let child of cat?.value?.children" >
                     <li class="sub">
-                      <a href="#" routerLink="/catalogue/category/{{child?.slug}}">{{child?.label | titlecase}}</a>
+                      <a href="#" routerLink="/category/{{child?.slug}}">{{child?.label | titlecase}}</a>
                     </li>
                   </ng-container>
                   <!-- <ul> -->
@@ -55,11 +55,11 @@
 
                   <ng-container *ngFor="let cat of menu3" >
                     <li class="third-level">
-                      <a href="#" routerLink="/catalogue/category/{{cat?.value?.slug}}" class="isparent"> <h5 class="text-uppercase">{{cat?.value?.label | titlecase}}</h5></a>
+                      <a href="#" routerLink="/category/{{cat?.value?.slug}}" class="isparent"> <h5 class="text-uppercase">{{cat?.value?.label | titlecase}}</h5></a>
                     </li>
                     <ng-container *ngFor="let child of cat?.value?.children" >
                       <li class="sub">
-                        <a href="#" routerLink="/catalogue/category/{{child?.slug}}">{{child?.label | titlecase}}</a>
+                        <a href="#" routerLink="/category/{{child?.slug}}">{{child?.label | titlecase}}</a>
                       </li>
                     </ng-container>
                     <!-- <ul> -->
@@ -117,7 +117,7 @@
             <!-- <form action="#" [formGroup]=""> -->
               <ul class="b-color_filter">
                 <li *ngFor="let solution of solutions">
-                  <a href="#" routerLink="/solution/{{solution?.solutionCode}}">
+                  <a href="#" routerLink="/solution/{{solution?.value?.slug}}">
                     {{solution?.value?.name | titlecase}}
                   </a>
                   <!-- <span class="b-count float-right">(7)</span> -->
@@ -225,14 +225,15 @@
         <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12"> 
           <nav class="b-shop_breadcrumb">
             <a href="/">Home</a>
-            <span *ngIf="!params && !queryParams">All Catalogue</span>
+            <span *ngIf="params?.id === 'all'">All Catalogue</span>
+            <span *ngIf="params?.solutionid === 'all'">All Solutions</span>
             <!-- <span *ngIf="params?.catName == 'solution'">All Solution</span> -->
 
             <!-- <a *ngIf="category" href="#" routerLink="/category/all">Category</a> -->
-            <span *ngIf="category">{{category?.name | titlecase}}</span>
+            <span *ngIf="params?.id !== 'all'">{{category?.name | titlecase}}</span>
 
             <!-- <a *ngIf="solution" href="#" routerLink="/solution/all">Solution</a> -->
-            <span *ngIf="solution">{{solution?.name | titlecase}}</span>
+            <span *ngIf="params?.solutionid !== 'all'">{{solution?.name | titlecase}}</span>
 
             <a *ngIf="queryParams" href="" routerLink="#">Search</a>
             <span *ngIf="queryParams">Search results for “{{queryParams?.s}}”</span>
@@ -263,9 +264,10 @@
       </div>
       <div class="b-products b-product_grid b-product_grid_four mb-4">
         <div *ngIf="products" class="b-title b-title_line_right mt-5 mt-lg -0">
-          <h2 *ngIf="!params" class="text-uppercase">All Products</h2>
-          <h2 *ngIf="category" class="text-uppercase">{{category?.name | titlecase}}</h2>
-          <h2 *ngIf="paramsSolution" class="text-uppercase">{{solution?.solutionName | titlecase}}</h2>
+          <h2 *ngIf="params?.id === 'all' || params?.solutionid === 'all'" class="text-uppercase">All Products</h2>
+          <!-- <h2 *ngIf="params?.solutionid === 'all'" class="text-uppercase">All Products</h2> -->
+          <h2 *ngIf="params?.id" class="text-uppercase">{{category?.name | titlecase}}</h2>
+          <h2 *ngIf="params?.solutionid" class="text-uppercase">{{solution?.name | titlecase}}</h2>
           <hr *ngIf="category?.imgURL || solution?.imgURL">
           <div *ngIf="category?.imgURL || solution?.imgURL">
             <img style="max-height:300px" [src]="category?.imgURL || solution?.imgURL2" alt="" class="img-fluid" style="width: 100%;">
@@ -314,12 +316,12 @@
                   </div>
                 </div>
               </ng-container>
-              <ng-container *ngIf="products?.length">
+              <ng-container *ngIf="productsLoaded">
                 <!-- <button class="dropdown-item"
                   *ngIf="products?.length && (products | filterBy:['productTitle', 'productCode', 'categoryName']: filterQuery).length === 0">
                   No Result(s) Found
                 </button> -->
-                <div class="col-sm-12" *ngIf="products?.length && (products | filterBy:['productTitle', 'productCode', 'categories', 'solutions']: filterQuery).length === 0">
+                <div class="col-sm-12" *ngIf="(products | filterBy:['productTitle', 'productCode', 'categories', 'solutions']: filterQuery).length === 0 || products.length === 0">
                   <h6>No products were found matching your selection.</h6>
                 </div>
               </ng-container>
@@ -327,10 +329,10 @@
                 <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-6" *ngFor="let product of products | filterBy:['productTitle', 'productCode', 'categories', 'solutions']: filterQuery | orderBy: sortValue | paginate: config">
                   <div class="b-product_grid_single" style="min-height: 23rem;">
                     <div class="b-product_grid_header">
-                      <a href="#" routerLink="/catalogue/{{product?.productCode}}" (click)="titleService.setTitle(product?.productTitle)">
+                      <a href="#" routerLink="/product/{{product?.productCode}}" (click)="titleService.setTitle(product?.productTitle)">
                         <div class="b-product_grid_info" style="min-height: 2.75rem;">
                           <h1 class="product-title">
-                            <a href="#" routerLink="/catalogue/{{product?.productCode}}"><b>{{ product?.productTitle | truncate: 20 }}</b></a>
+                            <a href="#" routerLink="/product/{{product?.productCode}}"><b>{{ product?.productTitle | truncate: 20 }}</b></a>
                            </h1>
                         </div>
                         <img [src]="product?.primaryURL || './assets/images/not_available.jpg'" width="100%" height="auto"
