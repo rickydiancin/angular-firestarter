@@ -57,7 +57,7 @@ export class AppComponent implements OnInit {
     this.menuService.GetSingleMenu('5d3981e331876d2aa4a48eef').subscribe((res: any) => {
       this.solutions = res;
       console.log('App solutions: ', this.solutions);
-  }
+  })
 }
 
   search(value?) {

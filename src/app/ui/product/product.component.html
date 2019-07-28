@@ -167,12 +167,12 @@
   
                 <h6 *ngIf="theproduct?.welsRegistrationNumber">Wels Registration : {{theproduct?.welsRegistrationNumber}}
                 </h6>
-                <div *ngIf="theproduct?.childProduct.length > 1" class="mb-3 mt-3">
+                <!-- <div *ngIf="theproduct?.childProduct.length > 1" class="mb-3 mt-3">
                   <div class="title-header">Variants</div>
                   <div class="product-description border-product">
                     <ul class="pl-0 list-unstyled clearfix">
                       <ng-container *ngFor="let product of theproduct?.childProduct">
-                        <!-- <li> -->
+                       
                         <li *ngIf="product?.productCode !== params?.id">
                           <a href="#" routerLink="/product/{{product?.productCode}}"><span class="b-size_attr">{{(product?.variants | titlecase) || product?.productCode}}</span></a>
                         </li>
@@ -189,7 +189,7 @@
                         alt="{{product?.colourFinish?.split('/')?.pop()?.split('.')[0] | titlecase}}" class="img-fluid" height="40" width="40">
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
               <div class="b-product_single_option">
                 <ul class="pl-0 list-unstyled">
