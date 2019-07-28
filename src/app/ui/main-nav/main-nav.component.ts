@@ -77,7 +77,6 @@ export class MainNavComponent implements OnInit {
     this.solutionLoader = true;
     this.menuService.GetSingleMenu('5d3981e331876d2aa4a48eef').subscribe((res: any) => {
       this.solutions = res;
-      console.log(res)
       this.solutionLoader = false;
     })
   }
@@ -86,7 +85,6 @@ export class MainNavComponent implements OnInit {
     // this. = true;
     this.menuService.GetSingleMenuCategory('5d39535f446a1905344c5aaf').subscribe((res: any) => {
       this.menu1 = res;
-      console.log(res)
     });
 
     this.menuService.GetSingleMenuCategory('5d398fc8292f0d2b98c8810f').subscribe((res: any) => {
