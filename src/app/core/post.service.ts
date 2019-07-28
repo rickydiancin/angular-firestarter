@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 const BASEURL = environment.BASEURL;
 
@@ -11,7 +12,8 @@ const BASEURL = environment.BASEURL;
 export class PostService {
 
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private afs: AngularFirestore
   ) { }
 
   // post category
@@ -68,6 +70,11 @@ export class PostService {
         .set('id', id)
     });
   }
+
+  getSinglePost(id) {
+    return this.afs.doc('posts/' + id).valueChanges();
+}
+
 
   DeletePost(index): Observable<any> {
     return this.httpClient.delete(`${BASEURL}/post/delete`, {
