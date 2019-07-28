@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { map } from 'rxjs/operators';
 
 const BASEURL = environment.BASEURL;
 
@@ -70,11 +71,33 @@ export class PostService {
         .set('id', id)
     });
   }
+/* For deletion...firebase  */
+
+getAllPostsByCategory(category, limit?:number) {
+  if(limit) {
+    return this.afs.collection('posts', (ref) => ref.where('category', '==', category).orderBy('dateCreated', 'desc').limit(limit)).snapshotChanges().pipe(
+      map((actions) => {
+        return actions.map((a) => {
+          const data = a.payload.doc.data();
+          return { id: a.payload.doc.id, ...data };
+        });
+      }));
+  } else {
+    return this.afs.collection('posts', (ref) => ref.where('category', '==', category).orderBy('dateCreated', 'desc')).snapshotChanges().pipe(
+      map((actions) => {
+        return actions.map((a) => {
+          const data = a.payload.doc.data();
+          return { id: a.payload.doc.id, ...data };
+        });
+      }));
+  }
+}
 
   getSinglePost(id) {
     return this.afs.doc('posts/' + id).valueChanges();
 }
 
+/* For deletion...firebase  */
 
   DeletePost(index): Observable<any> {
     return this.httpClient.delete(`${BASEURL}/post/delete`, {
