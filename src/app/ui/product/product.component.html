@@ -167,7 +167,7 @@
   
                 <h6 *ngIf="theproduct?.welsRegistrationNumber">Wels Registration : {{theproduct?.welsRegistrationNumber}}
                 </h6>
-                <!-- <div *ngIf="theproduct?.childProduct.length > 1" class="mb-3 mt-3">
+                <div *ngIf="theproduct?.childProduct.length > 1 && theproduct?.parentProduct" class="mb-3 mt-3">
                   <div class="title-header">Variants</div>
                   <div class="product-description border-product">
                     <ul class="pl-0 list-unstyled clearfix">
@@ -180,16 +180,33 @@
                     </ul>
                   </div>
                 </div>
-                <div *ngIf="theproduct?.childProduct?.length">
+
+                <div *ngIf="theproduct?.childProduct?.length > 1 && theproduct?.parentProduct">
                   <div class="title-header">Available Colours</div>
-                  <div class="product-description border-product" *ngFor="let product of theproduct?.childProduct">
+
+                  <div class="product-description border-product" *ngIf="theproduct?.colourFinish && !theproduct?.parentProduct">
                     <div class="img"
-                      routerLink="/product/{{product?.productCode}}">
-                      <img tooltip="{{product?.colourFinish?.split('/')?.pop()?.split('.')[0].split('_').join(' ') | titlecase}}" src="{{product?.colourFinish}}"
-                        alt="{{product?.colourFinish?.split('/')?.pop()?.split('.')[0] | titlecase}}" class="img-fluid" height="40" width="40">
+                      routerLink="/product/{{theproduct?.productCode}}">
+                      <img tooltip="{{theproduct?.colourFinish?.split('/')?.pop()?.split('.')[0].split('_').join(' ') | titlecase}}" src="{{theproduct?.colourFinish}}"
+                        alt="{{theproduct?.colourFinish?.split('/')?.pop()?.split('.')[0] | titlecase}}" class="img-fluid" height="40" width="40">
                     </div>
                   </div>
+<<<<<<< HEAD
                 </div> -->
+=======
+
+                  <ng-container *ngFor="let product of theproduct?.childProduct">
+                    <div class="product-description border-product" *ngIf="theproduct?.parentProduct">
+                      <div class="img"
+                        routerLink="/product/{{product?.productCode}}">
+                        <img tooltip="{{product?.colourFinish?.split('/')?.pop()?.split('.')[0].split('_').join(' ') | titlecase}}" src="{{product?.colourFinish}}"
+                          alt="{{product?.colourFinish?.split('/')?.pop()?.split('.')[0] | titlecase}}" class="img-fluid" height="40" width="40">
+                      </div>
+                    </div>
+                  </ng-container>
+
+                </div>
+>>>>>>> 1f3afbcccec790b68a2c56e4b9a01d858350ee08
               </div>
               <div class="b-product_single_option">
                 <ul class="pl-0 list-unstyled">

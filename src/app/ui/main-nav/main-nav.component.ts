@@ -263,9 +263,13 @@ export class MainNavComponent implements OnInit {
     this.show = !this.show;
   }
 
-  search() {
-    if (this.filterQuery.length) {
+  search(event?) {
+    if (!event &&this.filterQuery.length) {
       this.router.navigate(['/products/search'], { queryParams: { s: this.filterQuery.toLowerCase() } }).then(() => {
+        this.filterQuery = '';
+      })
+    } else {
+      this.router.navigate([`/product/${event}`]).then(() => {
         this.filterQuery = '';
       })
     }
