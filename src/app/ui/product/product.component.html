@@ -174,7 +174,7 @@
                       <ng-container *ngFor="let product of theproduct?.childProduct">
                         <!-- <li> -->
                         <li *ngIf="product?.productCode !== params?.id">
-                          <a href="#" routerLink="/product/{{product?.productCode}}"><span class="b-size_attr">{{(product?.variants | titlecase) || product?.productCode}}</span></a>
+                          <a href="#" routerLink="/product/{{product?.productCode}}"><span class="b-size_attr">{{(product?.variant | titlecase) || product?.productCode}}</span></a>
                         </li>
                       </ng-container>
                     </ul>
