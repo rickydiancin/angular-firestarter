@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
-  BASEURL: `http://128.199.226.183:8000/api/v1`,
-  ImageURL: `http://128.199.226.183:8000/uploads/`,
+  BASEURL: `https://www.gentecaustralia.com.au/api/v1`,
+  ImageURL: `https://www.gentecaustralia.com.au/uploads/`,
   firebase: {
     apiKey: "AIzaSyDbkwnutDsJ-Glqi3KpwYvC4rTcqjpXKX8",
     authDomain: "gentec-admin.firebaseapp.com",

@@ -47,7 +47,7 @@
             <ngb-carousel *ngIf="banners" id="homebanner">
 
               <ng-template ngbSlide *ngFor="let banner of banners ">
-                <img [src]="'http://128.199.226.183:8000/uploads/'+banner?.imgURL"  alt="{{banner?.bannerTitle}}" class="img-fluid  d-block" >
+                <img [src]="'https://www.gentecaustralia.com.au/uploads/'+banner?.imgURL"  alt="{{banner?.bannerTitle}}" class="img-fluid  d-block" >
                 <div class="carousel-caption">
                   <h3>{{banner?.bannerTitle}}</h3>
                   <p>{{banner?.description}}</p>
@@ -64,7 +64,7 @@
           <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-12 col-xs-12" *ngIf="sidebanner">
             <div class="b-featured_cat_in">
 
-               <img src="{{sidebanner?.customImageUrl || 'http://128.199.226.183:8000/uploads/'+sidebanner?.imgURL}}" class="img-fluid d-block" alt="" >
+               <img src="{{sidebanner?.customImageUrl || 'https://www.gentecaustralia.com.au/uploads/'+sidebanner?.imgURL}}" class="img-fluid d-block" alt="" >
                <!-- <img src="assets/images/sidebar.png" class="img-fluid d-block" alt="" > -->
          
               <!-- <div class="b-cat_mask">
@@ -186,7 +186,7 @@
                  <div class="b-blog_single_header">
                       <div class="">
                           <a href="#" routerLink="/postcategory/news/{{post?.index}}">
-                              <img [src]="'http://128.199.226.183:8000/uploads/'+post?.imgURL || '/assets/images/blog/home/blog_default_01.jpg'"  class="img-fluid" alt="">
+                              <img [src]="'https://www.gentecaustralia.com.au/uploads/'+post?.imgURL || '/assets/images/blog/home/blog_default_01.jpg'"  class="img-fluid" alt="">
                           
                           
                             </a>
