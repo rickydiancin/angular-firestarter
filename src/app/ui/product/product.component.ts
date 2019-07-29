@@ -227,6 +227,7 @@ export class ProductComponent implements OnInit, AfterViewInit {
         this.params = params;
         this.productLoaded = false;
         this.productService.GetSingleProduct(params.id).subscribe((res: any) => {
+          console.log(res[0])
           this.theproduct = res[0];
           this.productLoaded = true;
           this.scriptsService.prepareJquery();
