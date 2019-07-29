@@ -14,6 +14,7 @@ import { AuthService } from 'src/app/core/auth.service';
 import { CategoryService } from 'src/app/core/category.service';
 import { MenuService } from 'src/app/core/menu.service';
 import { SolutionService } from 'src/app/core/solution.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'category',
@@ -64,6 +65,8 @@ export class CategoryComponent implements OnInit {
   menu2: any;
   menu3: any;
   solutionLoader: boolean;
+
+  ImageURL = environment.ImageURL;
 
   constructor(
     private scriptsService: ScriptsService,
@@ -135,9 +138,10 @@ export class CategoryComponent implements OnInit {
     this.route.params.subscribe((params) => {
       if(params.id && params.id !== 'all') {
         this.params = params;
-        
+        console.log(params)
         this.categoryService.GetSingleCategory(params.id).subscribe((res: any) => {
           this.category = res;
+          console.log(res)
         });
 
         this.productsLoaded = false;

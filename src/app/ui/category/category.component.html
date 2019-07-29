@@ -268,9 +268,12 @@
           <!-- <h2 *ngIf="params?.solutionid === 'all'" class="text-uppercase">All Products</h2> -->
           <h2 *ngIf="params?.id" class="text-uppercase">{{category?.name | titlecase}}</h2>
           <h2 *ngIf="params?.solutionid" class="text-uppercase">{{solution?.name | titlecase}}</h2>
-          <hr *ngIf="category?.imgURL || solution?.imgURL">
-          <div *ngIf="category?.imgURL || solution?.imgURL">
-            <img style="max-height:300px" [src]="category?.imgURL || solution?.imgURL2" alt="" class="img-fluid" style="width: 100%;">
+          <hr *ngIf="category?.imgURL || solution?.imageFile2">
+          <div *ngIf="category?.imgURL">
+            <img style="max-height:300px" [src]="ImageURL+category?.imgURL" alt="" class="img-fluid" style="width: 100%;">
+          </div>
+          <div *ngIf="solution?.imageFile2">
+            <img style="max-height:300px" [src]="ImageURL + solution?.imageFile2" alt="" class="img-fluid" style="width: 100%;">
           </div>
           <div class="img-description" *ngIf="category || solution">
             <small>{{category?.description || solution?.description}}</small>
