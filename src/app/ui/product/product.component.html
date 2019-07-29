@@ -181,7 +181,7 @@
                   </div>
                 </div>
 
-                <div *ngIf="theproduct?.childProduct?.length > 1 && theproduct?.parentProduct">
+                <div *ngIf="theproduct?.childProduct?.length && theproduct?.parentProduct">
                   <div class="title-header">Available Colours</div>
 
                   <div class="product-description border-product" *ngIf="theproduct?.colourFinish && !theproduct?.parentProduct">

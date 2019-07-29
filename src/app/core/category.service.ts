@@ -40,7 +40,7 @@ export class CategoryService {
     return this.httpClient.get(`${BASEURL}/category/single`, {
       params: new HttpParams()
               .set('slug', slug)
-    }).pipe()
+    })
   }
 
   DeleteSingleCategory(_id): Observable<any> {
