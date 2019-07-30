@@ -20,11 +20,13 @@ import { InvoiceComponent } from './ui/invoice/invoice.component';
 import { NewssingleComponent } from './ui/newssingle/newssingle.component';
 import { WarrantyComponent } from './ui/warranty/warranty.component';
 import { DistributionComponent } from './ui/distribution/distribution.component';
+import { UserProfileComponent } from './ui/user-profile/user-profile.component';
 
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'login', component: UserLoginComponent },
+  { path: 'profile', component: UserProfileComponent },
   { path: 'products', component: CategoryComponent },
   { path: 'products/search', component: CategoryComponent },
   { path: 'postcategory/:cat', component: NewsComponent },

@@ -1,9 +1,17 @@
+<div class="b-page_title b-page_title_default text-center">
+    <h1 class="b-entry_title"><span>My Account</span></h1>  
+    <div class="b-breadcrumbs">
+      <a href="#" routerLink="/">Home</a>
+      <span>Profile</span>
+    </div>
+  </div>
 
-<div class="spinner text-center p-5" *ngIf="!user">
+
+<div class="spinner text-center p-5" *ngIf="!cookieExists">
   <img src="./assets//svg/oval.svg" class="img-fluid" alt="">
 </div>
 
-<div class="container-fluid" *ngIf="user">
+<div class="container-fluid" *ngIf="cookieExists">
 
     <div *ngIf="showMessage" (click)="showMessage == !showMessage">
         <div class="alert alert-{{type}}">
@@ -89,13 +97,13 @@
                   <div class="col-md-6">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">Fist Name</label>
-                      <input type="text" class="form-control" formControlName="firstName">
+                      <input type="text" class="form-control" formControlName="firstname">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">Last Name</label>
-                      <input type="text" class="form-control" formControlName="lastName">
+                      <input type="text" class="form-control" formControlName="lastname">
                     </div>
                   </div>
                 </div>

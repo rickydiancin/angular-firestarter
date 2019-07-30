@@ -14,6 +14,14 @@ export class AuthService {
     private httpClient: HttpClient
   ) { }
 
+  UpdateProfile(body) {
+    return this.httpClient.put(`${BASEURL}/user/profile/update`, body);
+  }
+
+  GetLoginUser() {
+    return this.httpClient.get(`${BASEURL}/user/login`);
+  }
+
   CreateUser(body): Observable<any> {
     return this.httpClient.post(`${BASEURL}/user/create`, body);
   }

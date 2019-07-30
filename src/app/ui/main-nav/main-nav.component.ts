@@ -255,8 +255,9 @@ export class MainNavComponent implements OnInit {
   }
 
   logout() {
-    // console.log('logout...');
-    // this.auth.signOut();
+    this.tokenService.deleteToken();
+    this.cookieExists = false;
+    this.router.navigate(['/']);
   }
 
   toggleCollapse() {
