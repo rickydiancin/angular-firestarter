@@ -63,4 +63,8 @@ export class ProductService {
     return this.httpClient.get(`${BASEURL}/product/releases`).pipe();
   }
 
+  NewInquires(body) {
+    return this.httpClient.post(`${BASEURL}/inquire/new`, body);
+  }
+
 }

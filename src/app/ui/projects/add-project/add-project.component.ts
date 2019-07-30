@@ -18,6 +18,8 @@ export class AddProjectComponent implements OnInit {
   form: any;
   isUpdate = false;
   @Input() hideForm: Boolean;
+  success: boolean;
+  message: string;
 
   constructor(
     public scriptsService: ScriptsService,
@@ -57,6 +59,9 @@ export class AddProjectComponent implements OnInit {
   createProject() {
     this.projectService.NewProject(this.form.value).subscribe((res: any) => {
       this.form.reset();
+      this.success = true;
+      this.message = `'${res.message}`;
+      this.projectService.listener(res.result);
     })
     // this.form.controls['dateCreated'].setValue(Date.now())
     // this.form.controls['isActive'].setValue(true)

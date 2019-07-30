@@ -73,15 +73,14 @@ export class HomePageComponent implements OnInit {
     this.form = this.formBuilder.group({
       fullname: ['', Validators.required],
       email: ['', Validators.required],
-      subject: [''],
-      message: ['']
+      subject: ['', Validators.required],
+      message: ['', Validators.required]
     })
   }
 
   ngAfterViewInit(): void {
     this.route.fragment.subscribe(fragment => {
       if (fragment) {
-        console.log(fragment)
         const element = document.querySelector("#" + fragment);
       if (element) {
          element.scrollIntoView(true);
@@ -204,7 +203,10 @@ export class HomePageComponent implements OnInit {
     this.router.navigate(['/product/' + event.item.productCode]);
   }
 
-  sendContact() {
+  NewInquires() {
+    this.productService.NewInquires(this.form.value).subscribe((res: any) => {
+      this.form.reset();
+    })
     // this.form.value.isActive = true;
     // this.form.value.dateCreated = Date.now();
     // this.productsService.createInquires(this.form.value).then((success) => {
@@ -225,12 +227,24 @@ export class HomePageComponent implements OnInit {
     }
   }
 
+  // addToProduct(product) {
+  //   const activeModal = this.modalService.open(AddToProjectComponent, { size: 'lg', backdrop: 'static' });
+  //   activeModal.componentInstance.product = product
+  //   activeModal.result.then((result) => {
+  //     this.vs.showAddProjectModal = result.value
+  //   })
+  // }
+
   addToProduct(product) {
-    const activeModal = this.modalService.open(AddToProjectComponent, { size: 'lg', backdrop: 'static' });
-    activeModal.componentInstance.product = product
-    activeModal.result.then((result) => {
-      this.vs.showAddProjectModal = result.value
-    })
+    if (this.cookieExists) {
+      const activeModal = this.modalService.open(AddToProjectComponent, { size: 'lg', backdrop: 'static' });
+      activeModal.componentInstance.product = product
+      activeModal.result.then((result) => {
+        this.vs.showAddProjectModal = result.value
+      })
+    } else {
+      this.router.navigate(['/login'])
+    }
   }
 
 }

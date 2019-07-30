@@ -36,7 +36,7 @@ const routes: Routes = [
   { path: 'search', component: CategoryComponent },
   // { path: 'wishlist', component: WishlistComponent },
   { path: 'projects', component: ProjectsComponent, canActivate: [AuthGuard] },
-  { path: 'projects/:id', component: ProjectProductsComponent },
+  { path: 'project/:id', component: ProjectProductsComponent },
   { path: 'projects/:id/invoice', component: InvoiceComponent },
   { path: 'about_us', component: CompanyComponent },
   { path: 'warranty', component: WarrantyComponent },

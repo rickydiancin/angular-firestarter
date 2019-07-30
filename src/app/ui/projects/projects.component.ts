@@ -16,7 +16,7 @@ declare var $: any;
 export class ProjectsComponent implements OnInit {
 
   form: any;
-  projects: any;
+  projects: any = [];
   isUpdate: Boolean = false;
 
   constructor(
@@ -28,6 +28,9 @@ export class ProjectsComponent implements OnInit {
     public projectService: ProjectService
   ) {
     this.createForm();
+    this.projectService.listen().subscribe((res: any) => {
+      this.projects.push(res);
+    })
   }
 
   createForm() {
@@ -41,7 +44,7 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit() {
     // console.log('the user:',this.authService.user)
-    this.getAllProjectsByUser();
+    this.GetAllProjects();
     // setTimeout(() => {
     //   this.scriptsService.prepareJquery();
     // }, 1000)
@@ -50,7 +53,7 @@ export class ProjectsComponent implements OnInit {
   createProject() {
     this.projectService.NewProject(this.form.value).subscribe((res: any) => {
       this.form.reset();
-      this.getAllProjectsByUser();
+      this.projectService.listener(res.result);
     })
   }
 
@@ -78,7 +81,7 @@ export class ProjectsComponent implements OnInit {
     this.isUpdate = false;
   }
 
-  getAllProjectsByUser() {
+  GetAllProjects() {
     this.projectService.GetAllProjects().subscribe((res: any) => {
       this.projects = res;
     })

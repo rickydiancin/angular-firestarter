@@ -15,6 +15,7 @@ import { CategoryService } from 'src/app/core/category.service';
 import { MenuService } from 'src/app/core/menu.service';
 import { SolutionService } from 'src/app/core/solution.service';
 import { environment } from 'src/environments/environment';
+import { TokenService } from 'src/app/core/token.service';
 
 @Component({
   selector: 'category',
@@ -67,6 +68,7 @@ export class CategoryComponent implements OnInit {
   solutionLoader: boolean;
 
   ImageURL = environment.ImageURL;
+  cookieExists: boolean;
 
   constructor(
     private scriptsService: ScriptsService,
@@ -80,8 +82,11 @@ export class CategoryComponent implements OnInit {
     private router: Router,
     private categoryService: CategoryService,
     private menuService: MenuService,
-    private solutionService: SolutionService
-  ) { }
+    private solutionService: SolutionService,
+    private tokenService: TokenService
+  ) {
+    this.cookieExists = tokenService.checkToken();
+  }
 
   // makeTrustedImage(item) {
   //   const imageString = JSON.stringify(item).replace(/\\n/g, '');
@@ -138,10 +143,8 @@ export class CategoryComponent implements OnInit {
     this.route.params.subscribe((params) => {
       if(params.id && params.id !== 'all') {
         this.params = params;
-        console.log(params)
         this.categoryService.GetSingleCategory(params.id).subscribe((res: any) => {
           this.category = res;
-          console.log(res)
         });
 
         this.productsLoaded = false;
@@ -534,15 +537,15 @@ export class CategoryComponent implements OnInit {
   }
 
   addToProduct(product) {
-    // if (this.authService.user) {
-    //   const activeModal = this.modalService.open(AddToProjectComponent, { size: 'lg', backdrop: 'static' });
-    //   activeModal.componentInstance.product = product
-    //   activeModal.result.then((result) => {
-    //     this.vs.showAddProjectModal = result.value
-    //   })
-    // } else {
-    //   this.router.navigate(['/login'])
-    // }
+    if (this.cookieExists) {
+      const activeModal = this.modalService.open(AddToProjectComponent, { size: 'lg', backdrop: 'static' });
+      activeModal.componentInstance.product = product
+      activeModal.result.then((result) => {
+        this.vs.showAddProjectModal = result.value
+      })
+    } else {
+      this.router.navigate(['/login'])
+    }
   }
 
   getAllCategoryProducts(id) {
