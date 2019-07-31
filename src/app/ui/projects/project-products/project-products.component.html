@@ -1,11 +1,11 @@
-<ng-container *ngIf="productProject">
+<ng-container *ngIf="project">
 <div class="b-page_title b-page_title_default text-center">
-  <h1 class="b-entry_title"><span>PROJECTS</span></h1>
+  <h1 class="b-entry_title"><span>PROJECT</span></h1>
   <div class="b-breadcrumbs">
     <a href="#" routerLink="/">Home</a>
-    <a href="#" routerLink="/">Account</a>
+    <!-- <a href="#" routerLink="/">Account</a> -->
     <a href="#" routerLink="/">Project</a>
-    <span>{{id.split('.')[0]}}</span>
+    <span>{{project?.name | titlecase}}</span>
   </div>
 </div>
 <!-- <div class="alert alert-success">New Project Successfully Added.</div> -->
@@ -25,13 +25,13 @@
             </button>
           </div>
           <div class="b-title b-title_line_righ mt-5 mt-lg -0">
-            <h2 class="text-uppercase">{{id.split('.')[0]}}</h2>
+            <h2 class="text-uppercase">{{project?.name | titlecase}}</h2>
             <div class="float-right mb-3">
-              <button (click)="downloadFile()" type="button" class="btn btn-primary mr-2">Export as CSV</button>
-              <angular2csv *ngIf="productProject?.length > 0" [data]="productProject" filename="{{id.split('.')[0]}}"
+              <button [disabled]="!project?.productIDS" (click)="downloadFile()" type="button" class="btn btn-primary mr-2">Export as CSV</button>
+              <angular2csv *ngIf="productProject?.length > 0" [data]="productProject" filename="{{project?.name}}"
                 [options]="options" class="d-none">
               </angular2csv>
-              <button (click)="download()" type="button" class="btn btn-primary">Save as PDF</button>
+              <button [disabled]="!project?.productIDS" (click)="download()" type="button" class="btn btn-primary">Save as PDF</button>
             </div>
           </div>
           <!-- <p>For Architects, Developers or Designers who would like indicative pricing on your specification click the
@@ -52,37 +52,28 @@
                 </tr>
               </thead>
               <tbody>
-                <ng-container *ngFor="let product of productProject; let i = index;">
-                  <tr>
+                <ng-container *ngIf="project?.products">
+                  <tr *ngFor="let product of project?.products; let i = index;">
                     <td class="text-center">
                       <img [src]="product?.primaryURL || './assets/images/not_available.jpg'" alt="" height="100px" width="100px">
                     </td>
-                    <td width="20%">{{product?.productTitle | titlecase}}</td>
+                    <td width="20%">{{product?.productTitle.replace('?','') | titlecase}}</td>
                     <td>{{product?.productCode}}</td>
                     <td width="20%">{{product?.productDescription}}</td>
                     <td>{{product?.welsRating || 'n/a'}}</td>
                     <td>
                       {{product?.warranty || 'n/a'}}
-                      <!-- <p>Colours/Finish: {{product?.colourFinish}}</p>
-                      <p>Depth(mm): {{product?.depth || 'n/a'}}</p>
-                      <p>Height(mm): {{product?.height || 'n/a'}}</p>
-                      <p>Width(mm): {{product?.width || 'n/a'}}</p> -->
                     </td>
                     <td class="action text-center align-middle action">
                       <i (click)="removeToProject(product)" class="fa fa-times-circle-o"></i>
-                      <!-- <div class="btn-group">
-                        <button type="button" class="btn btn-default">Action</button>
-                        <button type="button" class="btn btn-default dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
-                          aria-haspopup="true" aria-expanded="false">
-                          <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <div class="dropdown-menu">
-                          <a (click)="removeToProject(product)" class="dropdown-item" href="javascript:void(0);">Remove</a>
-                        </div>
-                      </div> -->
                     </td>
                   </tr>
                 </ng-container>
+                <tr *ngIf="!project?.products">
+                  <td class="text-center" colspan="10">
+                    Empty lists
+                  </td>
+                </tr>
               </tbody>
               <!-- <tfoot>
                 <tr>

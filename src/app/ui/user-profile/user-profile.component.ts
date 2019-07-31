@@ -3,6 +3,8 @@ import { AuthService } from '../../core/auth.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
+import { TokenService } from 'src/app/core/token.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'user-profile',
@@ -21,20 +23,27 @@ export class UserProfileComponent implements OnInit {
   showMessage = false;
   passwordForm;
   isChangePassword: Boolean = false;
+  cookieExists: any;
 
   constructor(
     public auth: AuthService,
     private formBuilder: FormBuilder,
     private storage: AngularFireStorage,
+    private tokenService: TokenService,
+    private router: Router
     ) {
     this.createForm();
+    this.cookieExists = tokenService.checkToken();
+    if(!this.cookieExists) {
+      router.navigate(['/login']);
+    }
   }
 
   createForm() {
     this.form = this.formBuilder.group({
-      uid: [''],
-      firstName: [''],
-      lastName: [''],
+      _id: [''],
+      firstname: [''],
+      lastname: [''],
       email: [''],
       state: [''],
       contact: [''],
@@ -73,7 +82,16 @@ export class UserProfileComponent implements OnInit {
     // this.auth.signOut();
   }
 
+  GetLoginUser() {
+    this.auth.GetLoginUser().subscribe((res: any) => {
+      this.user = res.result;
+      this.form.patchValue(res.result);
+    })
+  }
+
   ngOnInit() {
+
+    this.GetLoginUser();
 
     // console.log(this.auth.changePassword(123));
     // console.log(this.auth.user.uid)
@@ -87,6 +105,9 @@ export class UserProfileComponent implements OnInit {
   }
 
   updateProfile() {
+    this.auth.UpdateProfile(this.form.value).subscribe((res: any) => {
+      // console.elog()
+    })
     // console.log(this.form.value)
 
     // this.auth.updateProfile(this.form.value).then(() => {

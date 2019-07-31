@@ -366,9 +366,9 @@
                       <div class="clearfix">
                         <div class="b-product_grid_toggle float-left">
                           <!-- <span class="b-price">Add To Project</span> -->
-                          <span class="b-add_cart" [tooltip]="authService.user?'':'Please login to use Project Manager'" (click)="addToProduct(product)">
+                          <span class="b-add_cart" [tooltip]="cookieExists?'':'Please login to use Project Manager'" (click)="addToProduct(product)">
                             <i class="icon-plus icons"></i>
-                            <a href="javascript:void();">Add To Project</a>
+                            <a href="javascript:void(0);">Add To Project</a>
                           </span>
                         </div>
                         <!-- <div class="b-product_options float-right">

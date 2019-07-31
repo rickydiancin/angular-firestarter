@@ -133,11 +133,11 @@
                            <div class="clearfix">
                              <div class="b-product_grid_toggle float-left">
                                  <!-- <span class="b-price">Add To Project</span> -->
-                                 <span class="b-add_cart" *ngIf="!cookieExists" tooltip="Please login to use Project Manager">
+                                 <span class="b-add_cart" [tooltip]="cookieExists?'':'Please login to use Project Manager'" (click)="addToProduct(product)">
                                      <i class="icon-plus icons"></i>
-                                     <a href="javascript:void();" routerLink="/login">Add To Project</a>
+                                     <a href="javascript:void();">Add To Project</a>
                                  </span>
-                                 <span class="b-add_cart" *ngIf="cookieExists" (click)="addToProduct(product)">
+                                 <span class="b-add_cart" *ngIf="!cookieExists">
                                      <i class="icon-plus icons"></i>
                                      <a href="javascript:void();" >Add To Project</a>
                                  </span>
@@ -430,18 +430,18 @@
             </div>
             <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
               <div class="form-group">
-                <label>Subject</label>
+                <label>Subject <i style="color: red;">*</i> <span id="userName-info" class="info"></span></label>
                 <input type="text" name="subject" id="subject" formControlName="subject">
               </div>
             </div>
             <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
               <div class="form-group">
-                <label>Your Message</label>
+                <label>Your Message <i style="color: red;">*</i> <span id="userName-info" class="info"></span></label>
                 <textarea name="content" id="content" formControlName="message"></textarea>
               </div>
             </div>
             <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
-              <button [disabled]="form.invalid" (click)="sendContact()" class="btn btn-bg text-white">SEND A MESSAGE</button>
+              <button [disabled]="form.invalid" (click)="NewInquires()" class="btn btn-bg text-white">SEND A MESSAGE</button>
             </div>
           </div>
         </form>

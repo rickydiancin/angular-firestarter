@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 const BASEURL = environment.BASEURL;
@@ -9,10 +9,26 @@ const BASEURL = environment.BASEURL;
   providedIn: 'root'
 })
 export class ProjectService {
+  
+  _listener: any = new Subject<any>();
 
   constructor(
     private httpClient: HttpClient
   ) { }
+
+  AddProductToProject(product, projectID): Observable<any> {
+    return this.httpClient.post(`${BASEURL}/project/product/add`, product, {
+      params: new HttpParams()
+        .set('projectID', projectID)
+    });
+  }
+
+  RemoveToProject(product, projectID): Observable<any> {
+    return this.httpClient.post(`${BASEURL}/project/product/remove`, product, {
+      params: new HttpParams()
+        .set('projectID', projectID)
+    });
+  }
 
   NewProject(body): Observable<any> {
     return this.httpClient.post(`${BASEURL}/project/create`, body)
@@ -27,6 +43,14 @@ export class ProjectService {
       params: new HttpParams()
         .set('slug', slug)
     })
+  }
+
+  listen(): Observable<any> {
+    return this._listener.asObservable();
+  }
+
+  listener(data) {
+    this._listener.next(data);
   }
 
   // UpdateMenu(body): Observable<any> {

@@ -149,20 +149,12 @@ export class ProjectProductsComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.params.id;
     // this.getAllProjects();
-    this.getProject();
+    this.GetSingleProject();
   }
 
-  getAllProjects() {
-    // this.productsService.getSelectedProjectProducts(this.id.split('.')[1]).subscribe((productProject) => {
-    //   this.productProject = productProject;
-    //   console.log(this.productProject)
-    // });
-  }
-
-  getProject() {
+  GetSingleProject() {
     this.projectService.GetSingleProject(this.route.snapshot.params.id).subscribe((res: any) => {
-      console.log(res);
-      this.project = res;
+      this.project = res[0];
     })
   }
 
@@ -245,12 +237,12 @@ export class ProjectProductsComponent implements OnInit {
       doc.setFontType('bold')
       doc.text(5, 200, 'Project Code: ');
       doc.setFontType('normal')
-      doc.text(28, 200, this.id.split('.')[1]);
+      doc.text(28, 200, this.project.code);
 
       doc.setFontType('bold')
       doc.text(5, 210, 'Project Name: ');
       doc.setFontType('normal')
-      doc.text(5, 215, this.id.split('.')[0]);
+      doc.text(5, 215, this.project.name);
 
       doc.setFontType('normal');
       // doc.setTextColor(150)
@@ -271,9 +263,9 @@ export class ProjectProductsComponent implements OnInit {
 
       doc.addImage(imgData, 'PNG', 5, 5, width, height);
       doc.setProperties({
-        title: `${this.id.split('.')[0]}`
+        title: `${this.project.name}`
       });
-      doc.save(`${this.id.split('.')[0]}.pdf`);
+      doc.save(`${this.project.name}.pdf`);
     });
   }
 

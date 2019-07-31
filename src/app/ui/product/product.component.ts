@@ -13,6 +13,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DomSanitizer, Meta } from '@angular/platform-browser';
 import { SeoService } from 'src/app/core/seo.service';
+import { TokenService } from 'src/app/core/token.service';
 
 declare var $: any;
 
@@ -157,6 +158,7 @@ export class ProductComponent implements OnInit, AfterViewInit {
   };
   slick: any = 0;
   params: any;
+  cookieExists: any;
 
   constructor(
     private scriptsService: ScriptsService,
@@ -168,8 +170,10 @@ export class ProductComponent implements OnInit, AfterViewInit {
     private afAuth: AngularFireAuth,
     private spinner: NgxSpinnerService,
     public sanitizer: DomSanitizer,
-    private seo: SeoService
+    private seo: SeoService,
+    private tokenService: TokenService
   ) {
+    this.cookieExists = tokenService.checkToken();
   }
 
   makeTrustedImage(item) {

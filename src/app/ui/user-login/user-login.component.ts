@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../core/auth.service';
 import { StorageService } from 'src/app/core/storage.service';
 import { TokenService } from 'src/app/core/token.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'user-login',
@@ -20,9 +21,13 @@ export class UserLoginComponent implements OnInit {
     public auth: AuthService,
     private router: Router,
     public storage: StorageService,
-    public tokenService: TokenService
+    public tokenService: TokenService,
+    public location: Location
     ) { 
       this.cookieExists = tokenService.checkToken();
+      if(this.cookieExists) {
+        location.back();
+      }
       // console.log(auth.user);
     }
 
