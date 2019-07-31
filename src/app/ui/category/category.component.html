@@ -241,7 +241,7 @@
             <a *ngIf="params?.solutionid && params?.solutionid !== 'all'" href="#" routerLink="/solution/all">Solutions</a>
             <span *ngIf="params?.solutionid !== 'all'">{{solution?.name | titlecase}}</span>
 
-            <a *ngIf="queryParams" href="" routerLink="#">Search</a>
+            <a *ngIf="queryParams" href="javascript:void(0)">Search</a>
             <span *ngIf="queryParams">Search results for “{{queryParams?.s}}”</span>
           </nav>
         </div>
