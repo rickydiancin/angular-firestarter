@@ -55,6 +55,14 @@ export class UserFormComponent implements OnInit {
   }
 
   signup() {
+    this.auth.CreateUser(this.regform.value).subscribe((res: any) => {
+      this.message = res.message;
+      this.style = 'success';
+      this.regform.reset();
+    }, (err) => {
+      this.message = err.error.message;
+      this.style = 'danger';
+    });
     // this.auth.emailSignUp(this.regform.value).then((success:any) => {
     //   if(success) {
     //     this.regform.value['type'] = 'new user';
@@ -92,29 +100,30 @@ export class UserFormComponent implements OnInit {
         Validators.email,
       ]],
       'password': ['', [
-        // Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
-        Validators.minLength(4),
-        Validators.maxLength(25),
+        Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
+        Validators.minLength(6),
+        Validators.maxLength(25)
       ]],
     });
 
     this.regform = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
       state: ['', Validators.required],
       contact: [''],
       company: [''],
       city: [''],
-      email2: ['', [
+      email: ['', [
         Validators.required,
         Validators.email,
       ]],
-      password2: ['', [
+      password: ['', [
         Validators.required,
         Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
         Validators.minLength(6),
         Validators.maxLength(25),
       ]],
+      role: ['user'],
     });
 
     // this.userForm.valueChanges.subscribe((data) => this.onValueChanged(data));

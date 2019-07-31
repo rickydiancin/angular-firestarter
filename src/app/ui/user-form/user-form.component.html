@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-sm-12" *ngIf="message">
           <div class="alert alert-{{style}}" role="alert">
-            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <strong>Warning!</strong> {{message}}
+            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <strong>{{style === 'success'?'Success':'Warning'}}</strong> {{message}}
           </div>
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12"> 
@@ -55,29 +55,29 @@
                 <form [formGroup]="regform" (ngSubmit)="signup()">
                   <div class="form-group">
                     <label for="">First name <span class="b-required">*</span></label>
-                    <div [ngClass]="{'is-danger': (regform.controls.firstName?.errors && regform.controls.firstName?.dirty)}">
-                      <input type="text" id="firstName" name="firstName" class="input" formControlName="firstName" autocomplete="off">
+                    <div [ngClass]="{'is-danger': (regform.controls.firstname?.errors && regform.controls.firstname?.dirty)}">
+                      <input type="text" id="firstname" name="firstname" class="input" formControlName="firstname" autocomplete="off">
                       <ul class="is-danger-feedback">
-                        <li *ngIf="regform.controls.firstName.errors?.required">This field is required</li>
+                        <li *ngIf="regform.controls.firstname.errors?.required">This field is required</li>
                       </ul>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="">Last name <span class="b-required">*</span></label>
-                    <div [ngClass]="{'is-danger': (regform.controls.lastName?.errors && regform.controls.lastName?.dirty)}">
-                      <input type="text" id="lastName" name="lastName" class="input" formControlName="lastName" autocomplete="off">
+                    <div [ngClass]="{'is-danger': (regform.controls.lastname?.errors && regform.controls.lastname?.dirty)}">
+                      <input type="text" id="lastname" name="lastname" class="input" formControlName="lastname" autocomplete="off">
                       <ul class="is-danger-feedback">
-                        <li *ngIf="regform.controls.lastName.errors?.required">This field is required</li>
+                        <li *ngIf="regform.controls.lastname.errors?.required">This field is required</li>
                       </ul>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="">Email <span class="b-required">*</span></label>
-                    <div [ngClass]="{'is-danger': (regform.controls.email2?.errors && regform.controls.email2?.dirty)}">
-                      <input type="email" id="email2" name="email2" class="input" formControlName="email2" autocomplete="off">
+                    <div [ngClass]="{'is-danger': (regform.controls.email?.errors && regform.controls.email?.dirty)}">
+                      <input type="email" id="email" name="email" class="input" formControlName="email" autocomplete="off">
                       <ul class="is-danger-feedback">
-                        <li *ngIf="regform.controls.email2.errors?.required">This field is required</li>
-                        <li *ngIf="regform.controls.email2.errors?.email">Email must be a valid email</li>
+                        <li *ngIf="regform.controls.email.errors?.required">This field is required</li>
+                        <li *ngIf="regform.controls.email.errors?.email">Email must be a valid email</li>
                       </ul>
                     </div>
                   </div>
@@ -108,12 +108,12 @@
                   </div>
                   <div class="form-group has-success">
                     <label for="">Password <span class="b-required">*</span></label>
-                    <div [ngClass]="{'is-danger': (regform?.controls?.password2?.errors && regform?.controls?.password2?.dirty)}">
-                      <input type="password" id="password2" name="password2" class="input" formControlName="password2" autocomplete="off">
+                    <div [ngClass]="{'is-danger': (regform?.controls?.password?.errors && regform?.controls?.password?.dirty)}">
+                      <input type="password" id="password" name="password" class="input" formControlName="password" autocomplete="off">
                       <ul class="is-danger-feedback">
-                        <li *ngIf="regform.controls.password2.errors?.required">This field is required</li>
-                        <li *ngIf="regform.controls.password2.errors?.pattern">Password must be include at one letter and one number</li>
-                        <li *ngIf="regform.controls.password2.errors?.minlength">Password must be at least 6 chareacter long</li>
+                        <li *ngIf="regform.controls.password.errors?.required">This field is required</li>
+                        <li *ngIf="regform.controls.password.errors?.pattern">Password must be include letter and number</li>
+                        <li *ngIf="regform.controls.password.errors?.minlength">Password must be at least 6 chareacter long</li>
                       </ul>
                     </div>
                   </div>
