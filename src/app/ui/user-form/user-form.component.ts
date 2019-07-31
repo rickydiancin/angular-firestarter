@@ -66,10 +66,13 @@ export class UserFormComponent implements OnInit {
   }
 
   login() {
+    this.message = '';
     this.auth.login(this.userForm.value).subscribe((res: any) => {
-      // console.log(res);
       this.location.back();
       this.tokenService.setToken(res.token);
+    }, (err) => {
+      this.message = err.error.message;
+      this.style = 'danger';
     })
     // this.message = '';
     // this.auth.emailLogin(this.userForm.value['email'], this.userForm.value['password']);
