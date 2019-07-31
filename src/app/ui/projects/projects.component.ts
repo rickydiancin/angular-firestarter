@@ -58,11 +58,14 @@ export class ProjectsComponent implements OnInit {
     })
   }
 
-  // deleteProject(id) {
-  //   this.productServices.deleteProject(id).then(() => {
-  //     console.log('Project successfully deleted');
-  //   })
-  // }
+  deleteProject(project) {
+    if(confirm("Do you want to delete?")) {
+      this.projectService.Deleteproject(project._id).subscribe((res: any) => {
+        console.log('Project successfully deleted');
+        this.GetAllProjects();
+      })
+    }
+  }
 
   editProject(data) {
     this.form.patchValue(data);
