@@ -35,6 +35,7 @@ export class ProjectsComponent implements OnInit {
 
   createForm() {
     this.form = this.formBuilder.group({
+      _id: [''],
       name: ['', Validators.required],
       description: ['', Validators.required],
       code: ['', Validators.required],
@@ -63,18 +64,18 @@ export class ProjectsComponent implements OnInit {
   //   })
   // }
 
-  // editProject(data) {
-  //   this.form.patchValue(data);
-  //   this.isUpdate = true;
-  // }
+  editProject(data) {
+    this.form.patchValue(data);
+    this.isUpdate = true;
+  }
 
-  // updateProject() {
-  //   this.productServices.newProjects(this.form.value).then(() => {
-  //     console.log('Project successfully updated');
-  //     this.form.reset();
-  //     this.isUpdate = false;
-  //   })
-  // }
+  updateProject() {
+    this.projectService.UpdateProject(this.form.value).subscribe((res: any) => {
+      this.form.reset();
+      this.isUpdate = false;
+      this.GetAllProjects();
+    })
+  }
 
   updateCancel() {
     this.form.reset();

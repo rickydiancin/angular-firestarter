@@ -2,7 +2,8 @@
     <h1 class="b-entry_title"><span>PROJECTS</span></h1>  
     <div class="b-breadcrumbs">
       <a href="#" routerLink="/">Home</a>
-      <span>SPECIFICATIONS</span>
+      <!-- <a href="#" routerLink="/projects">Projects</a> -->
+      <span>Projects</span>
     </div>
   </div>
   <!-- <div class="alert alert-success">New Project Successfully Added.</div> -->
@@ -95,7 +96,7 @@
                 </td>
                 <td data-th="Date">{{project?.dateCreated | date:'MM/dd/yy'}}</td>
                 <td data-th="Code">
-                  <input type="text" class="form-control text-center" value="{{project?.code}}">
+                  <input type="text" class="form-control text-center" value="{{project?.code}}" readonly>
                 </td>
                 <td data-th="Location">{{project?.location | titlecase}}</td>
                 <td class="actions" data-th="">
