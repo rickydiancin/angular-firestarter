@@ -6,6 +6,7 @@ import { VariablesService } from 'src/app/core/variables.service';
 import { ProjectService } from 'src/app/core/project.service';
 import * as Papa from 'papaparse';
 import { saveAs } from 'file-saver';
+import _ = require('lodash');
 
 declare var $: any;
 declare let jsPDF;
