@@ -31,7 +31,7 @@ const routes: Routes = [
   { path: 'products/search', component: CategoryComponent },
   { path: 'postcategory/:cat', component: NewsComponent },
   { path: 'postcategory/:cat/:id', component: NewssingleComponent },
-  { path: 'category/all', component: CategoryComponent },
+  // { path: 'category/all', component: CategoryComponent },
   { path: 'category/:id', component: CategoryComponent },
   // { path: ':solutionsName', component: CategoryComponent },
   { path: 'solution/:solutionid', component: CategoryComponent },

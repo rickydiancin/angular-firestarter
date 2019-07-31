@@ -225,14 +225,20 @@
         <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12"> 
           <nav class="b-shop_breadcrumb">
             <a href="/">Home</a>
-            <span *ngIf="params?.id === 'all'">All Catalogue</span>
-            <span *ngIf="params?.solutionid === 'all'">All Solutions</span>
+
+            <a *ngIf="params?.id && params?.id === 'all'" href="#" routerLink="/category/all">Categories</a>
+            <span *ngIf="params?.id === 'all'">All</span>
+
+            <a *ngIf="params?.solutionid && params?.solutionid === 'all'" href="#" routerLink="/solution/all">Solutions</a>
+            <span *ngIf="params?.solutionid === 'all'">All</span>
             <!-- <span *ngIf="params?.catName == 'solution'">All Solution</span> -->
 
             <!-- <a *ngIf="category" href="#" routerLink="/category/all">Category</a> -->
+            <a *ngIf="params?.id && params?.id !== 'all'" href="#" routerLink="/category/all">Categories</a>
             <span *ngIf="params?.id !== 'all'">{{category?.name | titlecase}}</span>
 
             <!-- <a *ngIf="solution" href="#" routerLink="/solution/all">Solution</a> -->
+            <a *ngIf="params?.solutionid && params?.solutionid !== 'all'" href="#" routerLink="/solution/all">Solutions</a>
             <span *ngIf="params?.solutionid !== 'all'">{{solution?.name | titlecase}}</span>
 
             <a *ngIf="queryParams" href="" routerLink="#">Search</a>
