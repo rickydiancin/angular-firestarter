@@ -43,17 +43,17 @@ export class NewssingleComponent implements OnInit {
   }
 
   getSinglePost(id) {
-    // this.postsLoaded = false;
-    // this.postService.getSinglePost(id).subscribe((res:any) => {
-    //   this.singleNews = res;
-    //   this.postsLoaded = true;
-    //   this.seo.generateTags({
-    //     title: res.seoTitle || res.title,
-    //     description: res.seoDescription || res.content,
-    //     image: res.imgURL,
-    //     slug: res.category
-    //   });
-    // })
+    this.postsLoaded = false;
+    this.postService.GetSinglePostByIndex(id).subscribe((res:any) => {
+      this.singleNews = res;
+      this.postsLoaded = true;
+      this.seo.generateTags({
+        title: res.seoTitle || res.title,
+        description: res.seoDescription || res.content,
+        image: res.imgURL,
+        slug: res.slug
+      });
+    })
   }
 
 }

@@ -37,15 +37,15 @@ export class NewsComponent implements OnInit {
 
   getAllPosts() {
     this.route.params.subscribe((params) => {
-      if(params) {
+      if(params.cat) {
         this.postsLoaded = false;
-        this.postService.getAllPostsByCategory(params.cat).subscribe((res) => {
+        this.postService.GetAllPostCategoryByID(params.cat).subscribe((res) => {
           this.posts = res;
           this.postsLoaded = true;
         });
-        this.postService.getAllPostsByCategory(params.cat, 5).subscribe((res) => {
-          this.recents = res;
-        })
+        // this.postService.GetAllPostCategory(params.cat, 5).subscribe((res) => {
+        //   this.recents = res;
+        // })
       }
     })
   }

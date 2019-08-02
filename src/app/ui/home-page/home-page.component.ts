@@ -16,6 +16,7 @@ import { PostService } from 'src/app/core/post.service';
 import { MenuService } from 'src/app/core/menu.service';
 import { environment } from 'src/environments/environment';
 import { TokenService } from 'src/app/core/token.service';
+import { AuthService } from 'src/app/core/auth.service';
 
 @Component({
   selector: 'home-page',
@@ -58,7 +59,7 @@ export class HomePageComponent implements OnInit {
     private titleService: Title,
     private route: ActivatedRoute,
     private modalService: NgbModal,
-    private afAuth: AngularFireAuth,
+    private auth: AuthService,
     private bannerService: BannerService,
     private postService: PostService,
     private menuService: MenuService,
@@ -67,6 +68,9 @@ export class HomePageComponent implements OnInit {
     this.createForm();
     this.titleService.setTitle(`Leading Provider and Supplier of Tapware in Australia | Gentec Australia`);
     this.cookieExists = tokenService.checkToken();
+    this.auth.listen().subscribe(() => {
+      this.cookieExists = tokenService.checkToken();
+    })
   }
 
   createForm() {

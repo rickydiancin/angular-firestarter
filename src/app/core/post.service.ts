@@ -31,6 +31,13 @@ export class PostService {
     return this.httpClient.get(`${BASEURL}/post/category/all`);
   }
 
+  GetAllPostCategoryByID(slug): Observable<any> {
+    return this.httpClient.get(`${BASEURL}/post/category`, {
+      params: new HttpParams()
+        .set('slug', slug)
+    });
+  }
+
   GetSinglePostCategory(index): Observable<any> {
     return this.httpClient.get(`${BASEURL}/post/category/single`, {
       params: new HttpParams()
@@ -98,6 +105,13 @@ getAllPostsByCategory(category, limit?:number) {
 }
 
 /* For deletion...firebase  */
+
+  GetSinglePostByIndex(index): Observable<any> {
+    return this.httpClient.get(`${BASEURL}/post/single/index`, {
+      params: new HttpParams()
+        .set('index', index)
+    });
+  }
 
   GetSinglePage(slug): Observable<any> {
     return this.httpClient.get(`${BASEURL}/post/single/page`, {
