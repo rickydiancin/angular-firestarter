@@ -40,6 +40,7 @@ export class NewsComponent implements OnInit {
       if(params.cat) {
         this.postsLoaded = false;
         this.postService.GetAllPostCategoryByID(params.cat).subscribe((res) => {
+          console.log('posts: ', this.posts);
           this.posts = res;
           this.postsLoaded = true;
         });
