@@ -48,8 +48,8 @@ export class HomePageComponent implements OnInit {
   loadPost: boolean;
   loadRelease: boolean;
   cookieExists: boolean;
-  message: any;
-  success: boolean;
+  message: any = '';
+  success: boolean = false;
 
   constructor(
     private scriptsService: ScriptsService,
