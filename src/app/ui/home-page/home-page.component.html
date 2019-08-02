@@ -185,7 +185,7 @@
               <div class="b-blog_degault_single">
                  <div class="b-blog_single_header">
                       <div class="">
-                          <a href="#" routerLink="/post/{{post?.slug}}/{{post?.slug}}">
+                          <a href="#" routerLink="/post/{{post?.category}}/{{post?.slug}}">
                               <img [src]="ImageURL+post?.imgURL || '/assets/images/blog/home/blog_default_01.jpg'"  class="img-fluid" alt="">
                           </a>
                       </div>
@@ -195,13 +195,13 @@
                       </div> -->
                       <div class="b-post_categories">
                          <div class="b-post_categorie_list">
-                            <a href="#" rel="category tag" routerLink="/post/{{post?.slug}}/{{post?.index}}">{{post?.category | titlecase}}</a>
+                            <a href="#" rel="category tag" routerLink="/post/{{post?.category}}/{{post?.slug}}">{{post?.category | titlecase}}</a>
                          </div>
                       </div>
                   </div>  
                   <div class="b-blog_single_info">
                       <h5 class="b-entry_title">
-                          <a href="#" rel="bookmark" routerLink="/post/{{post?.slug}}/{{post?.index}}">{{post?.title | titlecase}}</a>
+                          <a href="#" rel="bookmark" routerLink="/post/{{post?.category}}/{{post?.slug}}">{{post?.title | titlecase}}</a>
                       </h5>
                       <!-- <div class="b-author_info">
                           <span class="b-author_name">
@@ -214,7 +214,7 @@
                       <div class="b-blog_single_content" [innerHTML]="post?.content | slice:0:200"></div> 
                   </div>
                   <div class="b-read_more">
-                      <a href="#" routerLink="/post/{{post?.slug}}">Read More</a>
+                      <a href="#" routerLink="/post/{{post?.category}}/{{post?.slug}}">Read More</a>
                   </div>
               </div>
            
@@ -445,7 +445,7 @@
         </form>
         <div class="mt-4" id="mail-status"></div>
         <div class="alert alert-success mt-4" *ngIf="success">
-          <strong>Success!</strong>{{message}}.
+          <strong>Success!</strong> {{message}}.
         </div>
       </div>
       <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12">

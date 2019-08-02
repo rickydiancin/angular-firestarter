@@ -76,10 +76,10 @@ export class PostService {
     });
   }
 
-  GetSinglePostByIndex(index): Observable<any> {
+  GetSinglePostByIndex(slug): Observable<any> {
     return this.httpClient.get(`${BASEURL}/post/single/index`, {
       params: new HttpParams()
-        .set('index', index)
+        .set('slug', slug)
     });
   }
 

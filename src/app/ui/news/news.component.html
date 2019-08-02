@@ -20,7 +20,7 @@
           <div class="b-blog_degault_single" *ngFor="let post of posts">
              <div class="b-blog_single_header">
                   <div class="b-blog_img_wrap">
-                      <a href="#" routerLink="/post/{{params}}/{{post?.index}}">
+                      <a href="#" routerLink="/post/{{params}}/{{post?.slug}}">
                           <img [src]="post?.imgURL"  class="img-fluid img-block" alt="" style="width: 100%;">
                       </a>
                   </div>
@@ -36,7 +36,7 @@
               </div>  
               <div class="b-blog_single_info">
                   <h3 class="b-entry_title">
-                      <a href="#" routerLink="/post/{{params}}/{{post?.index}}" rel="bookmark">{{post?.title}}</a>
+                      <a href="#" routerLink="/post/{{params}}/{{post?.slug}}" rel="bookmark">{{post?.title}}</a>
                   </h3>
                   <!-- <div class="b-author_info">
                       <span class="b-author_name">
@@ -51,7 +51,7 @@
                       <p [innerHTML]="post?.content | slice:0:300"></p> </div> </div>
               </div>
               <div class="b-read_more text-center">
-                  <a href="#" routerLink="/postcategory/{{params}}/{{post?.id}}">Read More</a>
+                  <a href="#" routerLink="/post/{{params}}/{{post?.slug}}">Read More</a>
               </div>
               <div class="b-blog_social">
                 <ul class="list-unstyled clearfix mb-0">
