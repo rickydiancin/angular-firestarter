@@ -78,6 +78,7 @@ export class UserFormComponent implements OnInit {
     this.auth.login(this.userForm.value).subscribe((res: any) => {
       this.location.back();
       this.tokenService.setToken(res.token);
+      this.auth.listener(res.token);
     }, (err) => {
       this.message = err.error.message;
       this.style = 'danger';

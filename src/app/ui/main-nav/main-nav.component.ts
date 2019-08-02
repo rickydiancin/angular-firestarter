@@ -58,6 +58,9 @@ export class MainNavComponent implements OnInit {
     private tokenService: TokenService
   ) {
 
+    this.auth.listen().subscribe(() => {
+      this.cookieExists = tokenService.checkToken();
+    });
     this.cookieExists = tokenService.checkToken();
     // this.af.authState.subscribe((auth) => {
       
