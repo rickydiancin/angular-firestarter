@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 const BASEURL = environment.BASEURL;
@@ -9,6 +9,8 @@ const BASEURL = environment.BASEURL;
   providedIn: 'root'
 })
 export class AuthService {
+
+  _listener: any = new Subject<any>();
 
   constructor(
     private httpClient: HttpClient
@@ -46,6 +48,14 @@ export class AuthService {
 
   login(body): Observable<any> {
     return this.httpClient.post(`${BASEURL}/login`, body);
+  }
+
+  listen(): Observable<any> {
+    return this._listener.asObservable();
+  }
+
+  listener(data) {
+    this._listener.next(data);
   }
   
 }

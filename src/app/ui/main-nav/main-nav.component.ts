@@ -44,6 +44,7 @@ export class MainNavComponent implements OnInit {
   cookieExists: boolean;
 
   ImageURL = environment.ImageURL;
+  pages: any;
   
   constructor(
     private scriptsService: ScriptsService,
@@ -57,6 +58,9 @@ export class MainNavComponent implements OnInit {
     private tokenService: TokenService
   ) {
 
+    this.auth.listen().subscribe(() => {
+      this.cookieExists = tokenService.checkToken();
+    });
     this.cookieExists = tokenService.checkToken();
     // this.af.authState.subscribe((auth) => {
       
@@ -71,6 +75,12 @@ export class MainNavComponent implements OnInit {
     // this.vs.sampleApi().subscribe((res) => {
     //   console.log(res)
     // })
+  }
+
+  GetOneMenu() {
+    this.menuService.GetOneMenu('5d43a93487cb4f2cbcf993f1').subscribe((res: any) => {
+      this.pages = res;
+    })
   }
 
   GetAllSolutions() {
@@ -98,6 +108,7 @@ export class MainNavComponent implements OnInit {
   
   ngOnInit() {
 
+    this.GetOneMenu();
     this.GetAllSolutions();
     this.GetAllCategory();
 

@@ -33,6 +33,13 @@ export class MenuService {
     return this.httpClient.get(`${BASEURL}/menus/all`)
   }
 
+  GetOneMenu(id): Observable<any> {
+    return this.httpClient.get(`${BASEURL}/menus/one`, {
+      params: new HttpParams()
+        .set('_id', id)
+    })
+  }
+
   GetSingleMenu(id): Observable<any> {
     return this.httpClient.get(`${BASEURL}/menus/single`, {
       params: new HttpParams()

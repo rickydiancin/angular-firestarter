@@ -79,7 +79,7 @@
                     <h5 class="b-footer_block_title text-uppercase">Products</h5>
                     <div class="b-footer_block_in">
                       <ul class="b-footer_menu">
-                        <li *ngFor="let a of footerMenus?.menu1"><a href="#" [routerLink]="a?.url">{{a?.categoryName | titlecase}}</a></li>
+                        <li *ngFor="let a of footer1?.value"><a href="#" routerLink="/category/{{a?.slug}}">{{a?.label | titlecase}}</a></li>
                       </ul>
                     </div>
                   </div>
@@ -89,7 +89,7 @@
                     <h5 class="b-footer_block_title text-uppercase" style="opacity: 0;">Products</h5>
                     <div class="b-footer_block_in">
                       <ul class="b-footer_menu">
-                        <li *ngFor="let a of footerMenus?.menu2"><a href="#" [routerLink]="a?.url">{{a?.categoryName | titlecase}}</a>
+                        <li *ngFor="let a of footer2?.value"><a href="#" routerLink="/category/{{a?.slug}}">{{a?.label | titlecase}}</a>
                         </li>
                       </ul>
                     </div>
@@ -100,7 +100,7 @@
                     <h5 class="b-footer_block_title text-uppercase" style="opacity: 0;">Products</h5>
                     <div class="b-footer_block_in">
                       <ul class="b-footer_menu">
-                        <li *ngFor="let a of footerMenus?.menu3"><a href="#" [routerLink]="a?.url">{{a?.categoryName | titlecase}}</a>
+                        <li *ngFor="let a of footer3?.value"><a href="#" routerLink="/category/{{a?.slug}}">{{a?.label | titlecase}}</a>
                         </li>
                       </ul>
                     </div>
@@ -141,8 +141,8 @@
                     <h5 class="b-footer_block_title text-uppercase">Others</h5>
                     <div class="b-footer_block_in">
                       <ul class="b-footer_menu">
-                        <li *ngFor="let other of footerMenus?.others"><a href="#"
-                            [routerLink]="other?.url">{{other?.categoryName | titlecase}}</a></li>
+                        <li *ngFor="let other of others?.value"><a href="#"
+                            routerLink="/page/{{other?.slug}}">{{other?.label | titlecase}}</a></li>
                       </ul>
                     </div>
                   </div>

@@ -39,6 +39,7 @@ import { DistributionComponent } from './distribution/distribution.component';
 import { SafePipe } from './product/safePipe';
 import { ShareButtonModule } from '@ngx-share/button';
 import '../../icons';
+import { PageContentComponent } from './page-content/page-content.component';
 
 @NgModule({
   imports: [
@@ -83,7 +84,8 @@ import '../../icons';
     SearchFilterPipe,
     WarrantyComponent,
     DistributionComponent,
-    SafePipe
+    SafePipe,
+    PageContentComponent
   ],
   entryComponents:[
     AddProjectComponent,

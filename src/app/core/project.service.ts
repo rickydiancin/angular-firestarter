@@ -34,6 +34,17 @@ export class ProjectService {
     return this.httpClient.post(`${BASEURL}/project/create`, body)
   }
 
+  UpdateProject(body): Observable<any> {
+    return this.httpClient.put(`${BASEURL}/project/update`, body)
+  }
+
+  Deleteproject(_id): Observable<any> {
+    return this.httpClient.delete(`${BASEURL}/project/delete`, {
+      params: new HttpParams()
+        .set('_id', _id)
+    })
+  }
+
   GetAllProjects(): Observable<any> {
     return this.httpClient.get(`${BASEURL}/project/all`)
   }

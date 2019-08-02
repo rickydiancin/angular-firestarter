@@ -4,6 +4,9 @@ import { ProductService } from 'src/app/core/products.service';
 import * as html2canvas from 'html2canvas';
 import { VariablesService } from 'src/app/core/variables.service';
 import { ProjectService } from 'src/app/core/project.service';
+import * as Papa from 'papaparse';
+import { saveAs } from 'file-saver';
+import * as _ from 'lodash';
 
 declare var $: any;
 declare let jsPDF;
@@ -21,123 +24,6 @@ export class ProjectProductsComponent implements OnInit {
   success: Boolean;
   message: any;
   project: any;
-
-  options = {
-    fieldSeparator: ',',
-    quoteStrings: '',
-    decimalseparator: '.',
-    showLabels: true,
-    showTitle: false,
-    title: 'asfasf',
-    useBom: false,
-    removeNewLines: true,
-    headers: [
-      'productCode',
-      'productTitle',
-      'productDescription',
-      'productPrice',
-      'categories',
-      'parentProduct',
-      'dateCreated',
-      'createdBy',
-      'description',
-      'width',
-      'height',
-      'depth',
-      'leverLength',
-      'weightBearing',
-      'wasteLocation',
-      'plugAndWaste',
-      'overflow',
-      'seatColour',
-      'sTrap',
-      'pTrap',
-      'flushPlate',
-      'welsRating',
-      'litresPerMinute',
-      'materials',
-      'lockable',
-      'cartridge',
-      'cartridgeSize',
-      'runTime',
-      'inletValve',
-      'outletValve',
-      'outlet',
-      'MixedTemp',
-      'inletTemperatureHot',
-      'inletTemperatureCold',
-      'maxInletPressure',
-      'workingPressures',
-      'maxWorkingTemp',
-      'seat',
-      'colourFinish',
-      'servicing',
-      'solutions',
-      'warranty',
-      'feautures',
-      'flowRate',
-      'fireResistanceLevel',
-      'patentNumber',
-      // 'secondaryImageURLS',
-      'technicalSheetURL',
-      'DWGFileURL',
-      'revitFileURL',
-      // 'imageURL',
-    ],
-    keys: [
-      'productCode',
-      'productTitle',
-      'productDescription',
-      'productPrice',
-      'categoriesCode',
-      'parentProduct',
-      'dateCreated',
-      'createdBy',
-      'description',
-      'width',
-      'height',
-      'depth',
-      'leverLength',
-      'weightBearing',
-      'wasteLocation',
-      'plugAndWaste',
-      'overflow',
-      'seatColour',
-      'sTrap',
-      'pTrap',
-      'flushPlate',
-      'welsRating',
-      'litresPerMinute',
-      'materials',
-      'lockable',
-      'cartridge',
-      'cartridgeSize',
-      'runTime',
-      'inletValve',
-      'outletValve',
-      'outlet',
-      'MixedTemp',
-      'inletTemperatureHot',
-      'inletTemperatureCold',
-      'maxInletPressure',
-      'workingPressures',
-      'maxWorkingTemp',
-      'seat',
-      'colourFinish',
-      'servicing',
-      'solutionsCode',
-      'warranty',
-      'feautures',
-      'flowRate',
-      'fireResistanceLevel',
-      'patentNumber',
-      // 'secondaryImageURLS',
-      'technicalSheetURL',
-      'DWGFileURL',
-      'revitFileURL',
-      // 'imageURL'
-    ]
-  };
 
   constructor(
     private route: ActivatedRoute,
@@ -165,10 +51,6 @@ export class ProjectProductsComponent implements OnInit {
     //   this.message = `'${product.productTitle}' was removed from your '${this.id.split('.')[0]}' project`;
     // })
     // }
-  }
-
-  downloadFile() {
-    $('#exportFile').click();
   }
 
   // downloadPDF() {
@@ -267,6 +149,20 @@ export class ProjectProductsComponent implements OnInit {
       });
       doc.save(`${this.project.name}.pdf`);
     });
+  }
+
+  downloadFile() {
+    let options = {
+      header: true,
+      skipEmptyLines: 'true'
+    }
+    const _products = [];
+    for(var p in this.project.products) {
+      _products.push(_.omit(this.project.products[p], ['_id', 'createdBy',	'dateCreated',	'__v', 'isValid'] ));
+    }
+    var csv = Papa.unparse(_products, options);
+    let blob = new Blob(["\ufeff", csv], { type: 'text/csv' });
+    saveAs(blob, "project_products.csv");
   }
 
 }

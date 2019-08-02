@@ -22,6 +22,10 @@ export class AppComponent implements OnInit {
   solutions:any;
   footerMenus:any;
   filterQuery:any;
+  footer1: any;
+  footer2: any;
+  footer3: any;
+  others: any;
 
   constructor(
     private auth: AuthService, 
@@ -44,13 +48,29 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 
-    this.footerMenus = this.vs.footer();
+    this.menuService.GetOneMenu('5d414b34a3a4161bd859fe2d').subscribe((res: any) => {
+      this.footer1 = res;
+    })
+    this.menuService.GetOneMenu('5d414b3ba3a4161bd859fe2f').subscribe((res: any) => {
+      // console.log(res)
+      this.footer2 = res;
+    })
+    this.menuService.GetOneMenu('5d414b42a3a4161bd859fe31').subscribe((res: any) => {
+      // console.log(res)
+      this.footer3 = res;
+    })
+    this.menuService.GetOneMenu('5d43a93487cb4f2cbcf993f1').subscribe((res: any) => {
+      // console.log(res)
+      this.others = res;
+    })
 
-    this.getAllProducts();
-    this.getAllSolution();
-    setTimeout(() => {
+    // this.footerMenus = this.vs.footer();
+
+    // this.getAllProducts();
+    // this.getAllSolution();
+    // setTimeout(() => {
      // this.scriptsService.prepareJquery();
-    }, 1000)
+    // }, 1000)
   }
 
   getAllSolution() {

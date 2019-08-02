@@ -99,6 +99,13 @@ getAllPostsByCategory(category, limit?:number) {
 
 /* For deletion...firebase  */
 
+  GetSinglePage(slug): Observable<any> {
+    return this.httpClient.get(`${BASEURL}/post/single/page`, {
+      params: new HttpParams()
+        .set('slug', slug)
+    });
+  }
+
   DeletePost(index): Observable<any> {
     return this.httpClient.delete(`${BASEURL}/post/delete`, {
       params: new HttpParams()

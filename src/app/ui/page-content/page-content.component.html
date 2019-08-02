@@ -1,0 +1,39 @@
+ <div class="spinner text-center p-5" *ngIf="!post">
+    <img src="./assets//svg/oval.svg" class="img-fluid" alt="">
+  </div>
+
+<!-- warranty -->
+<div *ngIf="post && params?.id !== 'distribution'">
+
+  <section id="warranty" class="pb-5">
+  <div class="container">
+
+      <div class="row clearfix">
+        <div [innerHTML]="post?.content"></div>
+      </div>
+  </div>
+</section>
+</div>
+
+<div *ngIf="params?.id === 'distribution'">
+  <div class="b-map">
+    <div id="b-map" class="b-map_in"></div>
+    <div class="b-map_over">
+      <h3>Gentec Head Office Sydney</h3>
+      <p>
+        <i class="fa fa-map-marker b-icon_large"></i>
+        Unit 6, 20- 28 Ricketty Street, <br>
+        Mascot, NSW 2020, Australia
+      </p>
+      <a href="#" [routerLink]="['/']" fragment="contactUs">Contact Us</a>
+    </div>
+  </div>
+  <section id="distribution" class="pb-5" *ngIf="post">
+    <!-- <div class="b-section_title">
+      <h4 class="text-center text-uppercase">
+        {{post?.title}}
+      </h4>
+  </div> -->
+  <div class="container" [innerHTML]="post?.content"></div>
+  </section>
+</div>
