@@ -31,10 +31,10 @@ export class PostService {
     return this.httpClient.get(`${BASEURL}/post/category/all`);
   }
 
-  GetAllPostCategoryByID(slug): Observable<any> {
+  GetAllPostCategoryByID(category): Observable<any> {
     return this.httpClient.get(`${BASEURL}/post/category`, {
       params: new HttpParams()
-        .set('slug', slug)
+        .set('category', category)
     });
   }
 

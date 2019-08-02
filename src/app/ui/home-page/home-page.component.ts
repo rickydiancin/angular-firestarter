@@ -48,6 +48,8 @@ export class HomePageComponent implements OnInit {
   loadPost: boolean;
   loadRelease: boolean;
   cookieExists: boolean;
+  message: any;
+  success: boolean;
 
   constructor(
     private scriptsService: ScriptsService,
@@ -211,8 +213,11 @@ export class HomePageComponent implements OnInit {
   }
 
   NewInquires() {
+    this.success = false;
     this.productService.NewInquires(this.form.value).subscribe((res: any) => {
       this.form.reset();
+      this.message = res.message
+      this.success = true
     })
     // this.form.value.isActive = true;
     // this.form.value.dateCreated = Date.now();
