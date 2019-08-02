@@ -7,6 +7,7 @@ import { faTwitterSquare } from '@fortawesome/free-brands-svg-icons/faTwitterSqu
 import { faPinterest } from '@fortawesome/free-brands-svg-icons/faPinterest';
 import { Meta } from '@angular/platform-browser';
 import { SeoService } from 'src/app/core/seo.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'newssingle',
@@ -23,6 +24,8 @@ export class NewssingleComponent implements OnInit {
   tweetIcon = faTwitterSquare;
 
   postsLoaded: boolean = false;
+
+  ImageURL = environment.ImageURL;
   
   constructor(
     private postService: PostService,
