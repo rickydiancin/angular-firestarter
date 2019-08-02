@@ -44,6 +44,7 @@ export class MainNavComponent implements OnInit {
   cookieExists: boolean;
 
   ImageURL = environment.ImageURL;
+  pages: any;
   
   constructor(
     private scriptsService: ScriptsService,
@@ -73,6 +74,12 @@ export class MainNavComponent implements OnInit {
     // })
   }
 
+  GetOneMenu() {
+    this.menuService.GetOneMenu('5d43a93487cb4f2cbcf993f1').subscribe((res: any) => {
+      this.pages = res;
+    })
+  }
+
   GetAllSolutions() {
     this.solutionLoader = true;
     this.menuService.GetSingleMenu('5d3981e331876d2aa4a48eef').subscribe((res: any) => {
@@ -98,6 +105,7 @@ export class MainNavComponent implements OnInit {
   
   ngOnInit() {
 
+    this.GetOneMenu();
     this.GetAllSolutions();
     this.GetAllCategory();
 

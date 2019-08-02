@@ -50,7 +50,6 @@ export class AppComponent implements OnInit {
   ngOnInit() {
 
     this.menuService.GetOneMenu('5d414b34a3a4161bd859fe2d').subscribe((res: any) => {
-      console.log(res)
       this.footer1 = res;
     })
     this.menuService.GetOneMenu('5d414b3ba3a4161bd859fe2f').subscribe((res: any) => {

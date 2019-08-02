@@ -21,6 +21,7 @@ import { NewssingleComponent } from './ui/newssingle/newssingle.component';
 import { WarrantyComponent } from './ui/warranty/warranty.component';
 import { DistributionComponent } from './ui/distribution/distribution.component';
 import { UserProfileComponent } from './ui/user-profile/user-profile.component';
+import { PageContentComponent } from './ui/page-content/page-content.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path: 'about_us', component: CompanyComponent },
   { path: 'warranty', component: WarrantyComponent },
   { path: 'distribution', component: DistributionComponent },
+  { path: 'page/:id', component: PageContentComponent },
   { path: 'product/:id', component: ProductComponent },
   { path: 'notes', component: NotesListComponent,  canActivate: [AuthGuard] },
   { path: 'uploads',  component: UploadPageComponent,  canActivate: [AuthGuard] },

@@ -20,9 +20,9 @@
                                           <div class="clearfix">
                                               <div class="col-sm-12 hover-menu text-uppercase">
                                                   <ul id="solutions">
-                                                      <li> <a href="#" routerLink="/company" class="d-block"><strong> About Us</strong></a></li>
-                                                      <li> <a href="#" routerLink="/warranty" class="d-block"><strong> Warranty</strong></a></li>
-                                                      <li> <a href="#" routerLink="/distribution" class="d-block"><strong> Distribution</strong></a></li>
+                                                      <li *ngFor="let page of pages?.value"> <a href="#" routerLink="/page/{{page?.slug}}" class="d-block"><strong> {{page?.label | titlecase}}</strong></a></li>
+                                                      <!-- <li> <a href="#" routerLink="/warranty" class="d-block"><strong> Warranty</strong></a></li>
+                                                      <li> <a href="#" routerLink="/distribution" class="d-block"><strong> Distribution</strong></a></li> -->
                                                   </ul>
                                               </div>
                                           </div>
@@ -344,10 +344,7 @@
                                                         </div> -->
                                                           <div class="col-sm-12 hover-menu">
                                                               <ul>
-                                                                  <!-- <li *ngFor="let company of companies"><a href="#" routerLink="/{{company.split(' ').join('_') | lowercase}}">{{company | titlecase}}</a></li> -->
-                                                                  <li><a href="#" routerLink="/about_us">About Us</a></li>
-                                                                  <li><a href="#" routerLink="/warranty">Warranty</a></li>
-                                                                  <li><a href="#" routerLink="/distribution">Distribution</a></li>
+                                                                <li *ngFor="let page of pages?.value"> <a href="#" routerLink="/page/{{page?.slug}}" class="d-block"><strong> {{page?.label | titlecase}}</strong></a></li>
                                                               </ul>
                                                           </div>
                                                       </div>
