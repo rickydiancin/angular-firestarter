@@ -180,3 +180,9 @@ form input[type=text] {
     //     left: 45%;
     // }
 }
+
+@media (max-width: 767px) {
+    .sidebanner  {
+       width: 100% !important;
+    }
+}

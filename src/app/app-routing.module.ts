@@ -25,7 +25,9 @@ import { PageContentComponent } from './ui/page-content/page-content.component';
 
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent },
+  { path: '', component: HomePageComponent,
+  pathMatch: 'full' 
+ },
   { path: 'login', component: UserLoginComponent },
   { path: 'profile', component: UserProfileComponent },
   { path: 'products', component: CategoryComponent },
@@ -50,7 +52,10 @@ const routes: Routes = [
   { path: 'uploads',  component: UploadPageComponent,  canActivate: [AuthGuard] },
   { path: 'ssr', component: SsrPageComponent },
   // { path: '**', component: HomePageComponent },
-  { path: '**', redirectTo: '/' },
+  { path: '**', 
+  component: HomePageComponent,
+  //redirectTo: '/'
+ },
 ];
 
 @NgModule({

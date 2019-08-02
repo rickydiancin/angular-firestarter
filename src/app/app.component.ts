@@ -28,9 +28,11 @@ export class AppComponent implements OnInit {
   others: any;
 
   constructor(
-    private auth: AuthService, 
-    public productsService: ProductService, 
-    private router: Router, public scriptsService: ScriptsService, private vs: VariablesService,
+    private auth: AuthService,
+    public productsService: ProductService,
+    private router: Router,
+    public scriptsService: ScriptsService,
+    private vs: VariablesService,
     private menuService: MenuService
     ) {}
 
@@ -67,7 +69,7 @@ export class AppComponent implements OnInit {
     // this.footerMenus = this.vs.footer();
 
     // this.getAllProducts();
-    // this.getAllSolution();
+    this.getAllSolution();
     // setTimeout(() => {
      // this.scriptsService.prepareJquery();
     // }, 1000)
