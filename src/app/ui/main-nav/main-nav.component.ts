@@ -269,6 +269,7 @@ export class MainNavComponent implements OnInit {
     this.tokenService.deleteToken();
     this.cookieExists = false;
     this.router.navigate(['/']);
+    this.auth.listener('');
   }
 
   toggleCollapse() {

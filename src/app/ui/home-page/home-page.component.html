@@ -133,11 +133,11 @@
                            <div class="clearfix">
                              <div class="b-product_grid_toggle float-left">
                                  <!-- <span class="b-price">Add To Project</span> -->
-                                 <span class="b-add_cart" [tooltip]="cookieExists?'':'Please login to use Project Manager'" (click)="addToProduct(product)">
+                                 <span *ngIf="cookieExists" class="b-add_cart" (click)="addToProduct(product)">
                                      <i class="icon-plus icons"></i>
                                      <a href="javascript:void();">Add To Project</a>
                                  </span>
-                                 <span class="b-add_cart" *ngIf="!cookieExists">
+                                 <span class="b-add_cart" *ngIf="!cookieExists" [tooltip]="!cookieExists?'':'Please login to use Project Manager'">
                                      <i class="icon-plus icons"></i>
                                      <a href="javascript:void();" >Add To Project</a>
                                  </span>
@@ -185,7 +185,7 @@
               <div class="b-blog_degault_single">
                  <div class="b-blog_single_header">
                       <div class="">
-                          <a href="#" routerLink="/postcategory/news/{{post?.index}}">
+                          <a href="#" routerLink="/post/{{post?.slug}}/{{post?.slug}}">
                               <img [src]="post?.imgURL || '/assets/images/blog/home/blog_default_01.jpg'"  class="img-fluid" alt="">
                           </a>
                       </div>
@@ -195,13 +195,13 @@
                       </div> -->
                       <div class="b-post_categories">
                          <div class="b-post_categorie_list">
-                            <a href="#" rel="category tag" routerLink="/postcategory/news/{{post?.index}}">Health</a>
+                            <a href="#" rel="category tag" routerLink="/post/{{post?.slug}}/{{post?.index}}">{{post?.category | titlecase}}</a>
                          </div>
                       </div>
                   </div>  
                   <div class="b-blog_single_info">
                       <h5 class="b-entry_title">
-                          <a href="#" rel="bookmark" routerLink="/postcategory/news/{{post?.index}}">{{post?.title | titlecase}}</a>
+                          <a href="#" rel="bookmark" routerLink="/post/{{post?.slug}}/{{post?.index}}">{{post?.title | titlecase}}</a>
                       </h5>
                       <!-- <div class="b-author_info">
                           <span class="b-author_name">
@@ -214,7 +214,7 @@
                       <div class="b-blog_single_content" [innerHTML]="post?.content | slice:0:200"></div> 
                   </div>
                   <div class="b-read_more">
-                      <a href="#" routerLink="/news/{{post?.index}}">Read More</a>
+                      <a href="#" routerLink="/post/{{post?.slug}}">Read More</a>
                   </div>
               </div>
            

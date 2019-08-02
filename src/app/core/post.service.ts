@@ -28,6 +28,13 @@ export class PostService {
     return this.httpClient.get(`${BASEURL}/post/category/all`);
   }
 
+  GetAllPostCategoryByID(slug): Observable<any> {
+    return this.httpClient.get(`${BASEURL}/post/category`, {
+      params: new HttpParams()
+        .set('slug', slug)
+    });
+  }
+
   GetSinglePostCategory(index): Observable<any> {
     return this.httpClient.get(`${BASEURL}/post/category/single`, {
       params: new HttpParams()
@@ -66,6 +73,13 @@ export class PostService {
     return this.httpClient.get(`${BASEURL}/post/single`, {
       params: new HttpParams()
         .set('id', id)
+    });
+  }
+
+  GetSinglePostByIndex(index): Observable<any> {
+    return this.httpClient.get(`${BASEURL}/post/single/index`, {
+      params: new HttpParams()
+        .set('index', index)
     });
   }
 
