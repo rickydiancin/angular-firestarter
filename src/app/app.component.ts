@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
   footer1: any;
   footer2: any;
   footer3: any;
+  others: any;
 
   constructor(
     private auth: AuthService,
@@ -59,6 +60,10 @@ export class AppComponent implements OnInit {
     this.menuService.GetOneMenu('5d414b42a3a4161bd859fe31').subscribe((res: any) => {
       // console.log(res)
       this.footer3 = res;
+    })
+    this.menuService.GetOneMenu('5d43a93487cb4f2cbcf993f1').subscribe((res: any) => {
+      // console.log(res)
+      this.others = res;
     })
 
     // this.footerMenus = this.vs.footer();

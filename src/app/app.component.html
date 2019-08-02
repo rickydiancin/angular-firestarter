@@ -141,8 +141,8 @@
                     <h5 class="b-footer_block_title text-uppercase">Others</h5>
                     <div class="b-footer_block_in">
                       <ul class="b-footer_menu">
-                        <li *ngFor="let other of footerMenus?.others"><a href="#"
-                            [routerLink]="other?.url">{{other?.categoryName | titlecase}}</a></li>
+                        <li *ngFor="let other of others?.value"><a href="#"
+                            routerLink="/page/{{other?.slug}}">{{other?.label | titlecase}}</a></li>
                       </ul>
                     </div>
                   </div>
