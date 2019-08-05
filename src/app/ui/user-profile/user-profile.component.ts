@@ -23,7 +23,7 @@ export class UserProfileComponent implements OnInit {
   user;
   form;
   type;
-  message;
+  message = '';
   showMessage = false;
   passwordForm;
   isChangePassword: Boolean = false;
@@ -40,6 +40,7 @@ export class UserProfileComponent implements OnInit {
     authToken: `bearer ${this.tokenService.getToken()}`,
     disableMultipart: false,
   });
+  success: boolean = false;
 
   constructor(
     public auth: AuthService,
@@ -86,8 +87,10 @@ export class UserProfileComponent implements OnInit {
   }
 
   changePassword() {
+    this.success = false;
     this.auth.ChangePassword(this.passwordForm.value).subscribe((res: any) => {
-      console.log(res);
+      this.success = true;
+      this.message = res.message;
       this.passwordForm.reset();
     })
     // this.auth.changePassword(this.passwordForm.value).then((ret:any) => {
@@ -133,8 +136,11 @@ export class UserProfileComponent implements OnInit {
   }
 
   updateProfile() {
+    this.success = false;
     this.auth.UpdateProfile(this.form.value).subscribe((res: any) => {
       // console.elog()
+      this.success = true;
+      this.message = res.message;
     })
     // console.log(this.form.value)
 

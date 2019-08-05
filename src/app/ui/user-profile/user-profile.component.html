@@ -6,6 +6,15 @@
     </div>
   </div>
 
+    <div class="col-sm-12" *ngIf="success">
+      <div class="alert alert-success">
+        <i class="fa fa-check-circle-o fa-fw"></i> {{message}}
+        <button (click)="success = false;" type="button" class="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+
 
 <div class="spinner text-center p-5" *ngIf="!cookieExists">
   <img src="./assets//svg/oval.svg" class="img-fluid" alt="">
