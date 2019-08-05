@@ -5,6 +5,10 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { TokenService } from 'src/app/core/token.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+import { FileUploader } from 'ng2-file-upload';
+
+const URL = `${environment.BASEURL}/images/upload`;
 
 @Component({
   selector: 'user-profile',
@@ -25,6 +29,18 @@ export class UserProfileComponent implements OnInit {
   isChangePassword: Boolean = false;
   cookieExists: any;
 
+  ImageURL = environment.ImageURL;
+
+  public uploader: FileUploader = new FileUploader({
+    url: URL,
+    method: 'post',
+    itemAlias: 'upload',
+    autoUpload: true,
+    removeAfterUpload: true,
+    authToken: `bearer ${this.tokenService.getToken()}`,
+    disableMultipart: false,
+  });
+
   constructor(
     public auth: AuthService,
     private formBuilder: FormBuilder,
@@ -32,11 +48,19 @@ export class UserProfileComponent implements OnInit {
     private tokenService: TokenService,
     private router: Router
     ) {
+
     this.createForm();
     this.cookieExists = tokenService.checkToken();
     if(!this.cookieExists) {
       router.navigate(['/login']);
     }
+
+    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false };
+      this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+        // this.toastService.showToast('success', null, JSON.parse(response).message);
+        this.user.imgURL = JSON.parse(response).filename;
+        console.log(response)
+      };
   }
 
   createForm() {
@@ -62,6 +86,10 @@ export class UserProfileComponent implements OnInit {
   }
 
   changePassword() {
+    this.auth.ChangePassword(this.passwordForm.value).subscribe((res: any) => {
+      console.log(res);
+      this.passwordForm.reset();
+    })
     // this.auth.changePassword(this.passwordForm.value).then((ret:any) => {
     //   console.log(ret)
     //   if(!ret.success) {
