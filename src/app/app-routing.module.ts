@@ -24,7 +24,7 @@ import { UserProfileComponent } from './ui/user-profile/user-profile.component';
 import { PageContentComponent } from './ui/page-content/page-content.component';
 
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'login', component: UserLoginComponent },
   { path: 'profile', component: UserProfileComponent },
