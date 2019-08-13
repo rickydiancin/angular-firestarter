@@ -40,6 +40,7 @@ import { SafePipe } from './product/safePipe';
 import { ShareButtonModule } from '@ngx-share/button';
 import '../../icons';
 import { PageContentComponent } from './page-content/page-content.component';
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
   imports: [
@@ -57,7 +58,8 @@ import { PageContentComponent } from './page-content/page-content.component';
     NgxSpinnerModule,
     TooltipModule.forRoot(),
     PopoverModule.forRoot(),
-    ShareButtonModule
+    ShareButtonModule,
+    FileUploadModule
   ],
   declarations: [
     UserLoginComponent,

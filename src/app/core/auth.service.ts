@@ -28,6 +28,10 @@ export class AuthService {
     return this.httpClient.post(`${BASEURL}/user/create`, body);
   }
 
+  ChangePassword(body): Observable<any> {
+    return this.httpClient.put(`${BASEURL}/user/change/password`, body);
+  }
+
   GetAllUser(): Observable<any> {
     return this.httpClient.get(`${BASEURL}/user/all`);
   }

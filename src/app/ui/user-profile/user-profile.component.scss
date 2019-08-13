@@ -17336,7 +17336,7 @@
   }
   
   .card-profile .card-avatar {
-    margin: -50px auto 0;
+    margin: -25px auto 0;
     border-radius: 50%;
     overflow: hidden;
     padding: 0;
@@ -18854,7 +18854,7 @@ h1 {
 .avatar-upload {
     position: relative;
     max-width: 150px;
-    margin: -50px auto 30px;
+    margin: -25px auto 30px;
     background-color: #fff;
     .avatar-edit {
         position: absolute;
@@ -18910,4 +18910,8 @@ h1 {
             background-position: center;
         }
     }
+}
+
+/deep/.b-page_title {
+  margin-bottom: 20px !important;
 }

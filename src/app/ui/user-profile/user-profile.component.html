@@ -6,6 +6,15 @@
     </div>
   </div>
 
+    <div class="col-sm-12" *ngIf="success">
+      <div class="alert alert-success">
+        <i class="fa fa-check-circle-o fa-fw"></i> {{message}}
+        <button (click)="success = false;" type="button" class="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+
 
 <div class="spinner text-center p-5" *ngIf="!cookieExists">
   <img src="./assets//svg/oval.svg" class="img-fluid" alt="">
@@ -24,17 +33,19 @@
     </div>
 
    
-<div class="row">
-    <!-- <div class="col-md-4 pull-right" *ngIf="!isChangePassword">
+<div class="row" *ngIf="user">
+    <div class="col-md-4" *ngIf="!isChangePassword">
             <div class="card card-profile">
               <div class="container">
                 <div class="avatar-upload">
                   <div class="avatar-edit">
-                    <input type='file' (change)="saveChanges(upload)" #upload id="imageUpload" accept=".png, .jpg, .jpeg" />
+                      <input type='file' ng2FileSelect [uploader]="uploader" id="imageUpload" accept=".png, .jpg, .jpeg" />
+                    <!-- <input type='file' (change)="saveChanges(upload)" #upload id="imageUpload" accept=".png, .jpg, .jpeg" /> -->
                     <label title="Upload Image" for="imageUpload"></label>
                   </div>
                   <div class="avatar-preview">
-                    <div id="imagePreview" [ngStyle]="{ 'background-image': 'url(' + user?.photoURL + ')'}">
+                      <div id="imagePreview" [ngStyle]="{ 'background-image': 'url(' + (user?.imgURL?ImageURL + user?.imgURL:'https://cdn1.iconfinder.com/data/icons/navigation-elements/512/user-login-man-human-body-mobile-person-512.png') + ')'}">
+                    <!-- <div id="imagePreview" [ngStyle]="{ 'background-image': 'url(' + user?.photoURL + ')'}"> -->
                     </div>
                   </div>
                 </div>
@@ -51,12 +62,12 @@
                 </ng-container>
               </div>
             </div>
-          </div> -->
+          </div>
         <div class="col-md-4 pull-right b-back" *ngIf="isChangePassword">
           <div class="card card-profile">
             <div class="card-avatar">
               <a href="#">
-                <img class="img" [src]="user.photoURL || 'https://gentec-web.firebaseapp.com/favicon.ico'" style="min-width: 130px;">
+                <img class="img" [src]="ImageURL+user?.imgURL || 'https://cdn1.iconfinder.com/data/icons/navigation-elements/512/user-login-man-human-body-mobile-person-512.png'" style="min-width: 130px;">
               </a>
             </div>
             <div class="card-body">
@@ -79,7 +90,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6 offset-sm-3">
+        <div class="col-md-8">
           <div class="card">
             <div class="card-header card-header-primary">
               <h4 class="card-title">User Profile</h4>
