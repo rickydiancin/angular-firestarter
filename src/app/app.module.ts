@@ -60,6 +60,7 @@ firebase.initializeApp(environment.firebase);
     ServiceWorkerModule.register('/ngsw-worker.js', {
       enabled: environment.production
     }),
+    //changes
     RouterModule.forRoot(routes, { useHash: false, anchorScrolling: 'enabled', scrollPositionRestoration: 'enabled' })
   ],
   bootstrap: [AppComponent],
