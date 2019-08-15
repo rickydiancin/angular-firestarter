@@ -30,6 +30,9 @@ import { TokenInterceptorService } from './core/token-interceptor.service';
 import { TokenService } from './core/token.service';
 import { CookieService } from 'ngx-cookie-service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+
+import { routes } from './app-routing.module';
 
 firebase.initializeApp(environment.firebase);
 
@@ -56,7 +59,9 @@ firebase.initializeApp(environment.firebase);
     TypeaheadModule.forRoot(),
     ServiceWorkerModule.register('/ngsw-worker.js', {
       enabled: environment.production
-    })
+    }),
+    //changes
+    RouterModule.forRoot(routes, { useHash: false, anchorScrolling: 'enabled', scrollPositionRestoration: 'enabled' })
   ],
   bootstrap: [AppComponent],
   providers: [

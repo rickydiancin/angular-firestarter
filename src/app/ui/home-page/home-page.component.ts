@@ -90,7 +90,7 @@ export class HomePageComponent implements OnInit {
         const element = document.querySelector("#" + fragment);
       if (element) {
          element.scrollIntoView(true);
-         this.router.navigate(['/']);
+        //  this.router.navigate(['/']);
         }
       }
     });

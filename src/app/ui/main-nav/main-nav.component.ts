@@ -108,6 +108,10 @@ export class MainNavComponent implements OnInit {
   
   ngOnInit() {
 
+    setTimeout(() => {
+      this.scriptsService.prepareJquery();
+    }, 1000)
+
     this.GetOneMenu();
     this.GetAllSolutions();
     this.GetAllCategory();
