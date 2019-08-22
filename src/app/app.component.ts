@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from './core/auth.service';
 import { ProductService } from './core/products.service';
 import { TypeaheadMatch } from 'ngx-bootstrap';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { ScriptsService } from './core/scripts.service';
 import { VariablesService } from './core/variables.service';
 import { MenuService } from './core/menu.service';
+import { filter } from 'rxjs/operators';
 
 declare var $: any;
 declare var jQuery: any;
+declare var gtag;
 
 @Component({
   selector: 'app-root',
@@ -34,7 +36,16 @@ export class AppComponent implements OnInit {
     public scriptsService: ScriptsService,
     private vs: VariablesService,
     private menuService: MenuService
-    ) {}
+    ) {
+      const navEndEvents = router.events.pipe(
+        filter(event => event instanceof NavigationEnd)
+      );
+      navEndEvents.subscribe((event: NavigationEnd) => {
+        gtag('config', 'UA-62023281-1', {
+          'page_path': event.urlAfterRedirects
+        });
+      })
+    }
 
   getAllProducts() {
     // this.vs.localstorage('products').subscribe((products) => {
