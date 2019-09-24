@@ -270,10 +270,10 @@
       </div>
       <div class="b-products b-product_grid b-product_grid_four mb-4">
         <div *ngIf="products" class="b-title b-title_line_right mt-5 mt-lg -0">
-          <h2 *ngIf="params?.id === 'all' || params?.solutionid === 'all'" class="text-uppercase">All Products</h2>
+          <h1 *ngIf="params?.id === 'all' || params?.solutionid === 'all'" class="text-uppercase">All Products</h1>
           <!-- <h2 *ngIf="params?.solutionid === 'all'" class="text-uppercase">All Products</h2> -->
-          <h2 *ngIf="params?.id" class="text-uppercase">{{category?.name | titlecase}}</h2>
-          <h2 *ngIf="params?.solutionid" class="text-uppercase">{{solution?.name | titlecase}}</h2>
+          <h1 *ngIf="params?.id" class="text-uppercase">{{category?.name | titlecase}}</h1>
+          <h1 *ngIf="params?.solutionid" class="text-uppercase">{{solution?.name | titlecase}}</h1>
           <hr *ngIf="category?.imgURL || solution?.imageFile2">
           <div *ngIf="category?.imgURL">
             <img style="max-height:300px" [src]="ImageURL+category?.imgURL" alt="" class="img-fluid" style="width: 100%;">
