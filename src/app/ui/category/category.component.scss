@@ -64,9 +64,9 @@ input {
     display: block;
 }
 
-// h1 {
-//     font-size: 1rem !important;
-// }
+h1.product-title {
+    font-size: 1rem !important;
+}
 
 .b-product_grid_toggle .b-add_cart i {
     margin-left: 1px;
@@ -92,12 +92,25 @@ input {
         font-size: 12px !important;
     }
 }
-.b-product_grid a{
+
+// .b-product_grid a span{
+//     font-weight: bold;
+//     font-size: 16px;
+// }
+
+.b-product_grid a:not(.b-current_page) span{
     color: #333;
     font-weight: bold;
     font-size: 16px;
 }
-.b-product_grid a:hover{
+
+.b-product_grid a.b-current_page span {
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.b-product_grid a:hover span{
     color:#95C448;
 }
 
